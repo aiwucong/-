@@ -42,7 +42,7 @@ body {
 
 /* input样式 */
 .homeInput {
-    width: 75%;
+    width: 72%;
     height: 350px;
     border: 1px solid #000;
     position: relative;
@@ -185,21 +185,26 @@ body {
 }
 
 .imagesConter_left {
-    width: 54%;
-    height: 100%;
+    width: 47%;
+    height: 97%;
     border: 1px solid #000;
+}
+.imagesConter_left img {
+    width: 100%;
+    height: 100%;
 }
 
 .imagesConter_right {
     width: 30%;
-    height: 100%;
+    height: 97%;
     border: 1px solid #000;
 }
 
 .img_text {
     width: 40%;
-    margin: 10px auto;
-    font-size: 24px;
+    margin: 26px auto;
+    font-size: 21px;
+    text-align: center;
 }
 
 .btn1,
@@ -208,6 +213,7 @@ body {
     width: 100%;
     background: #d9d9d9;
     margin: 10px auto !important;
+    color: #000;
 }
 
 .homeImages ul li:nth-child(2) {
