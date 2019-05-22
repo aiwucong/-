@@ -1,0 +1,128 @@
+.layui-layout-admin .layui-side {
+    top: 0;
+    background-color: #022387 !important;
+}
+
+.layui-layout-admin .layui-body {
+    top: 0;
+}
+
+body {
+    background: #eee;
+}
+
+.layui-body {
+    height: 685px;
+}
+
+.menu_l {
+    width: 200px;
+    height: 730px;
+    border: 1px solid red;
+    box-sizing: border-box;
+    background: url(../images/bg.jpg);
+}
+
+.logo {
+    width: 200px;
+    height: 70px;
+    /* border: 1px solid red; */
+    background: url(../images/logo_1.png) no-repeat 21px 17px;
+    background-size: 180px 52px;
+}
+
+.menu_cen {
+    margin-top: 10px;
+    /* border: 1px solid green; */
+}
+
+.menu_cen ul li {
+    height: 55px;
+    border: 1px solid #000;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.menu_cen li:hover {
+    background: #ff9600;
+}
+
+.menu_cen li:hover:hover a {
+    color: #fff;
+}
+
+.menu_cen li a {
+    display: block;
+    color: #bfcafa;
+    line-height: 55px;
+    font-size: 16px;
+    letter-spacing: 3px
+}
+
+.menu_cen li a .tb {
+    margin-right: 12px;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    /* border: 1px solid #000; */
+    line-height: 30px;
+}
+
+.menu_cen li a .jt {
+    float: right;
+    line-height: 55px;
+    font-size: 24px;
+}
+
+.listMenu {
+    position: absolute;
+    left: 200px;
+    z-index: 999;
+    top: 80px;
+    display: none;
+    width: 200px;
+    height: 385px;
+    background: #022387;
+}
+
+.menu_cen li:hover .listMenu {
+    display: block;
+}
+
+.mdk_head {
+    height: 50px;
+    background: #dededc;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    /* box-shadow: 3px 2px 15px #022387; */
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.mdk_head h3 {
+    width: 340px;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 50px;
+}
+
+.mdk_head .incnss {
+    height: 100px;
+}
+
+.incnss>a {
+    display: inline-block;
+    margin-top: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: 3px;
+}
+
+.incnss>a img {
+    width: 100%;
+    height: 100%;
+}

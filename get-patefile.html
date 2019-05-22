@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/get-patefile.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
+		<script type="text/javascript" src="js/public.js"></script>
+		<style>
+			#imgg4{
+				width: 300px;
+				height: 300px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="box">
+			<!--背景图-->
+			<div style="position:fixed;z-index:-100; left:0px; top:0px; width:100%; height:100%">
+				<img src="images/img.png" width="100%" height="100%" />
+			</div>
+			
+			<!--返回-->
+			<div id="return">
+				<a href="get-pate.html">
+				<img src="images/black.png" />
+				</a>
+			</div>
+			<!--头部-->
+			<div id="head">
+				<span>
+					注意:请确保您的扫描件清晰,真实,并加盖公章,否则将影响审核结果;图片只能为jpg,png格式,大小不能超过10MB.
+				</span>
+			</div>
+			<!--中部-->
+			<div id="box1">
+				<!--文件上传-->
+				<div id="file">
+					<div class="showimg">
+						<div id="boxx">
+							<span>营业执照扫描件</span>
+							<input type="file" id="upimg" accept="image/*" onchange="upLoad()">
+							<label for="upimg">
+								<img id="imgg1" src="images/upload.jpg" alt="">
+							</label>
+						</div>
+					</div>
+					<div class="showimg">
+						<div id="boxx">
+							<span>经营许可证扫描件</span>
+							<input type="file" id="id" accept="image/*" onchange="upLoadid()">
+							<label for="id">
+								<img id="imgg2" src="images/upload.jpg" alt="">
+							</label>
+						</div>
+					</div>
+					<div class="showimg">
+						<div id="boxx">
+							<span>其他扫描件</span>
+							<input type="file" id="idCard" accept="image/*" onchange="upLoadidcard()">
+							<label for="idCard">
+								<img id="imgg3" src="images/upload.jpg" alt="">
+							</label>
+						</div>	
+					</div>
+					<div class="showi">
+						<div id="boxe">
+							<input type="file" id="excel" style="border: 1px solid red;"/>
+						</div>	
+					</div>
+				</div>
+			</div>
+			
+			<!--底部-->
+			<div id="dibu-box">
+				<div id="box-one1">
+					<span>预约审核单位</span>
+					<select id="city" style="margin-left:0.8%;background-color: transparent;border-radius:0.2rem;color: white;border:1px solid white;width:15%;text-align:center;font-size: 1.3rem;">
+						<option style="color: black;">武汉市</option>					
+					</select>
+					<select id="qu" style="margin-left:0.8%;background-color: transparent;border-radius:0.2rem;color: gray;border:1px solid white;width:15%;text-align:center;font-size: 1.3rem;">	
+						<option>武昌区</option>
+						<option>洪山区</option>
+						<option>东湖高新区</option>
+						<option>江夏区</option>
+						<option>东湖风景区</option>
+						<option>江岸区</option>
+						<option>江汉区</option>
+						<option>硚口区</option>
+						<option>汉阳区</option>
+						<option>青山区</option>
+						<option>东西湖区</option>
+						<option>新洲区</option>
+						<option>黄陂区</option>
+						<option>蔡甸区</option>
+						<option>汉南区</option>					
+					</select>
+					<select id="hospial" style="margin-left:0.8%;background-color: transparent;border-radius:0.2rem;color: gray;border:1px solid white;width:auto;text-align:center;font-size: 1.3rem;">	
+					</select>
+				</div>
+				<div id="box-one2">
+					<input type="button" id="ShowDiv" value="立即预约" onclick="ShowDiv()" />
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	
+	<!--预约-->
+	<script>
+		function ShowDiv(){
+			var upimg=$("#upimg").val();
+			var id=$("#id").val();
+			var idCard=$("#idCard").val();
+			var excel=$("#excel").val();
+			var qu=$("#qu").val();
+			var hospital=$("#hospial").val();
+			if(upimg==null||upimg==""){
+				alert("营业执照不能为空");
+				return false;
+			}
+			if(id==null||id==""){
+				alert("经营许可证不能为空");
+				return false;
+			}
+			if(idCard==null||idCard==""){
+				alert("其他扫描件不能为空");
+				return false;
+			}
+			/*if(excel==null||excel==""){
+				alert("excel不能为空");
+				return false;
+			}*/
+			if(qu==null||qu==""){
+				alert("请选择区域");
+				return false;
+			}
+			if(hospital==null||hospital==""){
+				alert("请选择医院")
+			}
+			
+			$.ajax({
+				type:"get",
+				url:"",
+				async:true
+			});
+			
+		}
+	</script>
+		<script type="text/javascript">
+			$("#qu").change(function(){
+				console.log("weawfw")
+				$("#hospial").children().remove()
+				var options1 =$("#qu option:checked");
+				var opindex=$("#qu").get(0).selectedIndex;
+				var data={"qunum":opindex}
+				$.ajax({
+					type:"post",
+					url:"http://192.168.1.112:8086/gethos",
+					data:JSON.stringify(data),
+					contentType:false,
+					dataType:"json",
+					success:function(res){
+						var hosdata=eval(res)
+						var hosname=$("#hospial")
+						for(var j=0;j<hosdata.length;j++){
+							hosname.append("<option >"+hosdata[j]+"</option>")
+						}
+					},
+					error:function(){
+						console.log("没拿到数据")
+					}
+				});
+			})
+		
+			
+			var map={"tjid":"35"}
+			function test(){
+			$.ajax({
+				type:"post",
+				url:"http://192.168.1.109:8086/tijian/getbycond",
+				contentType:"application/json;charset=utf-8",
+				dataType:"json",
+				data:map,
+				success:function(res){
+					console.log("拿到了数据")
+					console.log(res)
+				},
+				error:function(res){
+					console.log("没拿到数据")
+				}
+				
+			});
+			}
+		
+	
+	
+		
+		
+	</script>
+	<!--图片上传-->
+	<script type="text/javascript" src="js/get-patefile.js">
+	
+	</script>
+</html>

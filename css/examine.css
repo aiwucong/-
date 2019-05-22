@@ -1,0 +1,192 @@
+.examine_body {
+    width: 100%;
+    height: 600px;
+}
+
+.queryAll {
+    width: 100%;
+    height: 170px;
+    background: #dededc;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.queryAll_list {
+    width: 40%;
+    /* height: 130px; */
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+
+.queryAll_list li {
+    width: 48%;
+    height: 130px;
+    background: #ff9600;
+    border-radius: 8px;
+}
+
+.queryAll_list .queryAll_name {
+    font-size: 14px;
+    background: #009ddd;
+    padding: 5px 8px;
+    display: inline-block;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    color: #fff;
+}
+
+.queryAll_list .queryAll_nember {
+    margin-top: 10px;
+    font-size: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.queryAll_home {
+    width: 40%;
+    /* height: 130px; */
+    /* border: 1px solid red; */
+    padding: 20px 20px 20px 0;
+    box-sizing: border-box;
+}
+
+.queryAll_main {
+    height: 130px;
+    background: #ff9600;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+
+.main_form {
+    width: 84%;
+}
+
+.main_input {
+    height: 26px;
+}
+
+.main_input_block {
+    margin-left: 72px;
+    min-height: 26px;
+}
+
+.layui-form-item {
+    /* border: 1px solid #000; */
+    height: 25px;
+    margin-bottom: 3px;
+}
+
+.main_name {
+    font-size: 14px;
+    width: 70px;
+    padding: 0;
+    /* background: #000; */
+    color: #fff;
+    line-height: 30px;
+    text-align: center;
+}
+
+.chaxun {
+    width: 12%;
+    height: 87px;
+    background: #009ddd;
+    border: 0;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.chaxun .text {
+    display: block;
+    font-size: 24px;
+    line-height: 40px;
+    color: #fff;
+}
+
+.sousu {
+    font-size: 24px;
+    margin-left: -5px;
+}
+
+.examine_tab {
+    width: 100%;
+    height: 600px;
+    background: #fff
+}
+
+.see {
+    background: #009ddd;
+}
+
+.exa {
+    background: #ff9600;
+}
+
+
+/* 审核通过弹框里面的内容样式 */
+
+#box {
+    width: 450px;
+    /* height: 500px; */
+    padding: 20px 20px;
+    display: none;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    box-sizing: border-box;
+}
+
+.box_main {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid #000; */
+}
+
+.box_main #aa {
+    width: 30%;
+}
+
+.box_main .yytimeText {
+    width: 20%;
+    /* border: 1px solid #000; */
+    line-height: 28px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.box_main .yytime {
+    width: 45%;
+    /* border: 1px solid #000; */
+    line-height: 28px;
+    font-size: 15px;
+    text-align: center;
+}
+
+
+/* 审核不通过弹框 */
+
+#box1 {
+    width: 450px;
+    /* height: 500px; */
+    padding: 0 20px;
+    display: none;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.rensonText {
+    /* width: 0; */
+    line-height: 26px;
+    padding: 0;
+    text-align: center;
+}
+
+.renson {
+    width: 78%;
+    margin-left: 85px;
+    margin-top: 20px;
+}

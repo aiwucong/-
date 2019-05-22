@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #top {
+            margin-left: 3%;
+            width: 96%;
+            height: 50.5%;
+            border: 1px solid #9F9F9F;
+        }
+        
+        #headd {
+            width: 100%;
+            height: 6%;
+            /*display: flex;
+			justify-content: space-between;*/
+        }
+        
+        #headd button {
+            float: right;
+            margin-left: 1%;
+            margin-top: 0.5px;
+            width: 6%;
+            height: 90%;
+            border: 1px solid #FF9600;
+            border-radius: 5%;
+        }
+        
+        .left {
+            margin-top: 7px;
+            width: 65%;
+            height: 94%;
+            float: left;
+            border: 1px solid #FF9600;
+        }
+        
+        #lef {
+            width: 3%;
+            float: left;
+            margin-top: 3%;
+            height: 70.5%;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #FFFFFF;
+            margin-left: 2%;
+            background-color: #FF9600;
+            /*border: 1px solid #01AAED;*/
+        }
+        
+        #rig {
+            width: 3%;
+            float: left;
+            margin-left: 4%;
+            margin-top: 3%;
+            height: 70.5%;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #FFFFFF;
+            background-color: #FF9600;
+            /*border: 1px solid #01AAED;*/
+        }
+        
+        .left1 {
+            width: 75%;
+            margin-left: 2%;
+            float: left;
+            line-height: 271%;
+            text-align: center;
+            height: 100%;
+            /*	b                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         orde r: 1px solid #01AAED;*/
+        }
+        
+        .left1 input {
+            width: 12.5rem;
+        }
+        
+        .left-left {
+            width: 49%;
+            float: left;
+            font-size: 17px;
+            text-align: right;
+            height: 100%;
+            /*	  	border: 1px solid red;*/
+        }
+        
+        .left-right {
+            width: 49%;
+            float: right;
+            font-size: 17px;
+            height: 100%;
+            /*	  	border: 1px solid red;*/
+        }
+        
+        .right1 {
+            width: 19%;
+            margin-left: 3%;
+            text-align: left;
+            float: left;
+            line-height: 410%;
+            height: 100%;
+            /*	  	 border: 2px solid #0000FF;*/
+        }
+        
+        .right1 button {
+            width: 65%;
+            height: 11%;
+            margin-left: 1%;
+            margin-top: 6%;
+            color: white;
+            border-radius: 5%;
+            border: 1px solid #FF9600;
+            background-color: #FF9600;
+        }
+        
+        .left-right {
+            width: 49.5%;
+            float: right;
+            height: 100%;
+            /*  	border: 1px solid #red;*/
+        }
+        
+        .right {
+            width: 20.65%;
+            height: 87.5%;
+            margin-right: 2.01%;
+            text-align: center;
+            float: right;
+            border: 1px solid #FF9600;
+        }
+        
+        .right button {
+            margin-top: 5%;
+            border-radius: 5%;
+            border: 1px solid #D9D9D9;
+            width: 80%;
+            height: 10%;
+            font-size: 132%;
+            background-color: #D9D9D9;
+        }
+        
+        .right img {
+            float: left;
+            margin-left: 12%;
+        }
+        
+        .right span {
+            margin-top: 9%;
+            line-height: 180%;
+            font-size: 90%;
+        }
+        
+        #suc {
+            float: right;
+            width: 18%;
+            height: 45%;
+            margin-right: 9%;
+            margin-top: 10%;
+            border: 1px solid #B2B2B2;
+        }
+        
+        #contente {
+            margin-left: 1.5%;
+            margin-top: 2%;
+            width: 100%;
+            height: 41%;
+            /*	 	border: 1px solid blue;*/
+        }
+        
+        html {
+            width: 99%;
+            height: 100%;
+            font-family: "微软雅黑";
+        }
+        
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: "微软雅黑";
+        }
+        
+        #heade {
+            float: right;
+            text-align: right;
+            margin-top: -2%;
+            width: 100%;
+            height: 9%;
+            /*	border: 1px solid #00FF00;*/
+        }
+        
+        #heade input {
+            border-radius: 5%;
+            margin-right: 1%;
+            width: 5%;
+            color: white;
+            height: 100%;
+            border: 1px solid #FF9600;
+            background-color: #FF9600;
+        }
+        
+        #topTags {
+            width: 750px;
+            height: 40px;
+            margin: 0 auto;
+            background-color: #CCCC00;
+            float: left
+        }
+        
+        #topTags dl dd {
+            float: left;
+            width: 100px;
+            height: 25px;
+            margin-right: 5px;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+            padding-top: 15px;
+        }
+        
+        #topTags {
+            margin-left: 0%;
+            width: 100%;
+            height: 5%;
+            border: 1px solid black;
+        }
+        
+        #login {
+            font-size: 240%;
+            float: left;
+        }
+        
+        #butt {
+            float: right;
+            width: 45%;
+            height: 95%;
+            /*border: 1px solid yellow;*/
+            margin-right: 4px;
+        }
+        
+        #butt button {
+            width: 15px;
+            height: 100%;
+            margin-left: 3%;
+        }
+        
+        #message {
+            border: 1px solid black;
+            margin: 5%;
+            width: 65%;
+            height: 45%;
+        }
+        
+        .layui-header1 img {
+            float: right;
+            margin-top: 2%;
+            margin-right: 2.4%;
+            border-radius: 8%;
+        }
+        
+        .layui-header1 span {
+            align-content: center;
+            margin-top: 2%;
+            margin-left: 20%;
+            float: left;
+            text-align: center;
+            font-size: 290%;
+        }
+        
+        #id {
+            margin: 0 auto;
+        }
+        
+        #logo {
+            width: 100%;
+            height: 70%;
+            margin-top: 5%;
+        }
+        
+        #logo img {
+            width: 19%;
+            margin-top: 4%;
+            margin-left: 15%;
+            float: left;
+        }
+        
+        #logo span {
+            float: right;
+            margin-right: 13%;
+        }
+        
+        #btn {
+            float: right;
+            margin-top: 2%;
+        }
+        
+        button {
+            background-color: #ff9600;
+            width: 33%;
+            width: 0.5%;
+            color: white;
+        }
+        
+        #healthy {
+            float: right;
+            width: 90%;
+            height: 32%;
+            text-align: center;
+            background-color: #FF9600;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        #contente {
+            width: 99.5%;
+            height: 42.5%;
+            margin-top: 0.5%;
+            bottom: 1px;
+            border: 1px solid #93D1FF;
+        }
+        
+        #botton-left {
+            float: left;
+            margin-top: -2%;
+            margin-left: 0%;
+            font-size: 130%;
+        }
+        
+        #botton-right {
+            margin-top: -3%;
+            float: right;
+            margin-right: -20%;
+            font-size: 130%;
+        }
+        
+        #left1 {
+            float: left;
+            width: 74%;
+            height: 100%;
+            /*border: 1px solid #CCCC00;*/
+        }
+        
+        #left2 {
+            float: right;
+            width: 25%;
+            height: 100%;
+            line-height: 170%;
+            /*		border: 1px solid #CCCC00;*/
+        }
+        
+        #left2 button {
+            width: 75%;
+            border: 1px solid #FF9600;
+            border-radius: 5%;
+            margin-top: -10%;
+            line-height: 170%;
+            margin-right: 3%;
+            float: right;
+            color: #FFFFFF;
+            text-align: center;
+            height: 10%;
+            background-color: #FF9600;
+        }
+        
+        #left2 input {
+            margin-top: 10%;
+            margin-left: 0%;
+            line-height: 480%;
+            width: 7%;
+        }
+        
+        #maine {
+            font-size: 139%;
+            line-height: 180%;
+            float: left;
+            margin-left: 3%;
+            margin-top: 1%;
+            width: 70%;
+            height: 98%;
+            /*	border: 1px solid #FF0000;*/
+        }
+        
+        #maine span {
+            line-height: 230%;
+        }
+        
+        #maine #left {
+            margin-left: 1%;
+            margin-top: 2%;
+        }
+        
+        #maine input {
+            width: 35%;
+        }
+        
+        #imge {
+            float: right;
+            width: 24.5%;
+            height: 100%;
+            /*border: 1px solid #FF0000;*/
+        }
+        
+        #imge input {
+            margin-left: 31%;
+            margin-top: 3%;
+        }
+        
+        #imge span {
+            margin-left: 25%;
+            line-height: 280%;
+        }
+        
+        #idcardPhtoto {
+            margin: auto;
+            margin-top: 10%;
+            padding-top: 30%;
+            width: 42%;
+            height: 18%;
+            border: 1px solid black;
+        }
+        
+        #head {
+            font-size: 140%;
+            width: 100%;
+            height: 20%;
+            /*		border:1px solid #CCCC00;*/
+        }
+        
+        .hleft {
+            float: left;
+            text-align: left;
+        }
+        
+        .hleft input {
+            width: auto;
+        }
+        
+        .hright {
+            float: right;
+            margin-right: 2px;
+        }
+        
+        .hright button {
+            width: auto;
+            color: white;
+            height: 75%;
+            background-color: #FF9600;
+        }
+        
+        table {
+            margin-top: 10%;
+            margin: 0 auto;
+            width: 90%;
+            height: 85%;
+            border: 1px solid black;
+        }
+        
+        tr {
+            width: 100%;
+            height: 2%;
+            border: 1px solid black;
+        }
+        
+        td {
+            width: 2%;
+            height: 2%;
+            border: 1px solid black;
+        }
+        
+        #bottom {
+            margin-top: 150%;
+            margin: 0 auto;
+            width: 100%;
+            height: 32.6%;
+            /*border: 1px solid saddlebrown;*/
+        }
+        
+        th {
+            border: 0px solid black;
+            height: 2%;
+        }
+    </style>
+    <link rel="stylesheet" href="../src/css/layui.css" />
+</head>
+
+<body>
+    <div id="headd">
+        <button>新增并保存</button>
+        <button>重填</button>
+        <button>打印</button>
+    </div>
+    <div id="top">
+        <div id="lef">
+            从业人员基本信息
+        </div>
+        <div class="left">
+            <div class="left1">
+                <div class="left-left">
+                    <span>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;</span><input type="text" name="number" id="number" /><br />
+                    <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;</span><input type="text" name="name" id="name" /><br />
+                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别&nbsp;&nbsp;</span><input type="text" style="width: 3.5rem;" name="sex" id="sex" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>年&nbsp;&nbsp;龄&nbsp;&nbsp;</span><input type="text" style="width: 3.5rem;" name="age" id="age" /><br />
+                    <span>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;</span><input type="text" name="company" id="company" /><br />
+                    <span>办证日期&nbsp;&nbsp;</span><input type="date" style="width:12.5rem;" onchange="addInsuranceDate()" name="startdate" id="startdate" /><br />
+                    <span>办证人员&nbsp;&nbsp;</span><input type="text" name="person" id="person" /><br />
+                </div>
+                <div class="left-right">
+                    <span>手机号码&nbsp;&nbsp;</span><input type="text" name="telphone" id="telphone" /><br />
+                    <span>身份证号&nbsp;&nbsp;</span><input type="text" name="idcardNum" id="idcardNum" /><br />
+                    <span>健康证号&nbsp;&nbsp;</span><input type="text" name="hearthcardNum" id="hearthcardNum" /><br />
+                    <span>通讯地址&nbsp;&nbsp;</span><input type="text" name="adress" id="adress" /><br />
+                    <span>有效期至&nbsp;&nbsp;</span><input type="text" name="enddate" id="enddate" /><br />
+                    <span>办证单位&nbsp;&nbsp;</span><input type="text" name="deptNum" id="deptNum" /><br />
+                </div>
+            </div>
+
+            <div class="right1" id="checkboxs">
+                <input type="checkbox" id="readplus" />&nbsp;<button id="getop" type="submit">读身份证</button><br />
+                <input type="checkbox" />&nbsp;<button>最近登记日期</button><br />
+                <input type="checkbox" />&nbsp;<button>体检合格</button><br />
+                <input type="checkbox" />&nbsp;<button>打印体检表</button><br />
+                <input type="checkbox" />&nbsp;<button>打印健康证</button><br />
+            </div>
+        </div>
+        <div id="rig">
+            图像认证比对信息
+        </div>
+        <div class="right">
+            <img src="" id="idcardPhtoto" style="width: 42%;height: 45%;margin-top:1px;margin-left:9%;border: 1px solid #F9F4F4;" />
+            <div id="suc"></div><br />
+            <button>拍摄照片</button><br />
+            <button>导入图像</button><br />
+            <span>提示:1>导入本地照片不超过1MB;</span><br />
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2>人证比对成功才可以保存</span><br />
+
+        </div>
+    </div>
+    <!--tabs标签-->
+    <div id="contente" class="layui-tab layui-tab-card" lay-filter="demo" lay-allowclose="true">
+        <ul class="layui-tab-title" style="border:1px solid #firebrick;background-color: #0000FF;color: white;margin-top:0%;">
+            <!--   <li class="layui-this">既往病史</li>-->
+        </ul>
+        <div class="layui-tab-content" style="margin-top:0%;width: 99%;height: 82%;">
+            <div id="head">
+                <span class="hleft">
+					<input type="checkbox" id="selectAll"/>
+					<span>全选</span>
+                <input type="checkbox" id="unSelect" />
+                <span>全不选</span>
+                </span>
+                <span class="hright">
+					<span>办证日期</span>
+                <input type="text" />
+                <button>查询</button>
+                <button>打印</button>
+                </span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../src/layui.js"></script>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        //全选全不选
+        $(function() {
+            $("#unSelect").click(function() {
+                $("#checkboxs :checkbox").attr("checked", false);
+            });
+            $("#selectAll").click(function() {
+                $("#checkboxs :checkbox").attr("checked", true);
+            });
+        });
+
+        //JavaScript代码区域
+        layui.use('element', function() {
+            var element = layui.element;
+
+            //触发事件
+            var active = {
+                tabAdd: function() {
+                    //新增一个Tab项
+                    var htmlurl = $(this).attr('data-url');
+                    var mytitle = $(this).attr('mytitle');
+                    // alert("触发tab增加事件："+mytitle);
+                    //先判断是否已经有了tab
+                    var arrayObj = new Array();　 //创建一个数组  
+                    $(".layui-tab-title").find('li').each(function() {
+                        var y = $(this).attr("lay-id");
+                        arrayObj.push(y);
+                    });
+                    //                    alert("遍历取到的数组："+arrayObj);
+                    var have = $.inArray(mytitle, arrayObj); //返回 3,
+                    if (have >= 0) {
+                        //tab已有标签
+                        //                       alert("遍历的已有标签："+mytitle);
+                        element.tabChange('demo', mytitle); //切换到当前点击的页面
+                    } else {
+                        //没有相同tab
+                        //                      alert("遍历的没有相同tab："+mytitle);
+                        element.tabAdd('demo', {
+                            title: mytitle //用于演示
+                                ,
+                            content: '<iframe style="margin-left: 0.6%;border: 1px solid #9F9F9F;width: 96%;height: 100%;" scrolling="no" src=' + htmlurl + ' ></iframe>',
+                            id: mytitle //实际使用一般是规定好的id，这里以时间戳模拟下
+                        })
+                        element.tabChange('demo', mytitle); //切换到当前点击的页面
+                    }
+                }
+
+            };
+            $(".leftdaohang").click(function() {
+                var type = "tabAdd";
+                var othis = $(this);
+                var htmlurl = $(this).attr('data-url');
+                var mytitle = $(this).attr('mytitle');
+
+                active[type] ? active[type].call(this, othis) : '';
+
+            });
+
+        });
+
+        var elementsss = document.getElementsByClassName("tjdd");
+        var i;
+        //alert(elementsss.length)
+        //alert(elementsss[0])
+        for (i = 0; i < elementsss.length; i++) {
+            var oneele = elementsss[i]
+            oneele.onclick = function() {
+                oneele.style.backgroundColor = "firebrick"
+                oneele.parentElement.style.backgroundColor = "firebrick"
+            }
+        }
+
+        function g(x) {
+            d = document.getElementsByTagName('p')
+            for (p = d.length; p--;) {
+                if (d[p].id != x) {
+                    d[p].style.backgroundColor = 'transparent' /*其他*/
+                } else {
+                    d[p].style.backgroundColor = '#FF9600' /*点击的*/ ;
+                    d[p].style.width = '100%'
+                }
+            }
+        }
+        /*	document.getElementById("btn").onclick=function(){
+        		alert(123)
+        	}*/
+
+        var mypath = "http://192.168.1.112:8081/";
+        document.getElementById("readplus").onclick = function() {
+            $.ajax({
+                type: "post",
+                url: "http://192.168.1.112:8081/changestatus/1",
+
+                success: function(e) {
+                    console.log(e)
+                },
+                error: function(e) {
+
+                }
+            });
+        }
+
+        document.getElementById("getop").onclick = function() {
+            $.ajax({
+                type: "post",
+                url: mypath + "",
+                data: {
+                    "sta": 2
+                },
+                success: function(e) {
+
+                },
+                error: function(e) {
+
+                }
+            });
+        }
+
+        //日期联动
+        function addInsuranceDate() {
+            //开始时间
+            var currentDate = $("#startdate").val();
+            var d = new Date(currentDate);
+            var year = d.getFullYear() + 1;
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+            var lastDate = year + "-" + month + "-" + day;
+            document.getElementById("enddate").value = lastDate;
+        }
+
+        jQuery(document).ready(function() {
+
+            //绑定otp的click事件。用于向后端发送获取手机验证码的请求
+            $("#getotp").on("click", function() {
+                $.ajax({
+                    type: "get",
+                    url: baseUrl + "/card/get",
+                    success: function(data) {
+                        console.log(data)
+                        $("#number").attr("value", data.num)
+                        $("#hearthcardNum").attr("value", data.hearthcardNum)
+                        $("#name").attr("value", data.pName);
+                        $("#sex").attr("value", data.pSex);
+                        //					$("#mz").attr("value",data.pNation);
+                        //获取年龄
+                        var birthday = data.pBirth;
+                        var age = getAge(birthday);
+                        alert(age);
+                        $("#age").attr("value", age);
+                        $("#adress").attr("value", data.pAddress);
+                        $("#idcardNum").attr("value", data.pCertNo);
+                        //					$("#jg").attr("value",data.pDepartment);
+                        //					$("#startdate").attr("value",data.pEffectDate);
+                        //					$("#enddate").attr("value",data.pExpire);
+                        $("#idcardPhtoto").attr("src", "data:image/jpeg;base64," + data.imgUrl);
+                        //					setTimeout(function(){
+                        //						location.reload();
+                        //					},5000)
+                    },
+                    error: function(e) {
+                        mui.toast(JSON.stringify(e))
+                    }
+                });
+            })
+
+            //保存信息
+            $("#save").on("click", function() {
+                var idcardPhtoto = $("#idcardPhtoto").attr("src");
+                alert(idcardPhtoto)
+                var data = $.param({
+                    'idcardPhtoto': idcardPhtoto
+                }) + '&' + $("#userinfo").serialize()
+                $.ajax({
+                    type: "post",
+                    url: baseUrl + "/tijian/add",
+                    data: data,
+                    success: function(data) {
+                        console.log(data)
+                        if (data.status == "success") {
+                            alert("保存成功");
+                        } else {
+                            alert("保存失败，原因为" + data.data.errMsg);
+                        }
+                    },
+                    error: function() {
+                        alert("失败");
+                    }
+
+                });
+
+            })
+
+        })
+
+        //年龄计算
+        function getAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday); //把出生日期转换成日期
+            var age = today.getFullYear() - birthDate.getFullYear(); //分别获取到年份后相减
+            var m = today.getMonth() - birthDate.getMonth(); //获取到月份后相减
+            if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
+                age--; //如果月份的结果小于等于0，或者日期相减的结果是0，年龄减去1
+            }
+            return age
+        }
+        $('.layui-tab-title li').on('click', function() {
+            console.log(1111)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/login-pate.css"/>
+		<script src="js/login-dept.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="js/public.js"></script>
+	</head>
+	<body>
+			<div id="box">
+				<!--背景图-->
+				<div style="position:fixed;z-index:-100; left:0px; top:0px; width:100%; height:100%">
+					<img src="images/login.jpg" width="100%" height="100%" />
+				</div>
+				
+				<!--返回-->
+				<div id="return">
+					<a href="../index.html">
+					<img src="../img/black.png" />
+					</a>
+				</div>
+				
+				
+				<!--健康证-->
+				<div id="content">
+					<div id="title">
+						<span>体检机构</span>
+					</div>
+					<div id="box-one">
+						<div id="box-input">
+							<input type="text" id="account" name="account" value=""  placeholder="请输入账号" /><br />
+						</div>
+						<div id="box-input">
+							<input type="password" id="passwd" name="passwd" value=""  placeholder="请输入密码"/><br />
+						</div>
+					<!--按钮-->
+					<div id="box-input">
+						<button id="getCard" onclick="deptlogin()">
+							登录
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	
+</html>

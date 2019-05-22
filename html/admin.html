@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>玛迪卡</title>
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/admin.js"></script>
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="mdk_body">
+            <div class="main_l">
+                <ul class="main_top">
+                    <li>
+                        <span class="l_name">当日体检人数</span>
+                        <p class="l_nember" id="tijian"></p>
+                    </li>
+                    <li>
+                        <span class="l_name">当日预约单位数</span>
+                        <p class="l_nember" id="yuyue"></p>
+                    </li>
+                    <li>
+                        <span class="l_name">当日发证人数</span>
+                        <p class="l_nember" id="fazheng"></p>
+                    </li>
+                    <li>
+                        <span class="l_name">当月体检人数</span>
+                        <p class="l_nember" id="month-tijian"></p>
+                    </li>
+                    <li>
+                        <span class="l_name">体检总人数</span>
+                        <p class="l_nember" id="all_tijian"></p>
+                    </li>
+                </ul>
+                <div class="main_charts">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">当日体检发证统计</li>
+                            <li class="rescc">当日预约单位统计</li>
+                            <li>历史办证统计</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show" id="t_charts"></div>
+                            <div class="layui-tab-item" id="t_charts1"></div>
+                            <div class="layui-tab-item" id="t_charts2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_r">
+                <div class="r_notice">
+                    <h2>公告</h2>
+                </div>
+                <div class="r_function">
+                    <h2>常用功能</h2>
+                    <div class="r_com">
+                        <ul class="r_content">
+                            <li>
+                                <a href="#">
+                                    <span class="r_ico"><i class="fa fa-folder-o"></i></span>
+                                    <p class="r_text">待审核</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="r_ico"><i class="fa fa-folder"></i></span>
+                                    <p class="r_text">已审核</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="r_ico"><i class="fa fa-wpforms"></i></span>
+                                    <p class="r_text">基础录入</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="r_ico"><i class="fa fa-check-square"></i></span>
+                                    <p class="r_text">合格</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="r_ico"><i class="fa fa-times-circle"></i></span>
+                                    <p class="r_text">不合格</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="r_ico"><i class="fa fa-address-card-o" aria-hidden="true"></i></span>
+                                    <p class="r_text">健康证</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../src/layui.js"></script>
+    <script>
+        //JavaScript代码区域
+        var myChart = echarts.init(document.getElementById('t_charts'));
+
+        option = {
+            color: ['#ff9600', '#009ddd'],
+            legend: {},
+            tooltip: {},
+            dataset: {
+                // 这里指定了维度名的顺序，从而可以利用默认的维度到坐标轴的映射。
+                // 如果不指定 dimensions，也可以通过指定 series.encode 完成映射，参见后文。
+                dimensions: ['product', '当日体检人数', '当日发证人数'],
+                source: [{
+                    product: '1-21',
+                    '当日体检人数': 43.3,
+                    '当日发证人数': 85.8,
+                }, {
+                    product: '1-22',
+                    '当日体检人数': 83.1,
+                    '当日发证人数': 73.4,
+                }, {
+                    product: '1-23',
+                    '当日体检人数': 86.4,
+                    '当日发证人数': 65.2,
+                }, {
+                    product: '1-24',
+                    '当日体检人数': 72.4,
+                    '当日发证人数': 53.9,
+                }, {
+                    product: '1-25',
+                    '当日体检人数': 72.4,
+                    '当日发证人数': 53.9,
+                }]
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {},
+            series: [{
+                type: 'bar'
+            }, {
+                type: 'bar'
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        // 第二个
+        var myChart1 = echarts.init(document.getElementById('t_charts1'));
+
+        // 指定图表的配置项和数据
+        var option1 = {
+            color: ['#009ddd'],
+            tooltip: {},
+            legend: {
+                data: ['当日预约单位数']
+            },
+            xAxis: {
+                data: ["1-21", "1-22", "1-23", "1-24", "1-25"]
+            },
+            yAxis: {},
+            series: [{
+                name: '当日预约单位数',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10]
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart1.setOption(option1);
+        // 第三个
+        var myChart2 = echarts.init(document.getElementById('t_charts2'));
+
+        // 指定图表的配置项和数据
+        var option2 = {
+            color: ['#c23531', '#ff9600', '#03a33f', '#009ddd', '#0330a3'],
+            // title: {
+            //     text: '某站点用户访问来源',
+            //     subtext: '纯属虚构',
+            //     x: 'center'
+            // },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                data: ['体检总人数', '当月体检人数', '当日发证人数', '当日预约人数', '当日体检人数']
+            },
+            series: [{
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [{
+                    value: 335,
+                    name: '体检总人数'
+                }, {
+                    value: 310,
+                    name: '当月体检人数'
+                }, {
+                    value: 234,
+                    name: '当日发证人数'
+                }, {
+                    value: 135,
+                    name: '当日预约人数'
+                }, {
+                    value: 1548,
+                    name: '当日体检人数'
+                }],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart2.setOption(option2);
+        let options = [option, option1, option2]
+        let myCharts = [myChart, myChart1, myChart2]
+        layui.use('element', function() {
+            var element = layui.element;
+            element.on('tab(docDemoTabBrief)', function(data) {
+                console.log(data.index); //得到当前Tab的所在下标
+                console.log(data.elem); //得到当前的Tab大容器
+                console.log(myCharts);
+                myCharts[data.index].resize()
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+*{
+	border: 0px;
+	margin: 0px;
+	font-family: "微软雅黑";
+}
+body,html{
+	width: 100%;
+	height: 100%;
+}
+
+#box{
+	width: 100%;
+	height: 100%;
+	font-family: "微软雅黑";
+}
+
+
+#return{
+	width: 4%;
+	height: 6%;
+}
+#return>a{
+	width: 100%;
+	height: 100%;
+	
+}
+#return>a>img{
+	width: 100%;
+	height: 100%;
+}
+
+
+#content{
+	width: 25%;
+	height: 45%;
+	border-radius:2%;
+    background-color:rgba(0,0,0,0.2);
+	float: right;
+	margin-right: 10%;
+	margin-top: 11%;
+}
+
+
+#title{
+	width: 100%;
+	height: 15%;
+	/*border: 1px solid #000000;*/
+	text-align: center;
+	line-height: 4rem;
+}
+#title span{
+	font-size: 200%;
+	color: #FFFFFF;
+	
+}
+
+#box-one{
+	width: 100%;
+	height: 60%;
+	/*border: 2px solid red;*/
+	align-items: center;
+}
+#box-input{
+	width: 80%;
+	height: 23%;
+	/*border: 1px solid #000000;*/	
+	margin-top: 8%;
+	margin-left: 10%;
+	
+}
+#box-input input{
+	width: 100%;
+	height: 80%;
+	border-radius: 0.3rem;
+	font-size: 1.3rem;
+	letter-spacing: 0.08rem;
+	
+}
+
+#getCard{
+	width: 100%;
+	height: 80%;
+	color: #FFFFFF;
+	background-color: #FF9600;
+	border-radius: 0.3rem;
+	font-size: 1.5rem;
+}
