@@ -13,7 +13,7 @@
 			
 			$.ajax({
 				type:"post",
-				url: "http://192.168.1.112:8086/user/login",
+				url: baseUrl+"/user/login",
 				data:{
 					"account":account,
 					"password":passwd
@@ -22,7 +22,7 @@
 				success:function(data){
 					if(data.status=="success"){
 						alert("登录成功");
-						window.location.href="html/admin.html";
+						window.location.href="html/index.html";
 					}else{
 						alert("登录失败，原因为"+data.data.errMsg);
 					}
