@@ -1,9 +1,34 @@
-layui.use(['form', 'laydate', 'table'], function () {
+layui.use(['form', 'laydate', 'table', 'upload'], function () {
     var form = layui.form;
     var laydate = layui.laydate;
     var table = layui.table;
+    var upload = layui.upload;
     var timer;
     //监听提交
+    form.on('submit(formDemo)', function (data) {
+        layer.msg(上传成功);
+        return false;
+    });
+    // 表格监听
+    table.on('row(test)', function (obj) {
+        console.log(obj.tr) //得到当前行元素对象
+        console.log(obj.data) //得到当前行数据
+        $.each(obj.data, (key, val) => {
+            if (key == 'sex') {
+                if (val === "男") {
+                    $('#boy').attr('checked', true)
+                    $('#girl').attr('checked', false)
+                } else {
+                    $('#girl').attr('checked', true)
+                    $('#boy').attr('checked', false)
+                }
+            } else {
+                $.each($('.lines'), (index, dom) => {
+                    $(dom).find(`[name=${key}]`).val(val)
+                })
+            }
+        })
+    });
     // 日期
     laydate.render({
         elem: '#startdate', //指定元素
@@ -18,9 +43,37 @@ layui.use(['form', 'laydate', 'table'], function () {
         }
 
     });
+    // 上传图片
+    var uploadInst = upload.render({
+        elem: '#test1'
+        ,url: ''
+        ,before: function(obj){
+          //预读本地文件示例，不支持ie8
+          obj.preview(function(index, file, result){
+            $('#demo1').attr('src', result); //图片链接（base64）
+          });
+        }
+        ,done: function(res){
+          //如果上传失败
+          if(res.code > 0){
+            return layer.msg('上传失败');
+          }
+          //上传成功
+        }
+        ,error: function(){
+          //演示失败状态，并实现重传
+          var demoText = $('#demoText');
+          demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+          demoText.find('.demo-reload').on('click', function(){
+            uploadInst.upload();
+          });
+        }
+      });
+
+    // 复选框
     form.on('checkbox', function (data) {
         if (data.value == 1 && data.elem.checked == true) {
-            timer = setInterval(function(){
+            timer = setInterval(function () {
                 $.ajax({
                     type: "post",
                     url: "http://192.168.1.111:8080/mycaream/changestatus/1",
@@ -30,7 +83,7 @@ layui.use(['form', 'laydate', 'table'], function () {
                         console.log(data)
                     }
                 })
-            },5000)
+            }, 5000)
         } else {
             clearInterval(timer)
         }
@@ -39,7 +92,8 @@ layui.use(['form', 'laydate', 'table'], function () {
         // console.log(data.value);
     })
 
-})
+});
+
 
 // 表格
 // function tableRendom(data) {
@@ -129,6 +183,7 @@ layui.use(['form', 'laydate', 'table'], function () {
 
 $(function () {
     $("#save").on("click", function () {
+        console.log(111)
         var IDnumber = $("#IDnumber").val(),
             IDname = $(".IDname").val(),
             name = $(".IDname").val(),
@@ -164,15 +219,34 @@ $(function () {
             "enddate": enddate,
             "deptNum": deptNum
         };
+     
+        // var num = $("#IDnumber").val().substring(2);
+        // console.log(num)
+        // num++;
+        // var newnum = $("#IDnumber").val().substring(0, 2) + num;
+        // console.log(newnum)
+        // $("#IDnumber").val(newnum)
+
+        var num=$("#IDnumber").val().substring(5);
+        console.log(num)
+			num++;
+            num+=100000;
+            console.log(num)
+            var newnum=$("#IDnumber").val().substring(0,5)+num.toString().substring(1);
+            console.log(newnum)
+			$("#IDnumber").val(newnum)
+
+
+
         $.ajax({
             type: "post",
-            url: baseUrl + "/tijian/add",
+            url: "http://192.168.1.106:8086/tijian/add",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             data: JSON.stringify(data),
             success: function (data) {
                 var userData = data.data
-                window.location.reload()
+                // window.location.reload()
                 if (data.status == "success") {
                     alert("保存成功");
                 } else {
@@ -190,10 +264,17 @@ $(function () {
             title: ['自定义编号', 'font-size:18px; text-align: center;'],
             area: ['450px', '250px'],
             type: 1,
-            content: $('#customBox'), //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            content: $('#customBox'),
             btn: ['确认', '取消'],
             btn1() {
                 // 确定按钮的回调 写业务代码
+                var cusHtalthCard = $('#cusHtalthCard').val();
+                console.log(cusHtalthCard);
+                var cusHtalthCard2 = $('#cusHtalthCard2').html()
+                console.log(cusHtalthCard2);
+                // $(".healthnumber").attr("value", cusHtalthCard);
+                $('.healthnumber').attr("value", cusHtalthCard.toString()+cusHtalthCard2 );
+                console.log(cusHtalthCard.toString()+cusHtalthCard2)
                 layer.msg('修改成功', {
                     icon: 1
                 });
@@ -222,7 +303,7 @@ $(function () {
             var form = layui.form;
             $.ajax({
                 type: "post",
-                url: "http://192.168.1.106:8081/changestatus/1",
+                url: baseUrl + "/changestatus/1",
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
@@ -243,7 +324,7 @@ $(function () {
         })
     })
     $.ajax({
-        url: baseUrl + '/tijian/daytjlist',
+        url: "http://192.168.1.106:8086/tijian/daytjlist",
         type: 'POST',
         dataType: 'json',
         success: function (res) {
@@ -347,13 +428,18 @@ $(function () {
             }
         });
     })
-    // input框定时器
-
-
-
-
-    layui.use('form', function () {
-
-    })
-
 })
+window.onload = function () {
+    $.ajax({
+        url: "http://192.168.1.106:8086/tijian/getlastnum",
+        type: "get",
+        success: function (res) {
+            console.log(res);
+            console.log(res.data.hearthcardNum);
+            $('.healthnumber').attr("value", res.data.hearthcardNum);
+        },
+        error: function () {
+            console.log("服务器异常");
+        }
+    })
+}
