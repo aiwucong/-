@@ -26,26 +26,25 @@
                     <h2 class="inputTitle">从业人员基本信息</h2>
                     <form class="layui-form input_main" action="">
                         <div class="allbtn">
-                            <button class="layui-btn custom" type="button">自定义编号</button>
-                            <a href="#" class="layui-btn">打印</a>
+                            <a href="#" class="layui-btn">仅保存</a>
                             <a href="#" class="layui-btn"><input type="reset" value="重填" /></a>
                             <a href="#" class="layui-btn" id="save">新增并保存</a>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
-                                <label class="layui-form-label">编号</label>
+                                <label class="layui-form-label">体检编号</label>
                                 <input type="text" name="title" required lay-verify="required" placeholder="请输入编号"
                                     autocomplete="off" class="layui-input" id="IDnumber">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">手机号码</label>
-                                <input type="text" name="phonenumber" required lay-verify="required" placeholder="请输入手机号码"
-                                    autocomplete="off" class="layui-input phonenumber">
+                                <input type="text" name="phonenumber" required lay-verify="required"
+                                    placeholder="请输入手机号码" autocomplete="off" class="layui-input phonenumber">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
-                                <label class="layui-form-label">姓名</label>
+                                <label class="layui-form-label">姓　　名</label>
                                 <input type="text" name="title" required lay-verify="required" placeholder="请输入姓名"
                                     autocomplete="off" class="layui-input IDname">
                             </div>
@@ -57,6 +56,11 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="lines nameChecks">
+                                <div class="checks2">
+                                    <label class="layui-form-label">年　　龄</label>
+                                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                                        class="layui-input" id="age">
+                                </div>
                                 <div class="checks1">
                                     <label class="layui-form-label">性别</label>
                                     <div class="layui-input-block">
@@ -64,21 +68,16 @@
                                         <input type="radio" id="girl" name="sex" value="2" title="女">
                                     </div>
                                 </div>
-                                <div class="checks2">
-                                    <label class="layui-form-label">年龄</label>
-                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入年龄"
-                                        autocomplete="off" class="layui-input" id="age">
-                                </div>
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">健康证号</label>
-                                <input type="text" name="healthnumber" required lay-verify="required" placeholder="请输入健康证号"
-                                    autocomplete="off" class="layui-input healthnumber">
+                                <input type="text" name="healthnumber" required lay-verify="required"
+                                    placeholder="请输入健康证号" autocomplete="off" class="layui-input healthnumber">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
-                                <label class="layui-form-label">单位</label>
+                                <label class="layui-form-label">工作单位</label>
                                 <input type="text" name="title" required lay-verify="required" placeholder="请输入单位"
                                     autocomplete="off" class="layui-input" id="company">
                             </div>
@@ -118,26 +117,34 @@
                     <div class="checkboxs">
                         <form class="layui-form" action="">
                             <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input" id="readcardInput" value="1">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn readcard"
+                                <!-- <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"> -->
+                                <button class="layui-btn layui-btn-sm checkboxs_btn1">最近登记日期</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"
+                                    id="readcardInput" value="1">
+                                <button class="layui-btn layui-btn-sm checkboxs_btn2 readcard"
                                     type="button">读身份证</button>
                             </div>
+
                             <div class="layui-form-item">
                                 <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn">最近登记日期</button>
+                                <button class="layui-btn layui-btn-sm checkboxs_btn2">体检合格</button>
                             </div>
-                            <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn">体检合格</button>
-                            </div>
-                            <div class="layui-form-item">
+                            <!-- <div class="layui-form-item">
                                 <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn">打印体检表</button>
-                            </div>
+                            </div> -->
                             <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn">打印健康证</button>
+                                    <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
+                                    <button class="layui-btn layui-btn-sm checkboxs_btn2">打印健康证</button>
+                                </div>
+                            <div class="layui-form-item">
+                                <!-- <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"> -->
+                                <button class="layui-btn layui-btn-sm checkboxs_btn1 custom" type="button">自定义编号</button>
                             </div>
+
+                            
                         </form>
                     </div>
 
@@ -154,7 +161,7 @@
                         </div>
                     </div>
                     <button class="layui-btn layui-btn-normal btn1">拍摄照片</button>
-                    <button class="layui-btn layui-btn-normal btn2">导入图像</button>
+                    <button class="layui-btn layui-btn-normal btn2">导入照片</button>
                     <ul class="tstext">
                         <li>提示：1.导入本地图片不超过1M</li>
                         <li>2.认证对比成功才可以保存</li>

@@ -222,7 +222,7 @@ $(function () {
             var form = layui.form;
             $.ajax({
                 type: "post",
-                url: "http://192.168.1.111:8080/mycaream/changestatus/1",
+                url: "http://192.168.1.106:8081/changestatus/1",
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
@@ -335,7 +335,7 @@ $(function () {
         console.log(111);
         $.ajax({
             type: "post",
-            url: "http://192.168.1.111:8081/changestatus/3",
+            url: "http://192.168.1.106:8081/changestatus/3",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
