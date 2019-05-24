@@ -1,3 +1,7 @@
+.layui-layout-admin {
+    height: 100vh;
+}
+
 .layui-layout-admin .layui-side {
     top: 0;
     background-color: #022387 !important;
@@ -17,7 +21,7 @@ body {
 
 .menu_l {
     width: 200px;
-    height: 730px;
+    height: 100%;
     border: 1px solid red;
     box-sizing: border-box;
     background: url(../images/bg.jpg);

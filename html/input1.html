@@ -24,7 +24,7 @@
                 <!-- 表单 -->
                 <div class="homeInput">
                     <h2 class="inputTitle">从业人员基本信息</h2>
-                    <form class="layui-form input_main" action="">
+                    <form class="layui-form input_main" lay-filter="fromtest" action="">
                         <div class="allbtn">
                             <a href="#" class="layui-btn">仅保存</a>
                             <!-- <a href="#" class="layui-btn"><input type="reset" value="重填" /></a> -->
@@ -40,19 +40,19 @@
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">手机号码</label>
-                                <input type="text" name="phonenumber" required lay-verify="required|phone"
+                                <input type="text" name="telphone" required lay-verify="required|phone"
                                     placeholder="请输入手机号码" autocomplete="off" class="layui-input phonenumber">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">姓　　名</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入姓名"
+                                <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名"
                                     autocomplete="off" class="layui-input IDname">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">身份证号</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入身份证号"
+                                <input type="text" name="idcardNum" required lay-verify="required" placeholder="请输入身份证号"
                                     autocomplete="off" class="layui-input" id="IDcard">
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                             <div class="lines nameChecks">
                                 <div class="checks2">
                                     <label class="layui-form-label">年　　龄</label>
-                                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                                    <input type="text" name="age" required lay-verify="required" autocomplete="off"
                                         class="layui-input" id="age">
                                 </div>
                                 <div class="checks1">
@@ -73,43 +73,44 @@
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">健康证号</label>
-                                <input type="text" name="healthnumber" required lay-verify="required" readonly="readonly"
-                                    placeholder="请输入健康证号" autocomplete="off" class="layui-input healthnumber">
+                                <input type="text" name="hearthcardNum" required lay-verify="required"
+                                    readonly="readonly" placeholder="请输入健康证号" autocomplete="off"
+                                    class="layui-input healthnumber">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">工作单位</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入单位"
+                                <input type="text" name="company" required lay-verify="required" placeholder="请输入单位"
                                     autocomplete="off" class="layui-input" id="company">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">通信地址</label>
-                                <input type="text" name="address" required lay-verify="required" placeholder="请输入通信地址"
+                                <input type="text" name="adress" required lay-verify="required" placeholder="请输入通信地址"
                                     autocomplete="off" class="layui-input address">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">办证日期</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="2019-05-17"
-                                    autocomplete="off" class="layui-input" id="startdate">
+                                <input type="text" name="startdate" required lay-verify="required"
+                                    placeholder="2019-05-17" autocomplete="off" class="layui-input" id="startdate">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">有效期至</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="2020-05-17"
-                                    autocomplete="off" class="layui-input" id="enddate">
+                                <input type="text" name="enddate" required lay-verify="required"
+                                    placeholder="2020-05-17" autocomplete="off" class="layui-input" id="enddate">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">办证人员</label>
-                                <input type="text" name="bzpeople" required lay-verify="required" placeholder="请输入办证人员"
+                                <input type="text" name="person" required lay-verify="required" placeholder="请输入办证人员"
                                     autocomplete="off" class="layui-input bzpeople">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">办证单位</label>
-                                <input type="text" name="units" required lay-verify="required" placeholder="请输入办证单位"
+                                <input type="text" name="deptNum" required lay-verify="required" placeholder="请输入办证单位"
                                     autocomplete="off" class="layui-input units">
                             </div>
                         </div>
@@ -133,10 +134,6 @@
                                 <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn2">体检合格</button>
                             </div>
-                            <!-- <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn">打印体检表</button>
-                            </div> -->
                             <div class="layui-form-item">
                                 <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn2">打印健康证</button>
@@ -164,12 +161,12 @@
                         </div>
                     </div>
                     <button class="layui-btn layui-btn-normal btn1">拍摄照片</button>
-                    <!-- <button class="layui-btn layui-btn-normal btn2">拍摄照片 -->
+                    <!-- <button class="layui-btn layui-btn-normal btn2">拍摄照片
                         <input type="file">
-                    <!-- </button> -->
-                    <!-- <button type="button" class="layui-btn btn2" id="test1">
-                        <i class="layui-icon">&#xe67c;</i>导入图片
                     </button> -->
+                    <button type="button" class="layui-btn btn2" id="test1">
+                        <i class="layui-icon">&#xe67c;</i>导入图片
+                    </button>
                     <ul class="tstext">
                         <li>提示：1.导入本地图片不超过1M</li>
                         <li>2.认证对比成功才可以保存</li>

@@ -11,16 +11,18 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     });
     // 表格监听
     table.on('row(test)', function (obj) {
-        console.log(obj.tr) //得到当前行元素对象
-        console.log(obj.data) //得到当前行数据
+        // console.log(obj.tr) //得到当前行元素对象
+        // console.log(obj.data) //得到当前行数据
         $.each(obj.data, (key, val) => {
             if (key == 'sex') {
-                if (val === "男") {
-                    $('#boy').attr('checked', true)
-                    $('#girl').attr('checked', false)
+                if (val === "男") {                    
+                    form.val('fromtest',{
+                        "sex": '1'
+                    })
                 } else {
-                    $('#girl').attr('checked', true)
-                    $('#boy').attr('checked', false)
+                    form.val('fromtest',{
+                        "sex": '2'
+                    })
                 }
             } else {
                 $.each($('.lines'), (index, dom) => {
@@ -45,30 +47,30 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     });
     // 上传图片
     var uploadInst = upload.render({
-        elem: '#test1'
-        ,url: ''
-        ,before: function(obj){
-          //预读本地文件示例，不支持ie8
-          obj.preview(function(index, file, result){
-            $('#demo1').attr('src', result); //图片链接（base64）
-          });
+        elem: '#test1',
+        url: '',
+        before: function (obj) {
+            //预读本地文件示例，不支持ie8
+            obj.preview(function (index, file, result) {
+                $('#idcardimg').attr('src', result); //图片链接（base64）
+            });
+        },
+        done: function (res) {
+            //如果上传失败
+            if (res.code > 0) {
+                return layer.msg('上传失败');
+            }
+            //上传成功
+        },
+        error: function () {
+            //演示失败状态，并实现重传
+            var demoText = $('#demoText');
+            demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            demoText.find('.demo-reload').on('click', function () {
+                uploadInst.upload();
+            });
         }
-        ,done: function(res){
-          //如果上传失败
-          if(res.code > 0){
-            return layer.msg('上传失败');
-          }
-          //上传成功
-        }
-        ,error: function(){
-          //演示失败状态，并实现重传
-          var demoText = $('#demoText');
-          demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-          demoText.find('.demo-reload').on('click', function(){
-            uploadInst.upload();
-          });
-        }
-      });
+    });
 
     // 复选框
     form.on('checkbox', function (data) {
@@ -93,94 +95,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     })
 
 });
-
-
-// 表格
-// function tableRendom(data) {
-//     debugger
-//     var table = layui.table;
-//     //第一个实例
-//     table.render({
-//         elem: '#demo',
-//         height: 312,
-//         url: baseUrl+'/tijian/daytjlist',
-//         data: data,
-//         page: true //开启分页
-//             ,
-//         toolbar: '#toolbarDemo',
-//         cols: [
-//             [ //表头
-//                 {
-//                     width: 60,
-//                     type: "checkbox",
-//                     fixed: 'left'
-//                 },
-//                 {
-//                     field: 'id',
-//                     title: 'ID',
-//                     width: 80,
-//                     sort: true,
-//                     even: 'setSign'
-//                 }, {
-//                     field: 'name',
-//                     title: '姓名',
-//                     // width: 50
-//                 }, {
-//                     field: 'sex',
-//                     title: '性别',
-//                     width: 80,
-//                     sort: true
-//                 }, {
-//                     field: 'age',
-//                     title: '年龄',
-//                     width: 80
-//                 }, {
-//                     field: 'startdate',
-//                     title: '办证日期',
-//                     width: 80,
-//                     sort: true
-//                 }, {
-//                     field: 'person',
-//                     title: '办证人员',
-//                     width: 80,
-//                     sort: true
-//                 }, {
-//                     field: 'telphone',
-//                     title: '手机号码',
-//                     width: 80
-//                 }, {
-//                     field: 'idcardNum',
-//                     title: '身份证号',
-//                     width: 135
-//                 },
-//                 {
-//                     field: 'hearthcardNum',
-//                     title: '健康证号',
-//                     width: 135,
-//                     sort: true
-//                 },
-//                 {
-//                     field: 'adress',
-//                     title: '通信地址',
-//                     width: 135,
-//                     sort: true
-//                 }, {
-//                     field: 'deptNum',
-//                     title: '办证单位',
-//                     width: 135,
-//                     sort: true
-//                 }
-//             ]
-//         ]
-//     });
-//     table.on('row(test)',function(obj){
-//         console.log(obj.data);
-//         console.log(obj.data.username);
-//         $('.IDname').attr("value", obj.data.username);
-//     })
-// }
-
-
+// 新增数据
 $(function () {
     $("#save").on("click", function () {
         console.log(111)
@@ -219,28 +134,10 @@ $(function () {
             "enddate": enddate,
             "deptNum": deptNum
         };
-     
-        // var num = $("#IDnumber").val().substring(2);
-        // console.log(num)
-        // num++;
-        // var newnum = $("#IDnumber").val().substring(0, 2) + num;
-        // console.log(newnum)
-        // $("#IDnumber").val(newnum)
-
-        var num=$("#IDnumber").val().substring(5);
-        console.log(num)
-			num++;
-            num+=100000;
-            console.log(num)
-            var newnum=$("#IDnumber").val().substring(0,5)+num.toString().substring(1);
-            console.log(newnum)
-			$("#IDnumber").val(newnum)
-
-
 
         $.ajax({
             type: "post",
-            url: "http://192.168.1.106:8086/tijian/add",
+            url: baseUrl+"/tijian/add",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             data: JSON.stringify(data),
@@ -269,12 +166,9 @@ $(function () {
             btn1() {
                 // 确定按钮的回调 写业务代码
                 var cusHtalthCard = $('#cusHtalthCard').val();
-                console.log(cusHtalthCard);
-                var cusHtalthCard2 = $('#cusHtalthCard2').html()
-                console.log(cusHtalthCard2);
-                // $(".healthnumber").attr("value", cusHtalthCard);
-                $('.healthnumber').attr("value", cusHtalthCard.toString()+cusHtalthCard2 );
-                console.log(cusHtalthCard.toString()+cusHtalthCard2)
+                var cusHtalthCard2 = $('#cusHtalthCard2').html();
+                $('.healthnumber').attr("value", cusHtalthCard.toString() + cusHtalthCard2);
+                console.log(cusHtalthCard.toString() + cusHtalthCard2)
                 layer.msg('修改成功', {
                     icon: 1
                 });
@@ -286,30 +180,20 @@ $(function () {
 
         });
     })
-
-    function getAge(birthday) {
-        var today = new Date();
-        var birthDate = new Date(birthday); //把出生日期转换成日期
-        var age = today.getFullYear() - birthDate.getFullYear(); //分别获取到年份后相减
-        var m = today.getMonth() - birthDate.getMonth(); //获取到月份后相减
-        if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
-            age--; //如果月份的结果小于等于0，或者日期相减的结果是0，年龄减去1
-        }
-        return age
-    }
-
+// 读身份证
     $('.readcard').click(function () {
         layui.use('form', function () {
             var form = layui.form;
             $.ajax({
                 type: "post",
-                url: baseUrl + "/changestatus/1",
+                url: "http://192.168.1.107:8081/changestatus/1", //这个不能改
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
                     console.log(data)
                     $('.IDname').attr("value", data.pName);
                     $('#IDcard').attr("value", data.pCertNo);
+                    $('.address').attr("value", data.pAddress);
                     $("#idcardimg").attr("src", "data:image/png;base64," + data.photo);
                     if (data.pSex === "男") {
                         $('#boy').attr('checked', true)
@@ -318,13 +202,39 @@ $(function () {
                         $('#girl').attr('checked', true)
                         $('#boy').attr('checked', false)
                     }
+                    //年龄计算	
+                    var date = new Date();
+                    var birth = data.pBirth;
+                    var y1 = birth.toString().substring(-1, 4);
+                    var year = date.getFullYear() - y1;
+                    var m1 = birth.substring(4, 6);
+                    var m2 = date.getMonth() + 1;
+                    if (m1 < m2) {
+                        console.log(year)
+                        $('#age').attr("value", year);
+                    } else {
+                        console.log(year--)
+                        $('#age').attr("value", year--);
+                    }
+                    //    健康证号自增
+                    var num = $("#IDnumber").val().substring(5);
+                    console.log(num)
+                    num++;
+                    num += 100000;
+                    console.log(num)
+                    var newnum = $("#IDnumber").val().substring(0, 5) + num.toString().substring(1);
+                    console.log(newnum)
+                    $("#IDnumber").val(newnum)
+
+
                     form.render(); //更新全部                 
                 }
             });
         })
     })
+    // 返回表格的数据
     $.ajax({
-        url: "http://192.168.1.106:8086/tijian/daytjlist",
+        url: baseUrl+"/tijian/weektjlist",
         type: 'POST',
         dataType: 'json',
         success: function (res) {
@@ -411,12 +321,12 @@ $(function () {
         })
     }
 
-    // 上传图片
+    // 获取图片传值
     $('.btn1').click(function () {
         console.log(111);
         $.ajax({
             type: "post",
-            url: "http://192.168.1.106:8081/changestatus/3",
+            url: "http://192.168.1.107:8081/changestatus/3",//这个不能改
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
@@ -429,9 +339,10 @@ $(function () {
         });
     })
 })
+// 返回健康证号
 window.onload = function () {
     $.ajax({
-        url: "http://192.168.1.106:8086/tijian/getlastnum",
+        url: baseUrl+"/tijian/getlastnum",
         type: "get",
         success: function (res) {
             console.log(res);
