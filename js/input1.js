@@ -43,14 +43,20 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
         }
 
     });
+
     // 上传图片
     var uploadInst = upload.render({
         elem: '#test1'
         ,url: ''
         ,before: function(obj){
           //预读本地文件示例，不支持ie8
+          console.log(obj)
           obj.preview(function(index, file, result){
-            $('#demo1').attr('src', result); //图片链接（base64）
+            //   console.log(result)
+            console.log(file.name)
+            //   console.log(index)
+             $('#idcardimg').attr('src', result); //图片链接（base64）
+            
           });
         }
         ,done: function(res){
@@ -69,6 +75,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
           });
         }
       });
+
 
     // 复选框
     form.on('checkbox', function (data) {
@@ -91,7 +98,6 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
         // console.log(data.elem.checked); 
         // console.log(data.value);
     })
-
 });
 
 
@@ -183,23 +189,23 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
 
 $(function () {
     $("#save").on("click", function () {
-        console.log(111)
         var IDnumber = $("#IDnumber").val(),
-            IDname = $(".IDname").val(),
-            name = $(".IDname").val(),
-            sex = $("input[type='radio']:checked").val(),
-            company = $("#company").val(),
-            startdate = $("#startdate").val(),
-            person = $(".bzpeople").val(),
-            telphone = $(".phonenumber").val(),
-            idcardNum = $("#IDcard").val(),
-            hearthcardNum = $(".healthnumber").val(),
-            adress = $(".address").val(),
-            enddate = $("#enddate").val(),
-            age = $("#age").val(),
-            deptNum = $(".units").val();
-        sexList = ""
-        if (sex === 1) {
+        IDname = $(".IDname").val(),
+        sex = $("input[type='radio']:checked").val(),
+        company = $("#company").val(),
+        startdate = $("#startdate").val(),
+        person = $(".bzpeople").val(),
+        telphone = $(".phonenumber").val(),
+        idcardNum = $("#IDcard").val(),
+        hearthcardNum = $(".healthnumber").val(),
+        adress = $(".address").val(),
+        enddate = $("#enddate").val(),
+        age = $("#age").val(),
+        deptNum = $(".units").val(),
+        idcardimg = $('#idcardimg')[0].src,
+        sexList = "";
+        console.log(111)
+        if (sex = 1) {
             sexList = '男'
         } else {
             sexList = '女'
@@ -217,7 +223,8 @@ $(function () {
             "hearthcardNum": hearthcardNum,
             "adress": adress,
             "enddate": enddate,
-            "deptNum": deptNum
+            "deptNum": deptNum,
+            "idcardimg":idcardimg
         };
      
         // var num = $("#IDnumber").val().substring(2);
@@ -240,7 +247,7 @@ $(function () {
 
         $.ajax({
             type: "post",
-            url: "http://192.168.1.106:8086/tijian/add",
+            url: "http://192.168.1.107:8086/tijian/add",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             data: JSON.stringify(data),
@@ -286,6 +293,57 @@ $(function () {
 
         });
     })
+    
+    $('#healtTable').click(function(){ 
+        var  IDname = $(".IDname").val(),
+            sex = $("input[type='radio']:checked").val(),
+            company = $("#company").val(),
+            telphone = $(".phonenumber").val(),
+            adress = $(".address").val(),
+            age = $("#age").val(),
+            idcardimg = $('#idcardimg')[0].src,
+            IDnumber = $("#IDnumber").val(),
+            startdate = $("#startdate").val(),
+            sexList = "";
+        
+        if (sex = 1) {
+            sexList = '男'
+        } else {
+            sexList = '女'
+        }
+        var data = {
+            "number": IDnumber,
+            "name": IDname,
+            "sex": sexList,
+            "age": age,
+            "company": company,
+            "telphone": telphone,
+            "adress": adress,
+            'idcardimg':idcardimg,
+            "startdate": startdate
+        };
+        $.ajax({
+            type: "post",
+            url: "http://192.168.1.107:8086/tijian/tjtable",
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(data),
+            success: function (data) {
+                console.log(data)
+                if (data.status == "success") {
+                    alert("保存成功跳转页面");
+                } else {
+                    alert("保存失败，原因为" + data.data);
+                }
+            },
+            error: function (data) {
+                console.log(data)
+                alert("失败");
+            }
+        });
+
+    })
+
 
     function getAge(birthday) {
         var today = new Date();
@@ -324,7 +382,7 @@ $(function () {
         })
     })
     $.ajax({
-        url: "http://192.168.1.106:8086/tijian/daytjlist",
+        url: "http://192.168.1.107:8086/tijian/weektjlist",
         type: 'POST',
         dataType: 'json',
         success: function (res) {
@@ -416,7 +474,7 @@ $(function () {
         console.log(111);
         $.ajax({
             type: "post",
-            url: "http://192.168.1.106:8081/changestatus/3",
+            url: "http://192.168.1.107:8081/changestatus/3",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
@@ -431,7 +489,7 @@ $(function () {
 })
 window.onload = function () {
     $.ajax({
-        url: "http://192.168.1.106:8086/tijian/getlastnum",
+        url: "http://192.168.1.107:8086/tijian/getlastnum",
         type: "get",
         success: function (res) {
             console.log(res);
