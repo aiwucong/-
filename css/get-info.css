@@ -15,8 +15,11 @@ body,html{
 	/*border: 1px solid red;*/
 }
 #return{
-	width: 4%;
-	height: 6%;
+	width: 171px;
+	height:61px;
+	position: relative;
+	top: 6%;
+	left: 4%;
 }
 #return>a{
 	width: 100%;
@@ -32,13 +35,14 @@ body,html{
 
 #content{
 	width: 25%;
-	height: 45%;
+	height: 55%;
 	border-radius:2%;
     background-color:rgba(0,0,0,0.2);
 	float: right;
 	justify-content: center;
 	margin-right: 10%;
-	margin-top: 11%;
+	margin-top: 8%;
+	box-shadow: 0px 0px 10px -4px #ccc;
 	/*border: 1px solid red;*/
 }
 
@@ -67,7 +71,7 @@ body,html{
 	height: 23%;
 	/*border: 1px solid #000000;*/	
 	margin-top: 5%;
-	margin-left: 10%;
+	margin-left: 7%;
 	
 }
 #box-input input{
@@ -75,8 +79,14 @@ body,html{
 	height: 80%;
 	border-radius: 0.3rem;
 	font-size: 1.3rem;
+	padding-left: 3%;
 }
-
+#box-input input::-webkit-input-placeholder{
+	font-size: 70%;
+}
+input:-ms-input-placeholder{
+	font-size: 12px;
+}
 #box-code{
 	width: 60%;
 	height: 80%;
@@ -89,6 +99,7 @@ body,html{
 	height: 85%;
 	border-radius: 0.3rem;
 	float: right;
+	margin-right: -3%;
 	/*border: 1px solid red;*/
 }
 
@@ -106,8 +117,10 @@ body,html{
 }
 
 #sedCode{
-	background: #FF9600;
+	background: #ff9600;
 	color:#FFFFFF;
+	border:none;
+	outline: none;
 }
 
 /*#box-button{
@@ -119,10 +132,12 @@ body,html{
 }*/
 #getCard{
 	font-size: 120%;
-	width: 100%;
+	width: 103%!important;
 	height: 80%;
 	border-radius: 0.3rem;
-	background-color: #FF9600;
+	background-color: #ff9600;
 	color:#FFFFFF;
+	border:none;
+	outline: none;
 }
 

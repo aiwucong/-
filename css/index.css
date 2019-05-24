@@ -12,13 +12,13 @@ body,html{
 	height: 100%;
 }
 #head{
-	height: 29%;
-	font-size: 305%;
+	height: 30%;
+	font-size: 300%;
 	margin-bottom: 0px;
 	letter-spacing: 10px;
 	text-align: center;
 	color: #FFFFFF;
-	line-height: 540%;
+	line-height: 400%;
 }
 
 #content{
@@ -46,12 +46,6 @@ body,html{
 	align-items: center;
 }
 
-#box-one img{
-	width: 150px;
-	height: 150px;
-	border-radius: 8px;
-}
-
 #box-one>span{
 	font-size: 183%;
 	color: #FFFFFF;
@@ -62,7 +56,7 @@ body,html{
 
 #dibu-box{
 	width: 100%;
-	height: 15%;
+	height: 8%;
 	position: fixed;
 	bottom: 0rem;
 	left: 0rem;
@@ -76,8 +70,27 @@ body,html{
 	height: 100%;
 	text-align: center;
 	color: #FFFFFF;
-	font-size: 103%;
-	
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 80%;
 }
+.list{
+	width: 170px;
+	height: 170px;
+	background: #ff9600;
+	border-radius: 10px;
+}
+.list:hover img{
+	transform: rotate(320deg);
+}	
+.list:hover{
+	background:rgb(0, 166, 214);
+}
+.list img{
+	transition: all 0.9s ease-in-out;
+	width: 170px;
+	height: 170px;
+	margin: 0 auto;
+}
+
 
 

@@ -144,7 +144,9 @@
             xAxis: {
                 type: 'category'
             },
-            yAxis: {},
+            yAxis: {
+                
+            },
             series: [{
                 type: 'bar'
             }, {
@@ -183,11 +185,6 @@
         // 指定图表的配置项和数据
         var option2 = {
             color: ['#c23531', '#ff9600', '#03a33f', '#009ddd', '#0330a3'],
-            // title: {
-            //     text: '某站点用户访问来源',
-            //     subtext: '纯属虚构',
-            //     x: 'center'
-            // },
             tooltip: {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -231,10 +228,107 @@
         let myCharts = [myChart, myChart1, myChart2]
         layui.use('element', function() {
             var element = layui.element;
+            var names = []; //一周时间数组（实际用来盛放X轴坐标值）
+            var nums = []; //当日预约人数数组（实际用来盛放Y坐标值）
             element.on('tab(docDemoTabBrief)', function(data) {
-                console.log(data.index); //得到当前Tab的所在下标
-                console.log(data.elem); //得到当前的Tab大容器
-                console.log(myCharts);
+                // console.log(data.index); //得到当前Tab的所在下标
+                // console.log(data.elem); //得到当前的Tab大容器
+                // console.log(myCharts);
+                if(data.index == 1){
+                    console.log('第二个')
+                    $.ajax({
+                        url:'http://192.168.1.106:8086/tubiao/zhucounttwo',
+                        async: true,
+                        data: {},
+                        success:function(result){
+                            console.log(result)
+                            var result = result.data;
+                            if(result){
+                                if(result.day0 == undefined){
+                                    result.day0 = "暂无数据"
+                                }
+                                if(result.day1 == undefined){
+                                    result.day1 = "暂无数据"
+                                }
+                                if(result.day2 == undefined){
+                                    result.day2 = "暂无数据"
+                                }
+                                if(result.day3 == undefined){
+                                    result.day3 = "暂无数据"
+                                } 
+                                if(result.day4 == undefined){
+                                    result.day4 = "暂无数据"
+                                }
+                                if(result.ordernum0 == undefined){
+                                    result.ordernum0 = 0
+                                }
+                                if(result.ordernum1 == undefined){
+                                    result.ordernum1 = 0
+                                }
+                                if(result.ordernum2 == undefined){
+                                    result.ordernum2 = 0
+                                }
+                                if(result.ordernum3 == undefined){
+                                    result.ordernum3 = 0
+                                }
+                                if(result.ordernum4 == undefined){
+                                    result.ordernum4 = 0
+                                }
+                                names = [result.day0,result.day1.slice(0,10),result.day2,result.day3,result.day4]
+                                nums = [result.ordernum0,result.ordernum1,result.ordernum2,result.ordernum3,result.orde4num0]
+                                myChart1.hideLoading(); //隐藏加载动画
+                                myChart1.setOption({ //加载数据图表
+                                    xAxis: {
+                                        data: names
+                                    },
+                                    series: [{
+                                        // 根据名字对应到相应的系列
+                                        name: '当日预约人数',
+                                        data: nums
+                                    }]
+                                });
+                            }
+                        }
+                    })
+                }else if(data.index == 2){
+                    console.log('第三个')
+                    $.ajax({
+                        url: 'http://192.168.1.106:8086/tubiao/indexcount',
+                        type: "get",
+                        success:function(res){
+                            console.log(res)
+                            if(res){
+                                myChart2.hideLoading(); //隐藏加载动画
+                                myChart2.setOption({ //加载数据图表
+                                    series: [{
+                                        data: [{
+                                            value: res.data.alltjnum,
+                                            name: '体检总人数'
+                                        }, {
+                                            value: res.data.monthtjnum,
+                                            name: '当月体检人数'
+                                        }, {
+                                            value: res.data.daycardnum,
+                                            name: '当日发证人数'
+                                        }, {
+                                            value: res.data.dayordernum,
+                                            name: '当日预约人数'
+                                        }, {
+                                            value: res.data.daytjnum,
+                                            name: '当日体检人数'
+                                        }],
+                                    
+                                    }]
+                                    
+                                });
+                            }
+                        },
+                        error: function() {
+                            console.log("服务器异常");
+                        }
+                    })
+
+                }
                 myCharts[data.index].resize()
             });
         });
