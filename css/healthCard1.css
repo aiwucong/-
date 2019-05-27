@@ -3,93 +3,78 @@
 	padding: 0px;
 	font-family: "微软雅黑";
 }
-
-html {
+html{
 	width: 99.9%;
 	height: 99.8%;
 	font-family: "宋体";
 }
-
-body {
+body{
 	width: 99.9%;
 	height: 99.8%;
 }
-
 /*大盒子*/
-.box {
+.box3{
 	width: 100%;
 	height: 100%;
 	border: 1px solid red;
 }
-
 /*证件盒子*/
-.content {
+.content{
 	margin: 12% auto;
-	border: 1px solid black;
-	width: 190.60mm;
+	/* border: 1px solid black; */
+	width: 85.60mm;
 	height: 53.98mm;
-	display: flex;
-	justify-content: space-between;
 }
-
 /*健康证正面*/
-.lef {
+.lef{
 	width: 85.60mm;
 	/*float: left;*/
-	height: 45.98mm;
-	border: 1px solid #fff;
-	border-radius: 10px;
-	background: #fff;
+	height: 53.98mm;
+	border: 1px solid black;
+	position: relative;
 }
-
-.head {
+.head{
 	font-weight: bold;
 	width: 100%;
 	height: 19%;
 
 	text-align: center;
-	line-height: 163%;
+	line-height: 115%;
 	letter-spacing: 3mm;
-	font-size: 17pt;
+	font-size: 24pt;
 	color: green;
 	font-family: "宋体";
 }
-
-.cont {
+.cont{
 	width: 99.5%;
 	height: 68%;
 
 	display: flex;
 	justify-content: space-between;
 }
-
-.con {
+.con{
 	width: 100%;
 	height: 45%;
 
 }
-
-.left {
+.left{
 	width: 25mm;
 	height: 100%;
 	text-align: center;
-
+	
 }
-
-.right {
+.right{
 	width: 60.6mm;
 	height: 98.5%;
 	font-size: 11pt;
 
 }
-
-img {
+img{
 	margin-top: 1.5mm;
-	width: 20mm;
-	height: 27mm;
+	width:22mm;
+	height: 32mm;
 }
-
-.bott {
+.bott{
 	width: 100%;
 	height: 12.5%;
 	font-size: 8pt;
@@ -99,129 +84,120 @@ img {
 	color: green;
 	font-family: "宋体";
 }
-
-input {
+input{
 	border: transparent;
-	font-size: 11pt;
-	font-weight: bold;
-	/* background: #000; */
+font-size: 11pt;
+font-weight: bold;
 }
-
 /*健康证反面*/
-.rig {
-	width: 85.60mm;
+.rig{
+	width: 45%;
 	/*float: right;*/
-	height: 53.98mm;
+	height: 100%;
 	border: 1px solid #0000FF;
 }
-
-.rie {
+.rie{
 	margin-top: -1px;
 	width: 100%;
 	/*float: right;*/
 	height: 100%;
 	border: 1px solid #0000FF;
 }
-
-.r1 {
+.r1{
 	width: 100%;
 	height: 35%;
 
 }
-
-.head1 input {
-	width: 29%;
-	height: 58%;
-}
-
-.head1 span {
-	width: 10%;
-	font-size: 11pt;
-}
-
-.head1 {
-	width: 100%;
-	line-height: 180%;
-	height: 50%;
-	/* border: 1px solid #000; */
-
-}
-
-.head2 input {
+.head1 input{
 	width: 30%;
-	height: 58%;
+	height: 58%;	
+}
+.head1 span{
+	width: 10%;
+font-size: 11pt;
 }
 
-.head2 span {
+.head1{
+	width: 100%;
+	line-height: 180%;
+	height: 50%;
+	
+}
+.head2 input{
+	width: 30%;
+	height: 58%;	
+}
+.head2 span{
 	width: 10%;
 	font-size: 11pt;
 }
 
-.head2 {
-	/* line-height: 4mm; */
-	line-height: 180%;
+.head2{
+	line-height: 4mm;
 	width: 100%;
 	height: 50%;
-	/* border: 1px solid #000; */
 
 }
-
-.lefe input {
-	width: 65%;
-	height: 28%;
+.lefe input{
+	width:65%;
+	height: 28%;	
 	line-height: 4mm;
 }
-
-.lefe span {
+.lefe span{
 	width: 10%;
 	font-size: 11pt;
 }
 
-.lefe {
+.lefe{
 	width: 100%;
 	height: 55%;
 }
-
-.lea {
-	height: 50%;
-	line-height: 220%;
-	/* border: 1px solid #000; */
+.lea{
+	height: 45%;
+		line-height: 10mm;
 }
-
-.lea input {
-	width: 65%;
-	height: 58%;
+.lea input{
+	width:65%;
+	height: 58%;	
 
 }
-
-.leb {
-	height: 50%;
-	line-height: 180%;
+.leb{
+		height: 45%;
+	line-height: 8mm;
 }
-
-.leb input {
-	width: 65%;
-	height: 58%;
+.leb input{
+	width:65%;
+	height: 58%;	
 	line-height: 4mm;
 }
 
 .customTit {
-	text-align: left;
-	/* border: 1px solid #000; */
-	padding: 9px 5px;
-	font-size: 15px;
+    text-align: left;
+    /* border: 1px solid #000; */
+    padding: 9px 5px;
+    font-size: 15px;
 }
-
 .customCenter .inputCon {
-	margin-left: 92px;
+    margin-left: 92px;
 }
-
 .inputCon .layui-input {
-	width: 45%;
-	float: left;
-	margin-left: 10px;
+    width: 45%;
+    float: left;
+    margin-left: 10px;
 }
-
 .inputCon .layui-word-aux {
-	margin-left: 10px;
+    margin-left: 10px;
+}
+.cachet {
+	width: 80px;
+	height: 80px;
+	/* border: 1px solid #000; */
+	position: absolute;
+	left: 40px;
+	bottom: 10px;
+}
+.cachet_img {
+	width: 100%;
+	height: 100%;
+	margin-top: 0;
 }

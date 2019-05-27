@@ -16,11 +16,12 @@
             height: 628px;
             /* background-color: yellow; */
         }
-        
+
         .layui-first i {
             display: none !important;
         }
-        .layui-tab-card > .layui-tab-title .layui-this {
+
+        .layui-tab-card>.layui-tab-title .layui-this {
             background: #ff9600;
         }
     </style>
@@ -50,10 +51,12 @@
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu" lay-filter="test">
-                            <li class="layui-nav-item leftdaohang" data-url="input1.html" mytitle="快速录入" data-id="listHolder">
+                            <li class="layui-nav-item leftdaohang" data-url="input1.html" mytitle="快速录入"
+                                data-id="listHolder">
                                 <a>快速录入</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html" mytitle="基础录入" data-id="listHolder">
+                            <li class="layui-nav-item leftdaohang" data-url="input2.html" mytitle="基础录入"
+                                data-id="listHolder">
                                 <a>基础录入</a>
                             </li>
                         </ul>
@@ -97,7 +100,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="layui-nav-item leftdaohang" data-url="./physical.html" mytitle="体检审核"> <i class="fa fa-check-square-o tb" aria-hidden="true"></i>体检审核
+                        <a class="layui-nav-item leftdaohang" data-url="./physical.html" mytitle="体检审核"> <i
+                                class="fa fa-check-square-o tb" aria-hidden="true"></i>体检审核
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu">
@@ -179,12 +183,14 @@
             <div class="mdk_body">
 
                 <div id="contente" class="layui-tab layui-tab-card" lay-filter="demo" lay-allowclose="true">
-                    <ul class="layui-tab-title top_tab" style="background-color: #022387;height: 30px;color: white;margin-top:0%;">
+                    <ul class="layui-tab-title top_tab"
+                        style="background-color: #022387;height: 30px;color: white;margin-top:0%;">
                         <li class="layui-this layui-first" data-url="admin.html">首页</li>
                     </ul>
                     <div class="layui-tab-content">
 
-                        <iframe id="iframe" src="admin.html" width="100%" height="700" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+                        <iframe id="iframe" src="admin.html" width="100%" height="700" frameborder="no" border="0"
+                            marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
                     </div>
 
                 </div>
@@ -194,20 +200,30 @@
     <script src="../src/layui.js"></script>
     <script>
         const iframe = document.querySelector('#iframe')
-        layui.use('element', function() {
+
+        // >>>闭包 封装成方法让子窗口访问
+        let tableChange
+
+        function a(dom) {
+            return tableChange.bind(dom)
+        }
+
+        // 结束
+
+        layui.use('element', function () {
             var $ = layui.jquery,
                 element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 
 
 
 
-            element.on('tab(demo)', function(data) {
+            element.on('tab(demo)', function (data) {
                 console.dir(this); //当前Tab标题所在的原始DOM元素
                 console.log(this.dataset.url);
                 iframe.src = this.dataset.url
             });
             var active = {
-                tabAdd: function(url, id, name) {
+                tabAdd: function (url, id, name) {
                     //新增一个Tab项 传入三个参数，分别对应其标题，tab页面的地址，还有一个规定的id，是标签中data-id的属性值
                     //关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
                     iframe.src = url
@@ -218,8 +234,9 @@
                 },
             };
 
-            //当点击有site-demo-active属性的标签时，即左侧菜单栏中内容 ，触发点击事件
-            $('.leftdaohang').on('click', function() {
+             // >>>  把处理函数提取出来
+
+             tableChange = function() {
                 var dataid = $(this);
                 //这时会判断右侧.layui-tab-title属性下的有lay-id属性的li的数目，即已经打开的tab项数目
                 if ($(".layui-tab-title li").length <= 1) {
@@ -248,7 +265,13 @@
                     })
                 }
 
-            });
+            }
+
+            //当点击有site-demo-active属性的标签时，即左侧菜单栏中内容 ，触发点击事件
+            $('.leftdaohang').on('click', tableChange);
+
+            // 结束
+            return
         });
     </script>
 </body>

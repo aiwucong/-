@@ -65,13 +65,13 @@
                     <div class="r_com">
                         <ul class="r_content">
                             <li>
-                                <a href="#">
+                                <a href="#" data-url="./examine.html" mytitle='预约审核' data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-folder-o"></i></span>
                                     <p class="r_text">待审核</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" data-url="./examine.html" mytitle='预约审核' data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-folder"></i></span>
                                     <p class="r_text">已审核</p>
                                 </a>
@@ -332,6 +332,18 @@
                 myCharts[data.index].resize()
             });
         });
+
+         // >>>开始
+
+         $('.r_content').on('click', 'a', function() {
+            // $("#iframe", parent.document).attr('src', $(this).data('url'))
+
+            window.parent.a(this)(); //调用父窗口的方法
+
+
+        })
+
+        // 结束
     </script>
 
 </body>

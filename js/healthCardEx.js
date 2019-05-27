@@ -124,7 +124,7 @@ layui.use('table', function() {
                 },
                 {
                     field: 'city',
-                    title: '体检审核',
+                    title: '打印健康证',
                     toolbar: '#barDemo',
                     width: 180
                 }, {
@@ -243,15 +243,15 @@ layui.use('table', function() {
         var data = obj.data;
         //console.log(obj)
         if (obj.event === 'audit_pass') {
-            layer.confirm('确认是否合格？',{
-                title: ['合格', 'font-size:18px; text-align: center;'],
-                btn: ['确认','取消'] //按钮
-              }, function(){
-                layer.msg('审核成功', {icon: 1});
-              },
-              function(){
-              })
-
+            console.log(111)
+				bdhtml = window.document.body.innerHTML; //获取当前页的html代码
+				sprnstr = "<!--stratprint-->"; //设置打印开始区域 
+				eprnstr = "<!--endprint-->"; //设置打印结束区域 
+				prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17); //从开始代码向后取html 
+				prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr)); //从结束代码向前取html 
+				window.document.body.innerHTML = prnhtml;
+				window.print();
+                window.document.body.innerHTML = bdhtml;
              } else if (obj.event === 'audit_failed') {
             var index = layer.open({
                 title: ['不合格原因', 'font-size:18px; text-align: center;'],

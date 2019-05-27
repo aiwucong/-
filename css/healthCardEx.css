@@ -9,14 +9,14 @@
 
 .queryAll {
     width: 100%;
-    height: 170px;
-    background: #dededc;
+    height: 215.77px;
+    background: #ff9600;
     display: flex;
     justify-content: flex-start;
 }
 
 .queryAll_list {
-    width: 50%;
+    width: 45%;
     /* height: 130px; */
     /* border: 1px solid red; */
     display: flex;
@@ -50,7 +50,7 @@
 }
 
 .queryAll_home {
-    width: 40%;
+    width: 35%;
     /* height: 130px; */
     /* border: 1px solid red; */
     padding: 20px 0 20px 20px;
@@ -58,8 +58,8 @@
 }
 
 .queryAll_main {
-    height: 130px;
-    background: #ff9600;
+    height: 175.78px;
+    background: #fff;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
@@ -72,7 +72,7 @@
 }
 
 .main_input {
-    height: 26px;
+    height: 40px;
 }
 
 .main_input_block {
@@ -82,8 +82,8 @@
 
 .layui-form-item {
     /* border: 1px solid #000; */
-    height: 25px;
-    margin-bottom: 3px;
+    height: 40px;
+    margin-bottom: 5px;
 }
 
 .main_name {
@@ -91,20 +91,20 @@
     width: 70px;
     padding: 0;
     /* background: #000; */
-    color: #fff;
-    line-height: 30px;
+    color: #000;
+    line-height: 42px;
     text-align: center;
 }
 .main_ff {
     width: 100%;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     display: flex;
     justify-content: space-between;
 }
 
 .chaxun {
     width: 12%;
-    height: 87px;
+    height: 130px;
     background: #009ddd;
     border: 0;
     cursor: pointer;
@@ -217,4 +217,15 @@
 .layui-tab-brief > .layui-tab-title .layui-this {
     background: #009ddd;
     color: #fff;
+}
+/* 批量打印按钮 */
+.bulkPrint {
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    background: #009ddd;
+}
+.bulkPrint .tb {
+    font-size: 18px !important;
 }

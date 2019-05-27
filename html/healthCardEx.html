@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,54 +11,60 @@
     <!-- <link rel="stylesheet" href="../main.css"> -->
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/healthCardEx.css">
+    <link rel="stylesheet" href="../css/healthCard.css" />
     <script src="../src/layui.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/healthCardEx.js"></script>
+    <link rel="stylesheet" href="../css/healthCard1.css" />
 </head>
 
 <body>
     <div class="layui-layout layui-layout-admin">
         <div class="examine_body">
             <div class="queryAll">
-                    <ul class="queryAll_home">
-                            <div class="queryAll_main">
-                                <form class="layui-form main_form" action="">
-                                    <div class="layui-form-item main_items main_ff">
-                                        <div class="">
-                                            <label class="layui-form-label main_name">姓　　名</label>
-                                            <div class="layui-input-block main_input_block">
-                                                <input type="text" name="title" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input main_input">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label class="layui-form-label main_name">体检编号</label>
-                                            <div class="layui-input-block main_input_block">
-                                                <input type="text" name="title" required lay-verify="required" placeholder="请输入体检编号" autocomplete="off" class="layui-input main_input">
-                                            </div>
-                                        </div>
+                <ul class="queryAll_home">
+                    <div class="queryAll_main">
+                        <form class="layui-form main_form" action="">
+                            <div class="layui-form-item main_items main_ff">
+                                <div class="">
+                                    <label class="layui-form-label main_name">姓　　名</label>
+                                    <div class="layui-input-block main_input_block">
+                                        <input type="text" name="title" required lay-verify="required"
+                                            placeholder="请输入姓名" autocomplete="off" class="layui-input main_input">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="layui-form-label main_name">体检编号</label>
+                                    <div class="layui-input-block main_input_block">
+                                        <input type="text" name="title" required lay-verify="required"
+                                            placeholder="请输入体检编号" autocomplete="off" class="layui-input main_input">
+                                    </div>
+                                </div>
 
-                                    </div>
-                                    <div class="layui-form-item main_items">
-                                        <label class="layui-form-label main_name">体检日期</label>
-                                        <div class="layui-input-block main_input_block main_input">
-                                            <input type="text" name="title" required lay-verify="required" placeholder="请输入体检日期" autocomplete="off" class="layui-input main_input">
-                                        </div>
-                                    </div>
-                                    <div class="layui-form-item main_items">
-                                        <label class="layui-form-label main_name">发证日期</label>
-                                        <div class="layui-input-block main_input_block main_input">
-                                            <input type="text" name="title" required lay-verify="required" placeholder="请输入发证日期" autocomplete="off" class="layui-input main_input">
-                                        </div>
-                                    </div>
-                                </form>
-                                <button class="layui-btn-radius chaxun">
-                                            <span class="text">查</span>
-                                            <span class="text">询</span>
-                                        </button>
                             </div>
-                        </ul>
+                            <div class="layui-form-item main_items">
+                                <label class="layui-form-label main_name">体检日期</label>
+                                <div class="layui-input-block main_input_block main_input">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入体检日期"
+                                        autocomplete="off" class="layui-input main_input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item main_items">
+                                <label class="layui-form-label main_name">发证日期</label>
+                                <div class="layui-input-block main_input_block main_input">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入发证日期"
+                                        autocomplete="off" class="layui-input main_input">
+                                </div>
+                            </div>
+                        </form>
+                        <button class="layui-btn-radius chaxun">
+                            <span class="text">查</span>
+                            <span class="text">询</span>
+                        </button>
+                    </div>
+                </ul>
                 <ul class="queryAll_list">
-                    <li>
+                    <!-- <li>
                         <span class="queryAll_name">体检待审核总数</span>
                         <p class="queryAll_nember" id="unaudited-audited">245</p>
                     </li>
@@ -68,16 +75,62 @@
                     <li>
                         <span class="queryAll_name">体检不合格总数</span>
                         <p class="queryAll_nember" id="already-audited">245</p>
-                    </li>
+                    </li> -->
+                    <div class="lef">
+                        <div class="head">健康证明</div>
+                        <div class="cont">
+                            <div class="left">
+                                <img src="../images/person.jpg">
+                            </div>
+                            <div class="right">
+                                <div class="con">
+                                    <div style="height: 100%;">
+                                        <div class="head1">
+                                            <span>姓名:</span>
+                                            <input type="text" />
+                                            <span>年龄:</span>
+                                            <input type="text" />
+                                        </div>
+                                        <div class="head2">
+                                            <span>性别:</span>
+                                            <input type="text" />
+                                            <span>体检:</span>
+                                            <input type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lefe">
+                                    <div class="le1" style="width: 70%;height: 100%;float: left;">
+                                        <div class="lea">
+                                            <span>有效期至:</span>
+                                            <input type="text" style="width: 55%;" />
+                                        </div>
+                                        <div class="leb">
+                                            <span>证号:</span>
+                                            <input type="text" />
+                                        </div>
+                                    </div>
+                                    <img src="../images/code.jpg" style="width: 15mm;height: 15mm;margin-right: 3mm;" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="bott">
+                            武汉玛迪卡智能科技有限公司制发
+                        </div>
+                    </div>
+                    <!-- <div class="rig">
+                        <img src="../images/healthCardBei.jpg" class="rie"/>
+                    </div> -->
                 </ul>
-                
+
             </div>
             <div class="examine_tab">
                 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                     <ul class="layui-tab-title">
-                        <li class="layui-this">体检未审核</li>
-                        <li class="audited">体检合格</li>
-                        <li class="audited">体检不合格</li>
+                        <li class="layui-this">待打印</li>
+                        <li class="audited">已打印</li>
+                        <!-- <li class="audited"></li> -->
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
@@ -137,20 +190,84 @@
                         <option value="0">合格</option>
                         <option value="1">不合格</option>
 
-                      </select>
+                    </select>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
+
+    <!-- 健康证 -->
+    <!--stratprint-->
+    <div class="box3">
+			<div class="content">
+				<div class="lef">
+					<div class="head">健康证明</div>
+					<div class="cont">
+						<div class="left">
+							<img src="../images/person.jpg">
+						</div>
+						<div class="right">
+							<div class="con">
+								<div style="height: 100%;">
+									<div class="head1">
+										<span>姓名:</span>
+										<input type="text" />
+										<span>年龄:</span>
+										<input type="text" />
+									</div>
+									<div class="head2">
+										<span>性别:</span>
+										<input type="text" />
+										<span>体检:</span>
+										<input type="text" />
+									</div>
+								</div>
+							</div>
+							<div class="lefe">
+								<div class="le1" style="width: 70%;height: 100%;float: left;">
+									<div class="lea">
+										<span>有效期至:</span>
+										<input type="text" style="width: 55%;" />
+									</div>
+									<div class="leb">
+										<span>证号:</span>
+										<input type="text" />
+									</div>
+								</div>
+								<img src="../images/code.jpg" style="width: 15mm;height: 15mm;margin-right: 3mm;" />
+							</div>
+							<div class="cachet">
+								<img src="../images/zhang.png" alt="" class="cachet_img">
+							</div>
+						</div>
+
+					</div>
+					<div class="bott">
+						武汉玛迪卡智能科技有限公司制发
+					</div>
+				</div>
+				<!-- <div class="rig">
+					<img src="images/healthCardBei.jpg" class="rie"/>
+				</div> -->
+			</div>
+    </div>
+    <!--endprint-->
+
     <script>
     </script>
     <script type="text/html" id="barDemo">
-        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_pass">合格</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_failed">不合格</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_pass">打印</a>
     </script>
 
     <script type="text/html" id="toolbarDemos">
         <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_modify">审核修改</a>
+    </script>
+
+    <script type="text/html" id="toolbarDemo">
+        <a class="layui-btn layui-btn-danger layui-btn-xs bulkPrint" lay-event="audit_modify">
+                <i class="fa fa-address-card-o tb" aria-hidden="true"></i>
+            批量打印
+        </a>
     </script>
 
 </body>

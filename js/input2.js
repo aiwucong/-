@@ -75,6 +75,28 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
           demoText.find('.demo-reload').on('click', function(){
             uploadInst.upload();
           });
+        elem: '#test1',
+        url: '',
+        before: function (obj) {
+            //预读本地文件示例，不支持ie8
+            obj.preview(function (index, file, result) {
+                $('#idcardimg').attr('src', result); //图片链接（base64）
+            });
+        },
+        done: function (res) {
+            //如果上传失败
+            if (res.code > 0) {
+                return layer.msg('上传失败');
+            }
+            //上传成功
+        },
+        error: function () {
+            //演示失败状态，并实现重传
+            var demoText = $('#demoText');
+            demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            demoText.find('.demo-reload').on('click', function () {
+                uploadInst.upload();
+            });
         }
     });
 
@@ -85,7 +107,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             timer = setInterval(function () {
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.1.114:8080/mycaream/changestatus/1",
+                    url: "http://192.168.1.111:8080/mycaream/changestatus/1",
                     async: true,
                     contentType: "application/json",
                     success: function (data) {
@@ -144,7 +166,8 @@ $(function () {
 
         $.ajax({
             type: "post",
-            url: "http://192.168.1.104:8086/tijian/add",
+            url: "http://192.168.1.107:8086/tijian/add",
+            url: baseUrl+"/tijian/add",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             data: JSON.stringify(data),
@@ -187,13 +210,76 @@ $(function () {
 
         });
     })
+    
+    $('#healtTable').click(function(){ 
+        var  IDname = $(".IDname").val(),
+            sex = $("input[type='radio']:checked").val(),
+            company = $("#company").val(),
+            telphone = $(".phonenumber").val(),
+            adress = $(".address").val(),
+            age = $("#age").val(),
+            idcardimg = $('#idcardimg')[0].src,
+            IDnumber = $("#IDnumber").val(),
+            startdate = $("#startdate").val(),
+            sexList = "";
+        
+        if (sex = 1) {
+            sexList = '男'
+        } else {
+            sexList = '女'
+        }
+        var data = {
+            "number": IDnumber,
+            "name": IDname,
+            "sex": sexList,
+            "age": age,
+            "company": company,
+            "telphone": telphone,
+            "adress": adress,
+            'idcardimg':idcardimg,
+            "startdate": startdate
+        };
+        $.ajax({
+            type: "post",
+            url: "http://192.168.1.107:8086/tijian/tjtable",
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify(data),
+            success: function (data) {
+                console.log(data)
+                if (data.status == "success") {
+                    alert("保存成功跳转页面");
+                } else {
+                    alert("保存失败，原因为" + data.data);
+                }
+            },
+            error: function (data) {
+                console.log(data)
+                alert("失败");
+            }
+        });
+
+    })
+
+
+    function getAge(birthday) {
+        var today = new Date();
+        var birthDate = new Date(birthday); //把出生日期转换成日期
+        var age = today.getFullYear() - birthDate.getFullYear(); //分别获取到年份后相减
+        var m = today.getMonth() - birthDate.getMonth(); //获取到月份后相减
+        if (m < 0 || (m == 0 && today.getDate() < birthDate.getDate())) {
+            age--; //如果月份的结果小于等于0，或者日期相减的结果是0，年龄减去1
+        }
+        return age
+    }
+
 // 读身份证
     $('.readcard').click(function () {
         layui.use('form', function () {
             var form = layui.form;
             $.ajax({
                 type: "post",
-                url: "http://192.168.1.114:8081/changestatus/1", //这个不能改
+                url: "http://192.168.1.107:8081/changestatus/1", //这个不能改
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
@@ -241,6 +327,7 @@ $(function () {
     })
     // 返回表格的数据
     $.ajax({
+        url: "http://192.168.1.107:8086/tijian/weektjlist",
         url: baseUrl+"/tijian/weektjlist",
         type: 'POST',
         dataType: 'json',
@@ -333,7 +420,11 @@ $(function () {
         console.log(111);
         $.ajax({
             type: "post",
-            url: "http://192.168.1.114:8081/changestatus/3",//这个不能改
+<<<<<<< HEAD
+            url: "http://192.168.1.107:8081/changestatus/3",
+=======
+            url: "http://192.168.1.107:8081/changestatus/3",//这个不能改
+>>>>>>> origin/master
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
@@ -349,7 +440,11 @@ $(function () {
 // 返回健康证号
 window.onload = function () {
     $.ajax({
+<<<<<<< HEAD
+        url: "http://192.168.1.107:8086/tijian/getlastnum",
+=======
         url: baseUrl+"/tijian/getlastnum",
+>>>>>>> origin/master
         type: "get",
         success: function (res) {
             console.log(res);
