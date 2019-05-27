@@ -9,6 +9,7 @@
 
 .layui-layout-admin .layui-body {
     top: 0;
+    overflow-y: hidden;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 }
 
 .layui-body {
-    height: 685px;
+    height: 100%;
 }
 
 .menu_l {
@@ -102,6 +103,10 @@ body {
     /* box-shadow: 3px 2px 15px #022387; */
     padding: 0 10px;
     box-sizing: border-box;
+    position: fixed;
+    width: calc(100% - 200px);
+    left: 200px;
+    top: 0;
 }
 
 .mdk_head h3 {
