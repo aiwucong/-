@@ -21,7 +21,7 @@
 				xhrFields:{withCredentials:true},
 				success:function(data){
 					if(data.status=="success"){
-						alert("登录成功");
+						// alert("登录成功");
 						window.location.href="html/index.html";
 					}else{
 						alert("登录失败，原因为"+data.data.errMsg);

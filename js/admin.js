@@ -24,9 +24,10 @@ window.onload = function() {
     $.ajax({
         type: "get",
         async: true,
-        url:baseUrl+'/tubiao/zhucountone', //请求发送到TestServlet处
+        url: baseUrl + '/tubiao/zhucountone',      //请求发送到TestServlet处
         data: {},
         success: function(result) {
+            // alert(result);
              console.log(result);
             var result = result.data;
             //请求成功时执行该函数内容，result即为服务器返回的json对象
@@ -62,6 +63,8 @@ window.onload = function() {
                     result.tjdaynum4 = 0
                 }
                 names = [result.day0.slice(0, 10),result.day1.slice(0, 10),result.day2.slice(0, 10),result.day3.slice(0, 10),result.day4.slice(0, 10)]
+               
+               
                 nums = [result.tjdaynum0,result.tjdaynum1,result.tjdaynum2,result.tjdaynum3,result.tjdaynum4]
                 cardNum = [result.carddaynum0,result.carddaynum1,result.carddaynum2,result.carddaynum3,result.carddaynum4]
                 myChart.hideLoading(); //隐藏加载动画

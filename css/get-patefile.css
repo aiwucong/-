@@ -21,9 +21,11 @@ body,html{
  * 返回按钮
  */
 #return{
-	width: 4%;
-	height: 6%;
-	float:right;
+	width: 171px;
+	height: 61px;
+	position: relative;
+	top: 6%;
+	left: 4%;
 }
 #return>a{
 	width: 100%;
