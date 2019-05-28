@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>首页</title>
+    <title>玛迪卡</title>
     <link rel="stylesheet" href="../src/css/layui.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/common.css">
@@ -53,15 +53,11 @@
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu" lay-filter="test">
-                            <li class="layui-nav-item leftdaohang" data-url="quickInput.html" mytitle="快速录入"
+                            <li class="layui-nav-item leftdaohang" data-url="input1.html" mytitle="快速录入"
                                 data-id="listHolder">
                                 <a>快速录入</a>
                             </li>
-<<<<<<< HEAD
-                            <li class="layui-nav-item leftdaohang" data-url="baseInput.html" mytitle="基础录入"
-=======
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=one" mytitle="基础录入"
->>>>>>> refs/remotes/origin/master
+                            <li class="layui-nav-item leftdaohang" data-url="input2(1).html?type=one" mytitle="基础录入"
                                 data-id="listHolder">
                                 <a>基础录入</a>
                             </li>
@@ -72,26 +68,19 @@
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu" lay-filter="test">
-<<<<<<< HEAD
-                            <li class="layui-nav-item leftdaohang" data-url="" mytitle="既往病史">
+                            <li class="layui-nav-item leftdaohang" data-url="input2(1).html?type=one" mytitle="既往病史">
                                 <a>既往病史</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="" mytitle="体征">
-=======
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=one" mytitle="既往病史">
-                                <a>既往病史</a>
-                            </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=two" mytitle="体征">
->>>>>>> refs/remotes/origin/master
+                            <li class="layui-nav-item leftdaohang" data-url="input2(1).html?type=two" mytitle="体征">
                                 <a>体征</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=there" mytitle="X线胸透">
+                            <li class="layui-nav-item leftdaohang" data-url="input2(1).html?type=there" mytitle="X线胸透">
                                 <a>X线胸透</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=four" mytitle="实验室检验">
+                            <li class="layui-nav-item leftdaohang" data-url="input2(1).html?type=four" mytitle="实验室检验">
                                 <a>实验室检验</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=five" mytitle="检查结论">
+                            <li class="layui-nav-item leftdaohang" data-url="input2(1).html?type=five" mytitle="检查结论">
                                 <a>检查结论</a>
                             </li>
                         </ul>
@@ -134,7 +123,7 @@
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu">
-                            <li class="layui-nav-item leftdaohang" data-url="./healthCardEx.html" mytitle="健康证">
+                            <li>
                                 <a>健康证一</a>
                             </li>
                             <li>
@@ -202,8 +191,9 @@
                     </ul>
                     <div class="layui-tab-content">
 
-                        <iframe id="iframe" src="admin.html" width="100%" frameborder="no" border="0"
-                            marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" style="padding-top: 31px; min-height: 1200px;"></iframe>
+                        <iframe id="iframe" src="admin.html" width="100%" frameborder="no" border="0" marginwidth="0"
+                            marginheight="0" scrolling="no" allowtransparency="yes"
+                            style="padding-top: 31px; min-height: 1200px;"></iframe>
                     </div>
 
                 </div>
@@ -220,7 +210,7 @@
         function a(dom) {
             return tableChange.bind(dom)
         }
-        
+
         function queryParams(params, url) {
             if (!params) return;
             var paraString = url.substring(url.indexOf('?') + 1, url.length).split('&'),
@@ -260,17 +250,18 @@
                         `<li class='layui-this' data-url=${url}>${name}</li>`);
                     element.render('tab');
                     console.log(url)
+                    debugger
                     curType = queryParams('type', url)
                     localStorage.curType = curType
+
                 },
             };
 
-             // >>>  把处理函数提取出来
+            // >>>  把处理函数提取出来
 
-             tableChange = function() {
+            tableChange = function () {
                 var dataid = $(this);
                 //这时会判断右侧.layui-tab-title属性下的有lay-id属性的li的数目，即已经打开的tab项数目
-                debugger
                 if ($(".layui-tab-title li").length <= 1) {
                     //如果比零小，则直接打开新的tab项
                     active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr(
@@ -278,7 +269,7 @@
                 } else {
                     //否则判断该tab项是否以及存在
                     var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
-                    $.each($(".layui-tab-title li"), function() {
+                    $.each($(".layui-tab-title li"), function () {
                         //如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开
                         if ($(this).attr("data-url") == dataid.attr("data-url")) {
                             isData = true;
@@ -289,9 +280,10 @@
                         active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr(
                             "mytitle"));
                     }
-                    [...document.querySelector('.top_tab').children].some(function(e) {
+                    [...document.querySelector('.top_tab').children].some(function (e) {
                         if (e.dataset.url == dataid.attr("data-url")) {
-                            debugger
+                            curType = queryParams('type', dataid.attr("data-url"))
+                            localStorage.curType = curType
                             e.click()
                             return true
                         }

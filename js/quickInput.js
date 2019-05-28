@@ -85,7 +85,11 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             timer = setInterval(function () {
                 $.ajax({
                     type: "post",
+<<<<<<< HEAD:js/quickInput.js
                     url: "http://192.168.1.115:8080/mycaream/changestatus/1",//这个目前不改
+=======
+                    url: baseUrl + "/mycaream/changestatus/1",
+>>>>>>> refs/remotes/origin/master:js/input1.js
                     async: true,
                     contentType: "application/json",
                     success: function (data) {
@@ -145,7 +149,7 @@ $(function () {
 
         $.ajax({
             type: "post",
-            url: baseUrl+"/tijian/add",
+            url: baseUrl + "/tijian/add",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             data: JSON.stringify(data),
@@ -207,7 +211,7 @@ $(function () {
             var form = layui.form;
             $.ajax({
                 type: "post",
-                url: "http://192.168.1.115:8081/changestatus/1", //这个不能改
+                url: baseUrl + "/changestatus/1", //这个不能改
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
@@ -237,8 +241,20 @@ $(function () {
                         console.log(year--)
                         $('#age').attr("value", year--);
                     }
+<<<<<<< HEAD:js/quickInput.js
                    
 
+=======
+                    //    健康证号自增
+                    var num = $("#IDnumber").val().substring(5);
+                    console.log(num)
+                    num++;
+                    num += 100000;
+                    console.log(num)
+                    var newnum = $("#IDnumber").val().substring(0, 5) + num.toString().substring(1);
+                    console.log(newnum)
+                    $("#IDnumber").val(newnum)
+>>>>>>> refs/remotes/origin/master:js/input1.js
                     form.render(); //更新全部                 
                 }
             });
@@ -338,7 +354,7 @@ $(function () {
         console.log(111);
         $.ajax({
             type: "post",
-            url: "http://192.168.1.115:8081/changestatus/3",//这个不能改
+            url: baseUrl + "/changestatus/3",//这个不能改
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {

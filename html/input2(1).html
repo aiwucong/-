@@ -8,220 +8,109 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <link rel="stylesheet" href="../src/css/layui.css">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/quickInput.css">
+    <link rel="stylesheet" href="../css/input1.css">
     <script src="../src/layui.js"></script>
     <script src="../js/jquery.min.js"></script>
-    <script src="../js/quickInput.js"></script>
+    <script src="../js/input1.js"></script>
     <script src="../js/public.js"></script>
     <title>Document</title>
     <style>
-        .tjItems{
+        .tjItems {
             width: 100%;
             height: auto;
         }
-        .items{
+
+        .items {
             height: 35px;
             width: 100%;
             position: relative;
             background: #022387;
         }
-        .items li{
+
+        .items li {
             float: left;
             height: 35px;
             padding: 0 20px;
             line-height: 35px;
         }
-        .items li.cur{
+
+        .items li.cur {
             background: #ff9600;
         }
-        .items li.cur a{
+
+        .items li.cur a {
             color: #000;
         }
-        .items li a{
+
+        .items li a {
             color: #fff;
             cursor: pointer;
             display: block;
             width: 100%;
             height: 100%;
         }
-        .pastCase,.sign,.chest{
+
+        .pastCase {
             width: 100%;
             height: 80px;
             margin-top: 15px;
-            display: none;
         }
-        .pcList,.signDiv,.chestDiv{
+
+        .pcList {
             position: relative;
             width: 100%;
             height: 80px;
         }
-        .pcListLeft,.signDivLeft,.cheatDivLeft,.laboratoryDivLeft{
+
+        .pcListLeft {
             width: 50px;
             height: 80px;
             padding: 0 20px;
-            border:1px solid #000;
+            border: 1px solid #000;
             float: left;
             text-align: center;
         }
-        .pcListLeft span,.signDivLeft span,.cheatDivLeft span,.laboratoryDivLeft span{
+
+        .pcListLeft span {
             display: inline-block;
             width: 50%;
         }
-        .pcListRight,.signDivRight,.cheatDivRight,.laboratoryDivRight{
+
+        .pcListRight {
             width: calc(100% - 100px);
             height: 80px;
             float: left;
             margin-left: 5px;
         }
-        .plrTop{
+
+        .plrTop {
             height: 40px;
             margin-bottom: 5px;
         }
-        .plrTop span{
+
+        .plrTop span {
             width: 16%;
             display: inline-block;
             height: 35px;
             line-height: 35px;
             text-align: center;
-            border:1px solid #000;
+            border: 1px solid #000;
         }
-        .plrTop span input{
+
+        .plrTop span input {
             width: 100%;
             height: 100%;
             border: none;
             text-align: center;
         }
-        .signDivLeft{
-            height: 160px;
-            line-height: 190px;
-        }
-        .signDivLeft span{
-            line-height: 40px;
-        }
-        .signDivRight p span:nth-child(1),.signDivRight p span:nth-child(3){
-            display: inline-block;
-            width: 16%;
-            height: 35px;
-            line-height: 35px;
-            text-align: center;
-            margin-bottom: 5px;
-            border:1px solid #000;
-        }
-        .signDivRight p span:nth-child(2),.signDivRight p span:nth-child(4){
-            display: inline-block;
-            width: 32.5%;
-            height: 35px;
-            line-height: 35px;
-            text-align: center;
-            margin-bottom: 5px;
-            border:1px solid #000;
-        }
-        .signDivRight p span:nth-child(2) input,.signDivRight p span:nth-child(4) input{
-            border:none;
-        }
-        .signDivRight p span.pf{
-            width: 82%;
-            vertical-align: top;
-            text-align: left;
-        }
-        .sign{
-            height: 160px;
-        }
-        .signDivRight p span.pf em{
-            display: inline-block;
-            width: 16%;
-            font-style: normal;
-            text-indent: 15px;
-        }
-        .cheatDivLeft span{
-            width: 40%;
-            line-height: 30px;
-        }
-        .cheatDivRight p span:nth-child(1){
-            height: 120px;
-            width: 80%;
-            padding-left: 10px;
-            border: 1px solid #000;
-            display: inline-block;
-        }
-        .cheatDivRight p span:nth-child(1) input{
-            border:none;
-        }
-        .cheatDivLeft{
-            height: 120px;
-        }
-        .cheatDivRight p span:nth-child(2){
-            width: 17.3%;
-            height: 120px;
-            text-align: center;
-            display: inline-block;
-            border: 1px solid #000;
-            line-height: 120px;
-            vertical-align: bottom;
-        }
-        .laboratory {
-            width: 100%;
-            height: auto;
-            margin-top: 15px;
+
+        .sign,
+        .pastCase,
+        .chest,
+        .laboratory,
+        .statistics {
             display: none;
         }
-        .laboratoryDivRight p span{
-            line-height: 35px;
-            height: 35px;
-            margin-bottom: 5px;
-            display: inline-block;
-            border:1px solid #000;
-        }
-        .laboratoryDivRight p span:nth-child(1){
-            width: 16%;
-            text-align: center;
-        }
-        .laboratoryDivRight p span:nth-child(2){
-            width: 65%;
-            margin: 0 5px;
-        }
-        .laboratoryDivRight p span:nth-child(2) input{
-            width: 100%;
-            height: 100%;
-            border:none;
-        }
-        .laboratoryDivRight p span:nth-child(3){
-            width: 16%;
-            text-align: center;
-        }
-        .laboratoryDiv{
-            overflow: hidden;
-        }
-        .laTest p span{
-            height: 35px;
-            margin-bottom: 5px;
-            line-height: 35px;
-            display: inline-block;
-            text-align: center;
-            border:1px solid #000;
-        }
-        .laTest p span:nth-child(1){
-            width: 16%;
-        }
-        .laTest p span:nth-child(2){
-            width: 71.3%;
-            vertical-align: bottom;
-        } 
-        .laTest{
-            margin-top: 5px;
-        }
-        .laTest p span:nth-child(2) em{
-            display: inline-block;
-            width: 49%;
-            font-style: normal;
-            cursor: pointer;
-        }
-        .laTest p span:nth-child(3){
-            width: 10%;
-        }
-        /* .sign,.pastCase,.chest,.laboratory,.statistics{
-            display: none;
-        } */
     </style>
 </head>
 
@@ -282,8 +171,9 @@
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">健康证号</label>
-                                <input type="text" name="healthnumber" required lay-verify="required" readonly="readonly"
-                                    placeholder="请输入健康证号" autocomplete="off" class="layui-input healthnumber">
+                                <input type="text" name="healthnumber" required lay-verify="required"
+                                    readonly="readonly" placeholder="请输入健康证号" autocomplete="off"
+                                    class="layui-input healthnumber">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -348,7 +238,9 @@
                             </div> -->
                             <div class="layui-form-item">
                                 <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn2" id="healtTable"><a href="#" data-url="./healthy.html" mytitle="体检表" data-id="listHolder" style="color: #fff;">打印体检表</a></button>
+                                <button class="layui-btn layui-btn-sm checkboxs_btn2" id="healtTable"><a href="#"
+                                        data-url="./healthy.html" mytitle="体检表" data-id="listHolder"
+                                        style="color: #fff;">打印体检表</a></button>
                             </div>
                             <div class="layui-form-item">
                                 <!-- <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"> -->
@@ -373,7 +265,7 @@
                         </div>
                     </div>
                     <button class="layui-btn layui-btn-normal btn1">拍摄照片</button>
-                        <!-- <input type="file"> -->
+                    <!-- <input type="file"> -->
                     <button type="button" class="layui-btn btn2" id="test1">
                         <i class="layui-icon">&#xe67c;</i>导入图片
                     </button>
@@ -384,7 +276,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="homeTable">
             <div class="tableQuery">
 
@@ -392,125 +284,74 @@
             <table id="demo" lay-filter="test"></table>
         </div>
         <div class="tjItems">
-                <div class="items">
-                    <ul>
-                        <li class="one"><a>既往病史</a></li>
-                        <li class="two"><a>体征</a></li>
-                        <li class="there"><a>X线胸透</a></li>
-                        <li class="four"><a>实验室检验</a></li>
-                        <li class="five"><a>检查结论</a></li>
-                    </ul>
-                </div>
-                <div class="pastCase">
-                    <div class="pcList">
-                        <div class="pcListLeft">
-                            <span>既往病史</span>
-                        </div>
-                        <div class="pcListRight">
-                            <p class="plrTop">
-                                <span>肝炎</span>
-                                <span>痢疾</span>
-                                <span>伤寒</span>
-                                <span>肺结核</span>
-                                <span>皮肤病</span>
-                                <span>其它</span>
-                            </p>
-                            <p class="plrTop">
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="sign">
-                    <div class="signDiv">
-                        <div class="signDivLeft">
-                            <span>体征</span>
-                        </div>
-                        <div class="signDivRight">
-                            <p>
-                                <span>心</span>
-                                <span><input type="text"/></span>
-                                <span>肝</span>
-                                <span><input type="text"/></span>
-                            </p>
-                            <p>
-                                <span>脾</span>
-                                <span><input type="text"/></span>
-                                <span>肺</span>
-                                <span><input type="text"/></span>
-                            </p>
-                            <p>
-                                <span>皮肤</span>
-                                <span class="pf">
-                                    <em><input type="checkbox" id="manus"><label for="manus">手癣</label></em>
-                                    <em><input type="checkbox" id="nail"><label for="nail">指甲</label></em>
-                                    <em><input type="checkbox" id="Eczema "><label for="Eczema ">手部湿疹</label></em>
-                                    <em><input type="checkbox" id="psoriasis"><label for="psoriasis">银屑(鱼鳞屑)病</label></em>
-                                    <em><input type="checkbox" id="exudation"><label for="exudation">渗出性皮肤病</label></em>
-                                    <em><input type="checkbox" id="fester"><label for="fester">化脓性皮肤病</label></em>
-                                </span>
-                            </p>
-                            <p>
-                                <span>其它</span>
-                                <span style="vertical-align: bottom;width: 65.5%;"type="text"><input ></span>
-                                <span>医师签名</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chest">
-                    <div class="cheatDiv">
-                        <div class="cheatDivLeft">
-                            <span>X线胸透</span>
-                        </div>
-                        <div class="cheatDivRight">
-                            <p>
-                                <span><input type="text"></span>
-                                <span>医师签名</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="laboratory">
-                    <div class="laboratoryDiv">
-                        <div class="laboratoryDivLeft">
-                            <span>大便培养</span>
-                        </div>
-                        <div class="laboratoryDivRight">
-                            <p><span>杆菌痢疾</span><span><input type="text"/></span><span>检验师签名</span></p>
-                            <p><span>伤寒或副伤寒</span><span><input type="text"></span><span>检验师签名</span></p>
-                        </div>
-                    </div>
-                    <div class="laTest">
-                            <p>
-                                <span>甲肝抗体(Anti-HAV)</span>
-                                <span>
-                                    <em><input type="radio" name="radio" id="jgyang"><label for="jgyang">阳性</label></em>
-                                    <em><input type="radio" name="radio" id="jgyin"><label for="jgyin">阴性</label></em>
-                                </span>
-                                <span>检验师签名</span>
-                            </p>
-                            <p>
-                                <span>戊肝抗体(Anti-HEV)</span>
-                                <span>
-                                    <em><input type="radio" name="radio" id="wgyang"><label for="wgyang">阳性</label></em>
-                                    <em><input type="radio" name="radio" id="wgying"><label for="wgying">阴性</label></em>
-                                </span>
-                                <span>检验师签名</span>
-                            </p>
-                            <p>
-                                <span>其它</span>
-                                <span style="width: 81.7%;"><input type="text" style="width: 100%;height:100%;border:none;"/></span>
-                            </p>
-                        </div>
-                </div>
-                <div class="statistics"></div>
+            <div class="items">
+                <ul>
+                    <li class="one"><a>既往病史</a></li>
+                    <li class="two"><a>体征</a></li>
+                    <li class="there"><a>X线胸透</a></li>
+                    <li class="four"><a>实验室检验</a></li>
+                    <li class="five"><a>检查结论</a></li>
+                </ul>
             </div>
+            <div class="pastCase">
+                <div class="pcList">
+                    <div class="pcListLeft">
+                        <span>既往病史</span>
+                    </div>
+                    <div class="pcListRight">
+                        <p class="plrTop">
+                            <span>肝炎</span>
+                            <span>痢疾</span>
+                            <span>伤寒</span>
+                            <span>肺结核</span>
+                            <span>皮肤病</span>
+                            <span>其它</span>
+                        </p>
+                        <p class="plrTop">
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="sign">
+                <div class="signDiv">
+                    <div class="signDivLeft">
+                        <span>体征</span>
+                    </div>
+                    <div class="signDivRight">
+                        <p>
+                            <span>心</span>
+                            <span><input type="text" /></span>
+                            <span>肝</span>
+                            <span><input type="text" /></span>
+                        </p>
+                        <p>
+                            <span>脾</span>
+                            <span><input type="text" /></span>
+                            <span>肺</span>
+                            <span><input type="text" /></span>
+                        </p>
+                        <p>
+                            <span>皮肤</span>
+                            <span></span>
+                        </p>
+                        <p>
+                            <span>其它</span>
+                            <span></span>
+                            <span>医师签名</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="chest"></div>
+            <div class="laboratory"></div>
+            <div class="statistics"></div>
+        </div>
     </div>
 
 
@@ -542,6 +383,7 @@
         </form>
     </div>
     <script type="text/javascript">
+    debugger
         let curType = localStorage.curType
         if (curType === 'one') { //既往病史
             $('.pastCase').show();
@@ -560,10 +402,32 @@
             $('.five').addClass('cur')
         }
 
-        $('#healtTable').on('click','a',function(){
+
+
+        $('#healtTable').on('click', 'a', function () {
             window.parent.a(this)(); //调用父窗口的方法
         })
-        
+        // $('.items ul').on('click', 'li', function (e) {
+        //     console.log(2222);
+        //     curType = e.currentTarget.className.split(' ')[0]
+        //     if (curType === 'one') { //既往病史
+        //         $('.pastCase').show();
+        //         $('.one').addClass('cur').siblings().removeClass('cur')
+        //     } else if (curType === 'two') {
+        //         $('.sign').show()
+        //         $('.two').addClass('cur').siblings().removeClass('cur')
+        //     } else if (curType === 'there') {
+        //         $('.chest').show()
+        //         $('.there').addClass('cur').siblings().removeClass('cur')
+        //     } else if (curType === 'four') {
+        //         $('.laboratory').show()
+        //         $('.four').addClass('cur').siblings().removeClass('cur')
+        //     } else {
+        //         $('.statistics').show()
+        //         $('.five').addClass('cur').siblings().removeClass('cur')
+        //     }
+
+        // })
     </script>
 </body>
 
