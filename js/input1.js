@@ -85,7 +85,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             timer = setInterval(function () {
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.1.114:8080/mycaream/changestatus/1",
+                    url: baseUrl + "/mycaream/changestatus/1",
                     async: true,
                     contentType: "application/json",
                     success: function (data) {
@@ -144,7 +144,7 @@ $(function () {
 
         $.ajax({
             type: "post",
-            url: "http://192.168.1.104:8086/tijian/add",
+            url: baseUrl + "/tijian/add",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             data: JSON.stringify(data),
@@ -193,7 +193,7 @@ $(function () {
             var form = layui.form;
             $.ajax({
                 type: "post",
-                url: "http://192.168.1.114:8081/changestatus/1", //这个不能改
+                url: baseUrl + "/changestatus/1", //这个不能改
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
@@ -232,8 +232,6 @@ $(function () {
                     var newnum = $("#IDnumber").val().substring(0, 5) + num.toString().substring(1);
                     console.log(newnum)
                     $("#IDnumber").val(newnum)
-
-
                     form.render(); //更新全部                 
                 }
             });
@@ -333,7 +331,7 @@ $(function () {
         console.log(111);
         $.ajax({
             type: "post",
-            url: "http://192.168.1.114:8081/changestatus/3",//这个不能改
+            url: baseUrl + "/changestatus/3",//这个不能改
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
