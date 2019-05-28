@@ -3,6 +3,10 @@
 	padding: 0px;
 	font-family: "微软雅黑";
 }
+
+@page {
+	margin: 0;
+}
 html{
 	width: 99.9%;
 	height: 99.8%;
@@ -13,25 +17,26 @@ body{
 	height: 99.8%;
 }
 /*大盒子*/
-.box3{
+/* .box3{
 	width: 100%;
-	height: 100%;
+	height: 500px; 
 	border: 1px solid red;
-}
+} */
 /*证件盒子*/
 .content{
-	margin: 12% auto;
-	/* border: 1px solid black; */
+	/* margin: 12% auto; */
+	border: 1px solid black;
 	width: 85.60mm;
 	height: 53.98mm;
+	padding: 3mm;
+	box-sizing: border-box;
 }
 /*健康证正面*/
 .lef{
-	width: 85.60mm;
-	/*float: left;*/
-	height: 53.98mm;
-	border: 1px solid black;
+	width: 79.60mm;
+	height: 47.98mm;
 	position: relative;
+	/* border: 1px solid #000; */
 }
 .head{
 	font-weight: bold;
@@ -39,7 +44,7 @@ body{
 	height: 19%;
 
 	text-align: center;
-	line-height: 115%;
+	/* line-height: 115%; */
 	letter-spacing: 3mm;
 	font-size: 24pt;
 	color: green;
@@ -47,8 +52,7 @@ body{
 }
 .cont{
 	width: 99.5%;
-	height: 68%;
-
+	/* height: 68%; */
 	display: flex;
 	justify-content: space-between;
 }
@@ -58,16 +62,22 @@ body{
 
 }
 .left{
-	width: 25mm;
+	width: 27mm;
 	height: 100%;
 	text-align: center;
-	
+	float: left;
+	padding-left: 5px;
 }
 .right{
-	width: 60.6mm;
+	width: 73mm;
 	height: 98.5%;
 	font-size: 11pt;
+	float: right;
+	padding-left: 5px;
 
+}
+.right span {
+	font-family: "宋体";
 }
 img{
 	margin-top: 1.5mm;
@@ -83,6 +93,7 @@ img{
 	text-align: center;
 	color: green;
 	font-family: "宋体";
+	line-height: 20px;
 }
 input{
 	border: transparent;
@@ -109,7 +120,7 @@ font-weight: bold;
 
 }
 .head1 input{
-	width: 30%;
+	width: 28%;
 	height: 58%;	
 }
 .head1 span{
@@ -119,12 +130,12 @@ font-size: 11pt;
 
 .head1{
 	width: 100%;
-	line-height: 180%;
+	/* line-height: 180%; */
 	height: 50%;
 	
 }
 .head2 input{
-	width: 30%;
+	width: 28%;
 	height: 58%;	
 }
 .head2 span{
@@ -153,8 +164,7 @@ font-size: 11pt;
 	height: 55%;
 }
 .lea{
-	height: 45%;
-		line-height: 10mm;
+	height: 25px;
 }
 .lea input{
 	width:65%;
@@ -163,7 +173,7 @@ font-size: 11pt;
 }
 .leb{
 		height: 45%;
-	line-height: 8mm;
+	/* line-height: 8mm; */
 }
 .leb input{
 	width:65%;

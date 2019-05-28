@@ -1,8 +1,8 @@
 window.onload = function() {
-    var baseUrl="http://39.98.227.70:8082/mdk2019"
+    // var baseUrl="http://39.98.227.70:8082/mdk2019"
     // console.log("werwf")
     $.ajax({
-        url: 'http://192.168.1.106:8086/tubiao/indexcount',
+        url: baseUrl+'/tubiao/indexcount',
         type: "get",
         success:function(res){
             console.log(res)
@@ -24,7 +24,7 @@ window.onload = function() {
     $.ajax({
         type: "get",
         async: true,
-        url:'http://192.168.1.106:8086/tubiao/zhucountone', //请求发送到TestServlet处
+        url:baseUrl+'/tubiao/zhucountone', //请求发送到TestServlet处
         data: {},
         success: function(result) {
              console.log(result);
