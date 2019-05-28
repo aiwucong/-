@@ -49,7 +49,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     // 上传图片
     var uploadInst = upload.render({
         elem: '#test1'
-        ,url: ''
+        // ,url: ''
         ,before: function(obj){
           //预读本地文件示例，不支持ie8
           console.log(obj)
@@ -61,21 +61,21 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             
           });
         }
-        ,done: function(res){
-          //如果上传失败
-          if(res.code > 0){
-            return layer.msg('上传失败');
-          }
-          //上传成功
-        }
-        ,error: function(){
-          //演示失败状态，并实现重传
-          var demoText = $('#demoText');
-          demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-          demoText.find('.demo-reload').on('click', function(){
-            uploadInst.upload();
-          });
-        }
+        // ,done: function(res){
+        //   //如果上传失败
+        //   if(res.code > 0){
+        //     return layer.msg('上传失败');
+        //   }
+        //   //上传成功
+        // }
+        // ,error: function(){
+        //   //演示失败状态，并实现重传
+        //   var demoText = $('#demoText');
+        //   demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+        //   demoText.find('.demo-reload').on('click', function(){
+        //     uploadInst.upload();
+        //   });
+        // }
     });
 
 
@@ -85,7 +85,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             timer = setInterval(function () {
                 $.ajax({
                     type: "post",
-                    url: "http://192.168.1.114:8080/mycaream/changestatus/1",
+                    url: "http://192.168.1.115:8080/mycaream/changestatus/1",
                     async: true,
                     contentType: "application/json",
                     success: function (data) {
@@ -120,6 +120,7 @@ $(function () {
         idcardimg = $('#idcardimg')[0].src,
         sexList = "";
         console.log(111)
+        alert(111)
         if (sex = 1) {
             sexList = '男'
         } else {
@@ -144,16 +145,17 @@ $(function () {
 
         $.ajax({
             type: "post",
-            url: "http://192.168.1.104:8086/tijian/add",
+            url: baseUrl+"/tijian/add",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             data: JSON.stringify(data),
             success: function (data) {
                 var userData = data.data
-                // window.location.reload()
+                //window.location.reload()
                 if (data.status == "success") {
                     alert("保存成功");
-                } else {
+                } 
+                else {
                     alert("保存失败，原因为" + data.data.errMsg);
                 }
             },
@@ -161,6 +163,8 @@ $(function () {
                 alert("失败");
             }
         });
+
+        
     })
     // 自定义弹框
     $('.custom').click(function () {
@@ -193,7 +197,7 @@ $(function () {
             var form = layui.form;
             $.ajax({
                 type: "post",
-                url: "http://192.168.1.114:8081/changestatus/1", //这个不能改
+                url: "http://192.168.1.115:8081/changestatus/1", //这个不能改
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
@@ -201,7 +205,7 @@ $(function () {
                     $('.IDname').attr("value", data.pName);
                     $('#IDcard').attr("value", data.pCertNo);
                     $('.address').attr("value", data.pAddress);
-                    $("#idcardimg").attr("src", "data:image/png;base64," + data.photo);
+                    $("#idcardimg").attr("src", "data:image/jpg;base64," + data.photo);
                     if (data.pSex === "男") {
                         $('#boy').attr('checked', true)
                         $('#girl').attr('checked', false)
@@ -333,7 +337,7 @@ $(function () {
         console.log(111);
         $.ajax({
             type: "post",
-            url: "http://192.168.1.114:8081/changestatus/3",//这个不能改
+            url: "http://192.168.1.115:8081/changestatus/3",//这个不能改
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {

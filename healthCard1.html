@@ -1,68 +1,94 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>健康证</title>
-		<link rel="stylesheet" href="css/healthCard1.css" />
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>健康证</title>
+	<link rel="stylesheet" href="css/healthCard2.css" />
+	<script src="js/jquery-1.11.0.min.js"></script>
+	<script src="./js/public.js"></script>
+</head>
 
-	<body>
-		<div class="box">
-			<div class="content">
-				<div class="lef">
-					<div class="head">健康证明</div>
-					<div class="cont">
-						<div class="left">
-							<img src="images/person.jpg">
-						</div>
-						<div class="right">
-							<div class="con">
-								<div style="height: 100%;">
-									<div class="head1">
-										<span>姓名:</span>
-										<input type="text" />
-										<span>年龄:</span>
-										<input type="text" />
-									</div>
-									<div class="head2">
-										<span>性别:</span>
-										<input type="text" />
-										<span>体检:</span>
-										<input type="text" />
-									</div>
-								</div>
-							</div>
-							<div class="lefe">
-								<div class="le1" style="width: 70%;height: 100%;float: left;">
-									<div class="lea">
-										<span>有效期至:</span>
-										<input type="text" style="width: 55%;" />
-									</div>
-									<div class="leb">
-										<span>证号:</span>
-										<input type="text" />
-									</div>
-								</div>
-								<img src="images/code.jpg" style="width: 15mm;height: 15mm;margin-right: 3mm;" />
-							</div>
-							<div class="cachet">
-								<img src="./images/zhang.png" alt="" class="cachet_img">
-							</div>
-						</div>
-
-					</div>
-					<div class="bott">
-						武汉玛迪卡智能科技有限公司制发
-					</div>
+<body>
+	<button class="da">打印</button>
+	<!--stratprint-->
+	<div class="box">
+		<div class="box_center">
+			<h2 class="box_tit">健康证明</h2>
+			<div class="boxHome">
+				<div class="boxImg">
+					<img src="./images/person.jpg" alt="" class="personImg">
 				</div>
-				<!-- <div class="rig">
-					<img src="images/healthCardBei.jpg" class="rie"/>
-				</div> -->
+				<div class="boxInputs">
+					<div class="lines">
+						<div class="lines_item1">
+							<span class="lines_tit">姓名:</span>
+							<span class="lines_input name"></span>
+						</div>
+						<div class="lines_item2">
+							<span class="lines_tit">年龄:</span>
+							<span class="lines_input old"></span>
+						</div>
+					</div>
+					<div class="lines">
+						<div class="lines_item1">
+							<span class="lines_tit">性别:</span>
+							<span class="lines_input sex"></span>
+						</div>
+						<div class="lines_item2">
+							<span class="lines_tit">体检:</span>
+							<span class="lines_input tj"></span>
+						</div>
+					</div>
+					<div class="Ylines">
+						<span class="lines_tit">有效期至:</span>
+						<span class="lines_input dataTime"></span>
+					</div>
+					<div class="Ylines">
+						<span class="lines_tit">证号:</span>
+						<span class="lines_input card"></span>
+					</div>
+					<img src="images/code.jpg" alt="" class="erweima">
+				</div>
 			</div>
+			<h4 class="companyTitle">武汉玛迪卡智能科技有限公司制发</h4>
+			<img src="images/zhang.png" alt="" class="zhang">
 		</div>
-	</body>
+	</div>
+	<!--endprint-->
+</body>
 <script type="text/javascript">
-	
+	$(function () {
+		$('.da').click(function () {
+			console.log(111)
+			bdhtml = window.document.body.innerHTML; //获取当前页的html代码
+			sprnstr = "<!--stratprint-->"; //设置打印开始区域 
+			eprnstr = "<!--endprint-->"; //设置打印结束区域 
+			prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17); //从开始代码向后取html 
+			prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr)); //从结束代码向前取html 
+			window.document.body.innerHTML = prnhtml;
+			window.print();
+			window.document.body.innerHTML = bdhtml;
+		})
+		// 接受传值
+		$.ajax({
+			url: baseUrl+"/tijian/getcardinfo",
+			contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            // data: JSON.stringify(data),
+			success: function (res) {
+				var userData = res.data
+				console.log(userData)
+				$('.name').text(userData.name)
+				$('.old').text(userData.age)
+				$('.sex').text(userData.sex)
+				$('.tj').text("合格")
+				$('.dataTime').text(userData.enddate)
+				$('.card').text(userData.hearthcardNum)
+				$('.personImg').attr('src',userData.idcardimg)
+			}
+		})
+	})
 </script>
+
 </html>

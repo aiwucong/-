@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/echarts.min.js"></script>
-    <!-- <script src="../js/admin.js"></script> -->
+    <script src="../js/public.js"></script>
+    <script src="../js/admin.js"></script>
 </head>
 
 <body>
@@ -237,7 +238,7 @@
                 if(data.index == 1){
                     console.log('第二个')
                     $.ajax({
-                        url:'http://192.168.1.106:8086/tubiao/zhucounttwo',
+                        url:baseUrl+'/tubiao/zhucounttwo',
                         async: true,
                         data: {},
                         success:function(result){
