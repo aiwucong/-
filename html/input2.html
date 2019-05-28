@@ -139,7 +139,7 @@
                             </div> -->
                             <div class="layui-form-item">
                                 <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn2" id="healtTable">打印体检表</button>
+                                <button class="layui-btn layui-btn-sm checkboxs_btn2" id="healtTable"><a href="#" data-url="./healthy.html" mytitle="体检表" data-id="listHolder" style="color: #fff;">打印体检表</a></button>
                             </div>
                             <div class="layui-form-item">
                                 <!-- <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"> -->
@@ -211,6 +211,11 @@
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+        $('#healtTable').on('click','a',function(){
+            window.parent.a(this)(); //调用父窗口的方法
+        })
+    </script>
 </body>
 
 </html>
