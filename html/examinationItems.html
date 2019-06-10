@@ -16,12 +16,13 @@
     <title>Document</title>
     <style>
         .homeConter{
-            height: 255px;
+            height: 205px;
             padding: 0;
         }
         .homeInput{
             height: 230px;
             width: 100%;
+            box-shadow: none;
             border-radius: 0;
         }
         .inputTitle{
@@ -39,7 +40,7 @@
             height: auto;
             background: #fff;
             padding: 20px 0;
-            box-shadow: 2px 3px 11px rgb(102, 99, 102);
+            /* box-shadow: 2px 3px 11px rgb(102, 99, 102); */
             margin-bottom: 20px;
         }
 
@@ -176,12 +177,15 @@
             height: 120px;
             width: 80%;
             padding-left: 10px;
-            border: 1px solid #000;
+            border: 1px solid #e6e6e6;
             display: inline-block;
         }
 
-        .cheatDivRight p span:nth-child(1) input {
+        .cheatDivRight p span:nth-child(1) textarea {
             border: none;
+            resize: none;
+            width: 100%;
+            height: 100%;
         }
 
         .cheatDivLeft {
@@ -193,11 +197,17 @@
             height: 120px;
             text-align: center;
             display: inline-block;
-            border: 1px solid #000;
-            line-height: 120px;
+            border: 1px solid #fff;
+            line-height: 50px;
             vertical-align: bottom;
+            background: #009ddd;
         }
-
+        .cheatDivRight p span:nth-child(2) input{
+            border:1px solid #e6e6e6;
+            height: 40px;
+            line-height: 40px;
+            width: 95%;
+        }
         .laboratory {
             width: 100%;
             height: auto;
@@ -290,7 +300,7 @@
        
 
         .signBlocks {
-            width: 67%;
+            width: 65%;
             height: 35px;
             margin-left: 31.5%;
         }
@@ -311,6 +321,57 @@
         .layui-form-checked span, .layui-form-checked:hover span {
             background: #ff9600;
         }
+        .layui-form-checkbox{
+            margin: 0 2%;
+        }
+        .statisticsDiv{
+            height: 160px;
+        }
+        .statisticsDiv .signLines{
+            width: 100%;
+            height: 160px;
+        }
+        .statisLeft{
+            width: 75.5%;
+            float: left;
+            height: 160px;
+            border:1px solid #e6e6e6;
+            padding: 0 10px;
+            position: relative;
+        }
+        .statisLeft textarea{
+            width: 86%;
+            height: 100%;
+            resize: none;
+            position: absolute;
+            top: 0;
+            border:none;
+        }
+        .statisRight{
+            width: 20%;
+            float: right;
+            height: 160px;
+            margin-right: 2%;
+            border:1px solid #e6e6e6;
+            background: #009ddd;
+        }
+        .statisRight span{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            height: 35px;
+            line-height: 35px;
+            /* margin-top: 40px; */
+        }
+        .statisRight span input{
+            border:1px solid #e6e6e6;
+            height: 30px;
+            width: 95%;
+            text-align: center;
+        }
+        /* .layui-form-checkbox span{
+            background-color: #009DDD; 
+        } */
     </style>
 </head>
 
@@ -357,7 +418,7 @@
                                         class="layui-input" id="age">
                                 </div>
                                 <div class="checks1">
-                                        <label class="layui-form-label">性别</label>
+                                        <label class="layui-form-label" style="width: 30%;">性　　别</label>
                                         <div class="layui-input-block">
                                             <input type="radio" id="boy" name="sex" value="1" title="男">
                                             <input type="radio" id="girl" name="sex" value="2" title="女">
@@ -447,10 +508,7 @@
                                     </select>
                                 </div>
                                 <div class="layui-input-block signBlocks">
-                                    <select name="city" lay-verify="required">
-                                        <option value="0">正常</option>
-                                        <option value="1">不正常</option>
-                                    </select>
+                                   <input type="text" style="width:100%;height: 100%;border:none;text-align: center;">
                                 </div>
                             </div>
                         </div>
@@ -505,18 +563,18 @@
                             </div>
                             <div class="layui-form-item" style="margin-bottom:5px;">
                                 <label class="layui-form-label fxTit" style="width:15%">皮肤</label>
-                                <div class="layui-input-block signBlocks" style="border: 1px solid #d9d9d9; width:83%;margin-left: 15.7%;padding-left: 0.5%;">
+                                <div class="layui-input-block signBlocks" style="border: 1px solid #d9d9d9; width:82.5%;margin-left: 15.7%;">
                                     <input type="checkbox" name="like[write]" title="手癣">
-                                    <input type="checkbox" name="like[read]" title="指甲" checked>
+                                    <input type="checkbox" name="like[read]" title="指甲">
                                     <input type="checkbox" name="like[dai]" title="手部湿疹">
-                                    <input type="checkbox" name="like[read]" title="银屑(鱼鳞屑)病" checked>
+                                    <input type="checkbox" name="like[read]" title="银屑(鱼鳞屑)病">
                                     <input type="checkbox" name="like[dai]" title="渗出性皮肤病">
                                     <input type="checkbox" name="like[dai]" title="化脓性皮肤病">
                                 </div>
                             </div>
                             <div class="signLines">
                                 <div class="layui-form-item item_line">
-                                    <label class="layui-form-label signTit">其他</label>
+                                    <label class="layui-form-label signTit">其它</label>
                                     <div class="layui-input-block signBlocks">
                                         <input class="layui-input" type="text"/>
                                     </div>
@@ -533,13 +591,10 @@
                 </div>
                 <div class="chest">
                     <div class="cheatDiv">
-                        <!-- <div class="cheatDivLeft">
-                            <span>X线胸透</span>
-                        </div> -->
                         <div class="cheatDivRight">
                             <p>
-                                <span><input type="text"></span>
-                                <span>医师签名</span>
+                                <span><textarea></textarea></span>
+                                <span>医师签名<input type="text"></span>
                             </p>
                         </div>
                     </div>
@@ -619,15 +674,20 @@
                 <div class="statistics">
                     <div class="statisticsDiv">
                         <div class="signLines">
-                            <div class="layui-form-item item_line">
-                                <label class="layui-form-label signTit">检查结论(体检机构意见)</label>
-                                <div class="layui-input-block signBlocks" style="width:167%;">
-                                    <input class="layui-input" type="text"/>
-                                </div>
-                            </div>
+                           <div class="statisLeft">
+                               <span style="margin-right:20px;">(体检机构意见)</span>
+                               <textarea></textarea>
+                           </div>
+                           <div class="statisRight">
+                               <span>主检医师签名</span>
+                               <span><input type="text"></span>
+                               <span>时间日期</span>
+                               <span><input id="createTime" required lay-verify="required" placeholder="2019-05-17"
+                                autocomplete="off"></span>
+                           </div>
                         </div>
                     </div>
-                    <div class="signLines">
+                    <!-- <div class="signLines">
                         <div class="layui-form-item item_line">
                             <label class="layui-form-label signTit">主治医生签名</label>
                             <div class="layui-input-block signBlocks">
@@ -640,7 +700,7 @@
                                 <input class="layui-input" type="text"/>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
         </div>
             </div>
@@ -685,7 +745,7 @@
     <script type="text/javascript">
         let curType = localStorage.curType
         $('.items ul').on('click','li',function(){
-            debugger
+            // debugger
             $(this).addClass('cur').siblings('li').removeClass('cur')
             if($('.two').hasClass('cur')){
                 $('.pastCase').hide()
@@ -720,26 +780,22 @@
             }
             
         })
-       
-        // if (curType === 'one') { //既往病史
-        //     $('.pastCase').show();
-        //     $('.one').addClass('cur')
-        // } else if (curType === 'two') {
-        //     $('.sign').show()
-        //     $('.two').addClass('cur')
-        // } else if (curType === 'there') {
-        //     $('.chest').show()
-        //     $('.there').addClass('cur')
-        // } else if (curType === 'four') {
-        //     $('.laboratory').show()
-        //     $('.four').addClass('cur')
-        // } else if (curType === "five") {
-        //     $('.statistics').show()
-        //     $('.five').addClass('cur')
-        // } else {
-        //     $('.tjItems').hide()
-        // }
+        layui.use('laydate',function(){
+            var laydate = layui.laydate;
+             // 日期
+            laydate.render({
+                elem: '#createTime', //指定元素
+                done: function (value, date) {
+                    var FullYear = date.year + 1;
+                    var month = date.month;
+                    month = month < 10 ? '0' + month : month;
+                    var day = date.date;
+                    day = day < 10 ? '0' + day : day;
+                }
 
+            });
+        })
+      
         $('#healtTable').on('click', 'a', function () {
             window.parent.a(this)(); //调用父窗口的方法
         })
