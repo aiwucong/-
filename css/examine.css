@@ -142,7 +142,7 @@
 
 .box_main {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     /* border: 1px solid #000; */
 }
 

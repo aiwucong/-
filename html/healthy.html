@@ -5,7 +5,8 @@
 		<meta charset="UTF-8">
 		<title>从业人员健康体检表</title>
 		<script src="../src/layui.js"></script>
-    	<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/public.js"></script>
 		<style>
 			* {
 				margin: 0;
@@ -137,6 +138,7 @@
 	</head>
 
 	<body>
+		<!--stratprint-->
 		<div id="box">
 			<div class="boxBox">
 				<div class="head">
@@ -148,22 +150,22 @@
 					<div class="headBtn">
 						<div class="headBtn-left">
 							<div class="hbl-top">
-								<span>体检日期：<em></em></span>
-								<span>身份证号：<em></em></span>
+								<span>体检日期：<em class="dataTime"></em></span>
+								<span>身份证号：<em id="idcardNum" style="width: 60%;display: inline-block;font-size: 16px;"></em></span>
 							</div>
 							<div class="hbl-con">
-								<span>姓名：<em></em></span>
-								<span>性别：<em></em></span>
-								<span>年龄：<em></em></span>
-								<span>名族：<em></em></span>
+								<span>姓名：<em class="idname"></em></span>
+								<span>性别：<em class="sex"></em></span>
+								<span>年龄：<em class="age"></em></span>
+								<span>名族：<em class="pNation"></em></span>
 							</div>
 							<div class="hbl-btn">
-								<span>工作单位：<em></em></span>
+								<span>工作单位：<em class="company"></em></span>
 								<span>工种：<em></em></span>
 							</div>
 						</div>
 						<div class="headBtn-right">
-							<img>
+							<img src="" alt="" class="idcardimg" style="width: 100%" height="100%";>
 						</div>
 					</div>
 				</div>
@@ -275,6 +277,7 @@
 		<div class="print" id="print">
 				<span>打印</span>
 		</div>
+		<!--endprint-->
 	</body>
 
 </html>
@@ -282,23 +285,28 @@
 <script text="text/javascript">
 	$(function(){ 
 		$.ajax({
-			url:'http://192.168.1.107:8086/tijian/gettjtable',
+			type:"get",
+			url:baseUrl+'/tijian/gettjtable',
 			contentType: "application/json;charset=utf-8",
 			dataType: 'json',
 			success:function(res){
 				console.log(res)
-				$('.company').text(res.data.company);
-				$('.sex').text(res.data.sex);
-				$('.age').text(res.data.age);
+				$('.company').text(res.data.company)
+				$('.sex').text(res.data.sex)
+				$('.age').text(res.data.age)
 				$('.idcardimg').attr('src',res.data.idcardimg)
 				$('.idname').text(res.data.name)
-				$('.telphone').text(res.data.telphone)
-				$('.adress').text(res.data.adress);
-				$('.number').text(res.data.number);
-				$('.dataTime').text(res.data.startdate)
+				//$('#idcardNum').text(res.data.idcardNum)
+				//$('#idcardNum').attr('value',res.data.idcardimg)
+				$("#idcardNum").text(res.data.idcardNum)
+				console.log(res.data.idcardNum)
+				$('.adress').text(res.data.adress)
+				$('.number').text(res.data.number)
+				$('.dataTime').text(res.data.startdate)	
+				$('.pNation').text(res.data.pNation)	
 			}
 		})
-	})
+	});
 
 	function printdiv(printpage){
 　　　　　　var newstr = printpage.innerHTML;
@@ -311,8 +319,9 @@
 　　　　window.onload=function(){
 　　　　　　var print=document.getElementById("print");
 　　　　　　var div_print=document.getElementById("box");
-		   print.onclick=function(){
+		 print.onclick=function(){
 　　　　　　　　printdiv(div_print);
 　　　　　　}
 　　　　}
+
 </script>

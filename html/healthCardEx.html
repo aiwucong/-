@@ -8,10 +8,9 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <title>健康证</title>
     <link rel="stylesheet" href="../src/css/layui.css">
-    <!-- <link rel="stylesheet" href="../main.css"> -->
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/healthCardEx.css">
-    <!-- <link rel="stylesheet" href="../css/healthCard.css" /> -->
+	<link rel="stylesheet" href="../css/healthCard2.css" />
     <script src="../src/layui.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/healthCardEx.js"></script>
@@ -43,14 +42,14 @@
 
                             </div>
                             <div class="layui-form-item main_items">
-                                <label class="layui-form-label main_name">体检日期</label>
+                                <label class="layui-form-label main_name">身份证号</label>
                                 <div class="layui-input-block main_input_block main_input">
-                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入体检日期"
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入身份证号"
                                         autocomplete="off" class="layui-input main_input">
                                 </div>
                             </div>
                             <div class="layui-form-item main_items">
-                                <label class="layui-form-label main_name">发证日期</label>
+                                <label class="layui-form-label main_name">审核日期</label>
                                 <div class="layui-input-block main_input_block main_input">
                                     <input type="text" name="title" required lay-verify="required" placeholder="请输入发证日期"
                                         autocomplete="off" class="layui-input main_input">
@@ -64,18 +63,6 @@
                     </div>
                 </ul>
                 <ul class="queryAll_list">
-                    <!-- <li>
-                        <span class="queryAll_name">体检待审核总数</span>
-                        <p class="queryAll_nember" id="unaudited-audited">245</p>
-                    </li>
-                    <li>
-                        <span class="queryAll_name">体检合格总数</span>
-                        <p class="queryAll_nember" id="already-audited">245</p>
-                    </li>
-                    <li>
-                        <span class="queryAll_name">体检不合格总数</span>
-                        <p class="queryAll_nember" id="already-audited">245</p>
-                    </li> -->
                     <div class="lef">
                         <div class="head">健康证明</div>
                         <div class="cont">
@@ -119,9 +106,6 @@
                             武汉玛迪卡智能科技有限公司制发
                         </div>
                     </div>
-                    <!-- <div class="rig">
-                        <img src="../images/healthCardBei.jpg" class="rie"/>
-                    </div> -->
                 </ul>
 
             </div>
@@ -130,7 +114,6 @@
                     <ul class="layui-tab-title">
                         <li class="layui-this">待打印</li>
                         <li class="audited">已打印</li>
-                        <!-- <li class="audited"></li> -->
                     </ul>
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show">
@@ -144,117 +127,7 @@
             </div>
         </div>
     </div>
-    <!-- 审核通过弹框 -->
-    <div id="box">
-        <div class="box_main">
-            <span class="yytimeText">预约时间:</span>
-            <input type="text" class="layui-input" id="aa" placeholder="2019年05月10日">
-            <div class="layui-form yytime">
-                <select name="city" lay-verify="">
-                    <option value="">请选择一个时间段</option>
-                    <option value="010">9:00-11:00</option>
-                    <option value="021">14:00-16:00</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div id="box1">
-        <div class="layui-form">
-            <!-- <div class="layui-form-item">
-                <label class="layui-form-label rensonText">不通过原因:</label>
-                <div class="layui-input-block renson">
-                    <select name="city" lay-verify="required">
-                        <option value=""></option>
-                        <option value="0">审核不通过，请重新上传营业执照</option>
-                        <option value="1">审核不通过，请重新上传餐饮许可证</option>
-                        <option value="2">审核不通过，请重新上传其他许可证</option>                        
-                        <option value="3">其他原因</option>
-                      </select>
-                </div>
-            </div> -->
-            <div class="layui-form-item layui-form-text">
-                <!-- <label class="layui-form-label rensonText">不合格原因:</label> -->
-                <div class="layui-input-block renson">
-                    <textarea name="desc" placeholder="请输入不合格原因" class="layui-textarea"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="box2">
-        <div class="layui-form">
-            <div class="layui-form-item">
-                <!-- <label class="layui-form-label rensonText">修改结果:</label> -->
-                <div class="layui-input-block renson">
-                    <select name="city" lay-verify="required">
-                        <option value=""></option>
-                        <option value="0">合格</option>
-                        <option value="1">不合格</option>
 
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 健康证 -->
-    <!--stratprint-->
-    <div class="box3">
-			<div class="content">
-				<div class="lef">
-					<div class="head">健康证明</div>
-					<div class="cont">
-						<div class="left">
-							<img src="../images/person.jpg">
-						</div>
-						<div class="right">
-							<div class="con">
-								<div style="height: 100%;">
-									<div class="head1">
-										<span>姓名:</span>
-										<input type="text" />
-										<span>年龄:</span>
-										<input type="text" />
-									</div>
-									<div class="head2">
-										<span>性别:</span>
-										<input type="text" />
-										<span>体检:</span>
-										<input type="text" />
-									</div>
-								</div>
-							</div>
-							<div class="lefe">
-								<div class="le1" style="width: 60%;height: 100%;float: left;">
-									<div class="lea">
-										<span>有效期至:</span>
-										<input type="text" style="width: 50%;" />
-									</div>
-									<div class="leb">
-										<span>证号:</span>
-										<input type="text" />
-									</div>
-								</div>
-								<img src="../images/code.jpg" style="width: 15mm;height: 15mm;margin-right: 3mm;" />
-							</div>
-							<div class="cachet">
-								<img src="../images/zhang.png" alt="" class="cachet_img">
-							</div>
-						</div>
-
-					</div>
-					<div class="bott">
-						武汉玛迪卡智能科技有限公司制发
-					</div>
-				</div>
-				<!-- <div class="rig">
-					<img src="images/healthCardBei.jpg" class="rie"/>
-				</div> -->
-			</div>
-    </div>
-    <!--endprint-->
-
-    <script>
-    </script>
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_pass">打印</a>
     </script>
@@ -270,6 +143,52 @@
         </a>
     </script>
 
+
+    <!--stratprint-->
+	<div class="box">
+            <div class="box_center">
+                <h2 class="box_tit">健康证明</h2>
+                <div class="boxHome">
+                    <div class="boxImg">
+                        <img src="../images/person.jpg" alt="" class="personImg">
+                    </div>
+                    <div class="boxInputs">
+                        <div class="lines">
+                            <div class="lines_item1">
+                                <span class="lines_tit">姓名:</span>
+                                <span class="lines_input name"></span>
+                            </div>
+                            <div class="lines_item2">
+                                <span class="lines_tit">年龄:</span>
+                                <span class="lines_input old"></span>
+                            </div>
+                        </div>
+                        <div class="lines">
+                            <div class="lines_item1">
+                                <span class="lines_tit">性别:</span>
+                                <span class="lines_input sex"></span>
+                            </div>
+                            <div class="lines_item2">
+                                <span class="lines_tit">体检:</span>
+                                <span class="lines_input tj"></span>
+                            </div>
+                        </div>
+                        <div class="Ylines">
+                            <span class="lines_tit">有效期至:</span>
+                            <span class="lines_input dataTime"></span>
+                        </div>
+                        <div class="Ylines">
+                            <span class="lines_tit">证号:</span>
+                            <span class="lines_input card"></span>
+                        </div>
+                        <img src="../images/code.jpg" alt="" class="erweima">
+                    </div>
+                </div>
+                <h4 class="companyTitle">武汉玛迪卡智能科技有限公司制发</h4>
+                <img src="../images/zhang.png" alt="" class="zhang">
+            </div>
+        </div>
+        <!--endprint-->
 </body>
 
 </html>

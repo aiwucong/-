@@ -80,24 +80,17 @@ layui.use('table', function() {
         url: '../json/table/demo2.json',
         even: true,
         autoSort: false,
-        // loading: false,
-        // totalRow: true,
-        // limit: 30,
         toolbar: '#toolbarDemo',
-        // defaultToolbar: ['filter'],
 
         cols: [[ //表头
                 {
                     width: 60,
                     type: "checkbox",
-                    // fixed: 'left'
                 },
                 {
                     field: 'id',
                     title: 'ID',
                     width: 100,
-                    // sort: true,
-                    // fixed: 'left'
                 },
                 {
                     field: 'username',
@@ -113,13 +106,19 @@ layui.use('table', function() {
                     title: '健康证编号',
                     width: 150
                 }, {
+                    field: 'number',
+                    title: '身份证号',
+                    width: 150
+                },
+                
+                {
                     field: 'phonenumber',
                     title: '手机号码',
                     width: 100
                 },
                 {
                     field: 'date',
-                    title: '发证日期',
+                    title: '审核日期',
                     width: 177
                 },
                 {
@@ -137,113 +136,13 @@ layui.use('table', function() {
         ],
         page: true
     });
-
-    //工具栏事件
-    // table.on('toolbar(test)', function(obj) {
-    //     var checkStatus = table.checkStatus(obj.config.id);
-    //     switch (obj.event) {
-    //         case 'add':
-    //             layer.msg('添加');
-    //             break;
-    //         case 'update':
-    //             layer.msg('编辑');
-    //             break;
-    //         case 'delete':
-    //             layer.msg('删除');
-    //             break;
-    //         case 'getCheckData':
-    //             var data = checkStatus.data;
-    //             layer.alert(JSON.stringify(data));
-    //             break;
-    //         case 'getCheckLength':
-    //             var data = checkStatus.data;
-    //             layer.msg('选中了：' + data.length + ' 个');
-    //             break;
-    //         case 'isAll':
-    //             layer.msg(checkStatus.isAll ? '全选' : '未全选')
-    //             break;
-    //     };
-    // });
-
-    // table.on('row(test)', function(obj) {
-    //     console.log(obj);
-    //     //layer.closeAll('tips');
-    // });
-
-
-
-    // table.render({
-    //     elem: '#test2',
-    //     url: 'json/table/demo1.json',
-    //     contentType: 'application/json',
-    //     page: { //详细参数可参考 laypage 组件文档
-    //         curr: 5,
-    //         groups: 1,
-    //         first: false,
-    //         last: false,
-    //         layout: ['limit', 'prev', 'page', 'next', 'count'] //自定义分页布局
-    //     }
-    //     //,height: 300
-    //     ,
-    //     cellMinWidth: 80
-    //         //,skin: 'line'
-    //         ,
-    //     toolbar: true,
-    //     cols: [
-    //         [{
-    //             field: 'id',
-    //             hide: true
-    //         }, {
-    //             field: 'username',
-    //             title: '用户名'
-    //         }, {
-    //             field: 'email',
-    //             title: '邮箱'
-    //         }, {
-    //             title: '操作',
-    //             align: 'center',
-    //             toolbar: '#barDemo'
-    //         }]
-    //     ]
-    // });
-
-    //监听表格行点击
-    // table.on('tr', function(obj) {
-    //     console.log(obj)
-    // });
-
-    // //监听表格复选框选择
-    // table.on('checkbox(test)', function(obj) {
-    //     console.log(obj)
-    // });
-
-    // //监听表格单选框选择
-    // table.on('radio(test)', function(obj) {
-    //     console.log(obj)
-    // });
-
-    // //监听表格单选框选择
-    // table.on('rowDouble(test)', function(obj) {
-    //     console.log(obj);
-    // });
-
-    // //监听单元格编辑
-    // table.on('edit(test)', function(obj) {
-    //     var value = obj.value //得到修改后的值
-    //         ,
-    //         data = obj.data //得到所在行所有键值
-    //         ,
-    //         field = obj.field; //得到字段
-
-    //     console.log(obj)
-    // });
-
     //监听行工具事件
     table.on('tool(table1)', function(obj) {
         var data = obj.data;
         //console.log(obj)
         if (obj.event === 'audit_pass') {
             console.log(111)
+            $('.box').css('display','block');
 				bdhtml = window.document.body.innerHTML; //获取当前页的html代码
 				sprnstr = "<!--stratprint-->"; //设置打印开始区域 
 				eprnstr = "<!--endprint-->"; //设置打印结束区域 
@@ -252,12 +151,13 @@ layui.use('table', function() {
 				window.document.body.innerHTML = prnhtml;
 				window.print();
                 window.document.body.innerHTML = bdhtml;
+                $('.box').css('display','none');
              } else if (obj.event === 'audit_failed') {
             var index = layer.open({
                 title: ['不合格原因', 'font-size:18px; text-align: center;'],
                 area: ['450px', '240px'],
                 type: 1,
-                content: $('#box1'), //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                content: $('#box1'),
                 btn: ['确认', '取消'],
                 btn1() {
                     // 确定按钮的回调 写业务代码
@@ -299,29 +199,21 @@ layui.use('table', function() {
         height: 500,
         title: '用户数据表',
         url: '../json/table/demo2.json'
-            //,size: 'lg'
             ,
         even: true,
         autoSort: false
-            //,loading: false
             ,
         totalRow: true,
         limit: 30,
-        // toolbar: '#toolbarDemo'
-        //     //,defaultToolbar: ['filter']
-        //     ,
         cols: [[
             {
                 width: 60,
                 type: "checkbox",
-                // fixed: 'left'
             },
             {
                 field: 'id',
                 title: 'ID',
                 width: 100,
-                // sort: true,
-                // fixed: 'left'
             },
             {
                 field: 'username',
@@ -359,70 +251,6 @@ layui.use('table', function() {
         ]
         ]
     });
-
-    //工具栏事件
-    // table.on('toolbar(test)', function(obj) {
-    //     var checkStatus = table.checkStatus(obj.config.id);
-    //     switch (obj.event) {
-    //         case 'add':
-    //             layer.msg('添加');
-    //             break;
-    //         case 'update':
-    //             layer.msg('编辑');
-    //             break;
-    //         case 'delete':
-    //             layer.msg('删除');
-    //             break;
-    //         case 'getCheckData':
-    //             var data = checkStatus.data;
-    //             layer.alert(JSON.stringify(data));
-    //             break;
-    //         case 'getCheckLength':
-    //             var data = checkStatus.data;
-    //             layer.msg('选中了：' + data.length + ' 个');
-    //             break;
-    //         case 'isAll':
-    //             layer.msg(checkStatus.isAll ? '全选' : '未全选')
-    //             break;
-    //     };
-    // });
-
-    // table.on('row(test)', function(obj) {
-    //     console.log(obj);
-    //     //layer.closeAll('tips');
-    // });
-
-
-    //监听表格行点击
-    // table.on('tr', function(obj) {
-    //     console.log(obj)
-    // });
-
-    // //监听表格复选框选择
-    // table.on('checkbox(test)', function(obj) {
-    //     console.log(obj)
-    // });
-
-    // //监听表格单选框选择
-    // table.on('radio(test)', function(obj) {
-    //     console.log(obj)
-    // });
-
-    // //监听表格单选框选择
-    // table.on('rowDouble(test)', function(obj) {
-    //     console.log(obj);
-    // });
-
-    // //监听单元格编辑
-    // table.on('edit(test)', function(obj) {
-    //     var value = obj.value //得到修改后的值
-    //         ,
-    //         data = obj.data //得到所在行所有键值
-    //         ,
-    //         field = obj.field; //得到字段
-
-    //     console.log(obj)
-    // });
 
     //监听行工具事件
     table.on('tool(table2)', function(obj) {

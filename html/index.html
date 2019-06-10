@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/public.js"></script>
     <style>
         #contente {
             width: 100%;
@@ -32,7 +34,9 @@
 <body>
     <div class="layui-layout layui-layout-admin">
         <ul class="menu_l">
-            <div class="logo"></div>
+            <a href="../index.html">
+                <div class="logo"></div>
+            </a>
             <div class="menu_cen">
                 <ul>
                     <li>
@@ -57,11 +61,7 @@
                                 data-id="listHolder">
                                 <a>快速录入</a>
                             </li>
-<<<<<<< HEAD
                             <li class="layui-nav-item leftdaohang" data-url="baseInput.html" mytitle="基础录入"
-=======
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=one" mytitle="基础录入"
->>>>>>> refs/remotes/origin/master
                                 data-id="listHolder">
                                 <a>基础录入</a>
                             </li>
@@ -72,26 +72,19 @@
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu" lay-filter="test">
-<<<<<<< HEAD
-                            <li class="layui-nav-item leftdaohang" data-url="" mytitle="既往病史">
+                            <li class="layui-nav-item leftdaohang" data-url="baseInput.html?type=one" mytitle="既往病史">
                                 <a>既往病史</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="" mytitle="体征">
-=======
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=one" mytitle="既往病史">
-                                <a>既往病史</a>
-                            </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=two" mytitle="体征">
->>>>>>> refs/remotes/origin/master
+                            <li class="layui-nav-item leftdaohang" data-url="baseInput.html?type=two" mytitle="体征">
                                 <a>体征</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=there" mytitle="X线胸透">
+                            <li class="layui-nav-item leftdaohang" data-url="baseInput.html?type=there" mytitle="X线胸透">
                                 <a>X线胸透</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=four" mytitle="实验室检验">
+                            <li class="layui-nav-item leftdaohang" data-url="baseInput.html?type=four" mytitle="实验室检验">
                                 <a>实验室检验</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="input2.html?type=five" mytitle="检查结论">
+                            <li class="layui-nav-item leftdaohang" data-url="baseInput.html?type=five" mytitle="检查结论">
                                 <a>检查结论</a>
                             </li>
                         </ul>
@@ -104,11 +97,11 @@
                             <li class="layui-nav-item leftdaohang" data-url="healthy.html" mytitle="体检表">
                                 <a>体检表</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="healthtable.html" mytitle="签领表">
-                                <a>签领表</a>
+                            <li class="layui-nav-item leftdaohang" data-url="healthtable.html" mytitle="结果统计表">
+                                <a>结果统计表</a>
                             </li>
                             <li>
-                                <a>结果统计</a>
+                                <a>查询统计表</a>
                             </li>
                         </ul>
                     </li>
@@ -118,13 +111,13 @@
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu">
-                            <li class="layui-nav-item leftdaohang" data-url="./physical.html" mytitle="体检审核">
+                            <li class="layui-nav-item leftdaohang" data-url="./tjUnreviewed.html" mytitle="体检未审核">
                                 <a>未审核</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="./physical.html" mytitle="体检审核">
+                            <li class="layui-nav-item leftdaohang" data-url="./tjFail.html" mytitle="体检不合格">
                                 <a>不合格</a>
                             </li>
-                            <li class="layui-nav-item leftdaohang" data-url="./physical.html" mytitle="体检审核">
+                            <li class="layui-nav-item leftdaohang" data-url="./tjPass.html" mytitle="体检合格">
                                 <a>合格</a>
                             </li>
                         </ul>
@@ -198,12 +191,15 @@
                 <div id="contente" class="layui-tab layui-tab-card" lay-filter="demo" lay-allowclose="true">
                     <ul class="layui-tab-title top_tab"
                         style="background-color: #022387;height: 30px;color: white;margin-top:0%;width: calc(100% - 200px);left: 200px;position: fixed;top:50px;">
-                        <li class="layui-this layui-first" data-url="admin.html">首页</li>
+                        <li class="layui-this layui-first" data-url="admin.html">首页<em id="closeTap"
+                                style="color:#000;float: right;font-style: normal;margin-right: -15px;width: 30px;">x</em>
+                        </li>
                     </ul>
                     <div class="layui-tab-content">
 
-                        <iframe id="iframe" src="admin.html" width="100%" frameborder="no" border="0"
-                            marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" style="padding-top: 31px; min-height: 1200px;"></iframe>
+                        <iframe id="iframe" src="admin.html" width="100%" frameborder="no" border="0" marginwidth="0"
+                            marginheight="0" scrolling="no" allowtransparency="yes"
+                            style="padding-top: 31px; min-height: 1200px;"></iframe>
                     </div>
 
                 </div>
@@ -211,8 +207,17 @@
         </div>
     </div>
     <script src="../src/layui.js"></script>
+
     <script>
         const iframe = document.querySelector('#iframe')
+        try {
+            var iframeList = localStorage.iframeList;
+        } catch (e) {
+
+        }
+        var iframeIndex = document.getElementById('iframe')
+        $('.top_tab').html(iframeList)
+
 
         // >>>闭包 封装成方法让子窗口访问
         let tableChange
@@ -220,7 +225,7 @@
         function a(dom) {
             return tableChange.bind(dom)
         }
-        
+
         function queryParams(params, url) {
             if (!params) return;
             var paraString = url.substring(url.indexOf('?') + 1, url.length).split('&'),
@@ -247,30 +252,34 @@
             var $ = layui.jquery,
                 element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
             element.on('tab(demo)', function (data) {
-                console.dir(this); //当前Tab标题所在的原始DOM元素
-                console.log(this.dataset.url);
-                iframe.src = this.dataset.url
+                iframe.src = this.dataset.url;
+
+                localStorage.iframeList = $('.top_tab').html().replace(/<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
+            });
+            element.render()
+            element.on('tabDelete(demo)', function (data) {
+                localStorage.iframeList = $('.top_tab').html().replace(/<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
             });
             var active = {
                 tabAdd: function (url, id, name) {
                     //新增一个Tab项 传入三个参数，分别对应其标题，tab页面的地址，还有一个规定的id，是标签中data-id的属性值
-                    //关于tabAdd的方法所传入的参数可看layui的开发文档中基础方法部分
                     iframe.src = url
                     $('.top_tab').children().removeClass('layui-this').end().append(
                         `<li class='layui-this' data-url=${url}>${name}</li>`);
                     element.render('tab');
-                    console.log(url)
+
                     curType = queryParams('type', url)
                     localStorage.curType = curType
+                    localStorage.iframeList = $('.top_tab').html().replace(/<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
                 },
             };
 
-             // >>>  把处理函数提取出来
+            // >>>  把处理函数提取出来
 
-             tableChange = function() {
+            tableChange = function () {
                 var dataid = $(this);
                 //这时会判断右侧.layui-tab-title属性下的有lay-id属性的li的数目，即已经打开的tab项数目
-                debugger
+                // debugger
                 if ($(".layui-tab-title li").length <= 1) {
                     //如果比零小，则直接打开新的tab项
                     active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr(
@@ -278,7 +287,7 @@
                 } else {
                     //否则判断该tab项是否以及存在
                     var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
-                    $.each($(".layui-tab-title li"), function() {
+                    $.each($(".layui-tab-title li"), function () {
                         //如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开
                         if ($(this).attr("data-url") == dataid.attr("data-url")) {
                             isData = true;
@@ -289,9 +298,8 @@
                         active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr(
                             "mytitle"));
                     }
-                    [...document.querySelector('.top_tab').children].some(function(e) {
+                    [...document.querySelector('.top_tab').children].some(function (e) {
                         if (e.dataset.url == dataid.attr("data-url")) {
-                            debugger
                             e.click()
                             return true
                         }
@@ -299,10 +307,14 @@
                 }
 
             }
-
+            tabDeleteAll = function (id) {
+                var tapList = $(this).parent('.layui-first');
+                tapList.nextAll('li').remove()
+            }
             //当点击有site-demo-active属性的标签时，即左侧菜单栏中内容 ，触发点击事件
             $('.leftdaohang').on('click', tableChange);
-
+            $('#closeTap').on('click', tabDeleteAll);
+            $('.layui-this').click()
             // 结束
             return
         });

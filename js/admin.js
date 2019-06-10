@@ -1,6 +1,4 @@
 window.onload = function() {
-    // var baseUrl="http://39.98.227.70:8082/mdk2019"
-    // console.log("werwf")
     $.ajax({
         url: baseUrl+'/tubiao/indexcount',
         type: "get",

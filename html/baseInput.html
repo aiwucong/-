@@ -15,142 +15,184 @@
     <script src="../js/public.js"></script>
     <title>Document</title>
     <style>
-        .tjItems{
+        .tjItems {
             width: 100%;
             height: auto;
         }
-        .items{
+
+        .items {
             height: 35px;
             width: 100%;
             position: relative;
             background: #022387;
         }
-        .items li{
+
+        .items li {
             float: left;
             height: 35px;
             padding: 0 20px;
             line-height: 35px;
         }
-        .items li.cur{
+
+        .items li.cur {
             background: #ff9600;
         }
-        .items li.cur a{
+
+        .items li.cur a {
             color: #000;
         }
-        .items li a{
+
+        .items li a {
             color: #fff;
             cursor: pointer;
             display: block;
             width: 100%;
             height: 100%;
         }
-        .pastCase,.sign,.chest{
+
+        .pastCase,
+        .sign,
+        .chest {
             width: 100%;
             height: 80px;
             margin-top: 15px;
             display: none;
         }
-        .pcList,.signDiv,.chestDiv{
+
+        .pcList,
+        .signDiv,
+        .chestDiv {
             position: relative;
             width: 100%;
             height: 80px;
         }
-        .pcListLeft,.signDivLeft,.cheatDivLeft,.laboratoryDivLeft{
+
+        .pcListLeft,
+        .signDivLeft,
+        .cheatDivLeft,
+        .laboratoryDivLeft {
             width: 50px;
             height: 80px;
             padding: 0 20px;
-            border:1px solid #000;
+            border: 1px solid #d9d9d9;
             float: left;
             text-align: center;
         }
-        .pcListLeft span,.signDivLeft span,.cheatDivLeft span,.laboratoryDivLeft span{
+
+        .pcListLeft span,
+        .signDivLeft span,
+        .cheatDivLeft span,
+        .laboratoryDivLeft span {
             display: inline-block;
             width: 50%;
         }
-        .pcListRight,.signDivRight,.cheatDivRight,.laboratoryDivRight{
+
+        .pcListRight,
+        .signDivRight,
+        .cheatDivRight,
+        .laboratoryDivRight {
             width: calc(100% - 100px);
             height: 80px;
             float: left;
             margin-left: 5px;
         }
-        .plrTop{
+
+        .plrTop {
             height: 40px;
             margin-bottom: 5px;
         }
-        .plrTop span{
+
+        .plrTop span {
             width: 16%;
             display: inline-block;
             height: 35px;
             line-height: 35px;
             text-align: center;
-            border:1px solid #000;
+            border: 1px solid #000;
         }
-        .plrTop span input{
+
+        .plrTop span input {
             width: 100%;
             height: 100%;
             border: none;
             text-align: center;
         }
-        .signDivLeft{
+
+        .signDivLeft {
             height: 160px;
             line-height: 190px;
         }
-        .signDivLeft span{
+
+        .signDivLeft span {
             line-height: 40px;
         }
-        .signDivRight p span:nth-child(1),.signDivRight p span:nth-child(3){
+
+        .signDivRight p span:nth-child(1),
+        .signDivRight p span:nth-child(3) {
             display: inline-block;
-            width: 16%;
+            width: 240px;
             height: 35px;
             line-height: 35px;
             text-align: center;
             margin-bottom: 5px;
-            border:1px solid #000;
+            border: 1px solid #d9d9d9;
         }
-        .signDivRight p span:nth-child(2),.signDivRight p span:nth-child(4){
+
+        .signDivRight p span:nth-child(2),
+        .signDivRight p span:nth-child(4) {
             display: inline-block;
             width: 32.5%;
             height: 35px;
             line-height: 35px;
             text-align: center;
             margin-bottom: 5px;
-            border:1px solid #000;
+            border: 1px solid #d9d9d9;
         }
-        .signDivRight p span:nth-child(2) input,.signDivRight p span:nth-child(4) input{
-            border:none;
+
+        .signDivRight p span:nth-child(2) input,
+        .signDivRight p span:nth-child(4) input {
+            border: none;
         }
-        .signDivRight p span.pf{
+
+        .signDivRight p span.pf {
             width: 82%;
             vertical-align: top;
             text-align: left;
         }
-        .sign{
+
+        .sign {
             height: 160px;
         }
-        .signDivRight p span.pf em{
+
+        .signDivRight p span.pf em {
             display: inline-block;
             width: 16%;
             font-style: normal;
             text-indent: 15px;
         }
-        .cheatDivLeft span{
+
+        .cheatDivLeft span {
             width: 40%;
             line-height: 30px;
         }
-        .cheatDivRight p span:nth-child(1){
+
+        .cheatDivRight p span:nth-child(1) {
             height: 120px;
             width: 80%;
             padding-left: 10px;
             border: 1px solid #000;
             display: inline-block;
         }
-        .cheatDivRight p span:nth-child(1) input{
-            border:none;
+
+        .cheatDivRight p span:nth-child(1) input {
+            border: none;
         }
-        .cheatDivLeft{
+
+        .cheatDivLeft {
             height: 120px;
         }
-        .cheatDivRight p span:nth-child(2){
+
+        .cheatDivRight p span:nth-child(2) {
             width: 17.3%;
             height: 120px;
             text-align: center;
@@ -159,69 +201,117 @@
             line-height: 120px;
             vertical-align: bottom;
         }
+
         .laboratory {
             width: 100%;
             height: auto;
             margin-top: 15px;
             display: none;
         }
-        .laboratoryDivRight p span{
+
+        .laboratoryDivRight p span {
             line-height: 35px;
             height: 35px;
             margin-bottom: 5px;
             display: inline-block;
-            border:1px solid #000;
+            border: 1px solid #000;
         }
-        .laboratoryDivRight p span:nth-child(1){
+
+        .laboratoryDivRight p span:nth-child(1) {
             width: 16%;
             text-align: center;
         }
-        .laboratoryDivRight p span:nth-child(2){
+
+        .laboratoryDivRight p span:nth-child(2) {
             width: 65%;
             margin: 0 5px;
         }
-        .laboratoryDivRight p span:nth-child(2) input{
+
+        .laboratoryDivRight p span:nth-child(2) input {
             width: 100%;
             height: 100%;
-            border:none;
+            border: none;
         }
-        .laboratoryDivRight p span:nth-child(3){
+
+        .laboratoryDivRight p span:nth-child(3) {
             width: 16%;
             text-align: center;
         }
-        .laboratoryDiv{
+
+        .laboratoryDiv {
             overflow: hidden;
         }
-        .laTest p span{
+
+        .laTest p span {
             height: 35px;
             margin-bottom: 5px;
             line-height: 35px;
             display: inline-block;
             text-align: center;
-            border:1px solid #000;
+            border: 1px solid #000;
         }
-        .laTest p span:nth-child(1){
+
+        .laTest p span:nth-child(1) {
             width: 16%;
         }
-        .laTest p span:nth-child(2){
+
+        .laTest p span:nth-child(2) {
             width: 71.3%;
             vertical-align: bottom;
-        } 
-        .laTest{
+        }
+
+        .laTest {
             margin-top: 5px;
         }
-        .laTest p span:nth-child(2) em{
+
+        .laTest p span:nth-child(2) em {
             display: inline-block;
             width: 49%;
             font-style: normal;
             cursor: pointer;
         }
-        .laTest p span:nth-child(3){
+
+        .laTest p span:nth-child(3) {
             width: 10%;
         }
-        /* .sign,.pastCase,.chest,.laboratory,.statistics{
-            display: none;
-        } */
+
+        .signTit,
+        .fxTit{
+            width: 240px;
+           
+        }
+        .signTit,
+        .fxTit {
+            padding: 0;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border: 1px solid #d9d9d9;
+        }
+       
+
+        .signBlocks {
+            width: 66.5%;
+            height: 35px;
+            margin-left: 245px;
+        }
+
+        .signLines {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .item_line {
+            width: 50%;
+            /* border: 1px solid #000; */
+            margin-bottom: 5px;
+        }
+        .layui-form-checked i, .layui-form-checked:hover i {
+            color: #ff9600;
+        }
+        .layui-form-checked span, .layui-form-checked:hover span {
+            background: #ff9600;
+        }
     </style>
 </head>
 
@@ -233,13 +323,13 @@
                 <!-- 表单 -->
                 <div class="homeInput">
                     <h2 class="inputTitle">从业人员基本信息</h2>
-                    <form class="layui-form input_main" action="">
+                    <form class="layui-form input_main" lay-filter="fromtest" action="">
                         <div class="allbtn">
                             <a href="#" class="layui-btn">仅保存</a>
                             <!-- <a href="#" class="layui-btn"><input type="reset" value="重填" /></a> -->
                             <button type="reset" class="layui-btn layui-btn-primary"
                                 style="border: 0;color:#fff;">重置</button>
-                            <button class="layui-btn" lay-submit lay-filter="formDemo" id="save">新增并保存</button>
+                            <button class="layui-btn" lay-submit lay-filter="formDemo" id="save">新增并保存且打印</button>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
@@ -249,19 +339,19 @@
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">手机号码</label>
-                                <input type="text" name="phonenumber" required lay-verify="required|phone"
+                                <input type="text" name="telphone" required lay-verify="required|phone"
                                     placeholder="请输入手机号码" autocomplete="off" class="layui-input phonenumber">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">姓　　名</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入姓名"
+                                <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名"
                                     autocomplete="off" class="layui-input IDname">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">身份证号</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入身份证号"
+                                <input type="text" name="idcardNum" required lay-verify="required" placeholder="请输入身份证号"
                                     autocomplete="off" class="layui-input" id="IDcard">
                             </div>
                         </div>
@@ -269,56 +359,57 @@
                             <div class="lines nameChecks">
                                 <div class="checks2">
                                     <label class="layui-form-label">年　　龄</label>
-                                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                                    <input type="text" name="age" required lay-verify="required" autocomplete="off"
                                         class="layui-input" id="age">
                                 </div>
                                 <div class="checks1">
-                                    <label class="layui-form-label">性别</label>
-                                    <div class="layui-input-block">
-                                        <input type="radio" id="boy" name="sex" value="1" title="男">
-                                        <input type="radio" id="girl" name="sex" value="2" title="女">
-                                    </div>
+                                        <label class="layui-form-label">性别</label>
+                                        <div class="layui-input-block">
+                                            <input type="radio" id="boy" name="sex" value="1" title="男">
+                                            <input type="radio" id="girl" name="sex" value="2" title="女">
+                                        </div>
                                 </div>
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">健康证号</label>
-                                <input type="text" name="healthnumber" required lay-verify="required" readonly="readonly"
-                                    placeholder="请输入健康证号" autocomplete="off" class="layui-input healthnumber">
+                                <input type="text" name="hearthcardNum" required lay-verify="required"
+                                    readonly="readonly" placeholder="请输入健康证号" autocomplete="off"
+                                    class="layui-input healthnumber">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">工作单位</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输入单位"
+                                <input type="text" name="company" required lay-verify="required" placeholder="请输入单位"
                                     autocomplete="off" class="layui-input" id="company">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">通信地址</label>
-                                <input type="text" name="address" required lay-verify="required" placeholder="请输入通信地址"
+                                <input type="text" name="adress" required lay-verify="required" placeholder="请输入通信地址"
                                     autocomplete="off" class="layui-input address">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">办证日期</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="2019-05-17"
+                                <input type="text" name="createTime" required lay-verify="required" placeholder="2019-05-17"
                                     autocomplete="off" class="layui-input" id="startdate">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">有效期至</label>
-                                <input type="text" name="title" required lay-verify="required" placeholder="2020-05-17"
+                                <input type="text" name="enddate" required lay-verify="required" placeholder="2020-05-17"
                                     autocomplete="off" class="layui-input" id="enddate">
                             </div>
                         </div>
-                        <div class="layui-form-item">
+                        <div class="layui-form-item" style="margin-bottom: 0">
                             <div class="lines">
                                 <label class="layui-form-label">办证人员</label>
-                                <input type="text" name="bzpeople" required lay-verify="required" placeholder="请输入办证人员"
+                                <input type="text" name="person" required lay-verify="required" placeholder="请输入办证人员"
                                     autocomplete="off" class="layui-input bzpeople">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">办证单位</label>
-                                <input type="text" name="units" required lay-verify="required" placeholder="请输入办证单位"
+                                <input type="text" name="deptNum" required lay-verify="required" placeholder="请输入办证单位"
                                     autocomplete="off" class="layui-input units">
                             </div>
                         </div>
@@ -328,30 +419,19 @@
                     <div class="checkboxs">
                         <form class="layui-form" action="">
                             <div class="layui-form-item">
-                                <!-- <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"> -->
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1">最近登记日期</button>
                             </div>
                             <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"
-                                    id="readcardInput" value="1">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn2 readcard"
+                                <button class="layui-btn layui-btn-sm checkboxs_btn1 readcard"
                                     type="button">读身份证</button>
                             </div>
-
-                            <!-- <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn2">体检合格</button>
-                            </div> -->
-                            <!-- <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn">打印体检表</button>
-                            </div> -->
                             <div class="layui-form-item">
-                                <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn2" id="healtTable"><a href="#" data-url="./healthy.html" mytitle="体检表" data-id="listHolder" style="color: #fff;">打印体检表</a></button>
+                                <button class="layui-btn layui-btn-sm checkboxs_btn1" id="healtTable">
+                                    <a href="javascript:viod()" data-url="./healthy.html" mytitle="体检表" data-id="listHolder"
+                                        style="color: #fff;">打印体检表</a>
+                                    </button>
                             </div>
                             <div class="layui-form-item">
-                                <!-- <input type="checkbox" name="" title="" lay-skin="primary" class="checkboxs_input"> -->
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1 custom"
                                     type="button">自定义编号</button>
                             </div>
@@ -373,7 +453,6 @@
                         </div>
                     </div>
                     <button class="layui-btn layui-btn-normal btn1">拍摄照片</button>
-                        <!-- <input type="file"> -->
                     <button type="button" class="layui-btn btn2" id="test1">
                         <i class="layui-icon">&#xe67c;</i>导入图片
                     </button>
@@ -384,7 +463,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="homeTable">
             <div class="tableQuery">
 
@@ -392,151 +471,185 @@
             <table id="demo" lay-filter="test"></table>
         </div>
         <div class="tjItems">
-                <div class="items">
-                    <ul>
-                        <li class="one"><a>既往病史</a></li>
-                        <li class="two"><a>体征</a></li>
-                        <li class="there"><a>X线胸透</a></li>
-                        <li class="four"><a>实验室检验</a></li>
-                        <li class="five"><a>检查结论</a></li>
-                    </ul>
-                </div>
-                <div class="pastCase">
-                    <div class="pcList">
-                        <div class="pcListLeft">
-                            <span>既往病史</span>
-                        </div>
-                        <div class="pcListRight">
-                            <p class="plrTop">
-                                <span>肝炎</span>
-                                <span>痢疾</span>
-                                <span>伤寒</span>
-                                <span>肺结核</span>
-                                <span>皮肤病</span>
-                                <span>其它</span>
-                            </p>
-                            <p class="plrTop">
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                                <span><input type="text"/></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="sign">
-                    <div class="signDiv">
-                        <div class="signDivLeft">
-                            <span>体征</span>
-                        </div>
-                        <div class="signDivRight">
-                            <p>
-                                <span>心</span>
-                                <span><input type="text"/></span>
-                                <span>肝</span>
-                                <span><input type="text"/></span>
-                            </p>
-                            <p>
-                                <span>脾</span>
-                                <span><input type="text"/></span>
-                                <span>肺</span>
-                                <span><input type="text"/></span>
-                            </p>
-                            <p>
-                                <span>皮肤</span>
-                                <span class="pf">
-                                    <em><input type="checkbox" id="manus"><label for="manus">手癣</label></em>
-                                    <em><input type="checkbox" id="nail"><label for="nail">指甲</label></em>
-                                    <em><input type="checkbox" id="Eczema "><label for="Eczema ">手部湿疹</label></em>
-                                    <em><input type="checkbox" id="psoriasis"><label for="psoriasis">银屑(鱼鳞屑)病</label></em>
-                                    <em><input type="checkbox" id="exudation"><label for="exudation">渗出性皮肤病</label></em>
-                                    <em><input type="checkbox" id="fester"><label for="fester">化脓性皮肤病</label></em>
-                                </span>
-                            </p>
-                            <p>
-                                <span>其它</span>
-                                <span style="vertical-align: bottom;width: 65.5%;"type="text"><input ></span>
-                                <span>医师签名</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="chest">
-                    <div class="cheatDiv">
-                        <div class="cheatDivLeft">
-                            <span>X线胸透</span>
-                        </div>
-                        <div class="cheatDivRight">
-                            <p>
-                                <span><input type="text"></span>
-                                <span>医师签名</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="laboratory">
-                    <div class="laboratoryDiv">
-                        <div class="laboratoryDivLeft">
-                            <span>大便培养</span>
-                        </div>
-                        <div class="laboratoryDivRight">
-                            <p><span>杆菌痢疾</span><span><input type="text"/></span><span>检验师签名</span></p>
-                            <p><span>伤寒或副伤寒</span><span><input type="text"></span><span>检验师签名</span></p>
-                        </div>
-                    </div>
-                    <div class="laTest">
-                            <p>
-                                <span>甲肝抗体(Anti-HAV)</span>
-                                <span>
-                                    <em><input type="radio" name="radio" id="jgyang"><label for="jgyang">阳性</label></em>
-                                    <em><input type="radio" name="radio" id="jgyin"><label for="jgyin">阴性</label></em>
-                                </span>
-                                <span>检验师签名</span>
-                            </p>
-                            <p>
-                                <span>戊肝抗体(Anti-HEV)</span>
-                                <span>
-                                    <em><input type="radio" name="radio" id="wgyang"><label for="wgyang">阳性</label></em>
-                                    <em><input type="radio" name="radio" id="wgying"><label for="wgying">阴性</label></em>
-                                </span>
-                                <span>检验师签名</span>
-                            </p>
-                            <p>
-                                <span>其它</span>
-                                <span style="width: 81.7%;"><input type="text" style="width: 100%;height:100%;border:none;"/></span>
-                            </p>
-                        </div>
-                </div>
-                <div class="statistics"></div>
+            <div class="items">
+                <ul>
+                    <li class="one"><a>既往病史</a></li>
+                    <li class="two"><a>体征</a></li>
+                    <li class="there"><a>X线胸透</a></li>
+                    <li class="four"><a>实验室检验</a></li>
+                    <li class="five"><a>检查结论</a></li>
+                </ul>
             </div>
+            <div class="pastCase">
+                <div class="pcList">
+                    <div class="pcListLeft">
+                        <span>既往病史</span>
+                    </div>
+                    <div class="pcListRight">
+                        <p class="plrTop">
+                            <span>肝炎</span>
+                            <span>痢疾</span>
+                            <span>伤寒</span>
+                            <span>肺结核</span>
+                            <span>皮肤病</span>
+                            <span>其它</span>
+                        </p>
+                        <p class="plrTop">
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                            <span><input type="text" /></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="sign">
+                <div class="signDiv">
+                    <div class="signDivLeft">
+                        <span>体征</span>
+                    </div>
+                    <div class="signDivRight layui-form">
+                        <div class="signLines">
+                            <div class="layui-form-item item_line">
+                                <label class="layui-form-label signTit">心</label>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value=""></option>
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item item_line">
+                                <label class="layui-form-label signTit">肝</label>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value=""></option>
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="signLines">
+                            <div class="layui-form-item item_line">
+                                <label class="layui-form-label signTit">脾</label>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value=""></option>
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item item_line">
+                                <label class="layui-form-label signTit">肺</label>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value=""></option>
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="margin-bottom: 5px">
+                            <label class="layui-form-label fxTit">皮肤</label>
+                            <div class="layui-input-block signBlocks" style="border: 1px solid #d9d9d9; width:83%">
+                                <input type="checkbox" name="like[write]" title="手癣">
+                                <input type="checkbox" name="like[read]" title="指甲" checked>
+                                <input type="checkbox" name="like[dai]" title="手部湿疹">
+                                <input type="checkbox" name="like[read]" title="银屑(鱼鳞屑)病" checked>
+                                <input type="checkbox" name="like[dai]" title="渗出性皮肤病">
+                                <input type="checkbox" name="like[dai]" title="化脓性皮肤病">
+                            </div>
+                        </div>
+                        <p>
+                            <span>其它</span>
+                            <span style="vertical-align: bottom;width: 66.5%;" type="text"><input></span>
+                            <span>医师签名</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="chest">
+                <div class="cheatDiv">
+                    <div class="cheatDivLeft">
+                        <span>X线胸透</span>
+                    </div>
+                    <div class="cheatDivRight">
+                        <p>
+                            <span><input type="text"></span>
+                            <span>医师签名</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="laboratory">
+                <div class="laboratoryDiv">
+                    <div class="laboratoryDivLeft">
+                        <span>大便培养</span>
+                    </div>
+                    <div class="laboratoryDivRight">
+                        <p><span>杆菌痢疾</span><span><input type="text" /></span><span>检验师签名</span></p>
+                        <p><span>伤寒或副伤寒</span><span><input type="text"></span><span>检验师签名</span></p>
+                    </div>
+                </div>
+                <div class="laTest">
+                    <p>
+                        <span>甲肝抗体(Anti-HAV)</span>
+                        <span>
+                            <em><input type="radio" name="radio" id="jgyang"><label for="jgyang">阳性</label></em>
+                            <em><input type="radio" name="radio" id="jgyin"><label for="jgyin">阴性</label></em>
+                        </span>
+                        <span>检验师签名</span>
+                    </p>
+                    <p>
+                        <span>戊肝抗体(Anti-HEV)</span>
+                        <span>
+                            <em><input type="radio" name="radio" id="wgyang"><label for="wgyang">阳性</label></em>
+                            <em><input type="radio" name="radio" id="wgying"><label for="wgying">阴性</label></em>
+                        </span>
+                        <span>检验师签名</span>
+                    </p>
+                    <p>
+                        <span>其它</span>
+                        <span style="width: 81.7%;"><input type="text"
+                                style="width: 100%;height:100%;border:none;" /></span>
+                    </p>
+                </div>
+            </div>
+            <div class="statistics"></div>
+        </div>
     </div>
 
 
     <script type="text/html" id="toolbarDemo">
-        <input type="text" name="title" required lay-verify="required" placeholder="请输入查询内容" autocomplete="off"
-            class="layui-input tableChaxun">
-        <a class="layui-btn searchBtn" lay-event="">查询</a>
+        <h2 class="recordTit">办证记录</h2>
     </script>
-    <!-- 自定义弹框 -->
+    <!-- 自定义编号弹框 -->
     <div id="customBox">
         <form class="layui-form customCenter" action="">
-            <!-- <div class="layui-form-item">
-                <label class="layui-form-label customTit">自定义编号</label>
-                <div class="layui-input-block inputCon">
-                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
-                        autocomplete="off" class="layui-input">
-                    <div class="layui-form-mid layui-word-aux">00001</div>
-                </div>
-
-            </div> -->
             <div class="layui-form-item">
                 <label class="layui-form-label customTit">健康证编号</label>
                 <div class="layui-input-block inputCon">
                     <input type="text" name="title" required lay-verify="required" placeholder="请输入编号"
                         autocomplete="off" class="layui-input" id="cusHtalthCard">
                     <div class="layui-form-mid layui-word-aux" id="cusHtalthCard2">00001</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 批量修改办证单位 -->
+    <div id="batchBox">
+        <form class="layui-form customCenter" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label customTit" style="text-align: center;">办证单位</label>
+                <div class="layui-input-block" style="margin-left: 93px">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入办证单位"
+                        autocomplete="off" class="layui-input" id="deptNum">
                 </div>
             </div>
         </form>
@@ -555,15 +668,16 @@
         } else if (curType === 'four') {
             $('.laboratory').show()
             $('.four').addClass('cur')
-        } else {
+        } else if (curType === "five") {
             $('.statistics').show()
             $('.five').addClass('cur')
+        } else {
+            $('.tjItems').hide()
         }
 
-        $('#healtTable').on('click','a',function(){
+        $('#healtTable').on('click', 'a', function () {
             window.parent.a(this)(); //调用父窗口的方法
         })
-        
     </script>
 </body>
 

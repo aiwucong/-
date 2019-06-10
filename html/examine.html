@@ -30,25 +30,25 @@
                         <p class="queryAll_nember" id="already-audited">245</p>
                     </li>
                 </ul>
-                <ul class="queryAll_home">
+                <!-- <ul class="queryAll_home">
                     <div class="queryAll_main">
                         <form class="layui-form main_form" action="">
                             <div class="layui-form-item main_items">
                                 <label class="layui-form-label main_name">单位名称：</label>
                                 <div class="layui-input-block main_input_block">
-                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input main_input">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入公司名称" autocomplete="off" class="layui-input main_input" id="company">
                                 </div>
                             </div>
                             <div class="layui-form-item main_items">
                                 <label class="layui-form-label main_name">信用代码：</label>
                                 <div class="layui-input-block main_input_block main_input">
-                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入信用代码" autocomplete="off" class="layui-input main_input">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入信用代码" autocomplete="off" class="layui-input main_input" id="creditCode">
                                 </div>
                             </div>
                             <div class="layui-form-item main_items">
                                 <label class="layui-form-label main_name">手机号码：</label>
                                 <div class="layui-input-block main_input_block main_input">
-                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input main_input">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input main_input" id="phonenumber" onblur="judgeTel(this)">
                                 </div>
                             </div>
                         </form>
@@ -57,7 +57,7 @@
                                     <span class="text">询</span>
                                 </button>
                     </div>
-                </ul>
+                </ul> -->
             </div>
             <div class="examine_tab">
                 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
@@ -77,38 +77,42 @@
             </div>
         </div>
     </div>
+    <!-- 查看弹框 -->
+    <div id="looks">
+    </div>
     <!-- 审核通过弹框 -->
     <div id="box">
         <div class="box_main">
             <span class="yytimeText">预约时间:</span>
             <input type="text" class="layui-input" id="aa" placeholder="2019年05月10日">
-            <div class="layui-form yytime">
+            <!-- <div class="layui-form yytime">
                 <select name="city" lay-verify="">
                     <option value="">请选择一个时间段</option>
                     <option value="010">9:00-11:00</option>
                     <option value="021">14:00-16:00</option>
                 </select>
-            </div>
+            </div> -->
         </div>
     </div>
+    <!-- 审核不通过弹框 -->
     <div id="box1">
         <div class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label rensonText">不通过原因:</label>
                 <div class="layui-input-block renson">
-                    <select name="city" lay-verify="required">
+                    <select name="city" lay-verify="required" lay-filter="required">
                         <option value=""></option>
-                        <option value="0">审核不通过，请重新上传营业执照</option>
-                        <option value="1">审核不通过，请重新上传餐饮许可证</option>
-                        <option value="2">审核不通过，请重新上传其他许可证</option>                        
-                        <option value="3">其他原因</option>
+                        <option value="审核不通过，请重新上传营业执照">审核不通过，请重新上传营业执照</option>
+                        <option value="审核不通过，请重新上传餐饮许可证">审核不通过，请重新上传餐饮许可证</option>
+                        <option value="审核不通过，请重新上传其他许可证">审核不通过，请重新上传其他许可证</option>                        
+                        <option value="其他原因">其他原因</option>
                       </select>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label rensonText">其他原因:</label>
                 <div class="layui-input-block renson">
-                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    <textarea name="desc" placeholder="请输入内容" class="layui-textarea" id="untextarea"></textarea>
                 </div>
             </div>
         </div>
@@ -125,7 +129,7 @@
     <script type="text/html" id="toolbarDemos">
         <a class="layui-btn layui-btn-xs see" lay-event="edit">查看</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs see" lay-event="del">登记表</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_pass">审核通过</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_failed">审核不通过</a>
     </script>
 
 </body>

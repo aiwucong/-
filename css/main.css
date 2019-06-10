@@ -1,4 +1,4 @@
-    .layui-layout-admin .layui-side {
+.layui-layout-admin .layui-side {
         top: 0;
         background-color: #022387 !important;
     }
@@ -98,6 +98,10 @@
         height: 472px;
         background: #fff;
         margin-top: 20px;
+    }
+    /* tab栏 */
+    .main_charts {
+        
     }
     
     #t_charts,

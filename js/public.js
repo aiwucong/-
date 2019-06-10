@@ -1,6 +1,9 @@
 
-// var baseUrl="http://39.98.227.70:8082/mdk2019";
+// var baseUrl="http://192.168.1.110:8086";
 var baseUrl="http://39.98.227.70:8082/mdk2019"; 
+// var baseUrl="http://192.168.1.119:8081/mdk2019_war"; 
+var IdUrl = "http://192.168.1.114:8080/mycaream";
+
 
 function queryParams(params){
     if (!params) return;

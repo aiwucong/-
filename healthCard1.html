@@ -60,7 +60,6 @@
 <script type="text/javascript">
 	$(function () {
 		$('.da').click(function () {
-			console.log(111)
 			bdhtml = window.document.body.innerHTML; //获取当前页的html代码
 			sprnstr = "<!--stratprint-->"; //设置打印开始区域 
 			eprnstr = "<!--endprint-->"; //设置打印结束区域 
@@ -73,6 +72,7 @@
 		// 接受传值
 		$.ajax({
 			url: baseUrl+"/tijian/getcardinfo",
+			type: "get",
 			contentType: "application/json;charset=utf-8",
             dataType: 'json',
             // data: JSON.stringify(data),

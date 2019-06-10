@@ -4,6 +4,15 @@
 }
 
 body {
+    /* background: #fff; */
+    background: #d9d9d9;
+}
+/* 表格样式 */
+.layui-table tbody tr:hover {
+    background: #009ddd;
+    color: #fff;
+}
+.layui-table-page {
     background: #fff;
 }
 .layui-laypage .layui-laypage-curr .layui-laypage-em {
@@ -27,11 +36,14 @@ body {
     /* border: 1px solid #000; */
     display: flex;
     justify-content: flex-end;
-    margin: 0 10px 10px 0;
+    padding: 0 15px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 .allbtn .layui-btn {
     background: #ff9600;
+    margin-left: 50px;
 }
 
 .allMain {
@@ -39,18 +51,26 @@ body {
     justify-content: space-between;
     margin-top: 10px;
 }
+.allbtnConter {
+    padding: 0 0 10px 0;
+    box-sizing: border-box;
+    /* border: 1px solid #000; */
+}
 
 /* input样式 */
 .homeInput {
     width: 75%;
     height: 350px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     position: relative;
-    padding: 0 20px;
+    padding: 10px 20px 10px 30px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     min-width: 880px;
+    border-radius: 5px;
+    box-shadow: 2px 3px 11px rgb(102, 99, 102);
+    background: #fff;
 }
 
 .inputTitle {
@@ -63,12 +83,17 @@ body {
     margin-top: -110px;
     left: -20px;
     background: #fff;
+    box-shadow: 2px 3px 11px rgb(102, 99, 102);
+    font-size: 18px;
+    letter-spacing: 3px;
+    padding: 14px 0;
+    box-sizing: border-box;
 }
 
 .input_main {
-    width: 78%;
+    width: 85%;
     /* border: 1px solid red; */
-    height: 350px;
+    height: 330px;
     /* padding: 10px 0; */
     box-sizing: border-box;
 }
@@ -77,6 +102,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    /* border: 1px solid green; */
 }
 
 .input_main .lines {
@@ -136,16 +162,16 @@ body {
 
 /* 复选框 */
 .checkboxs {
-    width: 20%;
+    width: 14%;
     /* border: 1px solid red; */
-    height: 350px;
-    padding: 48px 0 0 0;
+    height: 330px;
+    /* padding: 5px; */
     box-sizing: border-box;
 }
 
 .checkboxs .layui-form-item {
     width: 75%;
-    margin: 0 auto 20px auto;
+    margin: 0 0 33px 0;
 }
 
 .checkboxs .layui-form-item .layui-form-checkbox[lay-skin="primary"] {
@@ -158,7 +184,7 @@ body {
     border: 1px solid #ff9600;
 }
 .checkboxs_btn1 {
-    background: #ff9600;
+    background: #009ddd;
     width: 130px;
     height: 38px;
     font-size: 14px;
@@ -175,11 +201,13 @@ body {
 .homeImages {
     width: 22%;
     height: 350px;
-    border: 1px solid #000;
     position: relative;
-    padding: 20px 30px;
+    padding: 20px 20px 20px 40px;
     box-sizing: border-box;
     min-width: 280px;
+    background: #fff;
+    box-shadow: 2px 3px 11px rgb(102, 99, 102);
+    border-radius: 5px;
 }
 
 .imagesTitle {
@@ -192,6 +220,11 @@ body {
     margin-top: -110px;
     left: -20px;
     background: #fff;
+    box-shadow: 0 0 9px rgb(102, 99, 102);
+    font-size: 18px;
+    letter-spacing: 3px;
+    padding: 14px 0;
+    box-sizing: border-box;
 }
 
 .imagesConter {
@@ -259,7 +292,8 @@ body {
 }
 
 /* 自定义编号弹框 */
-#customBox {
+#customBox,
+#batchBox {
     display: none;
 }
 .customCenter {
@@ -278,8 +312,21 @@ body {
 .inputCon .layui-input {
     width: 45%;
     float: left;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 .inputCon .layui-word-aux {
     margin-left: 10px;
+}
+
+.recordTit {
+    font-size: 18px;
+    width: 100px;
+    height: 35px;
+    background: #fff;
+    line-height: 35px;
+    text-align: center;
+    box-shadow: 0 0 9px rgb(102, 99, 102);
+}
+.layui-table-tool {
+    padding: 10px 15px 10px 10px;
 }

@@ -23,7 +23,7 @@ body {
 .menu_l {
     width: 200px;
     height: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     box-sizing: border-box;
     background: url(../images/bg.jpg);
 }
@@ -43,7 +43,7 @@ body {
 
 .menu_cen ul li {
     height: 55px;
-    border: 1px solid #000;
+    border-bottom: 1px solid #022387;
     padding: 0 10px;
     box-sizing: border-box;
 }

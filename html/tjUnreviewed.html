@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>体检未审核</title>
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/physical.css">
+    <script src="../src/layui.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/physical.js"></script>
+    <script src="../js/public.js"></script>
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="examine_body">
+            <div class="queryAll">
+                <ul class="queryAll_home">
+                    <div class="queryAll_main">
+                        <form class="layui-form main_form" action="">
+                            <div class="layui-form-item main_items main_ff" style="border: none;">
+                                <div class="">
+                                    <label class="layui-form-label main_name">姓　　名</label>
+                                    <div class="layui-input-block main_input_block">
+                                        <input type="text" name="title" required lay-verify="required"
+                                            placeholder="请输入姓名" autocomplete="off" class="layui-input main_input">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="layui-form-label main_name">体检编号</label>
+                                    <div class="layui-input-block main_input_block">
+                                        <input type="text" name="title" required lay-verify="required"
+                                            placeholder="请输入体检编号" autocomplete="off" class="layui-input main_input">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="layui-form-item main_items">
+                                <label class="layui-form-label main_name">身份证号</label>
+                                <div class="layui-input-block main_input_block main_input">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入身份证号"
+                                        autocomplete="off" class="layui-input main_input" id="exDate">
+                                </div>
+                            </div>
+                            <div class="layui-form-item main_items">
+                                <label class="layui-form-label main_name">体检日期</label>
+                                <div class="layui-input-block main_input_block main_input">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入体检日期"
+                                        autocomplete="off" class="layui-input main_input" id="openDate">
+                                </div>
+                            </div>
+                        </form>
+                        <button class="layui-btn-radius chaxun">
+                            <span class="text">查</span>
+                            <span class="text">询</span>
+                        </button>
+                    </div>
+                </ul>
+                <ul class="queryAll_list">
+                    <li>
+                        <span class="queryAll_name">体检待审核总数</span>
+                        <p class="queryAll_nember" id="unaudited-audited"></p>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="examine_tab">
+                <table id="table1" lay-filter="table1"></table>
+            </div>
+        </div>
+    </div>
+    <!-- 审核通过弹框 -->
+    <div id="box">
+        <div class="box_main">
+            <div class="yyContent">
+                <span class="yytimeText">发证日期</span>
+                <input type="text" class="layui-input timeInput" id="aa">
+            </div>
+            <div class="yyContent">
+                <span class="yytimeText">有效期至</span>
+                <input type="text" class="layui-input timeInput" id="enddate">
+            </div>
+            <!-- <div class="layui-form yytime">
+                <select name="city" lay-verify="">
+                    <option value="">请选择一个时间段</option>
+                    <option value="010">9:00-11:00</option>
+                    <option value="021">14:00-16:00</option>
+                </select>
+            </div> -->
+        </div>
+    </div>
+    <div id="box1">
+        <div class="layui-form">
+            <div class="layui-form-item layui-form-text">
+                <!-- <label class="layui-form-label rensonText">不合格原因:</label> -->
+                <div class="layui-input-block renson">
+                    <textarea name="desc" placeholder="请输入不合格原因" class="layui-textarea"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="box2">
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-block renson">
+                    <select name="city" lay-verify="required" lay-filter="category">
+                        <option value="">请选择</option>
+                        <option value="0">不合格</option>
+                      </select>
+                </div>
+            </div>
+            </div>
+    </div> -->
+    <script>
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_pass">合格</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_failed">不合格</a>
+    </script>
+
+    <script type="text/html" id="toolbarDemos">
+        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_modify">修改按钮</a>
+    </script>
+
+</body>
+
+</html>
