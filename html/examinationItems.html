@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link rel="stylesheet" href="../src/css/layui.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/quickInput.css">
+    <script src="../src/layui.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/quickInput.js"></script>
+    <script src="../js/public.js"></script>
+    <title>Document</title>
+    <style>
+        .homeConter{
+            height: 205px;
+            padding: 0;
+        }
+        .homeInput{
+            height: 230px;
+            width: 100%;
+            box-shadow: none;
+            border-radius: 0;
+        }
+        .inputTitle{
+            top: 50%;
+            width: 100px;
+            height: 35px;
+            left: 1%;
+            line-height: 12px;
+        }
+        .input_main{
+            width: 100%;
+        }
+        .tjItems {
+            width: 100%;
+            height: auto;
+            background: #fff;
+            padding: 20px 0;
+            /* box-shadow: 2px 3px 11px rgb(102, 99, 102); */
+            margin-bottom: 20px;
+        }
+
+        .items {
+            height: 35px;
+            width: 100%;
+            position: relative;
+            /* background: #022387; */
+        }
+        .items ul{
+            padding-left: 5px;
+        }
+        .items li {
+            float: left;
+            height: 35px;
+            padding: 0 20px;
+            line-height: 35px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .items li.cur {
+            background: #ff9600;
+        }
+
+        .items li a {
+            color: #000;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pastCase,
+        .sign,
+        .chest,.statistics {
+            width: 100%;
+            margin-top: 15px;
+            display: none;
+        }
+        .pastCase{
+            display: block
+        }
+        .chest{
+            height: 130px;
+        }
+        .pcList,
+        .signDiv,
+        .chestDiv {
+            position: relative;
+            width: 100%;
+        }
+
+        .plrTop {
+            height: 40px;
+            margin-bottom: 5px;
+        }
+
+        .plrTop span,.plrTop .layui-input-block{
+            width: 16%;
+            display: inline-block;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            background: #009ddd;
+        }
+        .plrBtn .layui-input-block{
+            margin: 0;
+            border:1px solid #e1e1e1;
+            background: #fff;
+            width: 15.85%;
+        }
+        .plrBtn .layui-input-block select{
+            width: 100%;
+            height: 100%;
+            padding-left: 85px;
+            border:none;
+        }
+        .plrTop span input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            text-align: center;
+        }
+        .plrBtn span{
+            border:none;
+        }
+
+        .signDivRight p span:nth-child(1){
+            display: inline-block;
+            width: 15%;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            margin-bottom: 5px;
+            border: 1px solid #d9d9d9;
+        }
+
+        .signDivRight p span:nth-child(2),
+        .signDivRight p span:nth-child(4) {
+            display: inline-block;
+            width: 32.5%;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            margin-bottom: 5px;
+            border: 1px solid #d9d9d9;
+        }
+
+        .signDivRight p span:nth-child(2) input,
+        .signDivRight p span:nth-child(4) input {
+            border: none;
+        }
+
+        .signDivRight p span.pf {
+            width: 82%;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .signDivRight p span.pf em {
+            display: inline-block;
+            width: 16%;
+            font-style: normal;
+            text-indent: 15px;
+        }
+
+        .cheatDivLeft span {
+            width: 40%;
+            line-height: 30px;
+        }
+
+        .cheatDivRight p span:nth-child(1) {
+            height: 120px;
+            width: 80%;
+            padding-left: 10px;
+            border: 1px solid #e6e6e6;
+            display: inline-block;
+        }
+
+        .cheatDivRight p span:nth-child(1) textarea {
+            border: none;
+            resize: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cheatDivLeft {
+            height: 120px;
+        }
+
+        .cheatDivRight p span:nth-child(2) {
+            width: 17.3%;
+            height: 120px;
+            text-align: center;
+            display: inline-block;
+            border: 1px solid #fff;
+            line-height: 50px;
+            vertical-align: bottom;
+            background: #009ddd;
+        }
+        .cheatDivRight p span:nth-child(2) input{
+            border:1px solid #e6e6e6;
+            height: 40px;
+            line-height: 40px;
+            width: 95%;
+        }
+        .laboratory {
+            width: 100%;
+            height: auto;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .laboratoryDivRight p span {
+            line-height: 35px;
+            height: 35px;
+            margin-bottom: 5px;
+            display: inline-block;
+            border: 1px solid #000;
+        }
+        .laboratoryDivRight p{
+            width: 50%;
+        }
+        .laboratoryDivRight p span:nth-child(1) {
+            width: 16%;
+            text-align: center;
+        }
+
+        .laboratoryDivRight p span:nth-child(2) {
+            width: 65%;
+            margin: 0 5px;
+        }
+
+        .laboratoryDivRight p span:nth-child(2) input {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .laboratoryDivRight p span:nth-child(3) {
+            width: 16%;
+            text-align: center;
+        }
+
+        .laboratoryDiv {
+            overflow: hidden;
+        }
+
+        .laTest p span {
+            height: 35px;
+            margin-bottom: 5px;
+            line-height: 35px;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid #000;
+        }
+
+        .laTest p span:nth-child(1) {
+            width: 16%;
+        }
+
+        .laTest p span:nth-child(2) {
+            width: 71.3%;
+            vertical-align: bottom;
+        }
+
+        .laTest {
+            margin-top: 5px;
+        }
+
+        .laTest p span:nth-child(2) em {
+            display: inline-block;
+            width: 49%;
+            font-style: normal;
+            cursor: pointer;
+        }
+
+        .laTest p span:nth-child(3) {
+            width: 10%;
+        }
+
+        .signTit,
+        .fxTit{
+            width: 30%;
+           
+        }
+        .signTit,
+        .fxTit {
+            padding: 0;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border: 1px solid #fff;
+            background: #009ddd;
+        }
+       
+
+        .signBlocks {
+            width: 65%;
+            height: 35px;
+            margin-left: 31.5%;
+        }
+
+        .signLines {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .item_line {
+            width: 50%;
+            /* border: 1px solid #000; */
+            margin-bottom: 5px;
+        }
+        .layui-form-checked i, .layui-form-checked:hover i {
+            color: #ff9600;
+        }
+        .layui-form-checked span, .layui-form-checked:hover span {
+            background: #ff9600;
+        }
+        .layui-form-checkbox{
+            margin: 0 2%;
+        }
+        .statisticsDiv{
+            height: 160px;
+        }
+        .statisticsDiv .signLines{
+            width: 100%;
+            height: 160px;
+        }
+        .statisLeft{
+            width: 75.5%;
+            float: left;
+            height: 160px;
+            border:1px solid #e6e6e6;
+            padding: 0 10px;
+            position: relative;
+        }
+        .statisLeft textarea{
+            width: 86%;
+            height: 100%;
+            resize: none;
+            position: absolute;
+            top: 0;
+            border:none;
+        }
+        .statisRight{
+            width: 20%;
+            float: right;
+            height: 160px;
+            margin-right: 2%;
+            border:1px solid #e6e6e6;
+            background: #009ddd;
+        }
+        .statisRight span{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            height: 35px;
+            line-height: 35px;
+            /* margin-top: 40px; */
+        }
+        .statisRight span input{
+            border:1px solid #e6e6e6;
+            height: 30px;
+            width: 95%;
+            text-align: center;
+        }
+        /* .layui-form-checkbox span{
+            background-color: #009DDD; 
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- 顶部 -->
+    <div class="container">
+        <div class="homeConter">
+            <div class="allMain">
+                <!-- 表单 -->
+                <div class="homeInput">
+                    <!-- <h2 class="inputTitle">基本信息</h2> -->
+                    <form class="layui-form input_main" lay-filter="fromtest" action="">
+                        <div class="allbtn">
+                            <a href="#" class="layui-btn"style="width:100px;">保存</a>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="lines">
+                                <label class="layui-form-label">体检编号</label>
+                                <input type="text" name="title" autocomplete="off" class="layui-input" id="IDnumber"
+                                    readonly="readonly" value="T190000001">
+                            </div>
+                            <div class="lines">
+                                <label class="layui-form-label">健康证号</label>
+                                <input type="text" name="hearthcardNum" required lay-verify="required"
+                                    readonly="readonly" placeholder="请输入健康证号" autocomplete="off"
+                                    class="layui-input healthnumber">
+                            </div>
+                            <div class="lines">
+                                <label class="layui-form-label">手机号码</label>
+                                <input type="text" name="telphone" required lay-verify="required|phone"
+                                    placeholder="请输入手机号码" autocomplete="off" class="layui-input phonenumber">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="lines">
+                                <label class="layui-form-label">姓　　名</label>
+                                <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名"
+                                    autocomplete="off" class="layui-input IDname">
+                            </div>
+                            <div class="lines nameChecks">
+                                <div class="checks2">
+                                    <label class="layui-form-label">年　　龄</label>
+                                    <input type="text" name="age" required lay-verify="required" autocomplete="off"
+                                        class="layui-input" id="age">
+                                </div>
+                                <div class="checks1">
+                                        <label class="layui-form-label" style="width: 30%;">性　　别</label>
+                                        <div class="layui-input-block">
+                                            <input type="radio" id="boy" name="sex" value="1" title="男">
+                                            <input type="radio" id="girl" name="sex" value="2" title="女">
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="lines">
+                                <label class="layui-form-label">身份证号</label>
+                                <input type="text" name="idcardNum" required lay-verify="required" placeholder="请输入身份证号"
+                                    autocomplete="off" class="layui-input" id="IDcard">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="lines">
+                                <label class="layui-form-label">办证日期</label>
+                                <input type="text" name="createTime" required lay-verify="required" placeholder="2019-05-17"
+                                    autocomplete="off" class="layui-input" id="startdate">
+                            </div>
+                            <div class="lines">
+                                <label class="layui-form-label">有效期至</label>
+                                <input type="text" name="enddate" required lay-verify="required" placeholder="2020-05-17"
+                                    autocomplete="off" class="layui-input" id="enddate">
+                            </div>
+                            <div class="lines">
+                                <label class="layui-form-label">办证人员</label>
+                                <input type="text" name="person" required lay-verify="required" placeholder="请输入办证人员"
+                                    autocomplete="off" class="layui-input bzpeople">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+              
+            </div>
+        </div>
+        <div class="tjItems">
+            <div style="padding:0 10px;">
+                <div class="items">
+                        <ul>
+                            <li class="one cur"><a>既往病史</a></li>
+                            <li class="two"><a>体征</a></li>
+                            <li class="there"><a>X线胸透</a></li>
+                            <li class="four"><a>实验室检验</a></li>
+                            <li class="five"><a>检查结论</a></li>
+                        </ul>
+                </div>
+                <div class="pastCase">
+                    <div class="pcList">
+                        <div class="pcListRight">
+                            <p class="plrTop">
+                                <span>肝炎</span>
+                                <span>痢疾</span>
+                                <span>伤寒</span>
+                                <span>肺结核</span>
+                                <span>皮肤病</span>
+                                <span>其它</span>
+                            </p>
+                            <div class="plrTop plrBtn">
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-block signBlocks">
+                                    <select name="city" lay-verify="required">
+                                        <option value="0">正常</option>
+                                        <option value="1">不正常</option>
+                                    </select>
+                                </div>
+                                <div class="layui-input-block signBlocks">
+                                   <input type="text" style="width:100%;height: 100%;border:none;text-align: center;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sign">
+                    <div class="signDiv">
+                        <div class="signDivRight layui-form">
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">心</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <select name="city" lay-verify="required">
+                                            <option value=""></option>
+                                            <option value="0">正常</option>
+                                            <option value="1">不正常</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">肝</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <select name="city" lay-verify="required">
+                                            <option value=""></option>
+                                            <option value="0">正常</option>
+                                            <option value="1">不正常</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">脾</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <select name="city" lay-verify="required">
+                                            <option value=""></option>
+                                            <option value="0">正常</option>
+                                            <option value="1">不正常</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">肺</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <select name="city" lay-verify="required">
+                                            <option value=""></option>
+                                            <option value="0">正常</option>
+                                            <option value="1">不正常</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item" style="margin-bottom:5px;">
+                                <label class="layui-form-label fxTit" style="width:15%">皮肤</label>
+                                <div class="layui-input-block signBlocks" style="border: 1px solid #d9d9d9; width:82.5%;margin-left: 15.7%;">
+                                    <input type="checkbox" name="like[write]" title="手癣">
+                                    <input type="checkbox" name="like[read]" title="指甲">
+                                    <input type="checkbox" name="like[dai]" title="手部湿疹">
+                                    <input type="checkbox" name="like[read]" title="银屑(鱼鳞屑)病">
+                                    <input type="checkbox" name="like[dai]" title="渗出性皮肤病">
+                                    <input type="checkbox" name="like[dai]" title="化脓性皮肤病">
+                                </div>
+                            </div>
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">其它</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">医师签名</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chest">
+                    <div class="cheatDiv">
+                        <div class="cheatDivRight">
+                            <p>
+                                <span><textarea></textarea></span>
+                                <span>医师签名<input type="text"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="laboratory">
+                    <div class="laboratoryDiv">
+                        <div class="laboratoryDivRight layui-form">
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">杆菌痢疾</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">检验师签名</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">伤寒或副伤寒</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">检验师签名</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">甲肝抗体(Anti-HAV)</label>
+                                    <div class="layui-input-block signBlocks" style="padding-left: 21%;border: 1px solid #e6e6e6;width: 45.7%;">
+                                        <input type="radio" id="jiayang" name="sex" value="1" title="阳性">
+                                        <input type="radio" id="jiayin" name="sex" value="2" title="阴性">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">检验师签名</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">戊肝抗体(Anti-HEV)</label>
+                                    <div class="layui-input-block signBlocks" style="padding-left: 21%;border: 1px solid #e6e6e6;width: 45.7%;">
+                                        <input type="radio" id="wuyang" name="sex" value="1" title="阳性">
+                                        <input type="radio" id="wuyin" name="sex" value="2" title="阴性">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">检验师签名</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="signLines">
+                                <div class="layui-form-item item_line">
+                                    <label class="layui-form-label signTit">其它</label>
+                                    <div class="layui-input-block signBlocks">
+                                        <input class="layui-input" type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="statistics">
+                    <div class="statisticsDiv">
+                        <div class="signLines">
+                           <div class="statisLeft">
+                               <span style="margin-right:20px;">(体检机构意见)</span>
+                               <textarea></textarea>
+                           </div>
+                           <div class="statisRight">
+                               <span>主检医师签名</span>
+                               <span><input type="text"></span>
+                               <span>时间日期</span>
+                               <span><input id="createTime" required lay-verify="required" placeholder="2019-05-17"
+                                autocomplete="off"></span>
+                           </div>
+                        </div>
+                    </div>
+                    <!-- <div class="signLines">
+                        <div class="layui-form-item item_line">
+                            <label class="layui-form-label signTit">主治医生签名</label>
+                            <div class="layui-input-block signBlocks">
+                                <input class="layui-input" type="text"/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item item_line">
+                            <label class="layui-form-label signTit">体检时间</label>
+                            <div class="layui-input-block signBlocks">
+                                <input class="layui-input" type="text"/>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+        </div>
+            </div>
+        <div class="homeTable">
+            <div class="tableQuery">
+
+            </div>
+            <table id="demo" lay-filter="test"></table>
+        </div>
+      
+    </div>
+
+
+    <script type="text/html" id="toolbarDemo">
+        <h2 class="recordTit">办证记录</h2>
+    </script>
+    <!-- 自定义编号弹框 -->
+    <div id="customBox">
+        <form class="layui-form customCenter" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label customTit">健康证编号</label>
+                <div class="layui-input-block inputCon">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入编号"
+                        autocomplete="off" class="layui-input" id="cusHtalthCard">
+                    <div class="layui-form-mid layui-word-aux" id="cusHtalthCard2">00001</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 批量修改办证单位 -->
+    <div id="batchBox">
+        <form class="layui-form customCenter" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label customTit" style="text-align: center;">办证单位</label>
+                <div class="layui-input-block" style="margin-left: 93px">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入办证单位"
+                        autocomplete="off" class="layui-input" id="deptNum">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        let curType = localStorage.curType
+        $('.items ul').on('click','li',function(){
+            // debugger
+            $(this).addClass('cur').siblings('li').removeClass('cur')
+            if($('.two').hasClass('cur')){
+                $('.pastCase').hide()
+                $('.chest').hide()
+                $('.laboratory').hide()
+                $('.statistics').hide()
+                $('.sign').show()
+            }else if($('.there').hasClass('cur')){
+                $('.sign').hide()
+                $('.pastCase').hide()
+                $('.chest').show()  
+                $('.laboratory').hide()
+                $('.statistics').hide()
+            }else if($('.four').hasClass('cur')){
+                $('.sign').hide()
+                $('.pastCase').hide()
+                $('.chest').hide()
+                $('.laboratory').show()
+                $('.statistics').hide()
+            }else if($('.five').hasClass('cur')){
+                $('.sign').hide()
+                $('.pastCase').hide()
+                $('.chest').hide()
+                $('.laboratory').hide()
+                $('.statistics').show()
+            }else{
+                $('.pastCase').show()
+                $('.sign').hide()
+                $('.chest').hide()
+                $('.laboratory').hide()
+                $('.statistics').hide()
+            }
+            
+        })
+        layui.use('laydate',function(){
+            var laydate = layui.laydate;
+             // 日期
+            laydate.render({
+                elem: '#createTime', //指定元素
+                done: function (value, date) {
+                    var FullYear = date.year + 1;
+                    var month = date.month;
+                    month = month < 10 ? '0' + month : month;
+                    var day = date.date;
+                    day = day < 10 ? '0' + day : day;
+                }
+
+            });
+        })
+      
+        $('#healtTable').on('click', 'a', function () {
+            window.parent.a(this)(); //调用父窗口的方法
+        })
+    </script>
+</body>
+
+</html>
