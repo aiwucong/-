@@ -27,6 +27,9 @@ window.onload = function () {
         success: function (res) {
             console.log(111);
             var userData = res.data
+            $.each(userData, function (i, n) {
+                n.status = "审核不通过"
+        })
             console.log(userData);
             dataTable(userData)
         }
@@ -41,6 +44,9 @@ window.onload = function () {
         dataType: 'json',
         success: function (res) {
             var passData = res.data
+            $.each(passData, function (i, n) {
+                    n.status = "审核通过"
+            })
             console.log(passData);
             dataTables(passData)
         }
@@ -55,6 +61,9 @@ window.onload = function () {
         dataType: 'json',
         success: function (res) {
             var unpassData = res.data
+            $.each(unpassData, function (i, n) {
+                n.status = "审核不通过"
+        })
             dataTableser(unpassData)
         }
     });
@@ -147,7 +156,7 @@ function dataTable(userData) {
                         width: 100
                     },
                     {
-                        field: 'healcardcreatTime',
+                        field: 'startdate',
                         title: '发证日期',
                         width: 177
                     },
@@ -157,7 +166,7 @@ function dataTable(userData) {
                         toolbar: '#barDemo',
                         width: 180
                     }, {
-                        field: 'medical',
+                        field: 'status',
                         title: '体检结果',
                         width: 177
                     }
@@ -400,7 +409,7 @@ function dataTables(passData) {
                         width: 100
                     },
                     {
-                        field: 'healcardcreatTime',
+                        field: 'startdate',
                         title: '发证日期',
                         width: 177
                     },
@@ -410,7 +419,7 @@ function dataTables(passData) {
                         toolbar: '#toolbarDemos',
                         width: 180
                     }, {
-                        field: 'medical',
+                        field: 'status',
                         title: '体检结果',
                         width: 177
                     }
@@ -574,7 +583,7 @@ function dataTableser(unpassData) {
                         width: 100
                     },
                     {
-                        field: 'healcardcreatTime',
+                        field: 'startdate',
                         title: '发证日期',
                         width: 177
                     },
@@ -584,7 +593,7 @@ function dataTableser(unpassData) {
                         toolbar: '#toolbarDemos',
                         width: 180
                     }, {
-                        field: 'medical',
+                        field: 'status',
                         title: '体检结果',
                         width: 177
                     }

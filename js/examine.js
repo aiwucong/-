@@ -1,15 +1,17 @@
-window.onload = function() {
+window.onload = function () {
     // console.log("werwf")
     $.ajax({
         url: baseUrl + "/deptorder/yuyueCount",
         type: "post",
-        xhrFields:{withCredentials:true},
-        success: function(res) {
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (res) {
             console.log(res);
             $('#unaudited-audited').text(res.data.daish);
             $('#already-audited').text(res.data.yish);
         },
-        error: function() {
+        error: function () {
             // console.log("服务器异常");
         }
     });
@@ -18,20 +20,19 @@ window.onload = function() {
     $.ajax({
         url: baseUrl + "/deptorder/daiSH",
         type: 'post',
-        data:JSON.stringify({
-            "deptShenhe":"0"
+        data: JSON.stringify({
+            "deptShenhe": "0"
         }),
-        contentType:"application/json",
-        xhrFields: {widthCredentials: true},
+        contentType: "application/json",
+        xhrFields: {
+            widthCredentials: true
+        },
         dataType: 'json',
         success: function (res) {
-            console.log(res);
-            console.log(res.data)
             var userData = res.data;
-            console.log(userData);
             dataTable(userData)
         },
-        error: function() {
+        error: function () {
             console.log("服务器异常");
         }
     });
@@ -39,38 +40,38 @@ window.onload = function() {
 
 var yuyueTime;
 var unpassyy;
-layui.use(['element', 'laydate', 'layer', 'form'], function() {
+layui.use(['element', 'laydate', 'layer', 'form'], function () {
     var element = layui.element;
     var laydate = layui.laydate;
     var form = layui.form;
 
-    form.on('select(required)', function(data){
+    form.on('select(required)', function (data) {
         console.log(data.value); //得到被选中的值
         unpassyy = data.value;
-      });
+    });
 
     //日期范围
     laydate.render({
         elem: '#aa',
-        done: function(value, date, endDate){
+        done: function (value, date, endDate) {
             yuyueTime = value;
             console.log(yuyueTime);
-          }
+        }
     });
-    
 
-    
+
+
 
     element.on('tab(docDemoTabBrief)', function (data) {
         // 预约已审核表格数据
         if (data.index == 1) {
             $.ajax({
                 url: baseUrl + "/deptorder/yiSH",
-                data:JSON.stringify({
-                    "deptShenhe":"1"
+                data: JSON.stringify({
+                    "deptShenhe": "1"
                 }),
                 type: 'post',
-                contentType:"application/json",
+                contentType: "application/json",
                 xhrFields: {
                     widthCredentials: true
                 },
@@ -79,11 +80,11 @@ layui.use(['element', 'laydate', 'layer', 'form'], function() {
                     var passData = res.data
                     dataTables(passData)
                 },
-                error: function() {
+                error: function () {
                     console.log("服务器异常");
                 }
             });
-        } 
+        }
     })
 
 });
@@ -102,7 +103,7 @@ function judgeTel(org) {
 }
 
 
-function queryDiv(){
+function queryDiv() {
     var company = $('#company').val();
     var phonenumber = $('#phonenumber').val();
     var creditCode = $('#creditCode').val();
@@ -127,12 +128,12 @@ function queryDiv(){
             success: function (res) {
                 console.log(res)
                 var data = res.data;
-                $.each(data,function(i,n){
-                    if(n.deptShenhe == 0){
-                        
+                $.each(data, function (i, n) {
+                    if (n.deptShenhe == 0) {
+
                         // var userData = data;
                         // dataTable(userData)
-                    }else {
+                    } else {
                         var passData = n;
                         dataTables(passData)
                     }
@@ -142,7 +143,7 @@ function queryDiv(){
                     // location.reload()
                 }
             },
-            error:function(){
+            error: function () {
                 console.log(失败);
             }
         })
@@ -152,20 +153,20 @@ function queryDiv(){
 // 查询
 $(function () {
     $('.chaxun').on('click', function () {
-       queryDiv();
+        queryDiv();
     })
 
 })
 
-$(document).keydown(function(event){
-    if(event.keyCode == 13){
-    console.log('你按下了Enter'); 
+$(document).keydown(function (event) {
+    if (event.keyCode == 13) {
+        console.log('你按下了Enter');
         queryDiv()
-　　}
+    }
 });
 // 预约待审核表格
-function dataTable(userData){
-    layui.use('table', function() {
+function dataTable(userData) {
+    layui.use('table', function () {
         var table = layui.table;
         //渲染
         table.render({
@@ -175,11 +176,12 @@ function dataTable(userData){
             data: userData,
             even: true,
             autoSort: false,
-            page:true,
+            page: true,
             toolbar: '#toolbarDemo',
             // defaultToolbar: ['filter'],
-    
-            cols: [[ //表头
+
+            cols: [
+                [ //表头
                     {
                         width: 60,
                         type: "checkbox",
@@ -223,9 +225,9 @@ function dataTable(userData){
             ],
             page: true
         });
-    
+
         //监听行工具事件
-        table.on('tool(table1)', function(obj) {
+        table.on('tool(table1)', function (obj) {
             var data = obj.data;
             //console.log(obj)
             var deptId;
@@ -248,22 +250,26 @@ function dataTable(userData){
                         $.ajax({
                             url: baseUrl + "/deptorder/deptSH",
                             type: 'post',
-                            data:JSON.stringify({
-                                "deptId" : deptId,
-                                "deptShenhe" : 1,
-                                "deptTime" : yuyueTime,
-                                "deptPhone" : deptPhone
+                            data: JSON.stringify({
+                                "deptId": deptId,
+                                "deptShenhe": 1,
+                                "deptTime": yuyueTime,
+                                "deptPhone": deptPhone
                             }),
-                            contentType:"application/json",
-                            xhrFields: {widthCredentials: true},
+                            contentType: "application/json",
+                            xhrFields: {
+                                widthCredentials: true
+                            },
                             dataType: 'json',
                             success: function (res) {
-                               console.log(res);
-                               if(res.status == '200'){
-                                layer.msg('审核成功', { icon: 1 });
-                               }
+                                console.log(res);
+                                if (res.status == '200') {
+                                    layer.msg('审核成功', {
+                                        icon: 1
+                                    });
+                                }
                             },
-                            error: function() {
+                            error: function () {
                                 console.log("服务器异常");
                             }
                         });
@@ -271,9 +277,9 @@ function dataTable(userData){
                     btn2() {
                         //取消按钮的回调
                     }
-    
+
                 });
-    
+
             } else if (obj.event === 'audit_failed') {
                 layer.open({
                     title: ['审核结果', 'font-size:18px; text-align: center;'],
@@ -287,23 +293,27 @@ function dataTable(userData){
                         $.ajax({
                             url: baseUrl + "/deptorder/deptSH",
                             type: 'post',
-                            data:JSON.stringify({
-                                "deptId" : deptId,
-                                "deptShenhe" : 2,
-                                "deptTime" : yuyueTime,
-                                "deptPhone" : deptPhone,
-                                "deptYuanyin" : unpassyy + untextarea
+                            data: JSON.stringify({
+                                "deptId": deptId,
+                                "deptShenhe": 2,
+                                "deptTime": yuyueTime,
+                                "deptPhone": deptPhone,
+                                "deptYuanyin": unpassyy + untextarea
                             }),
-                            contentType:"application/json",
-                            xhrFields: {widthCredentials: true},
+                            contentType: "application/json",
+                            xhrFields: {
+                                widthCredentials: true
+                            },
                             dataType: 'json',
                             success: function (res) {
-                               console.log(res);
-                               if(res.status == "200"){
-                                layer.msg('审核成功', { icon: 1 });
-                               }
+                                console.log(res);
+                                if (res.status == "200") {
+                                    layer.msg('审核成功', {
+                                        icon: 1
+                                    });
+                                }
                             },
-                            error: function() {
+                            error: function () {
                                 console.log("服务器异常");
                             }
                         });
@@ -312,15 +322,15 @@ function dataTable(userData){
                     btn2() {
                         //取消按钮的回调
                     }
-    
+
                 });
             }
         });
-    
+
         //监听排序
-        table.on('sort(table1)', function(obj) {
+        table.on('sort(table1)', function (obj) {
             console.log(this)
-    
+
             //return;
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
             //服务端排序
@@ -334,15 +344,15 @@ function dataTable(userData){
                     order: obj.type //排序方式
                 }
             });
-        });   
+        });
     });
 }
 
 
 
 // 预约已审核表格
-function dataTables(passData){
-    layui.use('table', function() {
+function dataTables(passData) {
+    layui.use('table', function () {
         var table = layui.table;
         table.render({
             elem: '#table2',
@@ -351,7 +361,7 @@ function dataTables(passData){
             data: passData,
             even: true,
             autoSort: false,
-            page:true,
+            page: true,
             toolbar: '#toolbarDemo',
             cols: [
                 [ //表头
@@ -397,9 +407,9 @@ function dataTables(passData){
                 ]
             ]
         });
-        
+
         // 监听行工具事件
-        table.on('tool(table2)', function(obj) {
+        table.on('tool(table2)', function (obj) {
             var data = obj.data;
             //console.log(obj)
             if (obj.event === 'audit_pass') {
@@ -411,14 +421,16 @@ function dataTables(passData){
                     btn: ['确认', '取消'],
                     btn1() {
                         // 确定按钮的回调 写业务代码
-                        layer.msg('的确很重要', { icon: 1 });
+                        layer.msg('的确很重要', {
+                            icon: 1
+                        });
                     },
                     btn2() {
                         //取消按钮的回调
                     }
-        
+
                 });
-        
+
             } else if (obj.event === 'audit_failed') {
                 layer.open({
                     title: ['审核结果', 'font-size:18px; text-align: center;'],
@@ -428,12 +440,14 @@ function dataTables(passData){
                     btn: ['确认', '取消'],
                     btn1() {
                         // 确定按钮的回调 写业务代码
-                        layer.msg('预约时间成功', { icon: 1 });
+                        layer.msg('预约时间成功', {
+                            icon: 1
+                        });
                     },
                     btn2() {
                         //取消按钮的回调
                     }
-        
+
                 });
             }
         });
@@ -490,4 +504,3 @@ function dataTables(passData){
 //     var type = $(this).data('type');
 //     active[type] ? active[type].call(this) : '';
 // });
-

@@ -14,9 +14,11 @@ body {
 	width: 99.9%;
 	height: 99.8%;
 }
+
 .box {
 	display: none;
 }
+
 /*证件盒子*/
 .content {
 	margin: 12% auto;
@@ -29,12 +31,21 @@ body {
 
 /*健康证正面*/
 .lef {
+	position: relative;
 	width: 85.60mm;
 	/*float: left;*/
 	height: 45.98mm;
 	border: 1px solid #fff;
 	border-radius: 10px;
 	background: #fff;
+}
+
+.lef .zhang {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	left: 63px;
+	bottom: 10px;
 }
 
 .head {
@@ -78,10 +89,15 @@ body {
 
 }
 
-img {
+#personImg {
 	margin-top: 1.5mm;
 	width: 20mm;
 	height: 27mm;
+}
+
+img[src=""],
+img:not([src]) {
+	opacity: 0;
 }
 
 .bott {

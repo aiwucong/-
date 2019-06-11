@@ -16,6 +16,7 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/healthCardEx.js"></script>
     <script src="../js/public.js"></script>
+    
 </head>
 </head>
 
@@ -69,22 +70,22 @@
                         <div class="head">健康证明</div>
                         <div class="cont">
                             <div class="left">
-                                <img id="personImg" class="personImg">
+                                <img id="personImg">
                             </div>
                             <div class="right">
                                 <div class="con">
                                     <div style="height: 100%;">
                                         <div class="head1">
                                             <span>姓名:</span>
-                                            <input type="text" id="name" class="name"/>
+                                            <input type="text" id="name"/>
                                             <span>年龄:</span>
-                                            <input type="text" id="age" class="age"/>
+                                            <input type="text" id="age"/>
                                         </div>
                                         <div class="head2">
                                             <span>性别:</span>
-                                            <input type="text" id="sex" class="sex"/>
+                                            <input type="text" id="sex"/>
                                             <span>体检:</span>
-                                            <input type="text" id="tj" class="tj"/>
+                                            <input type="text" id="tj"/>
                                         </div>
                                     </div>
                                 </div>
@@ -92,14 +93,14 @@
                                     <div class="le1" style="width: 65%;height: 100%;float: left;">
                                         <div class="lea">
                                             <span>有效期至:</span>
-                                            <input type="text" style="width: 55%;" id="dataTime" class="dataTime"/>
+                                            <input type="text" style="width: 55%;" id="dataTime"/>
                                         </div>
                                         <div class="leb">
                                             <span>证号:</span>
-                                            <input type="text" id="card" class="card"/>
+                                            <input type="text" id="card"/>
                                         </div>
                                     </div>
-                                    <img style="width: 20mm;height: 20mm;" id="erwerma" class="erwerma"/>
+                                    <img style="width: 20mm;height: 20mm;" id="erwerma"/>
                                 </div>
                             </div>
 
@@ -107,19 +108,17 @@
                         <div class="bott">
                             武汉玛迪卡智能科技有限公司制发
                         </div>
-                        <img alt="" class="zhang" id="gz" class="gz">
                     </div>
                 </ul>
 
             </div>
             <div class="examine_tab">
-                <table id="table1" lay-filter="table1"></table>
+                <table id="table2" lay-filter="table2"></table>
             </div>
         </div>
     </div>
 
     <script type="text/html" id="barDemo">
-        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_pass">打印</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_xiangqing">详情</a>
     </script>
 
@@ -141,17 +140,17 @@
             <h2 class="box_tit">健康证明</h2>
             <div class="boxHome">
                 <div class="boxImg">
-                    <img alt="" class="personImg">
+                    <img src="../images/person.jpg" alt="" class="personImg">
                 </div>
                 <div class="boxInputs">
                     <div class="lines">
                         <div class="lines_item1">
                             <span class="lines_tit">姓名:</span>
-                            <span class="lines_input name" id="art"></span>
+                            <span class="lines_input name"></span>
                         </div>
                         <div class="lines_item2">
                             <span class="lines_tit">年龄:</span>
-                            <span class="lines_input age"></span>
+                            <span class="lines_input old"></span>
                         </div>
                     </div>
                     <div class="lines">
@@ -176,7 +175,7 @@
                 </div>
             </div>
             <h4 class="companyTitle">武汉玛迪卡智能科技有限公司制发</h4>
-            <img alt="" class="zhang">
+            <img src="../images/zhang.png" alt="">
         </div>
     </div>
     <!--endprint-->

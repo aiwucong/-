@@ -326,22 +326,23 @@ $(function () {
         layui.use('form', function () {
             var form = layui.form;
             $.ajax({
-                type: "post",
-                url: IdUrl + "/changestatus/1", //这个不能改
+                type: "get",
+                url: IdUrl + "/card/get", //这个不能改
                 //url: "http://localhost:8080/mycaream/changestatus/1",
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
-                    if (data == null || data == "") {
-                        alert('请放身份证');
-                    } else {
+                    console.log(data);
+                    if (data.status == 100) {
+                        alert (JSON.stringify((data.data)));
+                    } else if(data.status == 200) {
                         pNation = data.pNation;
                         $('.IDname').attr("value", data.pName);
                         $('#IDcard').attr("value", data.pCertNo);
                         $('.address').attr("value", data.pAddress);
-                        $("#idcardimg").attr("src", "data:image/jpg;base64," + data.photo);
-                        console.log(data.photo);
-                        basestr = data.photo;
+                        $("#idcardimg").attr("src", "data:image/jpg;base64," + data.imgUrl);
+                        console.log(data.imgUrl);
+                        basestr = data.imgUrl;
                         pDepartment = data.pDepartment;
                         pEffectDate = data.pEffectDate;
                         pExpire = data.pExpire;
