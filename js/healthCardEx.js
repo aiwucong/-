@@ -262,15 +262,18 @@ window.onload = function () {
         dataType: 'json',
         success: function (res) {
             var userData = res.data;
-
-            $.each(userData, function (i, n) {
-                if (n.medical == 0) {
-                    n.medical = "合格"
-                } else {
-                    n.medical = "不合格"
-                }
-            })
-            dataTable(userData)
+            if(userData != null){
+                $.each(userData, function (i, n) {
+                    if (n.medical == 0) {
+                        n.medical = "合格"
+                    } else {
+                        n.medical = "不合格"
+                    }
+                })
+                dataTable(userData)
+            }
+            
+           
         }
     })
     // 已打印

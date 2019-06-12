@@ -3,12 +3,12 @@ window.onload = function() {
         url: baseUrl+'/tubiao/allCount',
         type: "get",
         success:function(res){
-            console.log(res);
-            $('#tijian').text(res.data.daytjnum)
-            $('#yuyue').text(res.data.dayordernum)
-            $('#fazheng').text(res.data.daycardnum)
-            $('#month-tijian').text(res.data.monthtjnum)
-            $('#all_tijian').text(res.data.alltjnum)
+            // console.log(res);
+            $('#tijian').text(res.data.day_tjcount)
+            $('#yuyue').text(res.data.day_yuyue)
+            $('#fazheng').text(res.data.day_fz)
+            $('#month-tijian').text(res.data.month_tjcount)
+            $('#all_tijian').text(res.data.all_tjcount)
         },
         error: function() {
             console.log("服务器异常");

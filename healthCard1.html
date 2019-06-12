@@ -7,6 +7,18 @@
 	<link rel="stylesheet" href="css/healthCard2.css" />
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="./js/public.js"></script>
+	<style>
+	.da{
+		width: 100px;
+		height: 50px;
+		background: #006999;
+		border: none;
+		border-radius: 6px;
+		margin-left: 35%;
+		color: #fff;
+		font-size: 20px;
+	}
+	</style>
 </head>
 
 <body>
@@ -17,7 +29,7 @@
 			<h2 class="box_tit">健康证明</h2>
 			<div class="boxHome">
 				<div class="boxImg">
-					<img src="./images/person.jpg" alt="" class="personImg">
+					<img src="" alt="" class="personImg">
 				</div>
 				<div class="boxInputs">
 					<div class="liners">
@@ -48,11 +60,11 @@
 						<span class="liners_tit">证号:</span>
 						<span class="liners_input card"></span>
 					</div>
-					<img src="images/code.jpg" alt="" class="erweima">
+					<img src="" alt="" class="erweima">
 				</div>
 			</div>
-			<h4 class="companyTitle">武汉玛迪卡智能科技有限公司制发</h4>
-			<img src="images/zhang.png" alt="" class="zhang">
+			<h4 class="companyTitle"></h4>
+			<img src="" alt="" class="zhang">
 		</div>
 	</div>
 	<!--endprint-->
@@ -70,24 +82,8 @@
 			window.document.body.innerHTML = bdhtml;
 		})
 		// 接受传值
-		$.ajax({
-			url: baseUrl+"/tijian/getcardinfo",
-			type: "get",
-			contentType: "application/json;charset=utf-8",
-            dataType: 'json',
-            // data: JSON.stringify(data),
-			success: function (res) {
-				var userData = res.data
-				console.log(userData)
-				$('.name').text(userData.name)
-				$('.old').text(userData.age)
-				$('.sex').text(userData.sex)
-				$('.tj').text("合格")
-				$('.dataTime').text(userData.enddate)
-				$('.card').text(userData.hearthcardNum)
-				$('.personImg').attr('src',userData.idcardimg)
-			}
-		})
+		var idcard = localStorage.getItem("idCard");
+		console.log(idcard);
 	})
 </script>
 

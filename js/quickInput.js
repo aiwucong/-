@@ -13,8 +13,8 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     table.on('rowDouble(test)', function (obj) {
         // console.log(obj.tr) //得到当前行元素对象
         // console.log(obj.data) //得到当前行数据
-        // console.log(obj.data.idcardphoto);
-        $("#idcardimg").attr("src", "data:image/jpg;base64," + obj.data.idcardphoto);
+        localStorage.setItem("idCard",obj.data.idcardNum);
+        $("#idcardimg").attr("src", "data:image/jpg;base64," + obj.data.idcardPhoto);
 
         $.each(obj.data, (key, val) => {
             if (key == 'sex') {
@@ -49,7 +49,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             var arrs = [];
             for (var i = 0; i < data.length; i++) {
                 arrs[i] = data[i].idcardNum;
-                console.log(arrs[i]);
+                // console.log(arrs[i]);
             }
             // console.log(data);
             var batchBox = layer.open({
@@ -78,6 +78,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     // 日期
     laydate.render({
         elem: '#startdate', //指定元素
+        value: new Date(),
         done: function (value, date) {
             var FullYear = date.year + 1;
             var month = date.month;
@@ -166,8 +167,8 @@ $(function () {
             success: function (data) {
                 // alert(JSON.stringify(data));
                 if (data.status == 200) {
-                    alert("保存成功");
-                    console.log(data.data.idcardNum);
+                    alert("保存成功,正在请求打印请等待!!!");
+                    // console.log(data.data.idcardNum);
                     var dataId = data.data.idcardNum;
                     xiangqing(dataId);
                     $.ajax({
@@ -176,13 +177,12 @@ $(function () {
                         dataType: 'json',
                         success: function (res) {
                             var userData = res.data
-                            // console.log(userData)
-                            dataTable(userData)                           
+                            dataTable(userData)                     
                         }
                     })
                 } else {
                     alert("保存失败，原因为" + data.data);
-                    console.log(data);
+                    // console.log(data);
                 }
             },
             error: function () {
@@ -205,7 +205,7 @@ $(function () {
                 var cusHtalthCard = $('#cusHtalthCard').val();
                 var cusHtalthCard2 = $('#cusHtalthCard2').html();
                 $('.healthnumber').attr("value", cusHtalthCard.toString() + cusHtalthCard2);
-                console.log(cusHtalthCard.toString() + cusHtalthCard2)
+                // console.log(cusHtalthCard.toString() + cusHtalthCard2)
                 layer.msg('修改成功', {
                     icon: 1
                 });
@@ -262,39 +262,19 @@ $(function () {
 
 
     //打印健康证
-    $('.healthCard1').click(function () {
-        //var IDnumber = $("#IDnumber").val(),
-        var IDname = $(".IDname").val(),
-            sex = $("input[type='radio']:checked").val(),
-            age = $("#age").val(),
-            idcardimg = $('#idcardimg')[0].src,
-            enddate = $("#enddate").val(),
-            hearthcardNum = $(".hearthcardNum").val(),
-            sexList = "";
-        if (sex = 1) {
-            sexList = '男'
-        } else {
-            sexList = '女'
+    $('.healthCard1').on('click',function(){
+        var IDcard = $('#IDcard').val()
+        var dataId = localStorage.getItem('idCard')
+        if(IDcard == ""){
+            alert("请输入该成员打印信息")
+        }else{
+            // var dataId = data.data.idcardNum;
+            alert("正在处理打印数据请稍等")
+            xiangqing(dataId);
+          
         }
-        var data = {
-            "name": IDname,
-            "sex": sexList,
-            "age": age,
-            "idcardimg": idcardimg,
-            "hearthcardNum": hearthcardNum,
-            "enddate": enddate
-        };
-        $.ajax({
-            url: baseUrl + '/tijian/savecardinfo',
-            type: "post",
-            contentType: "application/json;charset=utf-8",
-            //dataType: 'json',
-            data: JSON.stringify(data),
-            success: function (res) {
-                // console.log(res)
-            }
-        })
     })
+    
     // 读身份证
     var pNation;
     var basestr;
@@ -339,7 +319,7 @@ $(function () {
                             // console.log(year)
                             $('#age').attr("value", year);
                         } else {
-                            console.log(year--)
+                            // console.log(year--)
                             $('#age').attr("value", year--);
                         }
                         form.render(); //更新全部   
@@ -365,16 +345,82 @@ $(function () {
 
 
     // 返回表格的数据
-    $.ajax({
-        url: baseUrl + "/tijian/getWeekData",
-        type: 'get',
-        dataType: 'json',
-        success: function (res) {
-            console.log(res)
-            var userData = res.data
-            console.log(userData)
-            dataTable(userData)
-        }
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#demo',
+            height: 312,
+            url: baseUrl + "/tijian/getWeekData",
+            response: {
+                statusName: 'status',
+                statusCode:200, // 对应 code自定义的参数名称
+                msgName: 'msg', // 对应 msg自定义的参数名称
+                countName: 'countSum', // 对应 count自定义的参数名称
+                dataName: 'data' // 对应 data自定义的参数名称
+                },
+            page: true, //开启分页
+            toolbar: '#toolbarDemo',
+            cols: [
+                [ //表头
+                    {
+                        width: 60,
+                        type: "checkbox",
+                        fixed: 'left'
+                    },
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        even: 'setSign'
+                    }, {
+                        field: 'name',
+                        title: '姓名'
+                    }, {
+                        field: 'sex',
+                        title: '性别',
+                        sort: true
+                    }, {
+                        field: 'age',
+                        title: '年龄'
+                    }, {
+                        field: 'startdate',
+                        title: '办证日期',
+                        sort: true
+                    }, {
+                        field: 'person',
+                        title: '办证人员',
+                        sort: true
+                    }, {
+                        field: 'telphone',
+                        title: '手机号码'
+                    }, {
+                        field: 'idcardNum',
+                        title: '身份证号'
+                    },
+                    {
+                        field: 'hearthcardNum',
+                        title: '健康证号',
+                        sort: true
+                    },
+                    {
+                        field: 'adress',
+                        title: '通信地址',
+                        sort: true
+                    }, {
+                        field: 'deptNum',
+                        title: '办证单位',
+                        sort: true
+                    }, {
+                        field: 'idcardPhoto',
+                        title: '照片',
+                        sort: true
+                    }
+                ]
+            ],
+            done: function (res, curr, count) { // 隐藏列
+                $(".layui-table-box").find("[data-field='idcardPhoto']").css("display", "none");
+            }
+        })
     })
 
     function dataTable(userData) {
@@ -396,61 +442,49 @@ $(function () {
                         {
                             field: 'id',
                             title: 'ID',
-                            width: 80,
                             sort: true,
                             even: 'setSign'
                         }, {
                             field: 'name',
-                            title: '姓名',
-                            // width: 50
+                            title: '姓名'
                         }, {
                             field: 'sex',
                             title: '性别',
-                            width: 80,
                             sort: true
                         }, {
                             field: 'age',
-                            title: '年龄',
-                            width: 80
+                            title: '年龄'
                         }, {
                             field: 'startdate',
                             title: '办证日期',
-                            width: 80,
                             sort: true
                         }, {
                             field: 'person',
                             title: '办证人员',
-                            width: 80,
                             sort: true
                         }, {
                             field: 'telphone',
-                            title: '手机号码',
-                            width: 80
+                            title: '手机号码'
                         }, {
                             field: 'idcardNum',
-                            title: '身份证号',
-                            width: 135
+                            title: '身份证号'
                         },
                         {
                             field: 'hearthcardNum',
                             title: '健康证号',
-                            width: 135,
                             sort: true
                         },
                         {
                             field: 'adress',
                             title: '通信地址',
-                            width: 135,
                             sort: true
                         }, {
                             field: 'deptNum',
                             title: '办证单位',
-                            width: 135,
                             sort: true
                         }, {
                             field: 'idcardPhoto',
                             title: '照片',
-                            width: 135,
                             sort: true
                         }
                     ]
@@ -464,7 +498,6 @@ $(function () {
 
     // 获取图片传值
     $('.btn1').click(function () {
-        console.log(111);
         $.ajax({
             type: "post",
             url: IdUrl + "/changestatus/3", //这个不能改
@@ -499,7 +532,6 @@ window.onload = function () {
 }
 // 返回办证单位函数
 function PersonnelUnit() {
-    console.log(localStorage.getItem("token"))
     $.ajax({
         url: baseUrl + "/tijian/userInfo?token=" + localStorage.getItem("token"),
         type: "get",
@@ -507,7 +539,7 @@ function PersonnelUnit() {
             widthCredentials: true
         },
         success: function (res) {
-            console.log(res);
+            // console.log(res);
             // console.log(res.data.hearthcardNum);
             $('.bzpeople').val(res.name);
             $('#hospitalNum').val(res.hospitalNum);
@@ -522,7 +554,7 @@ function PersonnelUnit() {
             }
         },
         error: function () {
-            console.log("服务器异常");
+            alert("服务器异常");
         }
     })
 }
@@ -571,9 +603,17 @@ function xiangqing(dataId) {
             $('.erweima').attr('src', "data:image/jpg;base64," + res.data.qrCode);
             $('.zhang').attr('src', "data:image/jpg;base64," + res.data.gz);
             $('.personImg').attr('src', "data:image/jpg;base64," + res.data.idCardPhoto);
+            $('.companyTitle').text(res.data.hospitalName);
             $('.card').text(res.data.healthNum);
-            winPrint();
-    
+            if(res.data.gz != ""){
+                // console.log("公章")
+                var timer = setInterval(function(){
+                    winPrint();
+                    clearInterval(timer)
+                },500)
+            }else{
+                alert("公章不存在")
+            }
             
         }
     })
