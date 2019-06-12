@@ -330,3 +330,10 @@ body {
 .layui-table-tool {
     padding: 10px 15px 10px 10px;
 }
+/* 健康证隐藏 */
+.box {
+    display: none;
+}
+img[src=""], img:not([src]) {
+    opacity: 0;
+}

@@ -12,8 +12,8 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     // 表格监听
     table.on('rowDouble(test)', function (obj) {
         // console.log(obj.tr) //得到当前行元素对象
-        console.log(obj.data) //得到当前行数据
-        console.log(obj.data.idcardphoto);
+        // console.log(obj.data) //得到当前行数据
+        // console.log(obj.data.idcardphoto);
         $("#idcardimg").attr("src", "data:image/jpg;base64," + obj.data.idcardphoto);
 
         $.each(obj.data, (key, val) => {
@@ -44,14 +44,14 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
         // 批量修改办证单位
         if (obj.event === 'batchMod') {
             var checkStatus = table.checkStatus(obj.config.id);
-            console.log(checkStatus);
+            // console.log(checkStatus);
             var data = checkStatus.data;
             var arrs = [];
             for (var i = 0; i < data.length; i++) {
                 arrs[i] = data[i].idcardNum;
                 console.log(arrs[i]);
             }
-            console.log(data);
+            // console.log(data);
             var batchBox = layer.open({
                 title: ['批量修改', 'font-size:18px; text-align: center;'],
                 area: ['400px', '200px'],
@@ -61,7 +61,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
                 btn1() {
                     // 确定按钮的回调
                     var deptNum = $('#deptNum').val();
-                    console.log(deptNum);
+                    // console.log(deptNum);
                     layer.msg('修改成功', {
                         icon: 1
                     });
@@ -95,36 +95,16 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
         elem: '#test1',
         before: function (obj) {
             //预读本地文件示例，不支持ie8
-            console.log(obj)
+            // console.log(obj)
             obj.preview(function (index, file, result) {
                 //   console.log(result)
-                console.log(file.name)
+                // console.log(file.name)
                 //   console.log(index)
                 $('#idcardimg').attr('src', result); //图片链接（base64）
 
             });
         }
     });
-
-
-    // 复选框
-    form.on('checkbox', function (data) {
-        if (data.value == 1 && data.elem.checked == true) {
-            timer = setInterval(function () {
-                $.ajax({
-                    type: "post",
-                    url: "http://192.168.1.115:8080/mycaream/changestatus/1", //这个目前不改
-                    async: true,
-                    contentType: "application/json",
-                    success: function (data) {
-                        console.log(data)
-                    }
-                })
-            }, 5000)
-        } else {
-            clearInterval(timer)
-        }
-    })
 });
 // 新增数据
 var pDepartment;
@@ -146,14 +126,15 @@ $(function () {
             enddate = $("#enddate").val(),
             age = $("#age").val(),
             deptNum = $(".units").val(),
-            idcardimg = basestr,
+            hospitalNum = $('#hospitalNum').val()
+        idcardimg = basestr,
             sexList = "";
         if (sex = 1) {
             sexList = '男'
         } else {
             sexList = '女'
         }
-        console.log(idcardimg);
+        // console.log(hospitalNum);
         var data = {
             "number": IDnumber,
             "name": IDname,
@@ -172,7 +153,8 @@ $(function () {
             "nation": pNation,
             "starttime": pEffectDate,
             "psb": pDepartment,
-            "endtime": pExpire
+            "endtime": pExpire,
+            "hospitalNum": hospitalNum
         };
 
         $.ajax({
@@ -182,29 +164,21 @@ $(function () {
             dataType: 'json',
             data: JSON.stringify(data),
             success: function (data) {
-                alert(JSON.stringify(data));
-                //体检编号自增
-                var num = $("#IDnumber").val().substring(5);
-                console.log(num)
-                num++;
-                num += 100000;
-                console.log(num)
-                var newnum = $("#IDnumber").val().substring(0, 5) + num.toString().substring(1);
-                console.log(newnum)
-                $("#IDnumber").val(newnum)
-                var userData = data.data
-                //window.location.reload()
+                // alert(JSON.stringify(data));
                 if (data.status == 200) {
                     alert("保存成功");
+                    console.log(data.data.idcardNum);
+                    var dataId = data.data.idcardNum;
+                    xiangqing(dataId);
                     $.ajax({
-                        url: baseUrl + "/tijian/weektjlist",
-                        type: 'POST',
+                        url: baseUrl + "/tijian/getWeekData",
+                        type: 'get',
                         dataType: 'json',
                         success: function (res) {
                             var userData = res.data
-                            console.log(userData)
-                            dataTable(userData)
-                        } 
+                            // console.log(userData)
+                            dataTable(userData)                           
+                        }
                     })
                 } else {
                     alert("保存失败，原因为" + data.data);
@@ -253,6 +227,7 @@ $(function () {
             idcardNum = $("#IDcard").val(),
             adress = $(".address").val(),
             age = $("#age").val(),
+            hospitalNum = $('#hospitalNum').val(),
             idcardimg = $('#idcardimg')[0].src,
             sexList = "";
         if (sex = 1) {
@@ -270,7 +245,8 @@ $(function () {
             "startdate": startdate,
             "idcardNum": idcardNum,
             "adress": adress,
-            "idcardimg": idcardimg
+            "idcardimg": idcardimg,
+            "hospitalNum": hospitalNum
         };
         $.ajax({
             url: baseUrl + '/tijian/tjtable',
@@ -279,7 +255,7 @@ $(function () {
             //dataType: 'json',
             data: JSON.stringify(data),
             success: function (res) {
-                console.log(res)
+                // console.log(res)
             }
         })
     })
@@ -315,7 +291,7 @@ $(function () {
             //dataType: 'json',
             data: JSON.stringify(data),
             success: function (res) {
-                console.log(res)
+                // console.log(res)
             }
         })
     })
@@ -327,21 +303,20 @@ $(function () {
             var form = layui.form;
             $.ajax({
                 type: "get",
-                url: IdUrl + "/card/get", //这个不能改
-                //url: "http://localhost:8080/mycaream/changestatus/1",
+                url: IdUrl + "/card/get",
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     if (data.status == 100) {
-                        alert (JSON.stringify((data.data)));
-                    } else if(data.status == 200) {
+                        alert(JSON.stringify((data.data)));
+                    } else if (data.status == 200) {
                         pNation = data.pNation;
                         $('.IDname').attr("value", data.pName);
                         $('#IDcard').attr("value", data.pCertNo);
                         $('.address').attr("value", data.pAddress);
                         $("#idcardimg").attr("src", "data:image/jpg;base64," + data.imgUrl);
-                        console.log(data.imgUrl);
+                        // console.log(data.imgUrl);
                         basestr = data.imgUrl;
                         pDepartment = data.pDepartment;
                         pEffectDate = data.pEffectDate;
@@ -361,7 +336,7 @@ $(function () {
                         var m1 = birth.substring(4, 6);
                         var m2 = date.getMonth() + 1;
                         if (m1 < m2) {
-                            console.log(year)
+                            // console.log(year)
                             $('#age').attr("value", year);
                         } else {
                             console.log(year--)
@@ -389,15 +364,13 @@ $(function () {
     // }
 
 
-
-
-
     // 返回表格的数据
     $.ajax({
-        url: baseUrl + "/tijian/weektjlist",
-        type: 'POST',
+        url: baseUrl + "/tijian/getWeekData",
+        type: 'get',
         dataType: 'json',
         success: function (res) {
+            console.log(res)
             var userData = res.data
             console.log(userData)
             dataTable(userData)
@@ -495,12 +468,11 @@ $(function () {
         $.ajax({
             type: "post",
             url: IdUrl + "/changestatus/3", //这个不能改
-            //url: "http://localhost:8080/mycaream/changestatus/3",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
-                console.log(data);
-                console.log(data.photo)
+                // console.log(data);
+                // console.log(data.photo)
                 $("#idcardimg").attr("src", "data:image/jpg;base64," + data.photo);
             },
             error: function () {
@@ -511,17 +483,98 @@ $(function () {
 })
 // 返回健康证号
 window.onload = function () {
+    // $.ajax({
+    //     url: baseUrl + "/tijian/getlastnum",
+    //     type: "get",
+    //     success: function (res) {
+    //         // console.log(res);
+    //         // console.log(res.data.hearthcardNum);
+    //         $('.healthnumber').attr("value", res.data.hearthcardNum);
+    //     },
+    //     error: function () {
+    //         console.log("服务器异常");
+    //     }
+    // })
+    PersonnelUnit();
+}
+// 返回办证单位函数
+function PersonnelUnit() {
+    console.log(localStorage.getItem("token"))
     $.ajax({
-        url: baseUrl + "/tijian/getlastnum",
+        url: baseUrl + "/tijian/userInfo?token=" + localStorage.getItem("token"),
         type: "get",
+        xhrFields: {
+            widthCredentials: true
+        },
         success: function (res) {
             console.log(res);
-            console.log(res.data.hearthcardNum);
-            $('.healthnumber').attr("value", res.data.hearthcardNum);
+            // console.log(res.data.hearthcardNum);
+            $('.bzpeople').val(res.name);
+            $('#hospitalNum').val(res.hospitalNum);
+            $('.units').val(res.hospitalName);
+            $('.healthnumber').val(res.healthNum);
+            $('#IDnumber').val(res.number)
+            if (res.status == "fail") {
+                alert('请登录账号');
+                if (window != window.top) {
+                    window.top.location = "/index.html";
+                }
+            }
         },
         error: function () {
             console.log("服务器异常");
         }
     })
 }
+// 打印函数
+function winPrint() {
+    $('.box').show();
+    bdhtml = window.document.body.innerHTML; //获取当前页的html代码
+    sprnstr = "<!--stratprint-->"; //设置打印开始区域 
+    eprnstr = "<!--endprint-->"; //设置打印结束区域 
+    prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17); //从开始代码向后取html 
+    prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr)); //从结束代码向前取html 
+    window.document.body.innerHTML = prnhtml;
+    window.print();
+    window.document.body.innerHTML = bdhtml;
+    location.reload();
+    $('.box').hide();
+}
 
+
+// 详情
+function xiangqing(dataId) {
+    $.ajax({
+        url: baseUrl + "/healthcard/saveAndDayin",
+        type: 'post',
+        xhrFields: {
+            widthCredentials: true
+        },
+        data: JSON.stringify({
+            "idCard": dataId
+        }),
+        contentType: "application/json;charset=UTF-8",
+        dataType: 'json',
+        success: function (res) {
+            console.log(res);
+            var medical = res.data.medical
+            if (medical == 0) {
+                medical = "合格"
+            } else {
+                medical = "不合格"
+            }
+            $('.name').text(res.data.name);
+            $('.old').text(res.data.age);
+            $('.sex').text(res.data.gender);
+            $('.tj').text(medical);
+            $('.dataTime').text(res.data.endTime);
+            $('.erweima').attr('src', "data:image/jpg;base64," + res.data.qrCode);
+            $('.zhang').attr('src', "data:image/jpg;base64," + res.data.gz);
+            $('.personImg').attr('src', "data:image/jpg;base64," + res.data.idCardPhoto);
+            $('.card').text(res.data.healthNum);
+            winPrint();
+    
+            
+        }
+    })
+}

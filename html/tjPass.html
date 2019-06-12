@@ -16,7 +16,7 @@
     <script src="../js/public.js"></script>
 </head>
 
-<body>
+<body style="height:100%">
     <div class="layui-layout layui-layout-admin">
         <div class="examine_body">
             <div class="queryAll">
@@ -28,14 +28,14 @@
                                     <label class="layui-form-label main_name">姓　　名</label>
                                     <div class="layui-input-block main_input_block">
                                         <input type="text" name="title" required lay-verify="required"
-                                            placeholder="请输入姓名" autocomplete="off" class="layui-input main_input">
+                                            placeholder="请输入姓名" autocomplete="off" class="layui-input main_input nameId">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="layui-form-label main_name">体检编号</label>
                                     <div class="layui-input-block main_input_block">
                                         <input type="text" name="title" required lay-verify="required"
-                                            placeholder="请输入体检编号" autocomplete="off" class="layui-input main_input">
+                                            placeholder="请输入体检编号" autocomplete="off" class="layui-input main_input tjCard">
                                     </div>
                                 </div>
 
@@ -62,18 +62,10 @@
                     </div>
                 </ul>
                 <ul class="queryAll_list">
-                    <!-- <li>
-                        <span class="queryAll_name">体检待审核总数</span>
-                        <p class="queryAll_nember" id="unaudited-audited">245</p>
-                    </li> -->
                     <li>
                         <span class="queryAll_name">体检合格总数</span>
                         <p class="queryAll_nember" id="already-audited"></p>
                     </li>
-                    <!-- <li>
-                        <span class="queryAll_name">体检不合格总数</span>
-                        <p class="queryAll_nember" id="unalready-audited">245</p>
-                    </li> -->
                 </ul>
 
             </div>
@@ -99,25 +91,12 @@
     <div id="box1">
         <div class="layui-form">
             <div class="layui-form-item layui-form-text">
-                <!-- <label class="layui-form-label rensonText">不合格原因:</label> -->
                 <div class="layui-input-block renson">
                     <textarea name="desc" placeholder="请输入不合格原因" class="layui-textarea"></textarea>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div id="box2">
-        <div class="layui-form">
-            <div class="layui-form-item">
-                <div class="layui-input-block renson">
-                    <select name="city" lay-verify="required" lay-filter="category">
-                        <option value="">请选择</option>
-                        <option value="0">不合格</option>
-                      </select>
-                </div>
-            </div>
-            </div>
-    </div> -->
     <script>
     </script>
     <script type="text/html" id="barDemo">
@@ -126,7 +105,7 @@
     </script>
 
     <script type="text/html" id="toolbarDemos">
-        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit_modify">修改按钮</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs exa" lay-event="audit">修改按钮</a>
     </script>
 
 </body>

@@ -21,8 +21,10 @@
 				xhrFields:{withCredentials:true},
 				success:function(data){
 					if(data.status=="success"){
+						localStorage.setItem('token',data.data.token)
+						localStorage.removeItem('iframeList')
 						// alert("登录成功");
-						window.location.href="html/index.html";
+					location.href="html/index.html";
 					}else{
 						alert("登录失败，原因为"+data.data.errMsg);
 					}

@@ -1,9 +1,9 @@
 window.onload = function() {
     $.ajax({
-        url: baseUrl+'/tubiao/indexcount',
+        url: baseUrl+'/tubiao/allCount',
         type: "get",
         success:function(res){
-            console.log(res)
+            console.log(res);
             $('#tijian').text(res.data.daytjnum)
             $('#yuyue').text(res.data.dayordernum)
             $('#fazheng').text(res.data.daycardnum)
@@ -22,11 +22,10 @@ window.onload = function() {
     $.ajax({
         type: "get",
         async: true,
-        url: baseUrl + '/tubiao/zhucountone',      //请求发送到TestServlet处
+        url: baseUrl + '/tubiao/zhucountone',   //请求发送到TestServlet处
         data: {},
         success: function(result) {
             // alert(result);
-             console.log(result);
             var result = result.data;
             //请求成功时执行该函数内容，result即为服务器返回的json对象
             if (result) {

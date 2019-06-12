@@ -5,7 +5,8 @@ layui.use(['element', 'laydate', 'layer', 'form'], function () {
 
     //日期范围
     laydate.render({
-        elem: '#aa',
+        elem: '#w_date',
+        range: true
     });
     form.on('submit(formDemo)', function (data) {
         layer.msg(JSON.stringify(data.field));
@@ -96,7 +97,7 @@ function dataTable(userData) {
 
         //监听排序
         table.on('sort(table1)', function (obj) {
-            console.log(this)
+            // console.log(this)
 
             //return;
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
@@ -198,7 +199,7 @@ function dataTables(passDate) {
 
         //监听排序
         table.on('sort(table2)', function (obj) {
-            console.log(this)
+            // console.log(this)
 
             //return;
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
@@ -310,7 +311,6 @@ function xiangqing(dataId) {
         contentType: "application/json;charset=UTF-8",
         dataType: 'json',
         success: function (res) {
-            console.log(res);
             var medical = res.data.medical
             if (medical == 0) {
                 medical = "合格"
@@ -330,8 +330,8 @@ function xiangqing(dataId) {
             $('.age').text(res.data.age);
             $('.sex').text(res.data.gender);
             $('.tj').text(medical);
-            $('.dataTime').text( res.data.updateTime);
-            $('.erweima').attr('src' ,"data:image/jpg;base64," + res.data.qrCode);
+            $('.dataTime').text(res.data.updateTime);
+            $('.erweima').attr('src', "data:image/jpg;base64," + res.data.qrCode);
             $('.zhang').attr('src', "data:image/jpg;base64," + res.data.gz);
             $('.personImg').attr('src', "data:image/jpg;base64," + res.data.idCardPhoto);
             $('.card').text(res.data.healthNum);
@@ -339,3 +339,90 @@ function xiangqing(dataId) {
     })
 
 }
+// 身份证正则
+function isCardNo(wcard) {
+    var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    if (reg.test(wcard) === false) {
+        alert('身份证输入不合法');
+        return false
+    }
+}
+
+//查询掉接口
+function queryAjax(data){
+    $.ajax({
+        url: baseUrl + "/healthcard/keywordSelect",
+        type: "post",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (res) {
+            var data = res.data;
+            // console.log(data);
+            var noPrint = [];
+            var printyes = [];
+            if (res.status == 100) {
+                alert("未找到该人员信息")
+                return
+                // location.reload()
+            }else{
+                $.each(data, function (i, n) {
+                    // console.log(n)
+                    if (n.printStatus == 0) {
+                        noPrint.push(n)
+                        dataTable(userData)
+                    } else {
+                        printyes.push(n)
+
+                    }
+                })
+            }
+            
+            var userData = noPrint;
+            dataTable(userData)
+            var passData = printyes;
+            dataTables(passData)
+        },
+        error: function () {
+            console.log('失败');
+        }
+    })
+}
+function queryDiv() {
+    var wname = $('#w_name').val();
+    var wcard = $('#w_card').val();
+    var wdate = $('#w_date').val();
+    var data = {
+        "name": wname,
+        "idCard": wcard,
+        "yuliu1": wdate
+    };
+    if (wname == "" && wcard == "" && wdate == "") {
+        alert('请输入')
+        return
+    } else {
+        if( wcard != ""){
+            isCardNo(wcard)
+            queryAjax(data)
+        }else{
+            queryAjax(data)
+        }
+    }
+}
+
+// 查询
+$(function () {
+    $('.chaxun').on('click', function () {
+        queryDiv();
+    })
+
+})
+
+$(document).keydown(function (event) {
+    if (event.keyCode == 13) {
+        queryDiv()
+    }
+});

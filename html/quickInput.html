@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../src/css/layui.css">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/quickInput.css">
+    <link rel="stylesheet" href="../css/healthCard2.css"/>
     <script src="../src/layui.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/quickInput.js"></script>
@@ -49,20 +50,19 @@
                             <div class="layui-form-item">
                                 <div class="lines">
                                     <label class="layui-form-label">姓　　名</label>
-                                    <input type="text" name="name" required lay-verify="required" placeholder="请输入姓名"
+                                    <input type="text" name="name" required lay-verify="required" 
                                         autocomplete="off" class="layui-input IDname">
                                 </div>
                                 <div class="lines">
                                     <label class="layui-form-label">身份证号</label>
-                                    <input type="text" name="idcardNum" required lay-verify="required"
-                                        placeholder="请输入身份证号" autocomplete="off" class="layui-input" id="IDcard">
+                                    <input type="text" name="idcardNum" required lay-verify="required" autocomplete="off" class="layui-input" id="IDcard">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <div class="lines nameChecks">
                                     <div class="checks2">
                                         <label class="layui-form-label">年　　龄</label>
-                                        <input type="text" name="age" required lay-verify="required" autocomplete="off"
+                                        <input type="text" name="age" required lay-verify="required" autocomplete="off" readonly="readonly"
                                             class="layui-input" id="age">
                                     </div>
                                     <div class="checks1">
@@ -84,12 +84,12 @@
                                 <div class="lines">
                                     <label class="layui-form-label">工作单位</label>
                                     <input type="text" name="company" required lay-verify="required" placeholder="请输入单位"
-                                        autocomplete="off" class="layui-input" id="company" value="马迪卡">
+                                        autocomplete="off" class="layui-input" id="company" value="">
                                 </div>
                                 <div class="lines">
                                     <label class="layui-form-label">通信地址</label>
                                     <input type="text" name="adress" required lay-verify="required"
-                                        placeholder="请输入通信地址" autocomplete="off" class="layui-input address" value="武汉">
+                                    readonly="readonly" placeholder="请输入通信地址" autocomplete="off" class="layui-input address" value="武汉">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -108,13 +108,14 @@
                                 <div class="lines">
                                     <label class="layui-form-label">办证人员</label>
                                     <input type="text" name="person" required lay-verify="required"
-                                        placeholder="请输入办证人员" autocomplete="off" class="layui-input bzpeople"
-                                        value="admin">
+                                        placeholder="请输入办证人员" autocomplete="off" class="layui-input bzpeople" value=""
+                                        readonly="readonly">
                                 </div>
                                 <div class="lines">
                                     <label class="layui-form-label">办证单位</label>
                                     <input type="text" name="deptNum" required lay-verify="required"
-                                        placeholder="请输入办证单位" autocomplete="off" class="layui-input units" value="马迪卡">
+                                        placeholder="请输入办证单位" autocomplete="off" class="layui-input units" value=""
+                                        readonly="readonly">
                                 </div>
                             </div>
                         </div>
@@ -137,8 +138,8 @@
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1 healthCard1">
-                                    <a href="javascript:viod()" data-url="../healthCard1.html" mytitle="健康证" data-id="listHolder"
-                                        style="color: #fff;">打印健康证</a>
+                                    <a href="javascript:viod()" data-url="../healthCard1.html" mytitle="健康证"
+                                        data-id="listHolder" style="color: #fff;">打印健康证</a>
                                 </button>
                             </div>
                             <div class="layui-form-item">
@@ -205,6 +206,56 @@
             </script>
         </form>
     </div>
+    <input type="hidden" value="" id="hospitalNum">
+
+
+
+    <!-- 打印健康证 -->
+    <!--stratprint-->
+	<div class="box">
+		<div class="box_center">
+			<h2 class="box_tit">健康证明</h2>
+			<div class="boxHome">
+				<div class="boxImg">
+					<img alt="" class="personImg">
+				</div>
+				<div class="boxInputs">
+					<div class="liners">
+						<div class="liners_item1">
+							<span class="liners_tit">姓名:</span>
+							<span class="liners_input name"></span>
+						</div>
+						<div class="liners_item2">
+							<span class="liners_tit">年龄:</span>
+							<span class="liners_input old"></span>
+						</div>
+					</div>
+					<div class="liners">
+						<div class="liners_item1">
+							<span class="liners_tit">性别:</span>
+							<span class="liners_input sex"></span>
+						</div>
+						<div class="liners_item2">
+							<span class="liners_tit">体检:</span>
+							<span class="liners_input tj"></span>
+						</div>
+					</div>
+					<div class="Ylines">
+						<span class="liners_tit">有效期至:</span>
+						<span class="liners_input dataTime"></span>
+					</div>
+					<div class="Ylines">
+						<span class="liners_tit">证号:</span>
+						<span class="liners_input card"></span>
+					</div>
+					<img alt="" class="erweima">
+				</div>
+			</div>
+			<h4 class="companyTitle">武汉玛迪卡智能科技有限公司制发</h4>
+			<img alt="" class="zhang">
+		</div>
+	</div>
+	<!--endprint-->
 </body>
 
 </html>

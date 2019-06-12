@@ -7,7 +7,6 @@ window.onload = function () {
             withCredentials: true
         },
         success: function (res) {
-            console.log(res);
             $('#unaudited-audited').text(res.data.daish);
             $('#already-audited').text(res.data.yish);
         },
@@ -46,7 +45,7 @@ layui.use(['element', 'laydate', 'layer', 'form'], function () {
     var form = layui.form;
 
     form.on('select(required)', function (data) {
-        console.log(data.value); //得到被选中的值
+        // console.log(data.value); //得到被选中的值
         unpassyy = data.value;
     });
 
@@ -55,7 +54,7 @@ layui.use(['element', 'laydate', 'layer', 'form'], function () {
         elem: '#aa',
         done: function (value, date, endDate) {
             yuyueTime = value;
-            console.log(yuyueTime);
+            // console.log(yuyueTime);
         }
     });
 
@@ -126,7 +125,6 @@ function queryDiv() {
                 withCredentials: true
             },
             success: function (res) {
-                console.log(res)
                 var data = res.data;
                 $.each(data, function (i, n) {
                     if (n.deptShenhe == 0) {
@@ -160,7 +158,6 @@ $(function () {
 
 $(document).keydown(function (event) {
     if (event.keyCode == 13) {
-        console.log('你按下了Enter');
         queryDiv()
     }
 });
@@ -233,10 +230,9 @@ function dataTable(userData) {
             var deptId;
             var deptPhone;
             table.on('row(table1)', function (obj) {
-                console.log(obj.data) //得到当前行数据
+                // console.log(obj.data) //得到当前行数据
                 deptId = obj.data.deptId;
                 deptPhone = obj.data.deptPhone;
-                console.log(deptId);
             })
 
             if (obj.event === 'audit_pass') {
@@ -262,7 +258,6 @@ function dataTable(userData) {
                             },
                             dataType: 'json',
                             success: function (res) {
-                                console.log(res);
                                 if (res.status == '200') {
                                     layer.msg('审核成功', {
                                         icon: 1
@@ -306,7 +301,6 @@ function dataTable(userData) {
                             },
                             dataType: 'json',
                             success: function (res) {
-                                console.log(res);
                                 if (res.status == "200") {
                                     layer.msg('审核成功', {
                                         icon: 1
@@ -317,7 +311,6 @@ function dataTable(userData) {
                                 console.log("服务器异常");
                             }
                         });
-                        console.log(untextarea)
                     },
                     btn2() {
                         //取消按钮的回调
@@ -329,7 +322,6 @@ function dataTable(userData) {
 
         //监听排序
         table.on('sort(table1)', function (obj) {
-            console.log(this)
 
             //return;
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);

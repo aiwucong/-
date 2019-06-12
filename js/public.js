@@ -1,8 +1,8 @@
 
 // var baseUrl="http://192.168.1.110:8086";
 // var baseUrl="http://39.98.227.70:8082/mdk2019"; 
-var baseUrl="http://192.168.1.107:8082/mdk2019_war"; 
-var IdUrl = "http://192.168.1.100:8080/card_project";
+var baseUrl="http://192.168.0.115:8082/mdk2019_war"; 
+var IdUrl = "http://192.168.0.111:8080/card_project";
 
 
 function queryParams(params){
@@ -54,4 +54,5 @@ function delCookie(objName){
     data.setTime(data.getTime() - 10);
     document.cookie = objName + '=; expire=' + data.toUTCString() + '; path=/'; 
 }
+
 

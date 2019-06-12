@@ -4,8 +4,8 @@ window.onload = function () {
         url: baseUrl + "/tijian/getallstatus",
         type: "get",
         success: function (res) {
-            console.log(res);
-            console.log(res.length);
+            // console.log(res);
+            // console.log(res.length);
             $('#unaudited-audited').text(res.data.zerostatus); //待审核
             $('#already-audited').text(res.data.onestatus); //合格总数
             $('#unalready-audited').text(res.data.otwostatus); //不合格总数
@@ -25,12 +25,11 @@ window.onload = function () {
         },
         dataType: 'json',
         success: function (res) {
-            console.log(111);
             var userData = res.data
             $.each(userData, function (i, n) {
                 n.status = "审核不通过"
         })
-            console.log(userData);
+            // console.log(userData);
             dataTable(userData)
         }
     })
@@ -47,7 +46,7 @@ window.onload = function () {
             $.each(passData, function (i, n) {
                     n.status = "审核通过"
             })
-            console.log(passData);
+            // console.log(passData);
             dataTables(passData)
         }
     });
@@ -79,8 +78,8 @@ layui.use(['element', 'laydate', 'layer', 'form'], function () {
     var laydate = layui.laydate;
     var form = layui.form;
     form.on('select(category)', function (data) {
-        console.log(data.elem); //得到select原始DOM对象
-        console.log(data.value); //得到被选中的值
+        // console.log(data.elem); //得到select原始DOM对象
+        // console.log(data.value); //得到被选中的值
         selectVal = data.value;
     })
 
@@ -100,10 +99,6 @@ layui.use(['element', 'laydate', 'layer', 'form'], function () {
         }
     });
     laydate.render({
-        elem: '#exDate',
-        range: true
-    });
-    laydate.render({
         elem: '#openDate',
         range: true
     });
@@ -113,6 +108,97 @@ layui.use(['element', 'laydate', 'layer', 'form'], function () {
         return false;
     });
 });
+//身份证正则表达式
+function regIDCard(wcard){
+    var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    if (reg.test(wcard) === false) {
+        alert('身份证输入不合法');
+        return false
+    }
+}
+//查询接口
+function queryAjax(data){
+    $.ajax({
+        url: baseUrl + "/tijian/keywordSelect",
+        type: "post",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success:function(res){
+            console.log(res)
+            if(res.status == 100){
+                alert("未找到该人员信息")
+            }else{
+                var res = res.data,
+                    passData = [],//合格
+                    unpassData = [],//未合格
+                    userData = [];//未审核
+                $.each(res,function(i,n){
+                    if(n.status == 2){//不合格
+                        n.status = "审核不通过"
+                        unpassData.push(n)
+                    }else if(n.status == 1){//合格
+                        n.status = "审核通过"
+                        passData.push(n)
+                    }else{
+                        n.status = "未审核"
+                        userData.push(n)
+                    }
+                })
+            }
+            // console.log(unpassData)
+            // console.log(passData)
+            // console.log(userData)
+            if(unpassData.length != 0){
+                dataTableser(unpassData)
+            }else{
+                alert("未找到该记录")
+                return
+            }
+            if(passData.length !=0){
+                dataTables(passData)
+            }else{
+                alert("未找到该记录")
+                return
+            }
+            if(userData.length != 0){
+                // console.log(userData)
+                return 
+            }else{
+                alert("未找到该记录")
+                return
+            }
+        }
+    })
+}
+//查询
+function queryDiv(){
+    var nameIndex = $('.nameId').val(),
+        tjCard = $('.tjCard').val(),
+        wcard = $('#exDate').val(),//身份证号码
+        openDate = $('#openDate').val();
+        var data = {
+            "name": nameIndex,
+            "idcardNum": wcard,
+            "number": tjCard,
+            "createTime":openDate
+        };
+    if(nameIndex == "" && tjCard == "" && wcard == "" && openDate == ""){
+        alert("请输入信息，信息不能为空")
+    }else{
+        if(wcard != ""){
+            regIDCard(wcard)
+            queryAjax(data)
+        }else{
+            queryAjax(data)
+        }
+        
+    }
+
+}
 // 未审核表格函数
 function dataTable(userData) {
     layui.use('table', function () {
@@ -182,9 +268,9 @@ function dataTable(userData) {
             var idCardNum;
             //console.log(obj)
             table.on('row(table1)', function (obj) {
-                console.log(obj.data) //得到当前行数据
+                // console.log(obj.data) //得到当前行数据
                 idCardNum = obj.data.idcardNum;
-                console.log(idCardNum);
+                // console.log(idCardNum);
             })
             if (obj.event === 'audit_pass') {
                 var index = layer.open({
@@ -211,10 +297,9 @@ function dataTable(userData) {
                             },
                             data: newdata,
                             success: function (res) {
-                                console.log(222)
-                                console.log(res);
-                                console.log(res.status);
-                                console.log(res.status.code)
+                                // console.log(res);
+                                // console.log(res.status);
+                                // console.log(res.status.code)
                                 if (res.status == '200') {
                                     idCardNum = null;
                                     startdate = null;
@@ -262,7 +347,7 @@ function dataTable(userData) {
 
         //监听排序
         table.on('sort(table1)', function (obj) {
-            console.log(this)
+            // console.log(this)
 
             //return;
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
@@ -277,93 +362,6 @@ function dataTable(userData) {
                     order: obj.type //排序方式
                 }
             });
-        });
-
-
-        //监听行工具事件
-        table.on('tool(table2)', function (obj) {
-            var data = obj.data;
-            //console.log(obj)
-            if (obj.event === 'audit_modify') {
-                layer.open({
-                    title: ['修改结果', 'font-size:18px; text-align: center;'],
-                    area: ['400px', '300px'],
-                    type: 1,
-                    content: $('#box2'),
-                    btn: ['确认', '取消'],
-                    btn1() {
-                        // 确定按钮的回调 写业务代码
-                        layer.msg('的确很重要', {
-                            icon: 1
-                        });
-                    },
-                    btn2() {
-                        //取消按钮的回调
-                    }
-
-                });
-
-            } else if (obj.event === 'audit_failed') {
-                layer.open({
-                    title: ['审核结果', 'font-size:18px; text-align: center;'],
-                    area: ['450px', '400px'],
-                    type: 1,
-                    content: $('#box1'), //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-                    btn: ['确认', '取消'],
-                    btn1() {
-                        // 确定按钮的回调 写业务代码
-                        layer.msg('预约时间成功', {
-                            icon: 1
-                        });
-                    },
-                    btn2() {
-                        //取消按钮的回调
-                    }
-
-                });
-            }
-        });
-
-        //监听排序
-        table.on('sort(table2)', function (obj) {
-            console.log(this)
-
-            //return;
-            layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
-            //服务端排序
-            table.reload('test', {
-                initSort: obj
-                    //,page: {curr: 1} //重新从第一页开始
-                    ,
-                where: { //重新请求服务端
-                    key: obj.field //排序字段
-                        ,
-                    order: obj.type //排序方式
-                }
-            });
-        });
-
-
-        //return;
-
-        var $ = layui.jquery,
-            active = {
-                parseTable: function () {
-                    table.init('parse-table-demo', {
-                        limit: 3
-                    });
-                },
-                add: function () {
-                    table.addRow('test')
-                }
-            };
-        $('i').on('click', function () {
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
-        $('.layui-btn').on('click', function () {
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
         });
     })
 }
@@ -431,9 +429,7 @@ function dataTables(passData) {
 
         //监听排序
         table.on('sort(table2)', function (obj) {
-            console.log(this)
-
-            //return;
+            // console.log(this)
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
             //服务端排序
             table.reload('table2', {
@@ -448,59 +444,52 @@ function dataTables(passData) {
             });
         });
 
-        //监听行工具事件
+        //体检合格监听行工具事件
         table.on('tool(table2)', function (obj) {
             var data = obj.data;
-            var idCardNum;
-            //console.log(obj)
-            table.on('row(table2)', function (obj) {
-                console.log(obj.data) //得到当前行数据
-                idCardNum = obj.data.idcardNum;
-            })
-            if (obj.event === 'audit_modify') {
+            var idCardNum = data.idcardNum;
+            if (obj.event === 'audit') {
                 layer.confirm('确认修改为不合格？', {
-                    title: ['合格', 'font-size:18px; text-align: center;'],
-                    btn: ['确认', '取消'] //按钮
-                }, function () { //确认按钮函数
-                    console.log(999);
-                    var newdata = {
-                        "idCardNum": idCardNum,
-                        "status": "2"
-                    }
-                    $.ajax({
-                        url: baseUrl + "/tijian/updateTJstatus",
-                        type: 'post',
-                        contentType: "application/x-www-form-urlencoded",
-                        xhrFields: {
-                            widthCredentials: true
-                        },
-                        data: newdata,
-                        success: function (res) {
-                            console.log(222)
-                            console.log(res);
-                            console.log(res.status);
-                            console.log(res.status.code)
-                            if (res.status == '200') {
-                                layer.msg('修改成功', {
-                                    icon: 1
-                                });
-                            } else if (res.status == 'fail') {
-                                layer.msg('修改失败', {
-                                    icon: 2
-                                });
-                            }
+                        title: ['合格', 'font-size:18px; text-align: center;'],
+                        btn: ['确认', '取消'] //按钮
+                    }, function () { //确认按钮函数
+                        var newdata = {
+                            "idCardNum": idCardNum,
+                            "status": "2"
                         }
+                        $.ajax({
+                            url: baseUrl + "/tijian/updateTJstatus",
+                            type: 'post',
+                            contentType: "application/x-www-form-urlencoded",
+                            xhrFields: {
+                                widthCredentials: true
+                            },
+                            data: newdata,
+                            success: function (res) {
+                                // console.log(res);
+                                // console.log(res.status);
+                                // console.log(res.status.code)
+                                if (res.status == '200') {
+                                    layer.msg('审核成功', {
+                                        icon: 1
+                                    });
+                                    obj.del();
+                                    location.reload();
+                                } else if (res.status == 'fail') {
+                                    layer.msg('审核失败', {
+                                        icon: 2
+                                    });
+                                }
+                            }
+                        })
+                    },
+                    function () { //取消按钮函数
                     })
-                },
-                function () { //取消按钮函数
-                })
-
-            } 
+            }
         });
-
         //监听排序
         table.on('sort(table2)', function (obj) {
-            console.log(this)
+            // console.log(this)
 
             //return;
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
@@ -606,11 +595,7 @@ function dataTableser(unpassData) {
         //不合格表格监听行工具事件
         table.on('tool(table3)', function (obj) {
             var data = obj.data;
-            var idCardNum;
-            table.on('row(table3)', function (obj) {
-                console.log(obj.data) //得到当前行数据
-                idCardNum = obj.data.idcardNum;
-            })
+            var idCardNum = obj.data.idcardNum;;
             if (obj.event === 'audit_modify') {
                 layer.confirm('确认修改为合格？', {
                         title: ['合格', 'font-size:18px; text-align: center;'],
@@ -629,15 +614,15 @@ function dataTableser(unpassData) {
                             },
                             data: newdata,
                             success: function (res) {
-                                console.log(222)
-                                console.log(res);
-                                console.log(res.status);
-                                console.log(res.status.code)
+                                // console.log(res);
+                                // console.log(res.status);
+                                // console.log(res.status.code)
                                 if (res.status == '200') {
                                     layer.msg('审核成功', {
                                         icon: 1
                                     });
                                     obj.del();
+                                    location.reload();
                                 } else if (res.status == 'fail') {
                                     layer.msg('审核失败', {
                                         icon: 2
@@ -653,7 +638,7 @@ function dataTableser(unpassData) {
 
         //监听排序
         table.on('sort(table3)', function (obj) {
-            console.log(this)
+            // console.log(this)
 
             //return;
             layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
@@ -672,3 +657,17 @@ function dataTableser(unpassData) {
         
     })
 }
+
+// 查询
+$(function () {
+    $('.chaxun').on('click', function () {
+        queryDiv();
+    })
+
+})
+
+$(document).keydown(function (event) {
+    if (event.keyCode == 13) {
+        queryDiv()
+    }
+});
