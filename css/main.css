@@ -200,3 +200,20 @@
     .r_text {
         margin-top: 3px;
     }
+    #closeTap:hover + .allgb {
+        display: block;
+    }
+    .allgb {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        display: none;
+        width: 80px;
+        height: 30px;
+        background: #DBDBDB;
+        opacity: 0.8;
+        color: #000;
+    }
+    .allcur {
+        position: relative;
+    }

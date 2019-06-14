@@ -23,10 +23,8 @@ function dataTable(userData) {
             height: 500,
             title: '用户数据表',
             data: userData,
-            even: true,
             autoSort: false,
             toolbar: '#toolbarDemo',
-
             cols: [
                 [ //表头
                     {
@@ -87,7 +85,6 @@ function dataTable(userData) {
                 var dataId = data.healthId;
                 debugger
                 xiangqing(dataId);
-                healthPrints();
 
             } else if (obj.event === 'audit_xiangqing') {
                 var dataId = data.healthId;
@@ -138,9 +135,7 @@ function dataTables(passDate) {
             height: 500,
             title: '用户数据表',
             data: passDate,
-            even: true,
-            autoSort: false,
-            totalRow: true,
+            toolbar: '#toolbarDemo',
             limit: 30,
             cols: [
                 [{
@@ -196,6 +191,56 @@ function dataTables(passDate) {
                 xiangqing(dataId);
             }
         });
+        // 批量打印
+        table.on('toolbar(table2)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id),
+                data = checkStatus.data; //获取选中的数据
+            console.log(data);
+            var ids = [];
+            for (var i = 0; i < data.length; i++) {
+                ids.push(data[i]);
+            }
+            var str = "";
+            str += "<!--stratprint-->"
+            $.each(ids, function (i, n) {
+                str += "<div class ='box'>";
+                str += "<div class='box_center'>"
+                str += " <h2 class='box_tit'>健康证明</h2>"
+                str += "<div class='boxHome'>"
+                str += "<div class='boxImg'><img src='data:image/jpg;base64,"+n.yuliu3+"' alt='' class='personImg'></div>"
+                str += "<div class='boxInputs'>"
+                str += "<div class='liners'>"
+                str += "<div class='liners_item1'><span class='liners_tit'>姓名:</span><span class='liners_input name'>"+n.name+"</span></div>"
+                str += "<div class='liners_item2'><span class='liners_tit'>年龄:</span><span class='liners_input old'>"+n.age+"</span></div>"
+                str += "</div>"
+                str += "<div class='liners'>"
+                str += "<div class='liners_item1'><span class='liners_tit'>性别:</span><span class='liners_input sex'>"+n.gender+"</span></div>"
+                str += "<div class='liners_item2'><span class='liners_tit'>体检:</span><span class='liners_input tj'>"+n.medical+"</span></div>"
+                str += "</div>"
+                str += " <div class='Yliners'><span class='liners_tit'>有效期至:</span><span class='liners_input dataTime'>"+n.endTime+"</span></div>"
+                str += "<div class='Yliners'><span class='liners_tit'>证号:</span><span class='liners_input card'>"+n.healthNum+"</span></div>"
+                str += "<img src='data:image/jpg;base64,"+n.qrCode+"' alt='' class='erweima'>"
+                str += "</div></div>"
+                str += "<h4 class='companyTitle'>武汉玛迪卡智能科技有限公司制发</h4>"
+                str += "<img src='data:image/jpg;base64,"+n.yuliu2+"' alt='' class='zhang'>"
+                str += "</div></div>"
+                str += "<div class='pageBreak'></div>";
+
+            })
+            str += "<!--endprint-->";
+            $('#printBox').append(str)
+            console.log(ids)
+            if (data.length != 0) {
+                var timer = setInterval(function(){
+                    healthPrints()
+                    clearInterval(timer)
+                },3000)
+                
+            } else {
+                alert("请选择需要打印的数据")
+            }
+
+        })
 
         //监听排序
         table.on('sort(table2)', function (obj) {
@@ -262,15 +307,18 @@ window.onload = function () {
         dataType: 'json',
         success: function (res) {
             var userData = res.data;
+            if (userData != null) {
+                $.each(userData, function (i, n) {
+                    if (n.medical == 0) {
+                        n.medical = "合格"
+                    } else {
+                        n.medical = "不合格"
+                    }
+                })
+                dataTable(userData)
+            }
 
-            $.each(userData, function (i, n) {
-                if (n.medical == 0) {
-                    n.medical = "合格"
-                } else {
-                    n.medical = "不合格"
-                }
-            })
-            dataTable(userData)
+
         }
     })
     // 已打印
@@ -284,6 +332,7 @@ window.onload = function () {
         contentType: "application/json;charset=UTF-8",
         dataType: 'json',
         success: function (res) {
+            // console.log(res)
             var passDate = res.data;
             $.each(passDate, function (i, n) {
                 if (n.medical == 0) {
@@ -311,6 +360,7 @@ function xiangqing(dataId) {
         contentType: "application/json;charset=UTF-8",
         dataType: 'json',
         success: function (res) {
+            console.log(res);
             var medical = res.data.medical
             if (medical == 0) {
                 medical = "合格"
@@ -321,7 +371,7 @@ function xiangqing(dataId) {
             $('#age').attr('value', res.data.age);
             $('#sex').attr('value', res.data.gender);
             $('#tj').attr('value', medical);
-            $('#dataTime').attr('value', res.data.updateTime);
+            $('#dataTime').attr('value', res.data.endTime);
             $('#erwerma').attr('src', "data:image/jpg;base64," + res.data.qrCode);
             $('#gz').attr('src', "data:image/jpg;base64," + res.data.gz);
             $('#personImg').attr('src', "data:image/jpg;base64," + res.data.idCardPhoto);
@@ -330,11 +380,12 @@ function xiangqing(dataId) {
             $('.age').text(res.data.age);
             $('.sex').text(res.data.gender);
             $('.tj').text(medical);
-            $('.dataTime').text(res.data.updateTime);
+            $('.dataTime').text(res.data.endTime);
             $('.erweima').attr('src', "data:image/jpg;base64," + res.data.qrCode);
             $('.zhang').attr('src', "data:image/jpg;base64," + res.data.gz);
             $('.personImg').attr('src', "data:image/jpg;base64," + res.data.idCardPhoto);
             $('.card').text(res.data.healthNum);
+            $('.bott').text(res.data.hospitalName);
         }
     })
 
@@ -348,8 +399,8 @@ function isCardNo(wcard) {
     }
 }
 
-//查询掉接口
-function queryAjax(data){
+//查询接口
+function queryAjax(data) {
     $.ajax({
         url: baseUrl + "/healthcard/keywordSelect",
         type: "post",
@@ -368,7 +419,7 @@ function queryAjax(data){
                 alert("未找到该人员信息")
                 return
                 // location.reload()
-            }else{
+            } else {
                 $.each(data, function (i, n) {
                     // console.log(n)
                     if (n.printStatus == 0) {
@@ -380,7 +431,7 @@ function queryAjax(data){
                     }
                 })
             }
-            
+
             var userData = noPrint;
             dataTable(userData)
             var passData = printyes;
@@ -391,6 +442,7 @@ function queryAjax(data){
         }
     })
 }
+
 function queryDiv() {
     var wname = $('#w_name').val();
     var wcard = $('#w_card').val();
@@ -404,10 +456,10 @@ function queryDiv() {
         alert('请输入')
         return
     } else {
-        if( wcard != ""){
+        if (wcard != "") {
             isCardNo(wcard)
             queryAjax(data)
-        }else{
+        } else {
             queryAjax(data)
         }
     }
@@ -420,7 +472,7 @@ $(function () {
     })
 
 })
-
+// 键盘监听
 $(document).keydown(function (event) {
     if (event.keyCode == 13) {
         queryDiv()

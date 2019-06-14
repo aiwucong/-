@@ -3,12 +3,12 @@ window.onload = function() {
         url: baseUrl+'/tubiao/allCount',
         type: "get",
         success:function(res){
-            console.log(res);
-            $('#tijian').text(res.data.daytjnum)
-            $('#yuyue').text(res.data.dayordernum)
-            $('#fazheng').text(res.data.daycardnum)
-            $('#month-tijian').text(res.data.monthtjnum)
-            $('#all_tijian').text(res.data.alltjnum)
+            // console.log(res);
+            $('#tijian').text(res.data.day_tjcount)
+            $('#yuyue').text(res.data.day_yuyue)
+            $('#fazheng').text(res.data.day_fz)
+            $('#month-tijian').text(res.data.month_tjcount)
+            $('#all_tijian').text(res.data.all_tjcount)
         },
         error: function() {
             console.log("服务器异常");
@@ -27,6 +27,16 @@ window.onload = function() {
         success: function(result) {
             // alert(result);
             var result = result.data;
+            var dataArry = new Date();
+            var years = dataArry.getFullYear()
+            var month = dataArry.getMonth() + 1
+            var dayCur = dataArry.getDate()
+            if(month >= 1 && month <= 9){
+                month = "0" + month
+            }
+            if (dayCur >= 0 && dayCur <= 9) {
+                strDdayCurate = "0" + dayCur;
+            }
             //请求成功时执行该函数内容，result即为服务器返回的json对象
             if (result) {
                 if(result.day0 == undefined){
@@ -59,11 +69,11 @@ window.onload = function() {
                 if(result.tjdaynum4 == undefined){
                     result.tjdaynum4 = 0
                 }
-                names = [result.day0.slice(0, 10),result.day1.slice(0, 10),result.day2.slice(0, 10),result.day3.slice(0, 10),result.day4.slice(0, 10)]
+                names = [result.day4.slice(0, 10),result.day3.slice(0, 10),result.day2.slice(0, 10),result.day1.slice(0, 10),result.day0.slice(0, 10)]
                
                
-                nums = [result.tjdaynum0,result.tjdaynum1,result.tjdaynum2,result.tjdaynum3,result.tjdaynum4]
-                cardNum = [result.carddaynum0,result.carddaynum1,result.carddaynum2,result.carddaynum3,result.carddaynum4]
+                nums = [result.tjdaynum4,result.tjdaynum3,result.tjdaynum2,result.tjdaynum1,result.tjdaynum0]
+                cardNum = [result.carddaynum4,result.carddaynum3,result.carddaynum2,result.carddaynum1,result.carddaynum0]
                 myChart.hideLoading(); //隐藏加载动画
                 myChart.setOption({ //加载数据图表
                     xAxis: {

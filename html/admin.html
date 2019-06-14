@@ -66,37 +66,43 @@
                     <div class="r_com">
                         <ul class="r_content">
                             <li>
-                                <a href="javascript:viod()" data-url="./examine.html" mytitle='预约审核' data-id="listHolder">
+                                <a href="javascript:viod()" data-url="./examine.html" mytitle='预约审核'
+                                    data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-folder-o"></i></span>
                                     <p class="r_text">待审核</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:viod()" data-url="./examine.html" mytitle='预约审核' data-id="listHolder">
+                                <a href="javascript:viod()" data-url="./examine.html" mytitle='预约审核'
+                                    data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-folder"></i></span>
                                     <p class="r_text">已审核</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:viod()" data-url="./baseInput.html" mytitle='基础录入' data-id="listHolder">
+                                <a href="javascript:viod()" data-url="./baseInput.html" mytitle='基础录入'
+                                    data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-wpforms"></i></span>
                                     <p class="r_text">基础录入</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:viod()" data-url="./physical.html" mytitle='体检审核' data-id="listHolder">
+                                <a href="javascript:viod()" data-url="./physical.html" mytitle='体检审核'
+                                    data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-check-square"></i></span>
                                     <p class="r_text">合格</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:viod()" data-url="./physical.html" mytitle='体检审核' data-id="listHolder">
+                                <a href="javascript:viod()" data-url="./physical.html" mytitle='体检审核'
+                                    data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-times-circle"></i></span>
                                     <p class="r_text">不合格</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:viod()" data-url="./healthCardEx.html" mytitle='健康证' data-id="listHolder">
+                                <a href="javascript:viod()" data-url="./healthCardEx.html" mytitle='健康证'
+                                    data-id="listHolder">
                                     <span class="r_ico"><i class="fa fa-address-card-o" aria-hidden="true"></i></span>
                                     <p class="r_text">健康证</p>
                                 </a>
@@ -121,14 +127,13 @@
                 // 这里指定了维度名的顺序，从而可以利用默认的维度到坐标轴的映射。
                 // 如果不指定 dimensions，也可以通过指定 series.encode 完成映射
                 dimensions: ['product', '当日体检人数', '当日发证人数'],
-                source: [{
-                }]
+                source: [{}]
             },
             xAxis: {
                 type: 'category'
             },
             yAxis: {
-                
+
             },
             series: [{
                 type: 'bar'
@@ -176,7 +181,7 @@
                 data: ['体检总人数', '当月体检人数', '当日发证人数', '当日预约人数', '当日体检人数']
             },
             series: [{
-                name: '访问来源',
+                name: '',
                 type: 'pie',
                 radius: '55%',
                 center: ['50%', '60%'],
@@ -209,56 +214,63 @@
         myChart2.setOption(option2);
         let options = [option, option1, option2]
         let myCharts = [myChart, myChart1, myChart2]
-        layui.use('element', function() {
+        layui.use('element', function () {
             var element = layui.element;
             var names = []; //一周时间数组（实际用来盛放X轴坐标值）
             var nums = []; //当日预约人数数组（实际用来盛放Y坐标值）
-            element.on('tab(docDemoTabBrief)', function(data) {
+            element.on('tab(docDemoTabBrief)', function (data) {
                 // console.log(data.index); //得到当前Tab的所在下标
                 // console.log(data.elem); //得到当前的Tab大容器
                 // console.log(myCharts);
-                if(data.index == 1){
+                if (data.index == 1) {
                     console.log('第二个')
                     $.ajax({
-                        url:baseUrl+'/tubiao/zhucounttwo',
+                        url: baseUrl + '/tubiao/zhucounttwo',
                         async: true,
                         data: {},
-                        success:function(result){
+                        success: function (result) {
                             console.log(result)
                             var result = result.data;
-                            if(result){
-                                if(result.day0 == undefined){
+
+                            if (result) {
+
+                                if (result.day0 == undefined) {
+
                                     result.day0 = "暂无数据"
                                 }
-                                if(result.day1 == undefined){
+                                if (result.day1 == undefined) {
                                     result.day1 = "暂无数据"
                                 }
-                                if(result.day2 == undefined){
+                                if (result.day2 == undefined) {
                                     result.day2 = "暂无数据"
                                 }
-                                if(result.day3 == undefined){
+                                if (result.day3 == undefined) {
                                     result.day3 = "暂无数据"
-                                } 
-                                if(result.day4 == undefined){
+                                }
+                                if (result.day4 == undefined) {
                                     result.day4 = "暂无数据"
                                 }
-                                if(result.ordernum0 == undefined){
+                                if (result.ordernum0 == undefined) {
                                     result.ordernum0 = 0
                                 }
-                                if(result.ordernum1 == undefined){
+                                if (result.ordernum1 == undefined) {
                                     result.ordernum1 = 0
                                 }
-                                if(result.ordernum2 == undefined){
+                                if (result.ordernum2 == undefined) {
                                     result.ordernum2 = 0
                                 }
-                                if(result.ordernum3 == undefined){
+                                if (result.ordernum3 == undefined) {
                                     result.ordernum3 = 0
                                 }
-                                if(result.ordernum4 == undefined){
+                                if (result.ordernum4 == undefined) {
                                     result.ordernum4 = 0
                                 }
-                                names = [result.day0,result.day1.slice(0,10),result.day2,result.day3,result.day4]
-                                nums = [result.ordernum0,result.ordernum1,result.ordernum2,result.ordernum3,result.orde4num0]
+                                names = [result.day0, result.day1.slice(0, 10), result.day2,
+                                    result.day3, result.day4
+                                ]
+                                nums = [result.ordernum0, result.ordernum1, result
+                                    .ordernum2, result.ordernum3, result.orde4num0
+                                ]
                                 myChart1.hideLoading(); //隐藏加载动画
                                 myChart1.setOption({ //加载数据图表
                                     xAxis: {
@@ -273,41 +285,48 @@
                             }
                         }
                     })
-                }else if(data.index == 2){
+                } else if (data.index == 2) {
                     console.log('第三个')
                     $.ajax({
-                        url: baseUrl+'/tubiao/indexcount',
+                        url: baseUrl + '/tubiao/indexcount',
                         type: "get",
-                        xhrFields:{withCredentials:true},
-                        success:function(res){
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        success: function (res) {
                             console.log(res)
-                            if(res){
+                            if (res) {
                                 myChart2.hideLoading(); //隐藏加载动画
                                 myChart2.setOption({ //加载数据图表
                                     series: [{
                                         data: [{
-                                            value: res.data.alltjnum,
+                                            value: res.data
+                                                .alltjnum,
                                             name: '体检总人数'
                                         }, {
-                                            value: res.data.monthtjnum,
+                                            value: res.data
+                                                .monthtjnum,
                                             name: '当月体检人数'
                                         }, {
-                                            value: res.data.daycardnum,
+                                            value: res.data
+                                                .daycardnum,
                                             name: '当日发证人数'
                                         }, {
-                                            value: res.data.dayordernum,
+                                            value: res.data
+                                                .dayordernum,
                                             name: '当日预约人数'
                                         }, {
-                                            value: res.data.daytjnum,
+                                            value: res.data
+                                                .daytjnum,
                                             name: '当日体检人数'
                                         }],
-                                    
+
                                     }]
-                                    
+
                                 });
                             }
                         },
-                        error: function() {
+                        error: function () {
                             console.log("服务器异常");
                         }
                     })
@@ -317,9 +336,9 @@
             });
         });
 
-         // >>>开始
+        // >>>开始
 
-         $('.r_content').on('click', 'a', function() {
+        $('.r_content').on('click', 'a', function () {
             // $("#iframe", parent.document).attr('src', $(this).data('url'))
 
             window.parent.a(this)(); //调用父窗口的方法

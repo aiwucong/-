@@ -28,8 +28,7 @@
                     <form class="layui-form input_main" lay-filter="fromtest" action="">
                         <div class="allbtn">
                             <button class="layui-btn" type="button">仅保存</button>
-                            <!-- <a href="#" class="layui-btn"><input type="reset" value="重填" /></a> -->
-                            <button type="reset" class="layui-btn layui-btn-primary"
+                            <button type="reset" class="layui-btn layui-btn-primary reset"
                                 style="border: 0;color:#fff;">重置</button>
                             <button class="layui-btn" lay-submit lay-filter="formDemo" id="save">保存并打印</button>
                         </div>
@@ -38,19 +37,18 @@
                                 <div class="lines">
                                     <label class="layui-form-label">体检编号</label>
                                     <input type="text" name="title" autocomplete="off" class="layui-input" id="IDnumber"
-                                        readonly="readonly" value="T190000001">
+                                        readonly="readonly" value="">
                                 </div>
                                 <div class="lines">
                                     <label class="layui-form-label">手机号码</label>
                                     <input type="text" name="telphone" required lay-verify="required|phone"
-                                        placeholder="请输入手机号码" autocomplete="off" class="layui-input phonenumber"
-                                        value="13037189631">
+                                        placeholder="请输入手机号码" autocomplete="off" class="layui-input phonenumber">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <div class="lines">
                                     <label class="layui-form-label">姓　　名</label>
-                                    <input type="text" name="name" required lay-verify="required" 
+                                    <input type="text" name="name" required lay-verify="required" readonly="readonly"
                                         autocomplete="off" class="layui-input IDname">
                                 </div>
                                 <div class="lines">
@@ -100,8 +98,7 @@
                                 </div>
                                 <div class="lines">
                                     <label class="layui-form-label">有效期至</label>
-                                    <input type="text" name="enddate" required lay-verify="required"
-                                        placeholder="2020-05-17" autocomplete="off" class="layui-input" id="enddate">
+                                    <input type="text" name="enddate" required lay-verify="required" autocomplete="off" readonly="readonly" class="layui-input" id="enddate">
                                 </div>
                             </div>
                             <div class="layui-form-item" style="margin-bottom: 0">
@@ -137,10 +134,8 @@
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1">体检合格</button>
                             </div>
                             <div class="layui-form-item">
-                                <button class="layui-btn layui-btn-sm checkboxs_btn1 healthCard1">
-                                    <a href="javascript:viod()" data-url="../healthCard1.html" mytitle="健康证"
-                                        data-id="listHolder" style="color: #fff;">打印健康证</a>
-                                </button>
+                                    <button class="layui-btn layui-btn-sm checkboxs_btn1 healthCard1" lay-submit lay-filter="formDemo">打印健康证</button>
+                            
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1 custom"
@@ -251,7 +246,7 @@
 					<img alt="" class="erweima">
 				</div>
 			</div>
-			<h4 class="companyTitle">武汉玛迪卡智能科技有限公司制发</h4>
+			<h4 class="companyTitle"></h4>
 			<img alt="" class="zhang">
 		</div>
 	</div>

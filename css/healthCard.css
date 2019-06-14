@@ -3,7 +3,9 @@
 	padding: 0px;
 	font-family: "微软雅黑";
 }
-
+@page {
+    margin: 0;
+}
 html {
 	width: 99.9%;
 	height: 99.8%;
@@ -16,7 +18,7 @@ body {
 }
 
 .box {
-	display: none;
+	page-break-after: always;
 }
 
 /*证件盒子*/
