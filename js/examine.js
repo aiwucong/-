@@ -161,6 +161,197 @@ $(document).keydown(function (event) {
         queryDiv()
     }
 });
+
+// 预约待审核表格
+layui.use('table', function () {
+    var table = layui.table;
+    //渲染
+    table.render({
+        elem: '#table1',
+        height: 500,
+        title: '用户数据表',
+        url: baseUrl + "/deptorder/daiSH",
+        even: true,
+        autoSort: false,
+        page: true,
+        toolbar: '#toolbarDemo',
+        response: {
+            statusName: 'status',
+            statusCode: 200, // 对应 code自定义的参数名称
+            msgName: 'msg', // 对应 msg自定义的参数名称
+            countName: 'countSum', // 对应 count自定义的参数名称
+            dataName: 'data', // 对应 data自定义的参数名称
+        },
+        page: true,
+        // defaultToolbar: ['filter'],
+
+        cols: [
+            [ //表头
+                {
+                    width: 60,
+                    type: "checkbox",
+                    // fixed: 'left'
+                },
+                {
+                    field: 'deptId',
+                    title: 'ID',
+                    width: 100,
+                    // sort: true,
+                    // fixed: 'left'
+                },
+                {
+                    field: 'createTime',
+                    title: '登记时间',
+                    width: 100,
+                },
+                {
+                    field: 'deptName',
+                    title: '单位名称',
+                    width: 200
+                }, {
+                    field: 'deptCode',
+                    title: '单位统一信用代码',
+                    width: 150
+                }, {
+                    field: 'deptPhone',
+                    title: '手机号码',
+                    width: 100
+                }, {
+                    field: 'city',
+                    title: '预约资质审核',
+                    toolbar: '#barDemo',
+                    width: 280
+                }, {
+                    field: 'deptShenhe',
+                    title: '审核状态',
+                    width: 177
+                }
+            ]
+        ],
+        done: function (res, curr, count) { // 隐藏列
+            console.log(res);
+            if (res.status == "100") {
+                $(".layui-table-main").html('<div class="layui-none">暂无数据</div>');
+            }
+        }
+    });
+
+    //监听行工具事件
+    table.on('tool(table1)', function (obj) {
+        var data = obj.data;
+        //console.log(obj)
+        var deptId;
+        var deptPhone;
+        table.on('row(table1)', function (obj) {
+            // console.log(obj.data) //得到当前行数据
+            deptId = obj.data.deptId;
+            deptPhone = obj.data.deptPhone;
+        })
+
+        if (obj.event === 'audit_pass') {
+            layer.open({
+                title: ['审核结果', 'font-size:18px; text-align: center;'],
+                area: ['450px', '320px'],
+                type: 1,
+                content: $('#box'),
+                btn: ['确认', '取消'],
+                btn1() {
+                    $.ajax({
+                        url: baseUrl + "/deptorder/deptSH",
+                        type: 'post',
+                        data: JSON.stringify({
+                            "deptId": deptId,
+                            "deptShenhe": 1,
+                            "deptTime": yuyueTime,
+                            "deptPhone": deptPhone
+                        }),
+                        contentType: "application/json",
+                        xhrFields: {
+                            widthCredentials: true
+                        },
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.status == '200') {
+                                layer.msg('审核成功', {
+                                    icon: 1
+                                });
+                            }
+                        },
+                        error: function () {
+                            console.log("服务器异常");
+                        }
+                    });
+                },
+                btn2() {
+                    //取消按钮的回调
+                }
+
+            });
+
+        } else if (obj.event === 'audit_failed') {
+            layer.open({
+                title: ['审核结果', 'font-size:18px; text-align: center;'],
+                area: ['450px', '400px'],
+                type: 1,
+                content: $('#box1'),
+                btn: ['确认', '取消'],
+                btn1() {
+                    var untextarea = $('#untextarea').val()
+                    // 确定按钮的回调 写业务代码
+                    $.ajax({
+                        url: baseUrl + "/deptorder/deptSH",
+                        type: 'post',
+                        data: JSON.stringify({
+                            "deptId": deptId,
+                            "deptShenhe": 2,
+                            "deptTime": yuyueTime,
+                            "deptPhone": deptPhone,
+                            "deptYuanyin": unpassyy + untextarea
+                        }),
+                        contentType: "application/json",
+                        xhrFields: {
+                            widthCredentials: true
+                        },
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.status == "200") {
+                                layer.msg('审核成功', {
+                                    icon: 1
+                                });
+                            }
+                        },
+                        error: function () {
+                            console.log("服务器异常");
+                        }
+                    });
+                },
+                btn2() {
+                    //取消按钮的回调
+                }
+
+            });
+        }
+    });
+
+    //监听排序
+    table.on('sort(table1)', function (obj) {
+
+        //return;
+        layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
+        //服务端排序
+        table.reload('table1', {
+            initSort: obj
+                //,page: {curr: 1} //重新从第一页开始
+                ,
+            where: { //重新请求服务端
+                key: obj.field //排序字段
+                    ,
+                order: obj.type //排序方式
+            }
+        });
+    });
+});
+
 // 预约待审核表格
 function dataTable(userData) {
     layui.use('table', function () {
@@ -175,6 +366,7 @@ function dataTable(userData) {
             autoSort: false,
             page: true,
             toolbar: '#toolbarDemo',
+            page: true,
             // defaultToolbar: ['filter'],
 
             cols: [
@@ -220,7 +412,12 @@ function dataTable(userData) {
                     }
                 ]
             ],
-            page: true
+
+            done: function (res, curr, count) { // 隐藏列
+                if (res.status == "100") {
+                    $(".layui-table-main").html('<div class="layui-none">暂无数据</div>');
+                }
+            }
         });
 
         //监听行工具事件

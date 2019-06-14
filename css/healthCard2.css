@@ -3,7 +3,8 @@
     padding: 0;
 }
 @page {
-    margin: 0;
+    margin: 0 auto;
+    size: auto; 
 }
 
 body {
