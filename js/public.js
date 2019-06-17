@@ -1,14 +1,8 @@
 
 // var baseUrl="http://192.168.1.110:8086";
-<<<<<<< HEAD
-var baseUrl="http://39.98.227.70:8082/mdk2019"; 
-// var baseUrl="http://192.168.0.115:8082/mdk2019_war"; 
-var IdUrl = "http://192.168.0.111:8080/card_project";
-=======
 // var baseUrl="https://www.jkzcloud.com/mdk2019"; 
-var baseUrl="http://192.168.0.107:8082/mdk2019_war";
+var baseUrl="http://192.168.0.104:8082/mdk2019_war";
 var IdUrl = "http://192.168.0.141:8080/card_project";
->>>>>>> refs/remotes/origin/master
 
 
 function queryParams(params){
