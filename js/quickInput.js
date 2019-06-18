@@ -73,11 +73,11 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             });
         }
     });
-
     // 日期
     laydate.render({
         elem: '#startdate', //指定元素
         value: new Date(),
+        min: 0,
         done: function (value, date) {
             var FullYear = date.year + 1;
             var month = date.month;
@@ -87,9 +87,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
             var lastDate = FullYear + "-" + month + "-" + day;
             document.getElementById("enddate").value = lastDate;
         }
-
     });
-
     // 上传图片
     var uploadInst = upload.render({
         elem: '#test1',
@@ -106,6 +104,18 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
         }
     });
 });
+
+function sjDate() {
+    var date = new Date();
+    var year = date.getFullYear() + 1;
+    var month = date.getMonth() + 1;
+    month = month < 10 ? '0' + month : month;
+    var day = date.getDate();
+    day = day < 10 ? '0' + day : day;
+    var lastDate = year + "-" + month + "-" + day;
+    document.getElementById("enddate").value = lastDate;
+}
+
 // 新增数据
 var pDepartment;
 var pEffectDate;
@@ -168,13 +178,17 @@ $(function () {
                 console.log(data);
                 // alert(JSON.stringify(data));
                 if (data.status == 200) {
-                    alert("保存成功,正在请求打印请等待!!!");
+                    layer.msg("保存成功,正在请求打印请等待!!!", {
+                        icon: 16
+                    });
                     // console.log(data.data.idcardNum);
                     var dataId = data.data.idcardNum;
                     xiangqing(dataId);
                     kstable();
                 } else {
-                    alert("保存失败，原因为" + JSON.stringify(data.data));
+                    layer.msg("保存失败，原因为" + JSON.stringify(data.data), {
+                        icon: 1
+                    });
                     // console.log(data);
                 }
             },
@@ -241,16 +255,17 @@ $(function () {
             "idcardimg": idcardimg,
             "hospitalNum": hospitalNum
         };
-        $.ajax({
-            url: baseUrl + '/tijian/tjtable',
-            type: "post",
-            contentType: "application/json;charset=utf-8",
-            //dataType: 'json',
-            data: JSON.stringify(data),
-            success: function (res) {
-                // console.log(res)
-            }
-        })
+            $.ajax({
+                url: baseUrl + '/tijian/tjtable',
+                type: "post",
+                contentType: "application/json;charset=utf-8",
+                //dataType: 'json',
+                data: JSON.stringify(data),
+                success: function (res) {
+                    // console.log(res)
+                }
+            })
+        
     })
     $('.reset').click(function () {
         location.reload();
@@ -261,10 +276,14 @@ $(function () {
         var IDcard = $('#IDcard').val()
         var dataId = localStorage.getItem('idCard')
         if (IDcard == "") {
-            alert("请输入该成员打印信息")
+            layer.msg("请选择该成员打印信息", {
+                icon: 7
+            })
         } else {
             // var dataId = data.data.idcardNum;
-            alert("正在处理打印数据请稍等")
+            layer.msg("正在处理打印数据请稍等", {
+                icon: 16
+            })
             xiangqing(dataId);
 
         }
@@ -330,8 +349,8 @@ $(function () {
         table.render({
             elem: '#demo',
             height: 312,
-            url: baseUrl + "/tijian/getWeekData?status=1",
-            method:'post',
+            url: baseUrl + "/tijian/getWeekData?status=1"+"&yuliu1=1",
+            method: 'post',
             response: {
                 statusName: 'status',
                 statusCode: 200, // 对应 code自定义的参数名称
@@ -405,11 +424,6 @@ $(function () {
                 }
             }
         })
-    })
-
-
-    layui.use('table', function () {
-        var table = layui.table;
         table.render({
             elem: '#baseInput',
             height: 312,
@@ -420,8 +434,8 @@ $(function () {
                 msgName: 'msg', // 对应 msg自定义的参数名称
                 countName: 'countSum', // 对应 count自定义的参数名称
                 dataName: 'data', // 对应 data自定义的参数名称
-            },  
-            method:'post',
+            },
+            method: 'post',
             page: true, //开启分页
             toolbar: '#toolbarDemo',
             cols: [
@@ -494,7 +508,7 @@ $(function () {
     $('.btn1').click(function () {
         $.ajax({
             type: "post",
-            url: IdUrl + "/changestatus/3", //这个不能改
+            url: IdUrl + "/changestatus/3",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
@@ -509,9 +523,11 @@ $(function () {
     })
 })
 
-
+var startdate
 window.onload = function () {
     PersonnelUnit();
+    jctable();
+    sjDate();
 }
 
 // 返回办证单位函数
@@ -523,7 +539,7 @@ function PersonnelUnit() {
             widthCredentials: true
         },
         success: function (res) {
-            // console.log(res);
+            console.log(res);
             // console.log(res.data.hearthcardNum);
             $('.bzpeople').val(res.name);
             $('#hospitalNum').val(res.hospitalNum);
@@ -531,7 +547,9 @@ function PersonnelUnit() {
             $('.healthnumber').val(res.healthNum);
             $('#IDnumber').val(res.number)
             if (res.status == "fail") {
-                alert('请登录账号');
+                layer.msg('请登录账号', {
+                    icon: 7
+                });
                 if (window != window.top) {
                     window.top.location = "/index.html";
                 }
@@ -603,7 +621,85 @@ function xiangqing(dataId) {
 
 // 基础录入
 function saveDate() {
+    var token = localStorage.getItem("token");
     var IDnumber = $("#IDnumber").val(),
+        IDname = $(".IDname").val(),
+        sex = $("input[type='radio']:checked").val(),
+        company = $("#company").val(),
+        startdate = $("#startdate").val(),
+        person = $(".bzpeople").val(),
+        telphone = $(".phonenumber").val(),
+        idcardNum = $("#IDcard").val(),
+        hearthcardNum = $(".healthnumber").val(),
+        adress = $(".address").val(),
+        enddate = $("#enddate").val(),
+        age = $("#age").val(),
+        hospitalNum = $('#hospitalNum').val(),
+        idcardimg = basestr,
+        sexList = "";
+    if (sex == 1) {
+        sexList = '男'
+    } else {
+        sexList = '女'
+    }
+    var data = {
+        "number" : IDnumber,
+        "name": IDname,
+        "sex": sexList,
+        "age": age,
+        "company": company,
+        "startdate": startdate,
+        "person": person,
+        "telphone": telphone,
+        "idcardNum": idcardNum,
+        "hearthcardNum": hearthcardNum,
+        "adress": adress,
+        "enddate": enddate,
+        "deptNum": hospitalNum,
+        "idcardPhoto": idcardimg,
+        "nation": pNation,
+        "starttime": pEffectDate,
+        "psb": pDepartment,
+        "endtime": pExpire,
+        "hospitalNum": hospitalNum
+    };
+    $.ajax({
+        type: "post",
+        url: baseUrl + "/tijian/jc?token=" + token,
+        contentType: "application/json;charset=utf-8",
+        dataType: 'json',
+        data: JSON.stringify(data),
+        success: function (data) {
+            alert (JSON.stringify(data))
+            console.log(data);
+            // alert(JSON.stringify(data));
+            if (data.status == 200) {
+                layer.msg("保存成功", {
+                    icon: 1
+                });
+                jctable()
+            } else {
+                layer.msg("保存失败，原因为" + JSON.stringify(data.data), {
+                    icon: 2
+                });
+                // console.log(data);
+            }
+        },
+        error: function () {
+            alert("失败");
+        }
+    });
+}
+
+
+// }
+
+
+// 保存
+$(function () {
+    $('#keeper').click(function () {
+        debugger
+        var IDnumber = $("#IDnumber").val(),
         IDname = $(".IDname").val(),
         sex = $("input[type='radio']:checked").val(),
         company = $("#company").val(),
@@ -624,57 +720,13 @@ function saveDate() {
     } else {
         sexList = '女'
     }
-    var data = {
-        "number": IDnumber,
-        "name": IDname,
-        "sex": sexList,
-        "age": age,
-        "company": company,
-        "startdate": startdate,
-        "person": person,
-        "telphone": telphone,
-        "idcardNum": idcardNum,
-        "hearthcardNum": hearthcardNum,
-        "adress": adress,
-        "enddate": enddate,
-        "deptNum": deptNum,
-        "idcardPhoto": idcardimg,
-        "nation": pNation,
-        "starttime": pEffectDate,
-        "psb": pDepartment,
-        "endtime": pExpire,
-        "hospitalNum": hospitalNum
-    };
-
-    $.ajax({
-        type: "post",
-        url: baseUrl + "/tijian/jc?token=" + localStorage.getItem("token"),
-        contentType: "application/json;charset=utf-8",
-        dataType: 'json',
-        data: JSON.stringify(data),
-        success: function (data) {
-            console.log(data);
-            // alert(JSON.stringify(data));
-            if (data.status == 200) {
-                alert("保存成功");
-                jctable();
-            } else {
-                alert("保存失败，原因为" + JSON.stringify(data.data));
-                // console.log(data);
-            }
-        },
-        error: function () {
-            alert("失败");
+        if (IDname == "" || company == "" || telphone == "" || idcardNum == "" || adress == "" || enddate == "" || age == "") {
+            layer.msg('请将信息填入完整', {
+                icon: 5
+            });
+        } else {
+            saveDate();
         }
-    });
-
-}
-
-
-// 保存
-$(function () {
-    $('#keeper').click(function () {
-        saveDate();
     })
 })
 
@@ -844,7 +896,11 @@ function jctable() {
         },
         success: function (res) {
             console.log(res)
-            var baseData = res.data
+            var baseData = res.data;
+            var units = $('.units').val();
+            $.each(baseData, function(i,n){
+                n.deptNum = units;
+            })
             dataTables(baseData)
         }
     })
@@ -858,8 +914,9 @@ function kstable() {
         xhrFields: {
             widthCredentials: true
         },
-        data:{
-            "status": 1
+        data: {
+            "status": "1",
+            "yuliu1":"1"
         },
         success: function (res) {
             console.log(res);

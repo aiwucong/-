@@ -91,8 +91,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a> <i
-                                class="fa fa-check-square-o tb" aria-hidden="true"></i>体检审核
+                        <a> <i class="fa fa-check-square-o tb" aria-hidden="true"></i>体检审核
                             <i class="fa fa-angle-right jt" aria-hidden="true"></i>
                         </a>
                         <ul class="listMenu">
@@ -164,7 +163,7 @@
                         <img src="../images/logging2.jpg" alt="">
                     </a>
                     <a href="#">
-                        <img src="../images/logging3.jpg" alt="">
+                        <img src="../images/logging3.jpg" alt="" id="reBack">
                     </a>
                     <a href="#">
                         <img src="../images/logging4.jpg" alt="">
@@ -180,8 +179,8 @@
                                 style="color:#fff;float: right;font-style: normal;margin-right: -15px;width: 30px; font-size: 18px">x
                             </em>
                             <span class="allgb">全部关闭</span>
-                            </li>
-                        
+                        </li>
+
                     </ul>
                     <div class="layui-tab-content">
 
@@ -242,11 +241,13 @@
             element.on('tab(demo)', function (data) {
                 iframe.src = this.dataset.url;
 
-                localStorage.iframeList = $('.top_tab').html().replace(/<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
+                localStorage.iframeList = $('.top_tab').html().replace(
+                    /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
             });
             element.render()
             element.on('tabDelete(demo)', function (data) {
-                localStorage.iframeList = $('.top_tab').html().replace(/<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
+                localStorage.iframeList = $('.top_tab').html().replace(
+                    /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
             });
             var active = {
                 tabAdd: function (url, id, name) {
@@ -258,7 +259,8 @@
 
                     curType = queryParams('type', url)
                     localStorage.curType = curType
-                    localStorage.iframeList = $('.top_tab').html().replace(/<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
+                    localStorage.iframeList = $('.top_tab').html().replace(
+                        /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
                 },
             };
 
@@ -306,6 +308,10 @@
             // 结束
             return
         });
+
+        $('#reBack').click(function () {
+            history.go(-1);
+        })
     </script>
 </body>
 

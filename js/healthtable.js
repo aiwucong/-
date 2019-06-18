@@ -1,7 +1,5 @@
 layui.use('table', function () {
     var table = layui.table;
-
-    //第一个实例
     table.render({
         elem: '#demo',
         height: 500,
@@ -10,6 +8,15 @@ layui.use('table', function () {
         page: true //开启分页
             ,
         cols: [
+            [
+                {
+                    field: 'title',
+                    title: '从业人员健康证签领表',
+                    width: 100,
+                    sort: true,
+                    colspan:14,
+                }, 
+            ],
             [ //表头
                 {
                     width: 60,
@@ -80,7 +87,17 @@ layui.use('table', function () {
                     sort: true
                 }
             ]
-        ]
+        ],
+        done: function(res, curr, count){
+            console.log(res);
+            
+            //得到当前页码
+            console.log(curr); 
+            
+            //得到数据总量
+            console.log(count);
+            $(".layui-table-box").find("[data-field='title']").css({"text-align":"center","font-size":"24px","font-weight":"blod"});
+          }
     });
 
 });

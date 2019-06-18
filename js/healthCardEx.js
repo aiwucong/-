@@ -80,17 +80,70 @@ function dataTable(userData) {
             var data = obj.data;
             var dataId = data.healthId;
             if (obj.event === 'audit_pass') {
-                // debugger
                 $('.box').show()
                 var dataId = data.healthId;
-                debugger
                 xiangqing(dataId);
+                var timer = setInterval(function(){
+                    healthPrints()
+                    clearInterval(timer)
+                },3000)
 
             } else if (obj.event === 'audit_xiangqing') {
                 var dataId = data.healthId;
                 xiangqing(dataId);
             }
         });
+
+        table.on('toolbar(table1)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id),
+                data = checkStatus.data; //获取选中的数据
+            console.log(data);
+            var ids = [];
+            for (var i = 0; i < data.length; i++) {
+                ids.push(data[i]);
+            }
+            var str = "";
+            str += "<!--stratprint-->"
+            $.each(ids, function (i, n) {
+                str += "<div class ='box'>";
+                str += "<div class='box_center'>"
+                str += " <h2 class='box_tit'>健康证明</h2>"
+                str += "<div class='boxHome'>"
+                str += "<div class='boxImg'><img src='data:image/jpg;base64,"+n.yuliu3+"' alt='' class='personImg'></div>"
+                str += "<div class='boxInputs'>"
+                str += "<div class='liners'>"
+                str += "<div class='liners_item1'><span class='liners_tit'>姓名:</span><span class='liners_input name'>"+n.name+"</span></div>"
+                str += "<div class='liners_item2'><span class='liners_tit'>年龄:</span><span class='liners_input old'>"+n.age+"</span></div>"
+                str += "</div>"
+                str += "<div class='liners'>"
+                str += "<div class='liners_item1'><span class='liners_tit'>性别:</span><span class='liners_input sex'>"+n.gender+"</span></div>"
+                str += "<div class='liners_item2'><span class='liners_tit'>体检:</span><span class='liners_input tj'>"+n.medical+"</span></div>"
+                str += "</div>"
+                str += " <div class='Ylines'><span class='liners_tit'>有效期至:</span><span class='liners_input dataTime'>"+n.endTime+"</span></div>"
+                str += "<div class='Ylines'><span class='liners_tit'>证号:</span><span class='liners_input card'>"+n.healthNum+"</span></div>"
+                str += "<img src='data:image/jpg;base64,"+n.qrCode+"' alt='' class='erweima'>"
+                str += "</div></div>"
+                str += "<h4 class='companyTitle'>武汉玛迪卡智能科技有限公司制发</h4>"
+                str += "<img src='data:image/jpg;base64,"+n.yuliu2+"' alt='' class='zhang'>"
+                str += "</div></div>"
+                str += "<div class='pageBreak'></div>";
+
+            })
+            str += "<!--endprint-->";
+            $('#printBox').append(str)
+            console.log(ids)
+            if (data.length != 0) {
+                layer.msg('正在请求打印，请稍后',{icon:16});
+                var timer = setInterval(function(){
+                    healthPrints()
+                    clearInterval(timer)
+                },3000)
+                
+            } else {
+                alert("请选择需要打印的数据")
+            }
+
+        })
 
         //监听排序
         table.on('sort(table1)', function (obj) {
@@ -217,8 +270,8 @@ function dataTables(passDate) {
                 str += "<div class='liners_item1'><span class='liners_tit'>性别:</span><span class='liners_input sex'>"+n.gender+"</span></div>"
                 str += "<div class='liners_item2'><span class='liners_tit'>体检:</span><span class='liners_input tj'>"+n.medical+"</span></div>"
                 str += "</div>"
-                str += " <div class='Yliners'><span class='liners_tit'>有效期至:</span><span class='liners_input dataTime'>"+n.endTime+"</span></div>"
-                str += "<div class='Yliners'><span class='liners_tit'>证号:</span><span class='liners_input card'>"+n.healthNum+"</span></div>"
+                str += " <div class='Ylines'><span class='liners_tit'>有效期至:</span><span class='liners_input dataTime'>"+n.endTime+"</span></div>"
+                str += "<div class='Ylines'><span class='liners_tit'>证号:</span><span class='liners_input card'>"+n.healthNum+"</span></div>"
                 str += "<img src='data:image/jpg;base64,"+n.qrCode+"' alt='' class='erweima'>"
                 str += "</div></div>"
                 str += "<h4 class='companyTitle'>武汉玛迪卡智能科技有限公司制发</h4>"
@@ -231,6 +284,7 @@ function dataTables(passDate) {
             $('#printBox').append(str)
             console.log(ids)
             if (data.length != 0) {
+                layer.msg('正在请求打印，请稍后',{icon:16});
                 var timer = setInterval(function(){
                     healthPrints()
                     clearInterval(timer)

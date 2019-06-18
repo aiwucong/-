@@ -6,10 +6,10 @@
 	<title></title>
 	<link rel="stylesheet" href="css/get-patefile.css" />
 	<link rel="stylesheet" href="./src/css/layui.css">
-	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="js/public.js"></script>
-	<!-- <script src="./js/jdjg.js"></script> -->
+	<script type="text/javascript" src="./js/jquery-1.11.0.min.js"></script>
 	<script src="./src/layui.js"></script>
+	<script type="text/javascript" src="./js/public.js"></script>
+	<script src="./js/jdjg.js"></script>
 	<style>
 		#imgg4 {
 			width: 300px;
@@ -103,31 +103,30 @@
 				</select>
 				<select id="qu"
 					style="margin-left:0.8%;background-color: transparent;border-radius:0.2rem;color: gray;border:1px solid white;width:15%;text-align:center;font-size: 1.3rem;">
-					<option>武昌区</option>
-					<option>洪山区</option>
-					<option>东湖高新区</option>
-					<option>江夏区</option>
-					<option>东湖风景区</option>
-					<option>江岸区</option>
-					<option>江汉区</option>
-					<option>硚口区</option>
-					<option>汉阳区</option>
-					<option>青山区</option>
-					<option>东西湖区</option>
-					<option>新洲区</option>
-					<option>黄陂区</option>
-					<option>蔡甸区</option>
-					<option>汉南区</option>
+					<option>请选择</option>
+					<option value="1002">武昌区</option>
+					<option value="1003">洪山区</option>
+					<option value="1004">东湖高新区</option>
+					<option value="1001">江夏区</option>
+					<option value="1005">东湖风景区</option>
+					<option value="1006">江岸区</option>
+					<option value="1007">江汉区</option>
+					<option value="1008">硚口区</option>
+					<option value="1009">汉阳区</option>
+					<option value="1010">青山区</option>
+					<option value="1011">东西湖区</option>
+					<option value="1012">新洲区</option>
+					<option value="1013">黄陂区</option>
+					<option value="1014">蔡甸区</option>
+					<option value="1015">汉南区</option>
 				</select>
 				<select id="hospial"
 					style="margin-left:0.8%;background-color: transparent;border-radius:0.2rem;color: gray;border:1px solid white;width:auto;text-align:center;font-size: 1.3rem;">
-					<option>武汉航运医院</option>
-					<option>武汉市红十字医院</option>
-					<option>东湖高新区佛祖岭社区医院</option>
+					
 				</select>
 			</div>
 			<div id="box-one2">
-				<input type="button" id="ShowDiv" value="查询" onclick="ShowDiv()" />
+				<input type="button" id="ShowDiv" value="查询" />
 			</div>
 
 		</div>
@@ -141,68 +140,7 @@
 		<h2 class="recordTit">从业人员健康检查统计表</h2>
 	</script>
 </body>
-<script>
-	layui.use('table', function () {
-		var table = layui.table;
 
-		//第一个实例
-		table.render({
-			elem: '#tables',
-			url: './json/table/demo1.json',
-			height: 600,
-			page: true //开启分页
-				,
-			toolbar: '#toolbarDemo',
-			cols: [
-				[ //表头
-					{
-						field: 'id',
-						title: 'ID',
-						sort: true,
-						fixed: 'left'
-					}, {
-						field: 'username',
-						title: '姓名',
-					}, {
-						field: 'sex',
-						title: '性别',
-						sort: true
-					}, {
-						field: 'city',
-						title: '年龄',
-					}, {
-						field: 'sign',
-						title: '体检日期',
-					}, {
-						field: 'experience',
-						title: '健康证号',
-						sort: true
-					}, {
-						field: 'score',
-						title: '有效日期',
-						sort: true
-					}, {
-						field: 'classify',
-						title: '体检结果',
-					}, {
-						field: 'wealth',
-						title: '身份证',
-						sort: true
-					}, {
-						field: 'commany',
-						title: '办证单位',
-						sort: true
-					}, {
-						field: 'photo',
-						title: '照片',
-						sort: true
-					}
-				]
-			]
-		});
-
-	});
-</script>
 <!--预约-->
 <script>
 	function ShowDiv() {
@@ -241,55 +179,55 @@
 	}
 </script>
 <script type="text/javascript">
-	$("#qu").change(function () {
-		//debugger
-		$("#hospial").children().remove()
-		var options1 = $("#qu option:checked");
-		var opindex = $("#qu").get(0).selectedIndex;
-		var data = {
-			"qunum": opindex
-		}
-		$.ajax({
-			type: "post",
-			url: baseUrl + "/hospital/gethos",
-			data: JSON.stringify(data),
-			contentType: false,
-			dataType: "json",
-			success: function (res) {
-				console.log(res)
-				var hosdata = eval(res.data)
-				var hosname = $("#hospial")
-				console.log(hosname)
-				for (var j = 0; j < hosdata.length; j++) {
-					hosname.append("<option >" + hosdata[j] + "</option>")
-				}
-			},
-			error: function () {
-				console.log("没拿到数据")
-			}
-		});
-	})
-	var map = {
-		"tjid": "35"
-	}
+	// $("#qu").change(function () {
+	// 	// debugger	
+	// 	$("#hospial").children().remove()
+	// 	var options1 = $("#qu option:checked");
+	// 	var opindex = $("#qu").get(0).selectedIndex;
+	// 	var data = {
+	// 		"qunum": opindex
+	// 	}
+	// 	$.ajax({
+	// 		type: "post",
+	// 		url: baseUrl + "/hospital/gethos",
+	// 		data: JSON.stringify(data),
+	// 		contentType: false,
+	// 		dataType: "json",
+	// 		success: function (res) {
+	// 			console.log(res)
+	// 			var hosdata = eval(res.data)
+	// 			var hosname = $("#hospial")
+	// 			console.log(hosname)
+	// 			for (var j = 0; j < hosdata.length; j++) {
+	// 				hosname.append("<option >" + hosdata[j] + "</option>")
+	// 			}
+	// 		},
+	// 		error: function () {
+	// 			console.log("没拿到数据")
+	// 		}
+	// 	});
+	// })
+	// var map = {
+	// 	"tjid": "35"
+	// }
 
-	function test() {
-		$.ajax({
-			type: "post",
-			url: baseUrl + "/hospital/gethos",
-			contentType: "application/json;charset=utf-8",
-			dataType: "json",
-			data: map,
-			success: function (res) {
-				console.log("拿到了数据")
-				console.log(res)
-			},
-			error: function (res) {
-				console.log("没拿到数据")
-			}
+	// function test() {
+	// 	$.ajax({
+	// 		type: "post",
+	// 		url: baseUrl + "/hospital/gethos",
+	// 		contentType: "application/json;charset=utf-8",
+	// 		dataType: "json",
+	// 		data: map,
+	// 		success: function (res) {
+	// 			console.log("拿到了数据")
+	// 			console.log(res)
+	// 		},
+	// 		error: function (res) {
+	// 			console.log("没拿到数据")
+	// 		}
 
-		});
-	}
+	// 	});
+	// }
 </script>
 <!--图片上传-->
 <script type="text/javascript" src="js/get-patefile.js">

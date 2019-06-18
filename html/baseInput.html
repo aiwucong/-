@@ -29,7 +29,7 @@
                             <a href="#" class="layui-btn">仅保存</a>
                             <button type="reset" class="layui-btn layui-btn-primary"
                                 style="border: 0;color:#fff;">重置</button>
-                            <button class="layui-btn" lay-submit lay-filter="formDemo" id="keeper">保存</button>
+                            <button class="layui-btn" id="keeper">保存</button>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
@@ -63,11 +63,11 @@
                                         class="layui-input" id="age">
                                 </div>
                                 <div class="checks1">
-                                        <label class="layui-form-label">性别</label>
-                                        <div class="layui-input-block">
-                                            <input type="radio" id="boy" name="sex" value="1" title="男">
-                                            <input type="radio" id="girl" name="sex" value="2" title="女">
-                                        </div>
+                                    <label class="layui-form-label">性别</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" id="boy" name="sex" value="1" title="男">
+                                        <input type="radio" id="girl" name="sex" value="2" title="女">
+                                    </div>
                                 </div>
                             </div>
                             <div class="lines">
@@ -92,13 +92,13 @@
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">办证日期</label>
-                                <input type="text" name="createTime" required lay-verify="required" placeholder="2019-05-17"
-                                    autocomplete="off" class="layui-input" id="startdate">
+                                <input type="text" name="createTime" required lay-verify="required"
+                                    placeholder="2019-05-17" autocomplete="off" class="layui-input" id="startdate">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">有效期至</label>
-                                <input type="text" name="enddate" required lay-verify="required" placeholder="2020-05-17"
-                                    autocomplete="off" class="layui-input" id="enddate">
+                                <input type="text" name="enddate" required lay-verify="required"
+                                    placeholder="2020-05-17" autocomplete="off" class="layui-input" id="enddate">
                             </div>
                         </div>
                         <div class="layui-form-item" style="margin-bottom: 0">
@@ -127,9 +127,9 @@
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1" id="healtTable">
-                                    <a href="javascript:viod()" data-url="./healthy.html" mytitle="体检表" data-id="listHolder"
-                                        style="color: #fff;">打印体检表</a>
-                                    </button>
+                                    <a href="javascript:viod()" data-url="./healthy.html" mytitle="体检表"
+                                        data-id="listHolder" style="color: #fff;">打印体检表</a>
+                                </button>
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1 custom"
@@ -171,10 +171,16 @@
             <table id="baseInput" lay-filter="test"></table>
         </div>
     </div>
+    <input type="hidden" value="" id="hospitalNum">
 
 
     <script type="text/html" id="toolbarDemo">
         <h2 class="recordTit">办证记录</h2>
+    </script>
+    <script>
+        $('#healtTable').on('click', 'a', function () {
+            window.parent.a(this)(); //调用父窗口的方法
+        })
     </script>
     <!-- 自定义编号弹框 -->
     <div id="customBox">
@@ -201,7 +207,6 @@
             </div>
         </form>
     </div>
-    </script>
 </body>
 
 </html>

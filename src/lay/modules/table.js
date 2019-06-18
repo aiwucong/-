@@ -1323,7 +1323,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
           
           html.find('th.layui-table-patch').remove();
           html.find('.layui-table-col-special').remove();
-          
+
           printWin.document.write(style + html.prop('outerHTML'));
           printWin.document.close();
           printWin.print();

@@ -11,7 +11,7 @@
 			}
 			
 			$.ajax({
-				type:"POST",
+				type:"post",
 				contentType:"application/x-www-form-urlencoded",
 				url: baseUrl + "/user/login",
 				data:{
@@ -21,10 +21,13 @@
 				xhrFields:{withCredentials:true},
 				success:function(data){
 					if(data.status=="success"){
-						alert("登录成功");
-						window.location.href="get-info.html";
+						localStorage.setItem("token",data.data.token);						
+						setTimeout(function(){
+							location.href="hostipalSelect.html";		
+						},1000)
+
 					}else{
-						alert("登录失败，原因为"+data.data.errMsg);
+						// alert("登录失败，原因为"+data.data.errMsg);
 					}
 				},
 				error:function(data){
