@@ -20,6 +20,7 @@
 				},
 				xhrFields:{withCredentials:true},
 				success:function(data){
+					console.log(data)
 					if(data.status=="success"){
 						localStorage.setItem("token",data.data.token);						
 						setTimeout(function(){

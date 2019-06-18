@@ -354,7 +354,20 @@
         </div>
     </div>
 
-
+    <div>
+        <select id="select">
+            <option value="1">武昌区</option>
+            <option value="2">武昌区</option>
+            <option value="3">武昌区</option>
+            <option value="4">武昌区</option>
+            <option value="5">武昌区</option>
+            <option value="6">武昌区</option>
+            <option value="7">武昌区</option>
+            <option value="8">武昌区</option>
+            <option value="9">武昌区</option>
+            <option value="10">武昌区</option>
+        </select>
+    </div>
     <script type="text/html" id="toolbarDemo">
         <input type="text" name="title" required lay-verify="required" placeholder="请输入查询内容" autocomplete="off"
             class="layui-input tableChaxun">
@@ -383,6 +396,11 @@
         </form>
     </div>
     <script type="text/javascript">
+    $('#select').change(function(){
+        $(this).val()
+        console.log($(this).val())
+    })
+    console.log($('#select').val())
     debugger
         let curType = localStorage.curType
         if (curType === 'one') { //既往病史
