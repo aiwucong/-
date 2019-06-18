@@ -158,6 +158,13 @@ var queryStatistics = {
                     ]
                 ],
                 done: function (res, curr, count) {
+                    console.log(res)
+                    if(res.status == "fail"){
+                        alert(res.data.errMsg)
+                        if (window != window.top) {
+                            window.top.location = "../index.html";
+                        }
+                    }
                     $('th').eq(1).css({'background-color': '#009ddd', 'color': '#fff'})
                     $('th').eq(2).css({'background-color': '#009ddd', 'color': '#fff'})
                     $('th').eq(3).css({'background-color': '#009ddd', 'color': '#fff'})
@@ -195,6 +202,9 @@ var queryStatistics = {
                 }
             });
         });
+    },
+    tableQuery:function(){
+
     },
     init:function(){
         var that = this;

@@ -20,9 +20,10 @@
 				},
 				xhrFields:{withCredentials:true},
 				success:function(data){
+					console.log(data)
 					if(data.status=="success"){
 						alert("登录成功");
-						window.location.href="get-info.html";
+						// window.location.href="get-info.html";
 					}else{
 						alert("登录失败，原因为"+data.data.errMsg);
 					}

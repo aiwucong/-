@@ -42,7 +42,7 @@ var examinationItems = {
             table.render({
                 elem: '#demo',
                 height: 312,
-                url:baseUrl + "/tijian/getWeekData?status=0&token=" + localStorage.getItem("token"),
+                url:baseUrl + "/tijian/getWeekData?status=0&yuliu1=0",
                 // data: userData,
                 page: true, //开启分页
                 title:'渠道统计数据表',
@@ -279,9 +279,9 @@ var examinationItems = {
             "yx":that.yingxie,
             "sc":that.shentou,
             "hn":that.huanong,
-            "xPicture":that.Xxian.val(),
-            "lj":that.ganjun.val(),
-            "sh":that.typhoid.val(),
+            "xPicture":that.Xxian.text(),
+            "lj":that.ganjun.text(),
+            "sh":that.typhoid.text(),
             "antiHav":that.jiagan,
             "antiHev":that.wugan,
             "qt":'',
@@ -300,6 +300,10 @@ var examinationItems = {
                     widthCredentials:true
                   },
                 success:function(res){
+                    if(res.status == 200){
+                        alert(res.data)
+                        location.reload()
+                    }
                     console.log(res)
                 }
             })
