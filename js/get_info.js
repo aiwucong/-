@@ -52,11 +52,9 @@ function sendMsg(){
 					success:function(data){
 						console.log(data)
 						if(data.status==200){
+							debugger
 							layer.msg("查询成功");
-							// const cardData = {
-
-							// }
-							// sessionStorage.setItem("card",);
+							sessionStorage.setItem('card',JSON.stringify(data.data))
 							location.href="healthCard.html";
 						}else{
 							layer.msg("查询失败,原因："+data.data);

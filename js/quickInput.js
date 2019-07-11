@@ -130,6 +130,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     // 上传图片
     var uploadInst = upload.render({
         elem: '#test1',
+<<<<<<< Updated upstream
         auto: false,
         bindAction: '#comment-btn',
         choose: function (obj) {
@@ -140,6 +141,69 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
         done: function (res) {
             // console.log(res)
         },
+=======
+        url:'',
+        auto:false,
+        bindAction:'#comment-btn',
+        choose:function(obj){
+            obj.preview(function(index,file,result){
+                console.log(file)
+                // let files = result; // 把整个base64给file
+                // let name = "imageIndex" + ".png"; // 定义文件名字（例如：abc.png ， cover.png）
+                // var type = "image/png"; // 定义图片类型（canvas转的图片一般都是png，也可以指定其他类型）
+                // let conversions = base64ToBlob(files, type); // 调用base64转图片方法
+
+                // // conversions就是转化之后的图片文件，
+
+                // function base64ToBlob(urlData, type) {
+                //     let arr = urlData.split(',');
+                //     let mime = arr[0].match(/:(.*?);/)[1] || type;
+                //     // 去掉url的头，并转化为byte
+                //     let bytes = window.atob(arr[1]);
+                //     // 处理异常,将ascii码小于0的转换为大于0
+                //     let ab = new ArrayBuffer(bytes.length);
+                //     // 生成视图（直接针对内存）：8位无符号整数，长度1个字节
+                //     let ia = new Uint8Array(ab);
+                //     for (let i = 0; i < bytes.length; i++) {
+                //         ia[i] = bytes.charCodeAt(i);
+                //     }
+                //     return new Blob([ab], {
+                //         type: mime
+                //     });
+                // }       
+
+                getWatermark(result,function(src){
+                    var img = new Image();
+                    img.onload = function() {
+                    };
+                    img.src = src;
+                    document.body.appendChild(img);
+                });
+            //绘制canvas
+                function getWatermark(url,cb) {
+                    var img = new Image();
+                    img.crossOrigin = 'Anonymous';//使用跨域图像
+                    img.onload = function() {
+                        var canvas = document.createElement('canvas');
+                        var context = canvas.getContext('2d');
+                        canvas.width=img.width;
+                        canvas.height=img.height;
+                        var src = canvas.toDataURL('image/png');
+                        cb(src);
+                    };
+                    img.src = url;
+                    // console.log(src)
+                    console.log(img.src)
+                }
+                    
+                $('#idcardimg').attr('src', result);       
+            })
+        },
+        done:function(res){
+            console.log(res)
+        },
+        
+>>>>>>> Stashed changes
     });
 
 
