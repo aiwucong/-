@@ -12,7 +12,11 @@
     <script src="../src/layui.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script src="../js/quickInput.js"></script>
+    <script src="../js/baseInput.js"></script>
     <script src="../js/public.js"></script>
+    <script src="../js/baseISSOnline.js"></script>
+    <script src="../js/baseISSObject.js"></script>
+    <script src="../js/common.js"></script>
     <title>Document</title>
 </head>
 
@@ -26,10 +30,10 @@
                     <h2 class="inputTitle">从业人员基本信息</h2>
                     <form class="layui-form input_main" lay-filter="fromtest" action="">
                         <div class="allbtn">
-                            <a href="#" class="layui-btn">仅保存</a>
-                            <button type="reset" class="layui-btn layui-btn-primary"
+                            <!-- <a href="#" class="layui-btn">仅保存</a> -->
+                            <button type="reset" class="layui-btn layui-btn-primary reset"
                                 style="border: 0;color:#fff;">重置</button>
-                            <button class="layui-btn" id="keeper">保存</button>
+                            <button class="layui-btn" type="button" id="keeper">保存</button>
                         </div>
                         <div class="layui-form-item">
                             <div class="lines">
@@ -92,8 +96,7 @@
                         <div class="layui-form-item">
                             <div class="lines">
                                 <label class="layui-form-label">办证日期</label>
-                                <input type="text" name="createTime" required lay-verify="required"
-                                    placeholder="2019-05-17" autocomplete="off" class="layui-input" id="startdate">
+                                <input type="text" name="startdate" required lay-verify="required" autocomplete="off" class="layui-input" id="startdate">
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">有效期至</label>
@@ -109,7 +112,7 @@
                             </div>
                             <div class="lines">
                                 <label class="layui-form-label">办证单位</label>
-                                <input type="text" name="deptNum" required lay-verify="required" placeholder="请输入办证单位"
+                                <input type="text" name="yuliu3" required lay-verify="required" placeholder="请输入办证单位"
                                     autocomplete="off" class="layui-input units">
                             </div>
                         </div>
@@ -123,12 +126,13 @@
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1 readcard"
-                                    type="button">读身份证</button>
+                                    type="button" onclick="new Device().startFun()">读身份证</button>
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1" id="healtTable">
-                                    <a href="javascript:viod(0)" data-url="./healthy.html" mytitle="体检表" data-id="listHolder"
+                                    <a href="javascript:void(0)" data-url="./healthy.html" mytitle="体检表" data-id="listHolder"
                                         style="color: #fff;">打印体检表</a>
+                                        <!-- 打印体检表 -->
                                     </button>
                             </div>
                             <div class="layui-form-item">
@@ -152,9 +156,9 @@
                             <p class="img_text">认证通过</p>
                         </div>
                     </div>
-                    <button class="layui-btn layui-btn-normal btn1">拍摄照片</button>
+                    <button class="layui-btn layui-btn-normal btn1"><i class="fa fa-file-image-o" aria-hidden="true" style="margin-right:5px"></i>拍摄照片</button>
                     <button type="button" class="layui-btn btn2" id="test1">
-                        <i class="layui-icon">&#xe67c;</i>导入图片
+                        <i class="fa fa-file-image-o" aria-hidden="true" style="margin-right:5px"></i>导入图片
                     </button>
                     <ul class="tstext">
                         <li>提示：1.导入本地图片不超过1M</li>
@@ -178,9 +182,10 @@
         <h2 class="recordTit">办证记录</h2>
     </script>
     <script>
-        $('#healtTable').on('click', 'a', function () {
-            window.parent.a(this)(); //调用父窗口的方法
-        })
+        // $('#healtTable').on('click', 'a', function () {
+        //     debugger
+        //     window.parent.a(this)(); //调用父窗口的方法
+        // })
     </script>
     <!-- 自定义编号弹框 -->
     <div id="customBox">

@@ -42,18 +42,22 @@ var examinationItems = {
             table.render({
                 elem: '#demo',
                 height: 312,
-                url:baseUrl + "/tijian/getWeekData?status=0&yuliu1=0",
+                url:baseUrl + "/tijian/getWeekData?status=0&yuliu1=0&token="+localStorage.getItem("token"),
                 // data: userData,
                 page: true, //开启分页
                 title:'渠道统计数据表',
                 method:'POST',
                 toolbar: '#toolbarDemo',
+                parseData: function (res) {
+                    return {
+                        "count": res.data.count,
+                        "data": res.data.pageCount,
+                        "status": res.status //code值为200表示成功
+                    };
+                },
                 response: {
                     statusName: 'status',
-                    statusCode: 200, // 对应 code自定义的参数名称
-                    msgName: 'msg', // 对应 msg自定义的参数名称
-                    countName: 'countSum', // 对应 count自定义的参数名称
-                    dataName: 'data', // 对应 data自定义的参数名称
+                    statusCode: 'success', // 对应 code自定义的参数名称
                 },
                 cols: [
                     [ //表头
@@ -104,6 +108,13 @@ var examinationItems = {
                 ],
                 done: function (res, curr, count) { // 隐藏列
                     $(".layui-table-box").find("[data-field='idcardPhoto']").css("display", "none");
+                    if(res.status == "250"){
+                        if (window != window.top) {
+                            setTimeout(function () {
+                                window.top.location = "../index.html";
+                            }, 500)
+                        }
+                    }
                 }
             })
             table.on('row(test)', function(obj){
@@ -300,13 +311,10 @@ var examinationItems = {
                     widthCredentials:true
                   },
                 success:function(res){
-<<<<<<< HEAD
-=======
                     if(res.status == 200){
                         alert(res.data)
                         location.reload()
                     }
->>>>>>> refs/remotes/origin/master
                     console.log(res)
                 }
             })

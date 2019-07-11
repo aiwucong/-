@@ -17,18 +17,24 @@
 				data:{
 					"account":account,
 					"password":passwd,
+					"key":1
 				},
 				xhrFields:{withCredentials:true},
 				success:function(data){
-					console.log(data)
+					console.log(data);
 					if(data.status=="success"){
-						localStorage.setItem("token",data.data.token);						
+						localStorage.setItem("token",data.data.token);	
+						localStorage.removeItem("iframeLists")	
+						sessionStorage.setItem('name',data.data.deptName)				
 						setTimeout(function(){
-							location.href="hostipalSelect.html";		
-						},1000)
+							location.href="jd/index.html";		
+						},500)
 
 					}else{
-						// alert("登录失败，原因为"+data.data.errMsg);
+						layui.use('layer',function(){
+							layer.msg("登录失败，原因为:"+data.data.errMsg);
+						})
+						
 					}
 				},
 				error:function(data){
@@ -45,4 +51,9 @@
         }else{
         	$("#getCard").css("background-color","#B2B2B2")
         }
-    });
+	});
+	$(document).keydown(function (event) {
+		if (event.keyCode == 13) {
+			deptlogin()
+		}
+	});	

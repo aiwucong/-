@@ -26,7 +26,6 @@ function sendMsg(){
 		
 		//查询健康证
 		function getCard(){
-			
 			var idCard = $("#idCard").val();
 			var telphone = $("#telphone").val();
 			var vcode = $("#vcode").val();
@@ -42,36 +41,38 @@ function sendMsg(){
 				alert("验证码不能为空");
 				return false;
 			}
-			$.ajax({
-				type:"get",
-				url:  baseUrl+"/healthcard/get?optcode="+vcode,
-				data:{"otpCode":vcode},
-				success:function(data){
-					console.log(data)
-					if(data==vcode){
-						alert("查询成功");
-						sessionStorage.setItem("card",data.data);
-						location.href="healthCard.html";
-					}else{
-						alert("查询失败,原因："+data.data.errMsg);
-					}
-				},
-				error:function(data){
-					//console.log(data)
-					//alert("获取失败,原因为"+data.data.errMsg);
+			layui.use('layer',function(){
+				$.ajax({
+					type:"get",
+					url:  baseUrl+"/healthcard/get",
+					data:{"otpCode":vcode,
+							"idCard":idCard,
+							"telphone":telphone
+					},
+					success:function(data){
+						console.log(data)
+						if(data.status==200){
+							layer.msg("查询成功");
+							// const cardData = {
 
-					//alert("err")
-				}
-						
-			});
+							// }
+							// sessionStorage.setItem("card",);
+							location.href="healthCard.html";
+						}else{
+							layer.msg("查询失败,原因："+data.data);
+						}
+					},
+					error:function(data){
+						layer.msg("获取失败,原因为"+data.data.errMsg);
+						console.log(data)
+					}
+							
+				});
+			})
 						
 		}
 	
 
-		//健康证
-//		function getCard(){
-//			location.href="hearthCard-info.html"
-//		}
 
 	
 	

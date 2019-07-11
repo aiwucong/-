@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>健康证</title>
-		<link rel="stylesheet" href="css/healthCard.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="css/healthCard.css"/>
+		<script src="./js/healthCard.js"></script>
+		<style>
+			.imgs {
+				width: 100%;
+				height: 100%;
+			}
+			.leftHome {
+				border: 1px solid #000;
+				border-radius: 0;
+				height: 53.98mm;
+			}
+		</style>
 	</head>
+
 
 	<body>
 		<div class="box">
 			<div class="content">
-				<div class="lef">
+				<div class="lef leftHome">
 					<div class="head">健康证明</div>
 					<div class="cont">
 						<div class="left">
-							<img src="images/person.jpg">
+							<img src="images/person.jpg" class="imgs">
 						</div>
 						<div class="right">
 							<div class="con">
@@ -59,7 +73,4 @@
 			</div>
 		</div>
 	</body>
-<script type="text/javascript">
-	
-</script>
 </html>

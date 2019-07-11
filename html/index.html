@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="../js/echarts.min.js"></script>
     <script src="../js/jquery.min.js"></script>
+    <script src="../js/index.js"></script>
     <script src="../js/public.js"></script>
+    <script src="../src/layui.js"></script>
     <style>
         #contente {
             width: 100%;
@@ -154,19 +156,19 @@
         <div class="layui-body">
             <!-- 内容主体区域 -->
             <div class="mdk_head">
-                <h3>武汉市玛迪卡智能科技有限公司</h3>
+                <h3></h3>
                 <div class="incnss">
                     <a href="#">
-                        <img src="../images/logging1.jpg" alt="">
+                        <img src="../images/logging1.jpg" alt="" id="user_person">
                     </a>
                     <a href="#">
-                        <img src="../images/logging2.jpg" alt="">
+                        <img src="../images/logging2.jpg" alt="" id="cMessage">
                     </a>
-                    <a href="#">
+                    <!-- <a href="#">
                         <img src="../images/logging3.jpg" alt="" id="reBack">
-                    </a>
+                    </a> -->
                     <a href="#">
-                        <img src="../images/logging4.jpg" alt="">
+                        <img src="../images/logging4.jpg" alt="" id="logOut">
                     </a>
                 </div>
             </div>
@@ -183,7 +185,6 @@
 
                     </ul>
                     <div class="layui-tab-content">
-
                         <iframe id="iframe" src="admin.html" width="100%" frameborder="no" border="0" marginwidth="0"
                             marginheight="0" scrolling="no" allowtransparency="yes"
                             style="padding-top: 31px; min-height: 1200px;"></iframe>
@@ -193,126 +194,168 @@
             </div>
         </div>
     </div>
-    <script src="../src/layui.js"></script>
-
+    <!-- 用户信息弹框 -->
+    <div class="userBox">
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                    class="layui-input p_user">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">单位：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                    class="layui-input p_company">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">办证人员：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                    class="layui-input p_name">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                    class="layui-input p_sex">
+            </div>
+        </div>
+        <div class="layui-form-item">
+                <label class="layui-form-label">号码：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                        class="layui-input p_phone">
+                </div>
+            </div>
+    </div>
+    <!-- 公司信息弹框 -->
+    <div class="messageBox">
+        <ul>
+            <li>
+                <span>商务合作：</span>
+                <span>15927026140</span>
+            </li>
+            <li>
+                <span>技术支持：</span>
+                <span>15927026140</span>
+            </li>
+        </ul>
+    </div>
     <script>
-        const iframe = document.querySelector('#iframe')
-        try {
-            var iframeList = localStorage.iframeList;
-        } catch (e) {
+    const iframe = document.querySelector('#iframe')
+    try {
+        var iframeList = localStorage.iframeList;
+    } catch (e) {
 
+    }
+    // var iframeIndex = document.getElementById('iframe')
+    $('.top_tab').html(iframeList)
+
+
+    // >>>闭包 封装成方法让子窗口访问
+    let tableChange
+
+    function a(dom) {
+        return tableChange.bind(dom)
+    }
+
+    function queryParams(params, url) {
+        if (!params) return;
+        var paraString = url.substring(url.indexOf('?') + 1, url.length).split('&'),
+            paraObj = {};
+        for (var i = 0, j = paraString[i]; i < paraString.length; i++) {
+            paraObj[j.substring(0, j.indexOf('=')).toLowerCase()] = j.substring(
+                j.indexOf('=') + 1,
+                j.length
+            );
         }
-        // var iframeIndex = document.getElementById('iframe')
-        $('.top_tab').html(iframeList)
-
-
-        // >>>闭包 封装成方法让子窗口访问
-        let tableChange
-
-        function a(dom) {
-            return tableChange.bind(dom)
-        }
-
-        function queryParams(params, url) {
-            if (!params) return;
-            var paraString = url.substring(url.indexOf('?') + 1, url.length).split('&'),
-                paraObj = {};
-            for (var i = 0, j = paraString[i]; i < paraString.length; i++) {
-                paraObj[j.substring(0, j.indexOf('=')).toLowerCase()] = j.substring(
-                    j.indexOf('=') + 1,
-                    j.length
-                );
+        var returnValue = paraObj[params.toLowerCase()];
+        if (typeof returnValue === 'undefined') {
+            return '';
+        } else {
+            if (returnValue.indexOf('#') > -1) {
+                returnValue = returnValue.split('#')[0];
             }
-            var returnValue = paraObj[params.toLowerCase()];
-            if (typeof returnValue === 'undefined') {
-                return '';
+            return returnValue;
+        }
+    }
+    // 结束
+
+    layui.use('element', function () {
+        var $ = layui.jquery,
+            element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        element.on('tab(demo)', function (data) {
+            iframe.src = this.dataset.url;
+
+            localStorage.iframeList = $('.top_tab').html().replace(
+                /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
+        });
+        element.render()
+        element.on('tabDelete(demo)', function (data) {
+            localStorage.iframeList = $('.top_tab').html().replace(
+                /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
+        });
+        var active = {
+            tabAdd: function (url, id, name) {
+                //新增一个Tab项 传入三个参数，分别对应其标题，tab页面的地址，还有一个规定的id，是标签中data-id的属性值
+                iframe.src = url
+                $('.top_tab').children().removeClass('layui-this').end().append(
+                    `<li class='layui-this' data-url=${url}>${name}</li>`);
+                element.render('tab');
+                localStorage.iframeList = $('.top_tab').html().replace(
+                    /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
+            },
+        };
+
+        // >>>  把处理函数提取出来
+
+        tableChange = function () {
+            var dataid = $(this);
+            //这时会判断右侧.layui-tab-title属性下的有lay-id属性的li的数目，即已经打开的tab项数目
+            // debugger
+            if ($(".layui-tab-title li").length <= 1) {
+                //如果比零小，则直接打开新的tab项
+                active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr(
+                    "mytitle"));
             } else {
-                if (returnValue.indexOf('#') > -1) {
-                    returnValue = returnValue.split('#')[0];
-                }
-                return returnValue;
-            }
-        }
-        // 结束
-
-        layui.use('element', function () {
-            var $ = layui.jquery,
-                element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-            element.on('tab(demo)', function (data) {
-                iframe.src = this.dataset.url;
-
-                localStorage.iframeList = $('.top_tab').html().replace(
-                    /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
-            });
-            element.render()
-            element.on('tabDelete(demo)', function (data) {
-                localStorage.iframeList = $('.top_tab').html().replace(
-                    /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
-            });
-            var active = {
-                tabAdd: function (url, id, name) {
-                    //新增一个Tab项 传入三个参数，分别对应其标题，tab页面的地址，还有一个规定的id，是标签中data-id的属性值
-                    iframe.src = url
-                    $('.top_tab').children().removeClass('layui-this').end().append(
-                        `<li class='layui-this' data-url=${url}>${name}</li>`);
-                    element.render('tab');
-
-                    curType = queryParams('type', url)
-                    localStorage.curType = curType
-                    localStorage.iframeList = $('.top_tab').html().replace(
-                        /<i class="layui-icon layui-unselect layui-tab-close">ဆ<\/i>/g, '')
-                },
-            };
-
-            // >>>  把处理函数提取出来
-
-            tableChange = function () {
-                var dataid = $(this);
-                //这时会判断右侧.layui-tab-title属性下的有lay-id属性的li的数目，即已经打开的tab项数目
-                // debugger
-                if ($(".layui-tab-title li").length <= 1) {
-                    //如果比零小，则直接打开新的tab项
+                //否则判断该tab项是否以及存在
+                var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
+                $.each($(".layui-tab-title li"), function () {
+                    //如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开
+                    if ($(this).attr("data-url") == dataid.attr("data-url")) {
+                        isData = true;
+                    }
+                })
+                if (isData == false) {
+                    //标志为false 新增一个tab项
                     active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr(
                         "mytitle"));
-                } else {
-                    //否则判断该tab项是否以及存在
-                    var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
-                    $.each($(".layui-tab-title li"), function () {
-                        //如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开
-                        if ($(this).attr("data-url") == dataid.attr("data-url")) {
-                            isData = true;
-                        }
-                    })
-                    if (isData == false) {
-                        //标志为false 新增一个tab项
-                        active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr(
-                            "mytitle"));
-                    }
-                    [...document.querySelector('.top_tab').children].some(function (e) {
-                        if (e.dataset.url == dataid.attr("data-url")) {
-                            e.click()
-                            return true
-                        }
-                    })
                 }
-
+                [...document.querySelector('.top_tab').children].some(function (e) {
+                    if (e.dataset.url == dataid.attr("data-url")) {
+                        e.click()
+                        return true
+                    }
+                })
             }
-            tabDeleteAll = function (id) {
-                var tapList = $(this).parent('.layui-first');
-                tapList.nextAll('li').remove()
-            }
-            //当点击有site-demo-active属性的标签时，即左侧菜单栏中内容 ，触发点击事件
-            $('.leftdaohang').on('click', tableChange);
-            $('#closeTap').on('click', tabDeleteAll);
-            $('.layui-this').click()
-            // 结束
-            return
-        });
 
-        $('#reBack').click(function () {
-            history.go(-1);
-        })
-    </script>
+        }
+        tabDeleteAll = function (id) {
+            var tapList = $(this).parent('.layui-first');
+            tapList.nextAll('li').remove()
+        }
+        //当点击有site-demo-active属性的标签时，即左侧菜单栏中内容 ，触发点击事件
+        $('.leftdaohang').on('click', tableChange);
+        $('#closeTap').on('click', tabDeleteAll);
+        $('.layui-this').click()
+        // 结束
+        return
+    });
+</script>
 </body>
 
 </html>

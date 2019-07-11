@@ -24,7 +24,7 @@ body {
 /*证件盒子*/
 .content {
 	margin: 12% auto;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	width: 190.60mm;
 	height: 53.98mm;
 	display: flex;
@@ -78,7 +78,7 @@ body {
 }
 
 .left {
-	width: 25mm;
+	width: 24mm;
 	height: 100%;
 	text-align: center;
 
@@ -192,6 +192,7 @@ input {
 .lefe {
 	width: 100%;
 	height: 55%;
+	position: relative;
 }
 
 .lea {
@@ -236,4 +237,8 @@ input {
 
 .inputCon .layui-word-aux {
 	margin-left: 10px;
+}
+#erwerma {
+	position: absolute;
+	right: 10px;
 }

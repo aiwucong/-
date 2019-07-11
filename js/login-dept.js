@@ -16,21 +16,26 @@
 				url: baseUrl+"/user/login",
 				data:{
 					"account":account,
-					"password":passwd
+					"password":passwd,
+					"key":0
 				},
 				xhrFields:{withCredentials:true},
 				success:function(data){
+					console.log(data)
 					if(data.status=="success"){
 						localStorage.setItem('token',data.data.token)
 						localStorage.removeItem('iframeList')
-						// alert("登录成功");
+						sessionStorage.setItem('name',data.data.deptName)
 					location.href="html/index.html";
 					}else{
-						alert("登录失败，原因为"+data.data.errMsg);
+						layui.use('layer',function(){
+							layer.msg("登录失败，原因为:"+data.data.errMsg);
+						})
 					}
 				},
 				error:function(data){
-					alert("登录失败,原因为"+data.responseText);
+					// alert("登录失败,原因为"+data.data.responseText);
+					alert('失败')
 				}
 			})
 		}
@@ -43,7 +48,13 @@ $('input').on('input propertychange', function() {
         }else{
         	$("#getCard").css("background-color","#B2B2B2");
         }
-    });
+	});
+	
+	$(document).keydown(function (event) {
+		if (event.keyCode == 13) {
+			deptlogin()
+		}
+	});
     
 		
 		

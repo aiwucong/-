@@ -14,6 +14,9 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/quickInput.js"></script>
     <script src="../js/public.js"></script>
+    <script src="../js/baseISSOnline.js"></script>
+    <script src="../js/baseISSObject.js"></script>
+    <script src="../js/common.js"></script>
     <title>Document</title>
 </head>
 
@@ -27,10 +30,10 @@
                     <h2 class="inputTitle">从业人员基本信息</h2>
                     <form class="layui-form input_main" lay-filter="fromtest" action="">
                         <div class="allbtn">
-                            <button class="layui-btn" type="button">仅保存</button>
+                            <!-- <button class="layui-btn" type="button">仅保存</button> -->
                             <button type="reset" class="layui-btn layui-btn-primary reset"
                                 style="border: 0;color:#fff;">重置</button>
-                            <button class="layui-btn" lay-submit lay-filter="formDemo" id="save">保存并打印</button>
+                            <button class="layui-btn" lay-submit lay-filter="formDemo" id="save" type="button">保存并打印</button>
                         </div>
                         <div class="allbtnConter">
                             <div class="layui-form-item">
@@ -110,7 +113,7 @@
                                 </div>
                                 <div class="lines">
                                     <label class="layui-form-label">办证单位</label>
-                                    <input type="text" name="deptNum" required lay-verify="required"
+                                    <input type="text" name="yuliu3" required lay-verify="required"
                                         placeholder="请输入办证单位" autocomplete="off" class="layui-input units" value=""
                                         readonly="readonly">
                                 </div>
@@ -127,7 +130,7 @@
                             </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1 readcard"
-                                    type="button">读身份证</button>
+                                    type="button" onclick="new Device().startFun()">读身份证</button>
                             </div>
 
                             <div class="layui-form-item">
@@ -137,10 +140,10 @@
                                     <button class="layui-btn layui-btn-sm checkboxs_btn1 healthCard1" lay-submit lay-filter="formDemo">打印健康证</button>
                             
                             </div>
-                            <div class="layui-form-item">
+                            <!-- <div class="layui-form-item">
                                 <button class="layui-btn layui-btn-sm checkboxs_btn1 custom"
                                     type="button">健康证编号</button>
-                            </div>
+                            </div> -->
 
 
                         </form>
@@ -158,12 +161,14 @@
                             <p class="img_text">认证通过</p>
                         </div>
                     </div>
-                    <button class="layui-btn layui-btn-normal btn1">拍摄照片</button>
+                    <button class="layui-btn layui-btn-normal btn1">
+                            <i class="fa fa-file-image-o" aria-hidden="true" style="margin-right:5px"></i>拍摄照片
+                    </button>
                     <!-- <button class="layui-btn layui-btn-normal btn2">拍摄照片
                         <input type="file">
                     </button> -->
                     <button type="button" class="layui-btn btn2" id="test1">
-                        <i class="layui-icon">&#xe67c;</i>导入图片
+                        <i class="fa fa-file-image-o" aria-hidden="true" style="margin-right:5px"></i>导入图片
                     </button>
                     <ul class="tstext">
                         <li>提示：1.导入本地图片不超过1M</li>
@@ -195,7 +200,6 @@
             </script>
             <script>
                 $('.healthCard1').on('click', 'a', function () {
-                    console.log(1)
                     window.parent.a(this)(); //调用父窗口的方法
                 })
             </script>

@@ -45,8 +45,8 @@
                 <div class="main_charts">
                     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
                         <ul class="layui-tab-title">
-                            <li class="layui-this">当日体检发证统计</li>
-                            <li class="rescc">当日预约单位统计</li>
+                            <li class="layui-this">每周体检发证统计</li>
+                            <li class="rescc">每周预约单位统计</li>
                             <li>历史办证统计</li>
                         </ul>
                         <div class="layui-tab-content">
@@ -117,6 +117,18 @@
     <script src="../src/layui.js"></script>
     <script>
         //JavaScript代码区域
+        var dataArry = new Date();
+        var years = dataArry.getFullYear()
+        var month = dataArry.getMonth() + 1
+        var dayCur = dataArry.getDate()
+        if(month >= 1 && month <= 9){
+            month = "0" + month
+        }
+        if (dayCur >= 0 && dayCur <= 9) {
+            strDdayCurate = "0" + dayCur;
+        }
+        var str = years + "-" +  month + "-";
+        var str1 = [dayCur , dayCur-1,dayCur-2,dayCur-3,dayCur-4]
         var myChart = echarts.init(document.getElementById('t_charts'));
 
         option = {
@@ -156,13 +168,13 @@
                 data: ['当日预约单位数']
             },
             xAxis: {
-                data: ["1-21", "1-22", "1-23", "1-24", "1-25"]
+                data: [str+str1[0], str+str1[1], str+str1[2], str+str1[3], str+str1[4]]
             },
             yAxis: {},
             series: [{
                 name: '当日预约单位数',
                 type: 'bar',
-                data: [5, 20, 36, 10, 10]
+                data: [0, 0, 0, 0, 0]
             }]
         };
         // 使用刚指定的配置项和数据显示图表。
@@ -178,7 +190,7 @@
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
             legend: {
-                data: ['体检总人数', '当月体检人数', '当日发证人数', '当日预约人数', '当日体检人数']
+                data: ['体检总人数', '当月体检人数', '当日发证人数', '当日体检人数']
             },
             series: [{
                 name: '',
@@ -191,12 +203,9 @@
                 }, {
                     value: 310,
                     name: '当月体检人数'
-                }, {
-                    value: 234,
-                    name: '当日发证人数'
-                }, {
+                },  {
                     value: 135,
-                    name: '当日预约人数'
+                    name: '当日预约单位数'
                 }, {
                     value: 1548,
                     name: '当日体检人数'
@@ -223,54 +232,21 @@
                 // console.log(data.elem); //得到当前的Tab大容器
                 // console.log(myCharts);
                 if (data.index == 1) {
-                    console.log('第二个')
+                    // console.log('第二个')
                     $.ajax({
-                        url: baseUrl + '/tubiao/zhucounttwo',
-                        async: true,
-                        data: {},
+                        url: baseUrl + '/tubiao/yuyueWeekData?token='+localStorage.getItem("token"),
+                        type:'POST',
+                        xhrFields: {
+                            widthCredentials: true
+                        },
                         success: function (result) {
-                            console.log(result)
-                            var result = result.data;
-
-                            if (result) {
-
-                                if (result.day0 == undefined) {
-
-                                    result.day0 = "暂无数据"
-                                }
-                                if (result.day1 == undefined) {
-                                    result.day1 = "暂无数据"
-                                }
-                                if (result.day2 == undefined) {
-                                    result.day2 = "暂无数据"
-                                }
-                                if (result.day3 == undefined) {
-                                    result.day3 = "暂无数据"
-                                }
-                                if (result.day4 == undefined) {
-                                    result.day4 = "暂无数据"
-                                }
-                                if (result.ordernum0 == undefined) {
-                                    result.ordernum0 = 0
-                                }
-                                if (result.ordernum1 == undefined) {
-                                    result.ordernum1 = 0
-                                }
-                                if (result.ordernum2 == undefined) {
-                                    result.ordernum2 = 0
-                                }
-                                if (result.ordernum3 == undefined) {
-                                    result.ordernum3 = 0
-                                }
-                                if (result.ordernum4 == undefined) {
-                                    result.ordernum4 = 0
-                                }
-                                names = [result.day0, result.day1.slice(0, 10), result.day2,
-                                    result.day3, result.day4
-                                ]
-                                nums = [result.ordernum0, result.ordernum1, result
-                                    .ordernum2, result.ordernum3, result.orde4num0
-                                ]
+                            // console.log(result)
+                        //   console.log(str + str1[0])
+                            if (result.status == "success") {
+                                names = Object.keys(result.data)
+                                nums = Object.values(result.data)
+                                // console.log(names)
+                                // console.log(nums)
                                 myChart1.hideLoading(); //隐藏加载动画
                                 myChart1.setOption({ //加载数据图表
                                     xAxis: {
@@ -286,38 +262,30 @@
                         }
                     })
                 } else if (data.index == 2) {
-                    console.log('第三个')
+                    // console.log('第三个')
                     $.ajax({
-                        url: baseUrl + '/tubiao/indexcount',
+                        url: baseUrl + '/tubiao/allCount?token=' + localStorage.getItem("token"),
                         type: "get",
                         xhrFields: {
                             withCredentials: true
                         },
                         success: function (res) {
-                            console.log(res)
+                            // console.log(res)
                             if (res) {
                                 myChart2.hideLoading(); //隐藏加载动画
                                 myChart2.setOption({ //加载数据图表
                                     series: [{
                                         data: [{
-                                            value: res.data
-                                                .alltjnum,
+                                            value: res.data.all_tjcount,
                                             name: '体检总人数'
                                         }, {
-                                            value: res.data
-                                                .monthtjnum,
+                                            value: res.data.month_tjcount,
                                             name: '当月体检人数'
                                         }, {
-                                            value: res.data
-                                                .daycardnum,
+                                            value: res.data.day_fz,
                                             name: '当日发证人数'
-                                        }, {
-                                            value: res.data
-                                                .dayordernum,
-                                            name: '当日预约人数'
-                                        }, {
-                                            value: res.data
-                                                .daytjnum,
+                                        },{
+                                            value: res.data.day_tjcount,
                                             name: '当日体检人数'
                                         }],
 

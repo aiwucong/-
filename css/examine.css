@@ -1,3 +1,11 @@
+@page {
+    margin:0;
+}
+.a4-endwise{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
 .examine_body {
     width: 100%;
     height: 600px;
@@ -193,3 +201,43 @@
     margin-left: 85px;
     margin-top: 20px;
 }
+#looks {
+    display: none;
+    margin-top: 70px;
+}
+.lookBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.imger1,
+.imger2,
+.imger3 {
+    width: 324px;
+    height: 497px;
+    border: 1px solid #e9e9e9;
+}
+.printBtn {
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    background: #ff9600;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.imger1 img,
+.imger2 img,
+.imger3 img {
+    width: 100%;
+    height: 457px;
+    margin-top: 10px;
+}
+/* .imger1 img:hover,
+.imger2 img:hover,
+.imger3 img:hover {
+    transform: scale(2.5) rotate(-90deg);
+    transition: all .5s;
+    z-index: 9999;
+} */

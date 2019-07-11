@@ -10,7 +10,7 @@
 	        reader.onload=function(e) {
 	            // alert('文件读取完成');
 	            imgFile = e.target.result;
-	            console.log(imgFile);
+	            // console.log(imgFile);
 	            $("#imgg1").attr('src',imgFile);
 	        };
 	        //正式读取文件
@@ -46,7 +46,7 @@
 	        reader.onload=function(e) {
 	            // alert('文件读取完成');
 	            imgFile = e.target.result;
-	            console.log(imgFile);
+	            // console.log(imgFile);
 	            $("#imgg3").attr('src',imgFile);
 	        };
 	        //正式读取文件

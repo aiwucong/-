@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/hostipalSelect.css" />
+	<link rel="stylesheet" href="../src/css/layui.css">
+	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	<script src="../src/layui.js"></script>
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script src="../js/jdjg.js"></script>
+	<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+	<script src="../js/jquery.min.js"></script>
+</head>
+
+<body>
+	<div id="box">
+		<div id="dibu-box" class="clearfix">
+			<div id="box-one1">
+				<span class="textTitle">体检机构</span>
+				<select id="city">
+					<option style="color: black;">武汉市</option>
+				</select>
+				<select id="qu">
+					<option value="">请选择</option>
+					<option value="1002">武昌区</option>
+					<option value="1003">洪山区</option>
+					<option value="1004">东湖高新区</option>
+					<option value="1001">江夏区</option>
+					<option value="1005">东湖风景区</option>
+					<option value="1006">江岸区</option>
+					<option value="1007">江汉区</option>
+					<option value="1008">硚口区</option>
+					<option value="1009">汉阳区</option>
+					<option value="1010">青山区</option>
+					<option value="1011">东西湖区</option>
+					<option value="1012">新洲区</option>
+					<option value="1013">黄陂区</option>
+					<option value="1014">蔡甸区</option>
+					<option value="1015">汉南区</option>
+				</select>
+				<select id="hospial">
+					<option value="">请选择</option>
+				</select>
+			</div>
+			<div id="box-one2">
+				<div class="layui-btn" data-type="reload" id="ShowDiv">查询</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="jd_table">
+		<table id="tables" lay-filter="test"></table>
+	</div>
+	<script type="text/html" id="toolbarDemo">
+		<!-- <h2 class="recordTit">从业人员健康检查统计表</h2> -->
+	</script>
+</body>
+<!--图片上传-->
+<script type="text/javascript" src="../js/get-patefile.js">
+
+</script>
+
+</html>

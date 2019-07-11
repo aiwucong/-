@@ -1,327 +1,367 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>从业人员健康体检表</title>
-		<script src="../src/layui.js"></script>
-		<script src="../js/jquery.min.js"></script>
-		<script src="../js/public.js"></script>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				/* font-family: "微软雅黑"; */
-				font-family:"SimSun";
-				box-sizing: border-box;
-				font-size: 18px;
-			}
-			em{
-				font-style: normal;
-			}
-			input {
-				border-color: transparent;
-			}
-			
-			#box {
-				margin: 0 auto;
-				width: 50%;
-				border: 1px solid #AAAAAA;
-				background: #fff;
-				padding:30px 60px ;
-				position: relative;
-				height: auto;
-				margin-top: 55px;
-			}
-			.boxBox{
-				width: 100%;
-				height: 100%;
-			}
-			.head{
-				position: relative;
-				width: 100%;
-				height: auto;
-				overflow: hidden;
-			}
-			.hbl-con,.hbl-top,.hbl-btn{
-				overflow: hidden;
-			}
-			.hbl-top span{
-				float: left;
-				width: 50%;
-				height: 30px;
-				line-height: 30px;
-			}
-			.hbl-con span{
-				float: left;
-				width: 25%;
-				height: 30px;
-				line-height: 30px;
-			}
-			.hbl-btn span{
-				float: left;
-				height: 30px;
-				line-height: 30px;
-			}
-			.hbl-btn span:nth-child(1){
-				width: 75%;
-			}
-			.hbl-btn span:nth-child(2){
-				width: 25%;
-			}
-			.headTop{
-				width: 100%;
-			}
-			.headBtn{
-				position: relative;
-			}
-			.headBtn-left{
-				float: left;
-				width: 85%;
-			}
-			.headBtn-right{
-				float: right;
-				width: 15%;
-				height: 120px;
-				border:1px solid #e1e1e1;
-				margin-top: -35px;
-			}
-			.title{
-				text-align: center;
-				font-size: 24px;
-				color: #333;
-				font-weight: bold;
-				margin-bottom: 20px;
-			}
-			.main{
-				width: 100%;
-				height: auto;
-				border: 1px solid #000;
-				margin-top: 8px;
-				box-sizing: border-box;
-			}
-			.main td{
-				border:1px solid #000;
-				height: 40px;
-				text-align: center;
-				border-top: none;
-    			border-left: none;
-				width: 90px;
-			}
-			.print{
-				position: absolute;
-				top: 4.5%;
-				right: 15%;
-			}
-			
-			.print span{
-				width: 80px;
-				height: 40px;
-				background: #ff9600;
-				display: block;
-				line-height: 40px;
-				text-align: center;
-				color:#fff;
-				border-radius: 5px;
-			}
-			.tip{
-				margin-top: 10px;
-			}
-			.tip span{
-				font-size: 16px;
-				display: block;
-			}
-			.tip span:nth-child(2){
-				text-align: right;	
-			}
-		</style>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>从业人员健康体检表</title>
+	<script src="../src/layui.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/public.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			/* font-family: "微软雅黑"; */
+			font-family: "SimSun";
+			box-sizing: border-box;
+			font-size: 18px;
+		}
 
-	<body>
+		em {
+			font-style: normal;
+			font-size: 18px;
+		}
+
+		input {
+			border-color: transparent;
+		}
+
+		#box {
+			margin: 0 auto;
+			width: 50%;
+			border: 1px solid #AAAAAA;
+			background: #fff;
+			padding: 30px 30px;
+			position: relative;
+			height: auto;
+			margin-top: 55px;
+		}
+
+		.boxBox {
+			width: 100%;
+			height: 100%;
+		}
+
+		.head {
+			position: relative;
+			width: 100%;
+			height: auto;
+			overflow: hidden;
+		}
+
+		.hbl-con,
+		.hbl-top,
+		.hbl-btn {
+			overflow: hidden;
+		}
+
+		.hbl-top span {
+			float: left;
+			width: 50%;
+			height: 30px;
+			line-height: 30px;
+		}
+
+		.hbl-con span {
+			float: left;
+			width: 25%;
+			height: 30px;
+			line-height: 30px;
+		}
+
+		.hbl-btn span {
+			float: left;
+			height: 30px;
+			line-height: 30px;
+		}
+
+		.hbl-btn span:nth-child(1) {
+			width: 60%;
+		}
+
+		.hbl-btn span:nth-child(2) {
+			width: 40%;
+		}
+
+		.headTop {
+			width: 100%;
+		}
+
+		.headBtn {
+			position: relative;
+		}
+
+		.headBtn-left {
+			float: left;
+			width: 85%;
+		}
+
+		.headBtn-right {
+			float: right;
+			width: 15%;
+			height: 120px;
+			border: 1px solid #e1e1e1;
+			margin-top: -35px;
+		}
+
+		.title {
+			text-align: center;
+			font-size: 24px;
+			color: #333;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+
+		.main {
+			width: 100%;
+			height: auto;
+			border: 1px solid #000;
+			margin-top: 8px;
+			box-sizing: border-box;
+		}
+
+		.main td {
+			border: 1px solid #000;
+			height: 40px;
+			text-align: center;
+			border-top: none;
+			border-left: none;
+			width: 90px;
+		}
+
+		.print {
+			position: absolute;
+			top: 4.5%;
+			right: 15%;
+			cursor: pointer;
+		}
+
+		.print span {
+			width: 80px;
+			height: 40px;
+			background: #ff9600;
+			display: block;
+			line-height: 40px;
+			text-align: center;
+			color: #fff;
+			border-radius: 5px;
+		}
+
+		.tip {
+			margin-top: 10px;
+		}
+
+		.tip span {
+			font-size: 16px;
+			display: block;
+		}
+
+		.tip span:nth-child(2) {
+			text-align: right;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="box">
 		<!--stratprint-->
-		<div id="box">
-			<div class="boxBox">
-				<div class="head">
-					<div class="headTop">
-						<div class="identifier"><span>体检编号<em class='number'></em></span></div>
-						<div class="title" style="margin-bottom: 5px;">武汉市东西湖区预防性健康体检表</div>
-						<div class="title">从业人员健康体检表</div>
+		<div class="boxBox">
+			<div class="head">
+				<div class="headTop">
+					<div class="identifier"><span>体检编号：<em class='number'></em></span></div>
+					<div class="title" style="margin-bottom: 5px;"><span class="title area" id="area">武汉市XX区</span>预防性健康体检表
 					</div>
-					<div class="headBtn">
-						<div class="headBtn-left">
-							<div class="hbl-top">
-								<span>体检日期：<em class="dataTime"></em></span>
-								<span>身份证号：<em id="idcardNum" style="width: 60%;display: inline-block;font-size: 16px;"></em></span>
-							</div>
-							<div class="hbl-con">
-								<span>姓名：<em class="idname"></em></span>
-								<span>性别：<em class="sex"></em></span>
-								<span>年龄：<em class="age"></em></span>
-								<span>名族：<em class="pNation"></em></span>
-							</div>
-							<div class="hbl-btn">
-								<span>工作单位：<em class="company"></em></span>
-								<span>工种：<em></em></span>
-							</div>
+					<div class="title">从业人员健康体检表</div>
+				</div>
+				<div class="headBtn">
+					<div class="headBtn-left">
+						<div class="hbl-top">
+							<span>体检日期：<em class="dataTime">2019-07-09</em></span>
+							<span>身份证号：<em id="idcardNum"
+									style="width: 60%;display: inline-block;font-size: 18px;">429004199805141167</em></span>
 						</div>
-						<div class="headBtn-right">
-							<img src="" alt="" class="idcardimg" style="width: 100%" height="100%";>
+						<div class="hbl-con">
+							<span>姓名：<em class="idname"></em></span>
+							<span>性别：<em class="sex"></em></span>
+							<span>年龄：<em class="age"></em></span>
+							<span>民族：<em class="pNation"></em></span>
 						</div>
+						<div class="hbl-btn">
+							<span>工作单位：<em class="company">11</em></span>
+							<span>手机号码：<em class="p_phone">12345678980</em></span>						
+						</div>
+					</div>
+					<div class="headBtn-right">
+						<img src="" alt="" class="idcardimg" style="width: 100%" height="100%" ;>
 					</div>
 				</div>
-				<table class="main" cellspacing="0" cellpadding="0">
-					<tr>
-						<td rowspan="2" style=" width: 80px;padding: 0 21px; border-bottom: 1px solid #000;">既往病史</td>
-						<td>肝炎</td>
-						<td>痢疾</td>
-						<td>伤寒</td>
-						<td>肺结核</td>
-						<td>皮肤病</td>
-						<td style="border-right: none;">其它</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td rowspan="4" style=" width: 80px;padding: 0 30px; border-bottom: 1px solid #000;">体征</td>
-						<td>心</td>
-						<td colspan="2"></td>
-						<td>肝</td>
-						<td colspan="2" style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td>脾</td>
-						<td colspan="2"></td>
-						<td>肺</td>
-						<td colspan="2" style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td colspan="6" style="border-right: none;">皮肤 手癣 指甲癣 银屑(或鳞屑)病 渗出性皮肤病 化脓性皮肤病</td>
-					</tr>
-					<tr>
-						<td colspan="3" style="text-align: left;">血压<span style="float: right;margin-right: 25%;">mmHg</span></td>
-						<td>医师签名：</td>
-						<td colspan="2" style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td  style=" width: 80px;padding: 0 34px;">X线胸透</td>
-						<td colspan="6" style="text-align: right;border-right:none;"><sapn style="display: block;margin-top: 70px;margin-right: 120px;margin-bottom: 10px;">医师签名:</sapn></td>
-					</tr>
-					<tr>
-						<td rowspan="6" style=" width: 80px;padding: 0 30px;">实验室检验</td>
-						<td colspan="2">检查项目</td>
-						<td colspan="2">检查结果</td>
-						<td colspan="2" style="border-right: none;">检验师签名</td>
-						
-					</tr>
-					<tr>
-						<td rowspan="2" style=" width: 80px;padding: 0 36px;">大便培养</td>
-						<td>杆菌痢疾</td>
-						<td colspan="2"></td>
-						<td colspan="2" style="border-right: none;"></td>
-					</tr>
-					<!-- <tr>
+			</div>
+			<table class="main" cellspacing="0" cellpadding="0">
+				<tr>
+					<td rowspan="2" style=" width: 80px;padding: 0 21px; border-bottom: 1px solid #000;">既往病史</td>
+					<td>肝炎</td>
+					<td>痢疾</td>
+					<td>伤寒</td>
+					<td>肺结核</td>
+					<td>皮肤病</td>
+					<td style="border-right: none;">其它</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td rowspan="4" style=" width: 80px;padding: 0 30px; border-bottom: 1px solid #000;">体征</td>
+					<td>心</td>
+					<td colspan="2"></td>
+					<td>肝</td>
+					<td colspan="2" style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td>脾</td>
+					<td colspan="2"></td>
+					<td>肺</td>
+					<td colspan="2" style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td colspan="6" style="border-right: none;">皮肤 手癣 指甲癣 银屑(或鳞屑)病 渗出性皮肤病 化脓性皮肤病</td>
+				</tr>
+				<tr>
+					<td colspan="3" style="text-align: left;">血压<span
+							style="float: right;margin-right: 25%;">mmHg</span></td>
+					<td>医师签名：</td>
+					<td colspan="2" style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td style=" width: 80px;padding: 0 34px;">X线胸透</td>
+					<td colspan="6" style="text-align: right;border-right:none;">
+						<sapn style="display: block;margin-top: 70px;margin-right: 120px;margin-bottom: 10px;">医师签名:
+						</sapn>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="6" style=" width: 80px;padding: 0 30px;">实验室检验</td>
+					<td colspan="2">检查项目</td>
+					<td colspan="2">检查结果</td>
+					<td colspan="2" style="border-right: none;">检验师签名</td>
+
+				</tr>
+				<tr>
+					<td rowspan="2" style=" width: 80px;padding: 0 36px;">大便培养</td>
+					<td>杆菌痢疾</td>
+					<td colspan="2"></td>
+					<td colspan="2" style="border-right: none;"></td>
+				</tr>
+				<!-- <tr>
 						<td></td>
 						<td colspan="2">检查项目</td>
 						<td colspan="2">检查结果</td>
 						<td colspan="2" style="border-right: none;">检验师签名</td>
 					</tr> -->
-					
-					<tr>
-						<td>伤寒或副伤寒</td>
-						<td colspan="2"></td>
-						<td colspan="2" style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td rowspan="2" style=" width: 80px;padding: 0 30px;">病毒性肝炎</td>
-						<td>甲型</td>
-						<td colspan="2"></td>
-						<td colspan="2" style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td>戊型</td>
-						<td colspan="2"></td>
-						<td colspan="2" style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td>其它</td>
-						<td colspan="5" style="border-right: none;"></td>
-					</tr>
-					<tr>
-						<td colspan="7" style="text-align: left;border-bottom: none;border-right:none;">&nbsp;检查结论(体检机构意见)：</td>
-					</tr>
-					<tr><td colspan="7" style="border-top: none;border-bottom: none;border-right:none;"></td></tr>
-					<tr>
-						<td rowspan="3" style="border-top: none;border-right: none;border-bottom:none;"></td>
-						<td colspan="6" style="border-top: none;border-left:none;border-bottom: none;height: 25px;border-right:none;float: right;margin-right: -265%;width: 126px;">主检医师签名：</td>
-					</tr>
-					<tr>
-						<td colspan="6" style="border-top: none;border-left:none;height: 25px;border-bottom: none;font-size: 16px;border-right:none;float: right;margin-right: -274%;">(公章)</td>
-					</tr>
-					<tr>
-						<td colspan="6" style="border-top: none;border-left:none;border-right:none;border-bottom: none;float: right;margin-right: -228%;">年&nbsp;&nbsp;月&nbsp;&nbsp;日</td>
-					</tr>
-				</table>
-				<div class="tip">
-					<span>此表用于公共场合、食品生产经营、乳制品生产经营、消毒产品生产操作、化妆品生产、供水管和药品生产经营及医疗机构直接接触药品从业人员的预约性健康检查</span>
-					<span>武汉市东西湖区卫计委制</span>
-				</div>
+
+				<tr>
+					<td>伤寒或副伤寒</td>
+					<td colspan="2"></td>
+					<td colspan="2" style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td rowspan="2" style=" width: 80px;padding: 0 30px;">病毒性肝炎</td>
+					<td>甲型</td>
+					<td colspan="2"></td>
+					<td colspan="2" style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td>戊型</td>
+					<td colspan="2"></td>
+					<td colspan="2" style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td>其它</td>
+					<td colspan="5" style="border-right: none;"></td>
+				</tr>
+				<tr>
+					<td colspan="7" style="text-align: left;border-bottom: none;border-right:none;">&nbsp;检查结论(体检机构意见)：
+					</td>
+				</tr>
+				<tr>
+					<td colspan="7" style="border-top: none;border-bottom: none;border-right:none;"></td>
+				</tr>
+				<tr>
+					<td rowspan="3" style="border-top: none;border-right: none;border-bottom:none;"></td>
+					<td colspan="6"
+						style="border-top: none;border-left:none;border-bottom: none;height: 25px;border-right:none;float: right;margin-right: -265%;width: 126px;">
+						主检医师签名：</td>
+				</tr>
+				<tr>
+					<td colspan="6"
+						style="border-top: none;border-left:none;height: 25px;border-bottom: none;font-size: 16px;border-right:none;float: right;margin-right: -274%;">
+						(公章)</td>
+				</tr>
+				<tr>
+					<td colspan="6"
+						style="border-top: none;border-left:none;border-right:none;border-bottom: none;float: right;margin-right: -228%;">
+						年&nbsp;&nbsp;月&nbsp;&nbsp;日</td>
+				</tr>
+			</table>
+			<div class="tip">
+				<span>此表用于公共场合、食品生产经营、乳制品生产经营、消毒产品生产操作、化妆品生产、供水管和药品生产经营及医疗机构直接接触药品从业人员的预约性健康检查</span>
+				<span><em class="area">武汉市XXX区</em>卫计委制</span>
 			</div>
-			
-		</div>
-		<div class="print" id="print">
-				<span>打印</span>
 		</div>
 		<!--endprint-->
-	</body>
+	</div>
+
+	<div class="print" id="print">
+		<span>打印</span>
+	</div>
+
+</body>
 
 </html>
 
 <script text="text/javascript">
-	$(function(){ 
-		$.ajax({
-			type:"get",
-			url:baseUrl+'/tijian/gettjtable',
-			contentType: "application/json;charset=utf-8",
-			dataType: 'json',
-			success:function(res){
-				console.log(res)
-				$('.company').text(res.data.company)
-				$('.sex').text(res.data.sex)
-				$('.age').text(res.data.age)
-				$('.idcardimg').attr('src',res.data.idcardimg)
-				$('.idname').text(res.data.name)
-				//$('#idcardNum').text(res.data.idcardNum)
-				//$('#idcardNum').attr('value',res.data.idcardimg)
-				$("#idcardNum").text(res.data.idcardNum)
-				console.log(res.data.idcardNum)
-				$('.adress').text(res.data.adress)
-				$('.number').text(res.data.number)
-				$('.dataTime').text(res.data.startdate)	
-				$('.pNation').text(res.data.pNation)	
+	$(function () {
+		var tjDatum = localStorage.getItem("tjtables");
+		var tjDatums = JSON.parse(tjDatum);
+		console.log(tjDatums)
+		if(tjDatums != null && tjDatums != ""){
+			$('.dataTime').text(tjDatums.createTime)
+			$('#idcardNum').text(tjDatums.idcardNum)
+			$('.idname').text(tjDatums.name)
+			$('.age').text(tjDatums.age)
+			$('.sex').text(tjDatums.sex)
+			$('.company').text(tjDatums.company)
+			$('.area').text(tjDatums.area)
+			$('.number').text(tjDatums.number)
+			$(".idcardimg").attr("src", "data:image/jpg;base64," + tjDatums.idcardPhoto);
+			$(".p_phone").text(tjDatums.phone)
+		}
+		$('.print').click(function () {
+			if(tjDatums == null || tjDatums == ""){
+				alert('请选择打印人员信息')
+			}else{
+				printdiv();
 			}
+			
 		})
+		function printdiv() {
+			bdhtml = window.document.body.innerHTML; //获取当前页的html代码
+			sprnstr = "<!--stratprint-->"; //设置打印开始区域 
+			eprnstr = "<!--endprint-->"; //设置打印结束区域 
+			prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17); //从开始代码向后取html 
+			prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr)); //从结束代码向前取html 
+			window.document.body.innerHTML = prnhtml;
+			window.print();
+			window.document.body.innerHTML = bdhtml;
+			location.reload();
+			localStorage.removeItem("tjtables");
+			return false;
+		}
+
 	});
-
-	function printdiv(printpage){
-　　　　　　var newstr = printpage.innerHTML;
-　　　　　　var oldstr = document.body.innerHTML;
-　　　　　　document.body.innerHTML =newstr;
-　　　　　　window.print();
-　　　　　　document.body.innerHTML=oldstr;
-　　　　　　return false;
-　　　　}
-　　　　window.onload=function(){
-　　　　　　var print=document.getElementById("print");
-　　　　　　var div_print=document.getElementById("box");
-		 print.onclick=function(){
-　　　　　　　　printdiv(div_print);
-　　　　　　}
-　　　　}
-
 </script>
