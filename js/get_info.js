@@ -25,7 +25,7 @@ function sendMsg(){
 		
 		
 		//查询健康证
-		function getCard(){
+function getCard(){
 			var idCard = $("#idCard").val();
 			var telphone = $("#telphone").val();
 			var vcode = $("#vcode").val();
@@ -69,12 +69,7 @@ function sendMsg(){
 			})
 						
 		}
-	
-
-
-	
-	
-				//当所有input框不为空时,按钮变色
+//当所有input框不为空时,按钮变色
 $('input').on('input propertychange', function() {
     	
         if(($.trim($('#idCard').val()) !== "") && ($.trim($('#telphone').val()) !== "")&& ($.trim($('#vcode').val()) !== "")){
@@ -100,4 +95,27 @@ $(document).on("input propertychange","#telphone", function(){
          "background":"#B2B2B2"
       })
    }
+})
+
+
+layui.use(['form','layer'],function(){
+	var form = layui.form;
+	var layer = layui.layer;
+	$('.deals').click(function () {
+		var indexs = layer.open({
+			title: false,
+			area: ['400px', '600px'],
+			type: 1,
+			content: $('.notices'),
+			btn: ['我已了解'],
+			offset: '100px',
+			btnAlign: 'c',
+			shade: 0.8,
+			moveType: 0,
+			btn1: function (index) {
+				layer.close(indexs);
+			}
+
+		});
+	})
 })

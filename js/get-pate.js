@@ -54,6 +54,26 @@ function sendMsg() {
 						alert("审核成功，请查收短信")
 					}
 				}
+								
+				
+//				$.ajax({
+//					type: "post",
+//					url:  baseUrl+"/deptorder/add",
+//					data{
+//						""
+//					}
+//					success: function(data) {
+//						console.log(data)
+//						if(code==data){
+//							alert("登录成功");
+//							location.href = "get-patefile.html";
+//						}else{
+//							alert("登录失败");
+//						}
+//					}
+//				});
+				
+		
 			}
 		})
 	}
@@ -94,6 +114,29 @@ $(document).on("input propertychange","#telphone", function(){
          "background":"#b2b2b2"
       })
    }
+})
+
+
+layui.use(['form','layer'],function(){
+	var form = layui.form
+	var layer = layui.layer
+	$('.deals').click(function () {
+		var indexs = layer.open({
+			title: false,
+			area: ['400px', '600px'],
+			type: 1,
+			content: $('.notices'),
+			btn: ['我已了解'],
+			offset: '100px',
+			btnAlign: 'c',
+			shade: 0.8,
+			moveType: 0,
+			btn1: function (index) {
+				layer.close(indexs);
+			}
+
+		});
+	})
 })
 
 		

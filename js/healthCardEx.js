@@ -160,7 +160,195 @@ function dataTables(passDate) {
         });
     })
 }
-
+function unprintTable(){
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#table1',
+            height: 'auto',
+            title: '用户数据表',
+            url: baseUrl + "/healthcard/dayin?token=" + localStorage.getItem("token"),
+            where: {
+                printStatus: 0
+            },
+            method: 'post',
+            autoSort: false,
+            toolbar: '#toolbarDemo',
+            parseData: function (res) {
+                console.log(res)
+                if (res.status == 250) {
+                    layer.msg(res.data)
+                    if (window != window.top) {
+                        setTimeout(function () {
+                            window.top.location = "../index.html";
+                        }, 500)
+                    }
+                } else if (res.data.pageData != null) {
+                    $.each(res.data.pageData, function (i, n) {
+                        if (n.medical == 0) {
+                            n.medical = "合格"
+                        } else {
+                            n.medical = "不合格"
+                        }
+                    })
+                }
+                return {
+                    "count": res.data.count,
+                    "data": res.data.pageData,
+                    "code": res.status //code值为200表示成功
+                };
+            },
+            response: {
+                statusName: 'code',
+                statusCode: 'success', // 对应 code自定义的参数名称
+            },
+            cols: [
+                [ //表头
+                    {
+                        width: 60,
+                        type: "checkbox",
+                    },
+                    {
+                        field: 'healthId',
+                        title: 'ID',
+                        width: 100,
+                    },
+                    {
+                        field: 'name',
+                        title: '姓名',
+                        width: 100,
+                    },
+                    {
+                        field: 'createTime',
+                        title: '体检时间',
+                        width: 200
+                    }, {
+                        field: 'healthNum',
+                        title: '健康证编号',
+                        width: 150
+                    }, {
+                        field: 'idCard',
+                        title: '身份证号',
+                        width: 150
+                    },
+                    {
+                        field: 'createTime',
+                        title: '审核日期',
+                        width: 177
+                    },
+                    {
+                        field: 'city',
+                        title: '打印健康证',
+                        toolbar: '#barDemo',
+                        width: 180
+                    }, {
+                        field: 'medical',
+                        title: '体检结果',
+                        width: 177
+                    }
+    
+                ]
+            ],
+            page: true
+        });  
+    });
+}
+function passprintTable(){
+    layui.use('table', function () {
+        var table = layui.table;
+        table.render({
+            elem: '#table2',
+            height: 'auto',
+            title: '用户数据表',
+            url: baseUrl + "/healthcard/dayin?token="+localStorage.getItem("token"),
+            where: {
+                printStatus: 1
+            },
+            toolbar: '#toolbarDemo',
+            method: 'post',
+            limit: 10,
+            page: true,
+            parseData: function (res) {
+                console.log(res)
+                if(res.status == 250){
+                    layer.msg(res.data)
+                    if (window != window.top) {
+                        setTimeout(function () {
+                            window.top.location = "../index.html";
+                        }, 500)
+                    }
+                }
+                if (res.data.pageData != null) {
+                    $.each(res.data.pageData, function (i, n) {
+                        if (n.medical == 0) {
+                            n.medical = "合格"
+                        } else {
+                            n.medical = "不合格"
+                        }
+                    })
+                }
+                return {
+                    "count": res.data.count,
+                    "data": res.data.pageData,
+                    "code": res.status //code值为200表示成功
+                };
+            },
+            response: {
+                // statusName: 'status',
+                statusCode: 'success', 
+                dataName:'data'// 对应 code自定义的参数名称
+            },
+            cols: [
+                [{
+                        width: 60,
+                        type: "checkbox",
+                    },
+                    {
+                        field: 'healthId',
+                        title: 'ID',
+                        width: 100,
+                    },
+                    {
+                        field: 'name',
+                        title: '姓名',
+                        width: 100,
+                    },
+                    {
+                        field: 'createTime',
+                        title: '体检时间',
+                        width: 200
+                    }, {
+                        field: 'healthNum',
+                        title: '健康证编号',
+                        width: 150
+                    }, {
+                        field: 'idCard',
+                        title: '身份证号',
+                        width: 150
+                    },
+                    {
+                        field: 'createTime',
+                        title: '审核日期',
+                        width: 177
+                    },
+                    {
+                        field: 'city',
+                        title: '打印健康证',
+                        toolbar: '#barDemo',
+                        width: 180
+                    }, {
+                        field: 'medical',
+                        title: '体检结果',
+                        width: 177
+                    }
+                ]
+            ],
+            done: function (res, curr, count) {
+                console.log(res)
+            }
+        });
+    })
+}
 // 详情
 function xiangqing(dataId) {
     $.ajax({
@@ -224,7 +412,7 @@ function queryAjax(data) {
             var noPrint = [];
             var printyes = [];
             if (res.status == 100) {
-                layer.msg("未找到该人员信息",{offset:'100px'})
+                $(".layui-table-main").html('<div class="layui-none">无数据</div>');
                 return
                 // location.reload()
             } else {
@@ -273,7 +461,9 @@ function queryDiv() {
         "yuliu1": wdate
     };
     if (wname == "" && wcard == "" && wdate == "") {
-        alert('请输入')
+        layer.msg('请输入查询条件，信息不能为空',{offset:'200px'})
+        unprintTable()
+        passprintTable()
         return
     } else {
         if (wcard != "") {
