@@ -46,9 +46,13 @@ function sendMsg() {
 				console.log(res)
 				if(res.status == 200){
 					sessionStorage.setItem('pateData',JSON.stringify(data))
-					
 					window.location.href = "get-patefile.html"
-					
+				}else if(res.status == 250){
+					if(res.status.data.status == 0){
+						alert("正在审核,请等待，不要重复预约")
+					}else{
+						alert("审核成功，请查收短信")
+					}
 				}
 								
 				

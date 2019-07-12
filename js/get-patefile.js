@@ -5,21 +5,29 @@ var patefile = {
 	city:'',
 	upLoad:function(){//上传营业执照
 		var fileInput = document.getElementById("upimg");
+		console.log(fileInput.files)
 		var file = fileInput.files[0];
-		//创建读取文件的对象
+		var fileSize =  1024 * 1024 * 5;
 		var reader = new FileReader();         
 		//创建文件读取相关的变量
-		var imgFile,that = this;         
-		//为文件读取成功设置事件
-		reader.onload=function(e) {
-			// alert('文件读取完成');
-			imgFile = e.target.result;
-			that.imgOne = imgFile
-			console.log(imgFile);
-			$("#imgg1").attr('src',imgFile);
-		};
-		//正式读取文件
-		reader.readAsDataURL(file);
+		var imgFile,that = this;  
+		// if(fileInput.files.size > fileSize){
+		
+		// }else{
+		// 	alert("图片太大")
+		// }
+		//创建读取文件的对象
+	       	//为文件读取成功设置事件
+			reader.onload=function(e) {
+				// alert('文件读取完成');
+				imgFile = e.target.result;
+				that.imgOne = imgFile
+				console.log(imgFile);
+				$("#imgg1").attr('src',imgFile);
+			};
+			//正式读取文件
+			reader.readAsDataURL(file);
+		
 	},
 	upLoadid:function(){//经营许可证
 		var fileInput = document.getElementById("id");
@@ -104,24 +112,28 @@ var patefile = {
 		console.log(hospial)
 		var listImg = [that.imgOne,that.imgOne,that.imgthere]
 		console.log(listImg)
+		var data = {
+			"listImg": listImg,
+			"deptName": upLoadData.deptName,
+			"deptCode": upLoadData.deptOrganization,
+			"deptPhone": upLoadData.telphone,
+			"deptPeoplenum": pateInput,
+			"deptTjcode": hospial
+		}
+		console.log(data)
 		if(that.imgOne == "" || that.imgtwo == "" || that.imgthere =="" || pateInput == "" || hospial == ""){
-			console.log(12)
 			alert("请输入完整信息")
 		}else{
 			$.ajax({
 				url:baseUrl + "/deptorder/updateFileInfo",
 				type:'post',
-				data:{
-					"listImg": listImg,
-					"deptName": upLoadData.deptName,
-					"deptCode": upLoadData.deptOrganization,
-					"deptPhone": upLoadData.telphone,
-					"deptPeoplenum": pateInput,
-					"deptTjcode": hospial
-				},
-        		// contentType: "application/json",
-				
+				data:JSON.stringify(data),	
+				contentType: "application/json",
 				success:function(res){
+					if(res.status == 200){
+						alert("预约成功")
+						window.location.href = "/index.html"
+					}
 					console.log(res)
 				}
 			})
@@ -130,6 +142,9 @@ var patefile = {
 	},
 	upLoadExect:function(){
 
+	},
+	photoCheck:function(obj){
+		
 	},
 	init:function(){
 		var that = this;
