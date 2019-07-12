@@ -2,10 +2,13 @@
 .layui-form-select dl dd.layui-this {
     background: #009ddd;
 }
-/* .layui-table tbody tr:hover {
+.layui-table tbody tr:hover {
     background: #009ddd;
     color: #fff;
-} */
+}
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background:  #ff9600;
+}
 .layui-tab-title li {
     height: 40px;
     line-height: 40px;
@@ -148,9 +151,9 @@
     background: #ff9600;
     display: inline-block;
     width: 80px;
-    height: 50px;
+    height: 30px;
     /* font-size: 14px; */
-    line-height: 26px;
+    line-height: 30px;
     
 }
 

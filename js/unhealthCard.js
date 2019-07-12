@@ -126,9 +126,7 @@ layui.use('table', function () {
         $.each(data, function (i, n) {
             healthIds.push(n.healthId)
         })
-        console.log(healthIds)
         $('#healthIds').val(healthIds)
-        console.log($('#healthIds').val())
         for (var i = 0; i < data.length; i++) {
             ids.push(data[i]);
         }

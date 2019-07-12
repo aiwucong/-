@@ -47,10 +47,7 @@
 					alert("请输入验证码");
 					return false;
 				}
-				
-				
-				
-				
+								
 				
 //				$.ajax({
 //					type: "post",
@@ -127,6 +124,29 @@ $(document).on("input propertychange",function(){
          "background":"#b2b2b2"
       })
    }
+})
+
+
+layui.use(['form','layer'],function(){
+	var form = layui.form
+	var layer = layui.layer
+	$('.deals').click(function () {
+		var indexs = layer.open({
+			title: false,
+			area: ['400px', '600px'],
+			type: 1,
+			content: $('.notices'),
+			btn: ['我已了解'],
+			offset: '100px',
+			btnAlign: 'c',
+			shade: 0.8,
+			moveType: 0,
+			btn1: function (index) {
+				layer.close(indexs);
+			}
+
+		});
+	})
 })
 
 		

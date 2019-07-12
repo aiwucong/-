@@ -12,21 +12,17 @@ body {
 .box {
     width: 384px;
     height: 245px;
-    /* border: 1px solid #000; */
     padding: 9px 20px;
     box-sizing: border-box;
-    /* background: url(../images/bgg.png); */
     background-size: 384px 240px;
     display: none;
 }
 .box_center {
-    /* border: 1px solid #000; */
     height: 100%;
     position: relative;
 }
 .box_tit {
     height: 37px;
-    /* border: 1px solid #000; */
     text-align: center;
     font-family: "宋体";
     color: green;
@@ -37,14 +33,12 @@ body {
 }
 .boxHome {
     height: 160px;
-    /* background: green; */
     display: flex;
     justify-content: space-between;
 }
 .boxImg {
     width: 100px;
     height: 140px;
-    /* border: 1px solid #000; */
     margin-top: 14px;
 }
 .personImg {
@@ -54,7 +48,6 @@ body {
 .boxInputs {
     width: 253px;
     height: 160px;
-    /* border: 1px solid red; */
     position: relative;
     margin-top: 14px;
 }
@@ -63,7 +56,6 @@ body {
     font-size: 14px;
     font-family: "宋体";
     height: 20px;
-    /* border: 1px solid green; */
     line-height: 40px;
     text-align: center;
     color: green;
@@ -76,20 +68,15 @@ body {
 }
 .liners_item1 {
     width: 50%;
-    /* border: 1px solid #000; */
     height: 35px;
-    /* line-height: 35px; */
 }
 .liners_item2 {
     width: 39%;
-    /* border: 1px solid #000; */
     height: 35px;
-    /* line-height: 35px; */
 }
 .liners_tit {
     width: 40px;
     height: 45px;
-    /* border: 1px solid #000; */
     font-size: 16px;
     font-family: "宋体";
     font-weight: bold;
@@ -102,7 +89,6 @@ body {
     font-weight: bold;
 }
 .Ylines {
-    /* line-height: 35px; */
     height: 35px;
     margin-left: 10px;
 }

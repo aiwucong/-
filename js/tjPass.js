@@ -1,22 +1,31 @@
- function wPasstable(){
-    layui.use('table', function () {
+layui.use('table', function () {
         var table = layui.table;
         table.render({
             elem: '#table2',
-            height: 500,
+            height: 550,
             title: '用户数据表',
             url: baseUrl + "/tijian/getTJlist?token=" + localStorage.getItem("token"),
             method:'get',
             where: {status:1},
-            even: true,
             autoSort: false,
             toolbar: '#toolbarDemo',
             parseData: function (res) {
                 console.log(res)
-                $('#already-audited').text(res.data.count);
-                $.each(res.data.pageData, function (i, n) {
-                    n.status = "审核通过"
-                })
+                if(res.status == 250){
+                    if(window != window.top){
+                        layer.msg('请重新登录！',{offset:'200px'})
+                        setTimeout(function(){
+                            window.top.location = "../index.html";
+                        },1000)
+                    }
+                }else if(res.status == 'success'){
+                    $('#already-audited').text(res.data.count);
+                    if (res.data.pageData != null){
+                        $.each(res.data.pageData, function (i, n) {
+                            n.status = "审核通过"
+                        })
+                    } 
+                }
                 // 可进行数据操作
                 return {
                     "count": res.data.count,
@@ -36,41 +45,33 @@
                     },
                     {
                         field: 'number',
-                        title: '体检编号',
-                        width: 100,
+                        title: '体检编号'
                     },
                     {
                         field: 'name',
-                        title: '姓名',
-                        width: 100,
+                        title: '姓名'
                     },
                     {
                         field: 'createTime',
-                        title: '体检时间',
-                        width: 200
+                        title: '体检时间'
                     }, {
                         field: 'hearthcardNum',
-                        title: '健康证编号',
-                        width: 150
+                        title: '健康证编号'
                     }, {
                         field: 'telphone',
-                        title: '手机号码',
-                        width: 100
+                        title: '手机号码'
                     },
                     {
                         field: 'startdate',
-                        title: '发证日期',
-                        width: 177
+                        title: '发证日期'
                     },
                     {
                         field: 'status',
                         title: '体检审核',
-                        toolbar: '#toolbarDemos',
-                        width: 180
+                        toolbar: '#toolbarDemos'
                     }, {
                         field: 'status',
-                        title: '体检结果',
-                        width: 177
+                        title: '体检结果'
                     }
     
                 ]
@@ -114,23 +115,4 @@
                     })
             }
         });
-        //监听排序
-        table.on('sort(table2)', function (obj) {
-            layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
-            //服务端排序
-            table.reload('table2', {
-                initSort: obj
-                    //,page: {curr: 1} //重新从第一页开始
-                    ,
-                where: { //重新请求服务端
-                    key: obj.field //排序字段
-                        ,
-                    order: obj.type //排序方式
-                }
-            });
-        });
     })
- }
- $(function(){
-    wPasstable()
- })

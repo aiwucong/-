@@ -5,7 +5,9 @@
     background: #009ddd;
     color: #fff;
 }
-
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background: #ff9600;
+}
 @page {
     size: auto;
     margin: 0;
@@ -89,7 +91,6 @@
 }
 
 .layui-form-item {
-    /* border: 1px solid #000; */
     height: 40px;
     margin-bottom: 5px;
 }
@@ -98,7 +99,6 @@
     font-size: 14px;
     width: 70px;
     padding: 0;
-    /* background: #000; */
     color: #000;
     line-height: 42px;
     text-align: center;
@@ -154,14 +154,12 @@
     padding: 20px 20px;
     display: none;
     margin: 0 auto;
-    /* border: 1px solid #000; */
     box-sizing: border-box;
 }
 
 .box_main {
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid #000; */
 }
 
 .box_main #aa {
@@ -170,7 +168,6 @@
 
 .box_main .yytimeText {
     width: 20%;
-    /* border: 1px solid #000; */
     line-height: 28px;
     font-size: 15px;
     text-align: center;
@@ -178,7 +175,6 @@
 
 .box_main .yytime {
     width: 45%;
-    /* border: 1px solid #000; */
     line-height: 28px;
     font-size: 15px;
     text-align: center;
@@ -189,22 +185,18 @@
 
 #box1 {
     width: 450px;
-    /* height: 500px; */
     padding: 0 20px;
     display: none;
     margin: 0 auto;
     box-sizing: border-box;
 }
 #box2 {
-    /* width: 450px; */
-    /* height: 500px; */
     padding: 0 20px;
     display: none;
     margin: 0 auto;
     box-sizing: border-box;
 }
 .rensonText {
-    /* width: 0; */
     line-height: 26px;
     padding: 0;
     text-align: center;
@@ -236,7 +228,6 @@
 .lef {
 	position: relative;
 	width: 85.60mm;
-	/*float: left;*/
 	height: 45.98mm;
 	border: 1px solid #fff;
 	border-radius: 10px;
@@ -315,7 +306,6 @@ img:not([src]) {
 input {
 	border: transparent;
 	font-size: 11pt;
-	/* background: #000; */
 }
 .head1 input {
 	width: 29%;
@@ -331,7 +321,6 @@ input {
 	width: 100%;
 	line-height: 180%;
 	height: 50%;
-	/* border: 1px solid #000; */
 
 }
 
@@ -346,10 +335,7 @@ input {
 }
 
 .head2 {
-	/* line-height: 4mm; */
 	line-height: 180%;
 	width: 100%;
 	height: 50%;
-	/* border: 1px solid #000; */
-
 }
