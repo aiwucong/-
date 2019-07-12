@@ -1,5 +1,5 @@
 // var baseUrl="https://www.jkzcloud.com/mdk2019";
-var baseUrl="http://192.168.0.103:8086";
+var baseUrl="http://192.168.0.107:8086";
 var IdUrl = "http://192.168.0.141:8080/card_project";
 
 
