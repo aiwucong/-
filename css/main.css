@@ -99,11 +99,7 @@
         background: #fff;
         margin-top: 20px;
     }
-    /* tab栏 */
-    .main_charts {
-        
-    }
-    
+    /* tab栏 */    
     #t_charts,
     #t_charts1,
     #t_charts2 {
@@ -120,22 +116,6 @@
         box-sizing: border-box;
         /* border: 1px solid #000; */
     }
-    
-    .listMenu {
-        position: absolute;
-        left: 200px;
-        z-index: 999;
-        top: 80px;
-        display: none;
-        width: 200px;
-        height: 385px;
-        background: #022387;
-    }
-    
-    .menu_cen li:hover .listMenu {
-        display: block;
-    }
-    
     .r_notice {
         width: 80%;
         height: 130px;

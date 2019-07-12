@@ -6,6 +6,10 @@
     background: #009ddd;
     color: #fff;
 }
+.layui-form-checked[lay-skin="primary"] i {
+    background: #009ddd;
+    border-color: #009ddd;
+}
 .layui-laypage .layui-laypage-curr .layui-laypage-em {
     background:  #ff9600;
 }

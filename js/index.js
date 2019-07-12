@@ -56,11 +56,11 @@ $(function(){
         })
         $('#cMessage').click(function(){
             layer.open({
-                title: ['技术支持', 'font-size:18px; text-align: center;'],
+                title: false,
                 area: ['240px', 'auto'],
                 type: 1,
                 content: $('.messageBox'),
-                offset:'100px'
+                offset:'200px'
             });
         })
     })

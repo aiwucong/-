@@ -4,8 +4,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
     var form = layui.form;
     var table = layui.table;
     var selectVal;
-    var hgDate;
-    var enddate;
     form.on('select(category)', function (data) {
         // console.log(data.elem); //得到select原始DOM对象
         // console.log(data.value); //得到被选中的值
@@ -16,7 +14,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
         elem: '#aa',
         value: new Date(),
         done: function (value, date) {
-            hgDate = value;
             var FullYear = date.year + 1;
             var month = date.month;
             month = month < 10 ? '0' + month : month;
@@ -24,7 +21,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             day = day < 10 ? '0' + day : day;
             var lastDate = FullYear + "-" + month + "-" + day;
             document.getElementById("enddate").value = lastDate;
-            enddate = document.getElementById("enddate").value;
         },
     });
     laydate.render({
@@ -42,11 +38,12 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
         document.getElementById("enddate").value = lastDate;
     }
     sjDate()
+    var sh_hgDate = $('#aa').val()
+    var sh_enddate = $('#enddate').val()
     //未审核表格监听行工具事件
     table.on('tool(table1)', function (obj) {
         var data = obj.data;
         var idCardNum;
-        console.log(data)
         table.on('row(table1)', function (obj) {
             idCardNum = obj.data.idcardNum;
             // console.log(idCardNum);
@@ -64,8 +61,8 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                     var newdata = {
                         "idCardNum": idCardNum,
                         "status": "1",
-                        "startdate": hgDate,
-                        "enddate": enddate
+                        "startdate": sh_hgDate,
+                        "enddate": sh_enddate
                     }
                     $.ajax({
                         url: baseUrl + "/tijian/updateTJstatus",
@@ -136,11 +133,15 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             case 'batchPass':
                 var data = checkStatus.data;
                 var ids = [];
-
                 $.each(data, function (i, n) {
                     ids.push(n.tjId)
                 })
-                console.log(ids)
+                var newDatas = data.map(value => {
+                    return {
+                      name: value.name,
+                      tel: value.telphone
+                    }
+                  })
                 $('#healthIds').val(ids)
                 var healIds = $('#healthIds').val()
                 var index = layer.open({
@@ -156,8 +157,9 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                         var newdata = {
                             "tjId": healIds,
                             "status": "1",
-                            "startdate": hgDate,
-                            "enddate": enddate
+                            "startdate": sh_hgDate,
+                            "enddate": sh_enddate,
+                            "telphoneAndName":JSON.stringify(newDatas)
                         }
                         $.ajax({
                             url: baseUrl + "/tijian/batchUpTJdate?token=" + localStorage.getItem("token"),

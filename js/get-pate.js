@@ -130,9 +130,12 @@ layui.use(['form','layer'],function(){
 			btn1: function (index) {
 				layer.close(indexs);
 			}
-
+	
 		});
 	})
 })
+
+
+
 
 		
