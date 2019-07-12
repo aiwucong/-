@@ -1,51 +1,54 @@
-	function sendMsg(){
-			var telphone = $("#telphone").val();
-			if(telphone==null || telphone==""){
-				alert("手机号不能不填！")
-				return false;
+function settime(){
+	var telphone = $("#telphone").val();
+	if(telphone==null || telphone==""){
+		alert("手机号不能不填！")
+		return false;
+	}
+	$.ajax({
+		type:"post",
+		url:baseUrl + "/sms/sendMsg?telphone="+telphone,
+		success:function(data){
+			if(data.status=="success"){
+				console.log(data)
+				alert("验证码已发送，请注意查收");
 			}
-			$.ajax({
-				type:"post",
-				url:baseUrl + "/sms/sendMsg?telphone="+telphone,
-				success:function(data){
-					if(data.status=="success"){
-						console.log(data)
-						alert("验证码已发送，请注意查收");
-					}else{
-						alert("验证码已发送，请注意查收");
-					}
-				},
-				error:function(data){
-					console.log(data)
-					alert("获取失败,原因为"+data);
-				}
-			});
+		},
+		error:function(data){
+			console.log(data)
+			alert("获取失败,原因为"+data);
 		}
+	});
+}
 					
 
 			
 			//上传资质
-			function updata() {
-				var result=false;
-				var dept = $("#deptname").val();
-				var deptcode = $("#deptcode").val();
-				var telphone = $("#telphone").val();
-				var code=$("#vcode").val();
-				if(dept == null || dept == "") {
-					alert("请输入单位或公司");
-					return false;
-				}
-				if(deptcode == null || deptcode == "") {
-					alert("请输入单位统一征信代码");
-					return false;
-				}
-				if(telphone == null || telphone == "") {
-					alert("请输入手机号");
-					return false;
-				}	
-				if(code == null || code == "") {
-					alert("请输入验证码");
-					return false;
+function sendMsg() {
+	var dept = $("#dept").val();
+	var deptcode = $("#dept-code").val();
+	var telphone = $("#telphone").val();
+	var code=$("#vcode").val();
+	if(dept == null || dept == "" || deptcode == null || deptcode == "" || telphone == null || telphone == "" || code == null || code == "") {
+		alert("请输入完整信息");
+	}else{
+		var data = {
+			'deptName': dept,
+			'deptOrganization': deptcode,
+			'telphone': telphone,
+			'otpCode': code
+		}
+		$.ajax({
+			url :baseUrl + "/deptorder/add",
+			type:'post',
+			contentType: "application/x-www-form-urlencoded",
+			data:data,
+			success:function(res){
+				console.log(res)
+				if(res.status == 200){
+					sessionStorage.setItem('pateData',JSON.stringify(data))
+					
+					window.location.href = "get-patefile.html"
+					
 				}
 								
 				
@@ -68,6 +71,9 @@
 				
 		
 			}
+		})
+	}
+}
 
 			//信息录入
 			//		function save(){
@@ -81,11 +87,11 @@
 
 					//当所有input框不为空时,按钮变色
     $('input').on("input propertychange", function() {
-  
-        if(($.trim($('#deptname').val()) !== "") && ($.trim($('#deptcode').val()) !== "") && ($.trim($('#telphone').val()) !== "")&& ($.trim($('#vcode').val()) !== "")){
-            $("#getCard").css("background-color","#FF9600");
+
+        if(($.trim($('#dept').val()) !== "") && ($.trim($('#dept-code').val()) !== "") && ($.trim($('#telphone').val()) !== "")&& ($.trim($('#vcode').val()) !== "")){
+            $("#send1").css("background-color","#FF9600");
         }else{
-        	$("#getCard").css("background-color","#B2B2B2");
+        	$("#send1").css("background-color","#B2B2B2");
         }
     });
     
@@ -101,26 +107,6 @@ $(document).on("input propertychange","#telphone", function(){
       })
    }else {
       $("#sedCode").css({
-         "background":"#b2b2b2"
-      })
-   }
-})
-//都不为空按钮变色
-	var dname=0;
-	var dcode=0;
-	var vcode=0;
-//实时监控输入框内容
-$(document).on("input propertychange",function(){
-   tel = $("#telphone").val().length;
-   dname=$("#deptname").val().length;
-   dcode=$("#deptcode").val().length;
-   vcode=$("#vcode").val().length;
-   if(tel !=0 && dname !=0&&dcode!=0&&vcode!=0){
-      $("#send1").css({
-         "background":"#ff9600"
-      })
-   }else {
-      $("#send1").css({
          "background":"#b2b2b2"
       })
    }

@@ -124,7 +124,7 @@ input {
 	width: 85.60mm;
 	/*float: right;*/
 	height: 53.98mm;
-	border: 1px solid #0000FF;
+	/* border: 1px solid #0000FF; */
 }
 
 .rie {
@@ -132,7 +132,7 @@ input {
 	width: 100%;
 	/*float: right;*/
 	height: 100%;
-	border: 1px solid #0000FF;
+	/* border: 1px solid #0000FF; */
 }
 
 .r1 {
