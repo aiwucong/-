@@ -41,8 +41,8 @@ var examinationItems = {
             var form = layui.form;
             table.render({
                 elem: '#demo',
-                height: 312,
-                url:baseUrl + "/tijian/getWeekData?status=0&yuliu1=0&token="+localStorage.getItem("token"),
+                height: 550,
+                url:baseUrl + "/tijian/getWeekDataTJ?TJproject=0&token="+localStorage.getItem("token"),
                 // data: userData,
                 page: true, //开启分页
                 title:'渠道统计数据表',
@@ -51,7 +51,7 @@ var examinationItems = {
                 parseData: function (res) {
                     return {
                         "count": res.data.count,
-                        "data": res.data.pageCount,
+                        "data": res.data.pageData,
                         "status": res.status //code值为200表示成功
                     };
                 },
@@ -149,7 +149,6 @@ var examinationItems = {
                 that.age = data.age,
                 that.IDcard = data.idcardNum,
                 that.IDname = data.name
-                console.log(data)
                 //标注选中样式
                 obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
               });
@@ -299,7 +298,6 @@ var examinationItems = {
             "alt":'',
             "idcardPhoto":that.idcardPhoto
         }
-        console.log(data)
         if(that.IDnumber != ""){
             $.ajax({
                 url: baseUrl + '/tjproject/tjAdd',
@@ -315,7 +313,6 @@ var examinationItems = {
                         alert(res.data)
                         location.reload()
                     }
-                    console.log(res)
                 }
             })
         }else{

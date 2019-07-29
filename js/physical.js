@@ -5,15 +5,25 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
     var table = layui.table;
     var selectVal;
     form.on('select(category)', function (data) {
-        // console.log(data.elem); //得到select原始DOM对象
-        // console.log(data.value); //得到被选中的值
         selectVal = data.value;
     })
+    var sh_hgDate 
+    var sh_enddate
+    var data = new Date(),
+    year = data.getFullYear(),
+    year1 = data.getFullYear() +1,
+    month = data.getMonth() + 1,
+    day = data.getDate();
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+    sh_hgDate =year+"-"+month +"-"+day
+    sh_enddate = year1+"-"+month +"-"+day
     //日期范围
     laydate.render({
         elem: '#aa',
         value: new Date(),
         done: function (value, date) {
+            sh_hgDate = value;
             var FullYear = date.year + 1;
             var month = date.month;
             month = month < 10 ? '0' + month : month;
@@ -21,6 +31,7 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             day = day < 10 ? '0' + day : day;
             var lastDate = FullYear + "-" + month + "-" + day;
             document.getElementById("enddate").value = lastDate;
+            sh_enddate = lastDate
         },
     });
     laydate.render({
@@ -35,19 +46,14 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
         var day = date.getDate();
         day = day < 10 ? '0' + day : day;
         var lastDate = year + "-" + month + "-" + day;
-        document.getElementById("enddate").value = lastDate;
+        $('#enddate').val(lastDate)
     }
     sjDate()
-    var sh_hgDate = $('#aa').val()
-    var sh_enddate = $('#enddate').val()
+   
     //未审核表格监听行工具事件
     table.on('tool(table1)', function (obj) {
         var data = obj.data;
-        var idCardNum;
-        table.on('row(table1)', function (obj) {
-            idCardNum = obj.data.idcardNum;
-            // console.log(idCardNum);
-        })
+        var idCard = data.tjId;
         if (obj.event === 'audit_pass') {
             var index = layer.open({
                 title: ['合格', 'font-size:18px; text-align: center;'],
@@ -59,13 +65,14 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                 btn1() {
                     // 确定按钮的回调
                     var newdata = {
-                        "idCardNum": idCardNum,
+                        "tjId": idCard,
                         "status": "1",
                         "startdate": sh_hgDate,
-                        "enddate": sh_enddate
+                        "enddate": sh_enddate,
                     }
+                    var token = localStorage.getItem('token');
                     $.ajax({
-                        url: baseUrl + "/tijian/updateTJstatus",
+                        url: baseUrl + "/tijian/oneTJSH?token=" + token,
                         type: 'post',
                         contentType: "application/x-www-form-urlencoded",
                         xhrFields: {
@@ -73,26 +80,44 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                         },
                         data: newdata,
                         success: function (res) {
-                            console.log(res);
-                            // console.log(res.status);
-                            // console.log(res.status.code)
+                            console.log(res)
                             if (res.status == '200') {
-                                idCardNum = null;
-                                startdate = null;
-                                enddate = null;
                                 layer.msg('审核成功', {
-                                    icon: 1
-                                }, {
                                     offset: '200px'
                                 });
-                                obj.del();
-                                location.reload()
-                            } else if (res.status == 'fail') {
+                                wUntable()
+                            } else if (res.status == '100') {
                                 layer.msg('审核失败', {
-                                    icon: 2
-                                }, {
                                     offset: '200px'
                                 });
+                            } else if(res.status == '250'){
+                                layer.msg('登录过期，请重新登录', {
+                                    offset: '200px'
+                                });
+                                setTimeout(function(){
+                                    if (window != window.top) {
+                                        window.top.location = "../login-dept.html"
+                                    }
+                                    },500)
+                            }else{
+                                if(res.data.errCode == 60001){
+                                    layer.msg('登录过期，请重新登录', {
+                                        offset: '200px'
+                                    });
+                                    setTimeout(function(){
+                                        if (window != window.top) {
+                                            window.top.location = "../login-dept.html"
+                                        }
+                                        },500)
+                                }else if(res.data.errCode == 50002){
+                                    layer.msg('没有操作权限。', {
+                                        offset: '200px'
+                                    });
+                                }else{
+                                    layer.msg('服务器异常。', {
+                                        offset: '200px'
+                                    });
+                                }
                             }
                         }
                     })
@@ -112,12 +137,37 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                 btn: ['确认', '取消'],
                 offset: '200px',
                 btn1() {
+                    let whyrenson = $('.whyRenson').val()
                     // 确定按钮的回调 写业务代码
-                    layer.msg('审核成功', {
-                        icon: 1
-                    }, {
-                        offset: '200px'
-                    });
+                    var newdata = {
+                        "tjId": idCard,
+                        "status": "2",
+                        "why":whyrenson
+                    }
+                    $.ajax({
+                        url: baseUrl + "/tijian/oneTJSH?token=" + localStorage.getItem("token"),
+                        type: 'post',
+                        contentType: "application/x-www-form-urlencoded",
+                        xhrFields: {
+                            widthCredentials: true
+                        },
+                        data: newdata,
+                        success: function (res) {
+                            if (res.status == '200') {
+                                idCardNum = null;
+                                startdate = null;
+                                enddate = null;
+                                layer.msg('审核成功',{
+                                    offset: '200px'
+                                });
+                                wUntable()
+                            } else if (res.status == 'fail') {
+                                layer.msg('审核失败',{
+                                    offset: '200px'
+                                });
+                            }
+                        }
+                    })
                     layer.close(index);
                 },
                 btn2() {
@@ -129,19 +179,22 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
     });
     table.on('toolbar(table1)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id);
+        var data = checkStatus.data;
+        var newsDatas = data.map(value => {
+            return {
+              name: value.name,
+              tel: value.telphone
+            }
+          })
         switch (obj.event) {
             case 'batchPass':
-                var data = checkStatus.data;
-                var ids = [];
+                if(data.length == 0){
+                    layer.msg('请选择要审核的数据',{offset:'200px'})
+                }else{
+                    var ids = [];
                 $.each(data, function (i, n) {
                     ids.push(n.tjId)
                 })
-                var newDatas = data.map(value => {
-                    return {
-                      name: value.name,
-                      tel: value.telphone
-                    }
-                  })
                 $('#healthIds').val(ids)
                 var healIds = $('#healthIds').val()
                 var index = layer.open({
@@ -153,13 +206,12 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                     offset: '200px',
                     btn1: function (index) {
                         // 确定按钮的回调
-                        console.log(healIds)
                         var newdata = {
                             "tjId": healIds,
                             "status": "1",
                             "startdate": sh_hgDate,
                             "enddate": sh_enddate,
-                            "telphoneAndName":JSON.stringify(newDatas)
+                            "telphoneAndName":JSON.stringify(newsDatas)
                         }
                         $.ajax({
                             url: baseUrl + "/tijian/batchUpTJdate?token=" + localStorage.getItem("token"),
@@ -172,7 +224,10 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                             success: function (res) {
                                 console.log(res)
                                 if (res.status == 200) {
+                                    layer.msg('审核成功',{offset:'200px'})
                                     wUntable()
+                                }else if(res.status == 'fail'){
+                                    layer.msg(res.data.errMsg,{offset:'200px'})
                                 }
                             }
                         })
@@ -180,11 +235,9 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                     },
                     btn2() {
                         //取消按钮的回调
-
-
                     }
-
                 });
+                }            
                 break;
             case 'batchFail':
                 var data = checkStatus.data;
@@ -207,8 +260,10 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                         var newdata = {
                             "tjId": failhealIds,
                             "status": "2",
-                            "why": rensons
+                            "why": rensons,
+                            "telphoneAndName":JSON.stringify(newsDatas)
                         }
+                        console.log(newdata)
                         $.ajax({
                             url: baseUrl + "/tijian/batchUpTJdate?token=" + localStorage.getItem("token"),
                             type: "post",
@@ -218,7 +273,12 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                                 withCredentials: true
                             },
                             success: function (res) {
+                                console.log(res)
                                 if (res.status == 200) {
+                                    layer.msg('审核成功',{offset:'200px'})
+                                    wUntable()
+                                }else if(res.status == 100){
+                                    layer.msg('审核失败',{offset:'200px'})
                                     wUntable()
                                 }
                             }
@@ -239,21 +299,20 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
         return false;
     });
     wUntable();
-
     function wUntable() {
         table.render({
             elem: '#table1',
             height: '550',
             title: '用户数据表',
-            url: baseUrl + "/tijian/getTJlist?token=" + localStorage.getItem("token"),
+            url: baseUrl + "/tijian/getStatusList?token=" + localStorage.getItem('token'),
             autoSort: false,
             method: 'get',
             where: {
-                status: 0
+                status: 0,
+                hospitalNum:mainDatas.hospitalNum
             },
             toolbar: '#toolbarDemo',
             parseData: function (res) {
-                console.log(res)
                 if (res.status == 250) {
                     if (window != window.top) {
                         layer.msg('请重新登录！', {
@@ -289,7 +348,7 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                     },
                     {
                         field: 'number',
-                        title: 'ID'
+                        title: '体检编号'
                     },
                     {
                         field: 'name',
@@ -323,7 +382,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             ],
             page: true,
             done: function (res) {
-                console.log(res)
                 if (res.code == 250) {
                     layer.msg('请先登录账号', {
                         offset: '200px'
@@ -351,7 +409,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             autoSort: false,
             toolbar: '#toolbarDemo',
             parseData: function (res) {
-                console.log(res)
                 if (res.status == 250) {
                     if (window != window.top) {
                         layer.msg('请重新登录！', {
@@ -420,7 +477,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             ],
             page: true,
             done: function (res, curr, count) {
-                console.log(res)
             }
         });
     }
@@ -438,7 +494,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             autoSort: false,
             toolbar: '#toolbarDemo',
             parseData: function (res) {
-                console.log(res)
                 if (res.status == 250) {
                     if (window != window.top) {
                         layer.msg('请重新登录！', {
@@ -452,7 +507,7 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                     $('#already-audited').text(res.data.count);
                     if (res.data.pageData != null) {
                         $.each(res.data.pageData, function (i, n) {
-                            n.status = "审核通过"
+                            n.status = "合格"
                         })
                     }
                 }
@@ -524,14 +579,11 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
         $.ajax({
             url: baseUrl + "/tijian/keywordSelect?token=" + localStorage.getItem("token"),
             type: "post",
-            data: JSON.stringify(data),
-            dataType: "json",
-            contentType: "application/json",
+            data: data,
             xhrFields: {
                 withCredentials: true
             },
             success: function (res) {
-                console.log(res)
                 if (res.status == "100") {
                     $(".layui-table-main").html('<div class="layui-none">无数据</div>');
                 } else if (res.status == "200") {
@@ -541,29 +593,27 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                         userData = []; //未审核
                     $.each(datas, function (i, n) {
                         if (n.status == 2) { //不合格
-                            n.status = "审核不通过"
+                            n.status = "不合格"
                             unpassData.push(n)
+                            dataTableser(unpassData)
+                            dataTables(passData)
+                            dataTable(userData)
                         } else if (n.status == 1) { //合格
-                            n.status = "审核通过"
+                            n.status = "合格"
                             passData.push(n)
+                            dataTables(passData)
+                            dataTableser(unpassData)
+                            dataTable(userData)
                         } else {
                             n.status = "未审核"
                             userData.push(n)
+                            dataTable(userData)
+                            dataTables(passData)
+                            dataTableser(unpassData)
                         }
                     })
                 }
-                // console.log(unpassData)
-                // console.log(passData)
-                // console.log(userData)
-                if (unpassData != null) {
-                    dataTableser(unpassData)
-                }
-                if (passData != null) {
-                    dataTables(passData)
-                }
-                if (userData != null) {
-                    dataTable(userData)
-                }
+
             }
         })
     }
@@ -577,7 +627,7 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
             "name": nameIndex,
             "idcardNum": wcard,
             "number": tjCard,
-            "createTime": openDate
+            "dates": openDate
         };
         if (nameIndex == "" && tjCard == "" && wcard == "" && openDate == "") {
             layer.msg("请输入查询条件，信息不能为空", {
@@ -619,7 +669,7 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                         },
                         {
                             field: 'number',
-                            title: 'ID',
+                            title: '体检编号',
                             width: 100
                         },
                         {
@@ -660,97 +710,6 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                 ],
                 page: true,
                 done: function (res) {}
-            });
-
-            //未审核表格监听行工具事件
-            table.on('tool(table1)', function (obj) {
-                var data = obj.data;
-                var idCardNum;
-                //console.log(obj)
-                table.on('row(table1)', function (obj) {
-                    // console.log(obj.data) //得到当前行数据
-                    idCardNum = obj.data.idcardNum;
-                    // console.log(idCardNum);
-                })
-                if (obj.event === 'audit_pass') {
-                    var index = layer.open({
-                        title: ['合格', 'font-size:18px; text-align: center;'],
-                        area: ['450px', '240px'],
-                        type: 1,
-                        content: $('#box'),
-                        btn: ['确认', '取消'],
-                        offset: '200px',
-                        btn1() {
-                            debugger
-                            // 确定按钮的回调
-                            var newdata = {
-                                "idCardNum": idCardNum,
-                                "status": "1",
-                                "startdate": hgDate,
-                                "enddate": enddate
-                            }
-                            $.ajax({
-                                url: baseUrl + "/tijian/updateTJstatus",
-                                type: 'post',
-                                contentType: "application/x-www-form-urlencoded",
-                                xhrFields: {
-                                    widthCredentials: true
-                                },
-                                data: newdata,
-                                success: function (res) {
-                                    // console.log(res);
-                                    // console.log(res.status);
-                                    // console.log(res.status.code)
-                                    if (res.status == '200') {
-                                        idCardNum = null;
-                                        startdate = null;
-                                        enddate = null;
-                                        layer.msg('审核成功', {
-                                            icon: 1
-                                        }, {
-                                            offset: '200px'
-                                        });
-                                        obj.del();
-                                    } else if (res.status == 'fail') {
-                                        layer.msg('审核失败', {
-                                            icon: 2
-                                        }, {
-                                            offset: '200px'
-                                        });
-                                    }
-                                }
-                            })
-                            layer.close(index);
-                        },
-                        btn2() {
-                            //取消按钮的回调
-                        }
-
-                    });
-
-                } else if (obj.event === 'audit_failed') {
-                    var index = layer.open({
-                        title: ['不合格原因', 'font-size:18px; text-align: center;'],
-                        area: ['450px', '240px'],
-                        type: 1,
-                        content: $('#box1'),
-                        btn: ['确认', '取消'],
-                        offset: '200px',
-                        btn1() {
-                            // 确定按钮的回调 写业务代码
-                            layer.msg('审核成功', {
-                                icon: 1
-                            }, {
-                                offset: '200px'
-                            });
-                            layer.close(index);
-                        },
-                        btn2() {
-                            //取消按钮的回调
-                        }
-
-                    });
-                }
             });
         })
     }
@@ -829,6 +788,7 @@ layui.use(['element', 'laydate', 'layer', 'form', 'table'], function () {
                 even: true,
                 autoSort: false,
                 toolbar: '#toolbarDemo',
+                page:true,
                 cols: [
                     [ //表头
                         {

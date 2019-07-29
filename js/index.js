@@ -1,69 +1,29 @@
-$(function(){
-    $('#reBack').click(function () {
-        if (window.frames["iframeList"].history) {
-            window.frames["iframeList"].history.go(-1);
-        }
-    })
-    layui.use('layer',function(){
-        $('#logOut').click(function(){
-            layer.confirm('确认退出登录？', {
-                btn: ['确认', '取消'] //按钮
-            }, function () {
-                $.ajax({
-                    type: "post",
-                    url: baseUrl + "/user/loginOut?token=" + localStorage.getItem(
-                        "token"),
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    success: function (data) {
-                        localStorage.removeItem("token");
-                        window.location = "../login-dept.html"
-                    },
-                    error: function (data) {
-                        alert("登录失败,原因为" + data.responseText);
-                    }
-                })
-            });
-        })
-        $('#user_person').click(function(){
+    layui.use('layer', function () {
+        var layer = layui.layer
+        $('#user_person').click(function () {
             layer.open({
-                title: ['账号信息', 'font-size:18px; text-align: center;'],
+                title: ['账号信息', 'font-size:14px; text-align: center; font-weight: bold !important;'],
                 area: ['500px', 'auto'],
                 type: 1,
                 content: $('.userBox'),
-                offset:'100px',
+                offset: '100px',
                 // btn: ['确认修改','取消'], 
             });
-            $.ajax({
-                url: baseUrl + '/user/userInfo?token=' + localStorage.getItem('token'),
-                type: 'post',
-                xhrFields: {
-                    widthCredentials: true
-                },
-                success: function (res) {
-                    console.log(res)
-                    $('.p_user').val(res.data.account)
-                    $('.p_name').val(res.data.name)
-                    $('.p_sex').val(res.data.sex)
-                    $('.p_company').val(res.data.deptName)
-                    $('.p_phone').val(res.data.telphone)
-                },
-                error: function (res) {
-    
-                }
-            })
+            mainDatas.status = 1 ?  mainDatas.status='正常':  mainDatas.status='禁用'          
+            $('.p_user').val(mainDatas.account)
+            $('.p_name').val(mainDatas.name)
+            $('.p_sex').val(mainDatas.sex)
+            $('.p_status').val(mainDatas.status)
+            $('.p_phone').val(mainDatas.telphone)
         })
-        $('#cMessage').click(function(){
+        $('#cMessage').click(function () {
             layer.open({
-                title: false,
+                title: ['服务热线', 'font-size:14px; text-align: center; font-weight: bold !important;'],
                 area: ['240px', 'auto'],
                 type: 1,
                 content: $('.messageBox'),
-                offset:'200px'
+                offset: '200px'
             });
         })
+         $('.mdk_head h3').text(mainDatas.hospitalName)
     })
-    var companyName = sessionStorage.getItem("name");
-    $('.mdk_head h3').text(companyName)
-})

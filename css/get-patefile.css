@@ -7,7 +7,9 @@ body,html{
 	width: 100%;
 	height: 100%;
 }
-
+/* 清除浮动 */
+.clear-box:after {clear:both;content:'';display:block;height: 0;visibility:hidden;} 
+.clear-box {zoom:1;}
 /**
  * 整体
  */
@@ -71,6 +73,7 @@ body,html{
 /*图片上传*/
 #file{
 	width: 100%;
+	/* height: 400px; */
 	overflow: hidden;
 	margin: 2% auto;
 	padding-left: 5%;
@@ -81,11 +84,15 @@ body,html{
  * 文件上传
  */	
 .showimg{
-	width: 27.3333%;
+	width: 27.3%;
 	height: 100%;
 	text-decoration: none;
 	float: left;
-	
+}
+.shows {
+	width: 54.6%;
+	height: 100%;
+	float: left;
 }
 
 /**
@@ -109,7 +116,22 @@ body,html{
     margin-bottom: 7px;
     margin-top: 18px;
 }
-
+.boxxTitle {
+	width: 100%;
+	margin: 0 auto;
+}
+.boxxTitle p:nth-child(2) {
+	margin-top: 8px;
+}
+.boxxTitle span {
+	font-size: 19.2px;
+	color: #fff;
+	margin-top: 10px;
+	display: block
+}
+.boxxTitle p {
+	color: #fff;
+}
 #boxx input{
 	display: none;
 }
@@ -118,7 +140,7 @@ body,html{
  */
 #boxx img{
 	width: 300px;
-	height: 300px;
+	height: 335px;
 	border-radius: 8px;
 }
 
@@ -131,43 +153,41 @@ body,html{
 	/*border: 1px solid #FFFFFF;*/
 	margin: 0 auto;
 	font-size: 1.2rem;
-	padding-bottom: 5%;
+	padding-bottom: 3%;
 }
 
 #box-one1{
-	width: 75%;
 	height: 60%;
-	/*border: 1px solid #FF0000;*/
+	/* border: 1px solid #FF0000; */
 	color: #FFFFFF;
-	margin: 0 auto;
-	float: left;
-	
-
 }
 #box-one2{
-	width: 20%;
 	height: 60%;
 	/*border: 1px solid bisque;*/
-	float: right;
+	margin-top: 3%;
 }
 
-#box-one2 input{
+#box-one2 #ShowDiv{
 	font-family: "微软雅黑";
 	font-size: 1.2rem;
 	color: #FFFFFF;
 	background-color: #FF9600;
 	border-radius: 5px;
 	padding: 10px  20px;
+	float: right;
+	margin-top: 20px;
 }
 .pateInput{
-	float: left;
+	display: inline-block;
+    vertical-align: top;
 }
 .pateInput input{
 	width: 20opx;
     height: 40px;
     border-radius: 6px;
     background: #fff;
-    padding-left: 10px;
+	padding-left: 10px;
+	margin:20px 0 0 50px;
 }
 .bgSize{
 	width: 90%;
@@ -185,18 +205,17 @@ body,html{
 	border-radius: 5px;
 }
 #city{
-	width: 15%;
+	width: 10%;
 }
 #qu{
-	width: 20%;
+	width: 15%;
 }
 #hospial{
-	width: 40%;
+	width: 35%;
 }
 .pateFile{
 	height:50px;
 	float: left;
-	padding-left: 5%;
 	width: 49%;
 	position: relative;
 
@@ -225,4 +244,127 @@ body,html{
 	background: transparent;
 	border:1px solid #e1e1e1;
 	color:#999;
+}
+.tjTime span {
+	font-size: 1.2rem;
+	color: #fff;
+	line-height: 40px;
+	float: left;
+	width: 140px;
+	margin:20px 5px 0 0;
+}
+.tjTime #selectorTime {
+	width: 200px;
+	height: 40px;
+	float: left;
+	border-radius: 5px;
+	padding-left: 10px;
+	box-sizing: border-box;
+	margin-top: 20px;
+}
+#residueNum {
+	width: 100px;
+	height: 40px;
+	background: #fff;
+	border-radius: 5px;
+	padding-left: 10px;
+} 
+.residueTit{
+	width: 120px;
+	color: #fff;
+	float: left;
+	margin-top: 20px;
+} 
+.residue {
+	display: inline-block;
+	margin-left: 60px;
+}
+.showimgs {
+	height: 100%;
+	border: 1px solid #fff;
+}
+#showTemplate {
+	width: 48%;
+	height: 100%;
+	border-radius: 8px;
+	float: left;
+	/* border: 1px solid red; */
+}
+.templateBox {
+	width: 267px;
+	margin: 0 auto;
+	float: left;
+}
+#showTemplate img {
+	width: 267px;
+	height: 216px;
+	/* border-radius: 8px; */
+	cursor: pointer;
+}
+.viewer-button {
+	background: red !important;
+}
+.time_am,
+.time_pm {
+	width: 150px;
+	height: 80px;
+	border: 2px solid #fff;
+	float: left;
+	border-radius: 5px;
+	padding: 5px 3px;
+	box-sizing: border-box;
+}
+.time_pm {
+	margin-left: 10px;
+}
+.time_pm span,
+.time_am span {
+	font-weight: bold;
+	color: #e9e9e9;
+	height: 70%;
+	display: block;
+	font-size: 17px;
+	/* cursor: pointer; */
+}
+.time_pm h5,
+.time_am h5 {
+	float: right;
+	font-size: 16px;
+	color: #d2d2d2;
+}
+.time_pm h5 em,
+.time_am h5 em {
+	font-style: normal;
+	color: #FF9600;
+	font-size: 20px;
+	font-weight: bold;
+}
+.times.cur{
+	border:2px solid #FF9600;
+}
+#showTemplate h4 {
+	text-align: center;
+	font-size: 19.2px;
+	/* border: 1px solid #000; */
+	margin-top: 10px;
+	color: #fff;
+}
+.templateTit {
+	color: #FF9600;
+	font-style: normal;
+}
+.templateTexts {
+	width: 20%;
+	font-style: normal;
+	color: #fff;
+	float: left;
+	/* border: 1px solid red; */
+}
+#showTemplate p {
+	color: #fff;
+	margin-top: 8px;
+}
+#showTemplate p .red {
+	color: #FF9600;
+	font-style: normal;
 }

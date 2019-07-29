@@ -22,9 +22,6 @@
 			font-size: 18px;
 		}
 
-		input {
-			border-color: transparent;
-		}
 
 		#box {
 			margin: 0 auto;
@@ -61,10 +58,12 @@
 			height: 30px;
 			line-height: 30px;
 		}
-
+		.hbl-con span:nth-child(1) {
+			width: 34%;
+		}
 		.hbl-con span {
 			float: left;
-			width: 25%;
+			width: 22%;
 			height: 30px;
 			line-height: 30px;
 		}
@@ -152,12 +151,19 @@
 		}
 
 		.tip span {
-			font-size: 16px;
+			font-size: 18px;
 			display: block;
 		}
 
 		.tip span:nth-child(2) {
 			text-align: right;
+		}
+		.checkSpan {
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			border: 1px solid #000;
+			vertical-align: middle;
 		}
 	</style>
 </head>
@@ -177,9 +183,9 @@
 				<div class="headBtn">
 					<div class="headBtn-left">
 						<div class="hbl-top">
-							<span>体检日期：<em class="dataTime">2019-07-09</em></span>
+							<span>体检日期：<em class="dataTime"></em></span>
 							<span>身份证号：<em id="idcardNum"
-									style="width: 60%;display: inline-block;font-size: 18px;">429004199805141167</em></span>
+									style="width: 60%;display: inline-block;font-size: 18px;"></em></span>
 						</div>
 						<div class="hbl-con">
 							<span>姓名：<em class="idname"></em></span>
@@ -188,8 +194,8 @@
 							<span>民族：<em class="pNation"></em></span>
 						</div>
 						<div class="hbl-btn">
-							<span>工作单位：<em class="company">11</em></span>
-							<span>手机号码：<em class="p_phone">12345678980</em></span>						
+							<span>工作单位：<em class="company"></em></span>
+							<span>手机号码：<em class="p_phone"></em></span>						
 						</div>
 					</div>
 					<div class="headBtn-right">
@@ -229,11 +235,22 @@
 					<td colspan="2" style="border-right: none;"></td>
 				</tr>
 				<tr>
-					<td colspan="6" style="border-right: none;">皮肤 手癣 指甲癣 银屑(或鳞屑)病 渗出性皮肤病 化脓性皮肤病</td>
+					<td colspan="6" style="border-right: none;">   
+							皮肤
+							<span class="checkSpan"></span>手癣
+							<span class="checkSpan"></span>指甲癣
+							<span class="checkSpan"></span>银屑(或鳞屑)病
+							<span class="checkSpan"></span>渗出性皮肤病
+							<span class="checkSpan"></span>化脓性皮肤病
+							<!-- <input type="checkbox" name="" class="checkBox">手癣
+							<input type="checkbox" name="" class="checkBox">指甲癣
+							<input type="checkbox" name="" class="checkBox">银屑(或鳞屑)病
+							<input type="checkbox" name="" class="checkBox">渗出性皮肤病
+							<input type="checkbox" name="" class="checkBox">化脓性皮肤病 -->
+					</td>
 				</tr>
 				<tr>
-					<td colspan="3" style="text-align: left;">血压<span
-							style="float: right;margin-right: 25%;">mmHg</span></td>
+					<td colspan="3" style="text-align: left;padding-left: 5px;">其他</td>
 					<td>医师签名：</td>
 					<td colspan="2" style="border-right: none;"></td>
 				</tr>
@@ -285,26 +302,37 @@
 					<td colspan="5" style="border-right: none;"></td>
 				</tr>
 				<tr>
-					<td colspan="7" style="text-align: left;border-bottom: none;border-right:none;">&nbsp;检查结论(体检机构意见)：
+					<td colspan="3" style="text-align: left;border-bottom: none;">&nbsp;检查结论：
+					</td>
+					<td colspan="4" style="text-align: left;border-bottom: none;border-right:none;">&nbsp;体检机构意见：
 					</td>
 				</tr>
 				<tr>
-					<td colspan="7" style="border-top: none;border-bottom: none;border-right:none;"></td>
+					<td colspan="3" style="border-top: none;border-bottom: none;"></td>
+					<td colspan="4" style="border-top: none;border-bottom: none; border-right: none;"></td>
 				</tr>
 				<tr>
-					<td rowspan="3" style="border-top: none;border-right: none;border-bottom:none;"></td>
+					<td colspan="3" style="border-top: none;border-bottom:none;height: 25px;"></td>
 					<td colspan="6"
-						style="border-top: none;border-left:none;border-bottom: none;height: 25px;border-right:none;float: right;margin-right: -265%;width: 126px;">
+						style="border-top: none;border-left:none;border-bottom: none;height: 25px;border-right:none;width: 126px; text-align: right;padding-right:10%;">
 						主检医师签名：</td>
 				</tr>
 				<tr>
-					<td colspan="6"
+					<!-- <td colspan="6"
 						style="border-top: none;border-left:none;height: 25px;border-bottom: none;font-size: 16px;border-right:none;float: right;margin-right: -274%;">
+						(公章)</td> -->
+						<td colspan="3"
+						style="height: 25px;border-bottom: none"></td>
+						<td colspan="4"
+						style="border-top: none;border-left:none;height: 25px;border-bottom: none;font-size: 16px;border-right:none;text-align: right;padding-right:10%;">
 						(公章)</td>
+
 				</tr>
 				<tr>
-					<td colspan="6"
-						style="border-top: none;border-left:none;border-right:none;border-bottom: none;float: right;margin-right: -228%;">
+					<td colspan="3"
+						style="border-top: none;border-left:none;border-bottom: none;"></td>
+						<td colspan="4"
+						style="border-top: none;border-left:none;border-right:none;border-bottom: none; text-align: right;padding-right: 10%;">
 						年&nbsp;&nbsp;月&nbsp;&nbsp;日</td>
 				</tr>
 			</table>
@@ -326,6 +354,9 @@
 
 <script text="text/javascript">
 	$(function () {
+		layui.use('layer',function(){
+			var layer = layui.layer
+		})
 		var tjDatum = localStorage.getItem("tjtables");
 		var tjDatums = JSON.parse(tjDatum);
 		console.log(tjDatums)
@@ -343,7 +374,12 @@
 		}
 		$('.print').click(function () {
 			if(tjDatums == null || tjDatums == ""){
-				alert('请选择打印人员信息')
+				layer.msg('请选择打印人员信息',{offset:'200px'})
+				setTimeout(function(){
+					if(window!=window.top){
+						location.href = './baseInput.html'
+					}
+				},1000)
 			}else{
 				printdiv();
 			}

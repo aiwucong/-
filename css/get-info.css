@@ -15,8 +15,8 @@ body,html{
 	/*border: 1px solid red;*/
 }
 #return{
-	width: 70mm;
-    height: 21mm;
+	width: 63.5mm;
+    height: 19mm;
 	position: relative;
 	top: 6%;
 	left: 4%;
@@ -35,7 +35,7 @@ body,html{
 
 #content{
 	width: 25%;
-	height: 55%;
+	height: 416px;
 	border-radius:2%;
     background-color:rgba(0,0,0,0.2);
 	float: right;
@@ -81,6 +81,7 @@ body,html{
 	font-size: 1.3rem;
 	padding-left: 3%;
 	box-sizing: border-box;
+	cursor: pointer;
 }
 #box-input input::-webkit-input-placeholder{
 	font-size: 70%;
@@ -114,6 +115,7 @@ input:-ms-input-placeholder{
 	width: 100%;
 	height: 100%;
 	border-radius: 0.3rem;
+	cursor: pointer;
 }
 
 #sedCode{

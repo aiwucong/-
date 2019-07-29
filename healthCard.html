@@ -1,195 +1,242 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>健康证</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<!-- <link rel="stylesheet" href="css/healthCard.css"/> -->
-		
-		<style>
-			*{
-				margin: 0;
-				padding: 0;
-			}
-			.imgs {
-				width: 100%;
-				height: 100%;
-			}
-			.leftHome {
-				border: 1px solid #000;
-				border-radius: 0;
-				height: 53.98mm;
-			}
-			.box{
-				width: 100%;
-				height: 100vh;
-				background-image: url(images/index.jpg);
-				background-size: 100% 100%;
-				/* background: #013cba; */
-			}
-			.healthleft{
-				width: 30%;
-				height: 234px;
-				background: #fff;
-				background-size: 100%;
-				border-radius: 10px;
-				box-shadow: 1px 5px 30px -6px #000;
-				float: left;
-				margin: 0 15%;
-				position: relative;
-			}
-			.content {
-				margin: 0 auto;
-				width: 80%;
-				padding-top: 14%;
-				overflow: hidden;
-			}
-			.healthTitel{
-				text-align: center;
-				font-size: 30px;
-				font-weight: bold;
-				margin:5px 0;
-				color: #669610;
-				font-family: "宋体";
-				letter-spacing: 3mm;
-			}
-			.healthCon{
-				display: flex;
-				justify-content: space-between;
-				position: relative;
-			}
-			.hcLeft{
-				width: 70%;
-				margin-top: 19px;
-			}
-			.hcright{
-				width: 30%;
-				position: relative;
-			}
-			.hcright img{
-				width: 100%;
-				height: 96%;
-			}
-			.hcLeft p{
-				margin-bottom:15px;
-				font-family: "宋体";
-				font-weight: bold;
-			}
-			
-			.hcLeft p em{
-				font-style: normal;
-				font-family: "宋体";
-			}
-			.healthRight{
-				background-size: 100%;
-				border-radius: 10px;
-				box-shadow: 7px 4px 20px -6px #000;
-				width: 30%;
-				height: 234px;
-				background: #fff;
-				background-size: 100%;
-				float: left;
-			}
-			.healthRight img{
-				width: 100%;
-				height: 100%;
-				border-radius: 10px;
-			}
-			.code{
-				position: absolute;
-				left: 19%;
-				bottom: -5%;
-			}
-			.code img{
-				width:60px;
-				height: 60px;
-			}
-			.ewm{
-				position: absolute;
-				width: 70px;
-				height: 70px;
-				right: 3%;
-				bottom: 0%;
-			}
-			.healthBtn{
-				font-size: 13px;
-				font-weight: bold;
-				margin-top: 12px;
-				text-align: center;
-				color: #669610;
-				font-family: "宋体";
-				letter-spacing: 1mm;
-			}
-			.watermark{
-				position: absolute;
-				top: -30px;
-				left: -11px;
-				background: url(images/watermack.png);
-				background-size: 100%;
-				width: 100%;
-				height: 261px;
-				opacity: 0.3;
-			}
-			.watermarkDiv{
-				position: relative;
-			}
-			.watermarkDiv{
-				display: inline-block;
-				font-size: 14px;
-				transform: rotate(-45deg);
-			}
-			.watermarkDiv span{
-				display: block;
-			}
-			.hrTitle{
-				text-align: center;
-				font-size: 30px;
-				font-weight: bold;
-				letter-spacing: 10px;
-				color: #000;
-				font-family: "宋体";
-				margin-top: 15px;
-				margin-bottom: 10px;
-			}
-			.hrDiv{
-				padding: 0 20px;
-			}
-			.hrDiv p{
-				margin: 10px 0;
-				line-height: 28px;
-			}
-		</style>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<title>健康证-武汉健康证，从业人员健康体检管理云平台，结果查询，单位预约，体检机构管理，监督机关统计，电子健康证，玛迪卡云</title>
+	<link rel="icon" type="image/x-icon" href="./images/ico.png" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- <link rel="stylesheet" href="css/healthCard.css"/> -->
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.imgs {
+			width: 100%;
+			height: 100%;
+		}
+
+		.leftHome {
+			border: 1px solid #000;
+			border-radius: 0;
+			height: 53.98mm;
+		}
+
+		.box {
+			position: relative;
+			width: 100%;
+			height: 100vh;
+			background-image: url(images/index.jpg);
+			background-size: 100% 100%;
+			/* background: #013cba; */
+		}
+
+		.healthleft {
+			width: 30%;
+			height: 251px;
+			background: #fff;
+			background-size: 100%;
+			border-radius: 10px;
+			box-shadow: 1px 5px 30px -6px #000;
+			float: left;
+			margin: 0 15%;
+			position: relative;
+		}
+
+		.content {
+			margin: 0 auto;
+			width: 80%;
+			padding-top: 14%;
+			overflow: hidden;
+		}
+
+		.healthTitel {
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			margin: 5px 0;
+			color: #669610;
+			font-family: "宋体";
+			letter-spacing: 3mm;
+		}
+
+		.healthCon {
+			display: flex;
+			justify-content: space-between;
+			position: relative;
+		}
+
+		.hcLeft {
+			width: 70%;
+			margin-top: 19px;
+		}
+
+		.hcright {
+			width: 30%;
+			position: relative;
+		}
+
+		.hcright img {
+			width: 89%;
+			height: 93%;
+			margin-top: 13px;
+			margin-left: 5px;
+		}
+
+		.hcLeft p {
+			margin-bottom: 15px;
+			font-family: "宋体";
+			font-weight: bold;
+		}
+
+		.hcLeft p em {
+			font-style: normal;
+			font-family: "宋体";
+		}
+
+		.healthRight {
+			background-size: 100%;
+			border-radius: 10px;
+			box-shadow: 7px 4px 20px -6px #000;
+			width: 30%;
+			height: 251px;
+			background: #fff;
+			background-size: 100%;
+			float: left;
+		}
+
+		.healthRight img {
+			width: 100%;
+			height: 100%;
+			border-radius: 10px;
+		}
+
+		.code {
+			position: absolute;
+			left: 19%;
+			bottom: -5%;
+		}
+
+		.code img {
+			width: 60px;
+			height: 60px;
+		}
+
+		.ewm {
+			position: absolute;
+			width: 70px;
+			height: 70px;
+			right: 3%;
+			bottom: 0%;
+		}
+
+		.healthBtn {
+			font-size: 13px;
+			font-weight: bold;
+			margin-top: 12px;
+			text-align: center;
+			color: #669610;
+			font-family: "宋体";
+			letter-spacing: 1mm;
+		}
+
+		.watermark {
+			position: absolute;
+			top: 0;
+			left: 8px;
+			background: url(images/watermack.png);
+			background-size: 100%;
+			width: 100%;
+			height: 251px;
+			opacity: 0.3;
+		}
+
+		.watermarkDiv {
+			position: relative;
+		}
+
+		.watermarkDiv {
+			display: inline-block;
+			font-size: 14px;
+			transform: rotate(-45deg);
+		}
+
+		.watermarkDiv span {
+			display: block;
+		}
+
+		.hrTitle {
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			letter-spacing: 10px;
+			color: #000;
+			font-family: "宋体";
+			margin-top: 15px;
+			margin-bottom: 10px;
+		}
+
+		.hrDiv {
+			padding: 0 20px;
+		}
+
+		.hrDiv p {
+			margin: 10px 0;
+			line-height: 28px;
+		}
+
+		.return {
+			position: absolute;
+			top: 6%;
+			left: 4%;
+			width: 63.5mm;
+			height: 19mm;
+		}
+
+		.return a img {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
 
 
-	<body>
-		<div class="box">
-			<div class="content">
-				<div class="healthleft">
-					<div class="healthTitel">健康证明</div>
-					<div class="healthCon">
-						<div class="hcright">
-							<img src="images/person.jpg" class="imgs">
-						</div>
-						<div class="hcLeft">
-							<p style="float:left;width:50%"><span>姓名：</span><em class="name"></em></p>
-							<p style="float:left;width:50%"><span>年龄：</span><em class="age"></em></p>
-							<p style="float:left;width:50%"><span>性别：</span><em class="sex"></em></p>
-							<p style="float:left;width:50%"><span>体检：</span><em class="tj"></em></p>
-							<p><span>有效日期：</span><em class="healthData"></em></p>
-							<p><span>证号：</span><em class="stateData"></em></p>
-							<img src="images/person.jpg" class="ewm">
-						</div>
-						
-						<div class="code">
-							<img src="images/person.jpg" class="gz">
-						</div>
+<body>
+	<div class="box">
+		<div class="return">
+			<a href="index.html">
+				<img src="images/logo01.png" />
+			</a>
+		</div>
+		<div class="content">
+			<div class="healthleft">
+				<div class="healthTitel">健康证明</div>
+				<div class="healthCon">
+					<div class="hcright">
+						<img src="images/person.jpg" class="imgs">
 					</div>
-					<div class="healthBtn"></div>
-					<div class="watermark">
-						<div class="watermarkDiv">
-							<!-- <span>JKZCLOUD.COM&nbsp;武汉健康证</span>
+					<div class="hcLeft">
+						<p style="float:left;width:50%"><span>姓名：</span><em class="name"></em></p>
+						<p style="float:left;width:50%"><span>年龄：</span><em class="age"></em></p>
+						<p style="float:left;width:50%"><span>性别：</span><em class="sex"></em></p>
+						<p style="float:left;width:50%"><span>体检：</span><em class="tj"></em></p>
+						<p><span>有效日期：</span><em class="healthData"></em></p>
+						<p><span>证号：</span><em class="stateData"></em></p>
+						<img src="images/person.jpg" class="ewm">
+					</div>
+
+					<div class="code">
+						<img src="images/person.jpg" class="gz">
+					</div>
+				</div>
+				<div class="healthBtn"></div>
+				<div class="watermark">
+					<div class="watermarkDiv">
+						<!-- <span>JKZCLOUD.COM&nbsp;武汉健康证</span>
 							<span>JKZCLOUD.COM&nbsp;武汉健康证</span>
 							<span>JKZCLOUD.COM&nbsp;武汉健康证</span>
 							<span>JKZCLOUD.COM&nbsp;武汉健康证</span>
@@ -201,21 +248,22 @@
 							<span>JKZCLOUD.COM&nbsp;武汉健康证&nbsp;JKZCLOUD.COM&nbsp;武汉健康证&nbsp;JKZCLOUD.COM&nbsp;武汉健康证</span>
 							<span>JKZCLOUD.COM&nbsp;武汉健康证&nbsp;JKZCLOUD.COM&nbsp;武汉健康证&nbsp;JKZCLOUD.COM&nbsp;武汉健康证</span>
 							<span>JKZCLOUD.COM&nbsp;武汉健康证&nbsp;JKZCLOUD.COM&nbsp;武汉健康证&nbsp;JKZCLOUD.COM&nbsp;武汉健康证</span> -->
-						</div>
 					</div>
 				</div>
-				<div class="healthRight">
-					<!-- <div class="hrTitle">注意事项</div>
+			</div>
+			<div class="healthRight">
+				<!-- <div class="hrTitle">注意事项</div>
 					<div class="hrDiv">
 						<p>1.从业人员必须持健康证并经用人单位培训合格后上岗工作，并自觉接受卫生监督员的检查</p>
 						<p>2.本证涂改、过期、严重破损、章迹不清时无效</p>
 						<p>3.持证人应妥善保管本证，不得转借、转租，遗失时应及时向发证机构声明，并办理补发手续</p>
 					</div> -->
-					<img src="images/healthCardBei1.png"/>
-				</div>
+				<img src="images/healthCardBei1.png" />
 			</div>
 		</div>
-		<script src="./js/jquery.min.js"></script>
-		<script src="./js/healthCard.js"></script>
-	</body>
+	</div>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/healthCard.js"></script>
+</body>
+
 </html>

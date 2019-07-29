@@ -1,7 +1,7 @@
 // var baseUrl="https://www.jkzcloud.com/mdk2019";
-var baseUrl="http://192.168.0.107:8086";
-var IdUrl = "http://192.168.0.141:8080/card_project";
-
+var baseUrl="http://192.168.0.109:8084";
+var resultData = sessionStorage.getItem('resultData');
+var mainDatas = JSON.parse(resultData)
 
 function queryParams(params){
     if (!params) return;

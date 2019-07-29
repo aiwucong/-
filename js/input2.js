@@ -11,8 +11,6 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
     });
     // 表格监听
     table.on('row(test)', function (obj) {
-        // console.log(obj.tr) //得到当前行元素对象
-        // console.log(obj.data) //得到当前行数据
         $.each(obj.data, (key, val) => {
             if (key == 'sex') {
                 if (val === "男") {                    
@@ -52,11 +50,7 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
         ,url: ''
         ,before: function(obj){
           //预读本地文件示例，不支持ie8
-          console.log(obj)
           obj.preview(function(index, file, result){
-            //   console.log(result)
-            console.log(file.name)
-            //   console.log(index)
              $('#idcardimg').attr('src', result); //图片链接（base64）
             
           });
@@ -89,7 +83,6 @@ layui.use(['form', 'laydate', 'table', 'upload'], function () {
                     async: true,
                     contentType: "application/json",
                     success: function (data) {
-                        console.log(data)
                     }
                 })
             }, 5000)
@@ -119,7 +112,6 @@ $(function () {
         deptNum = $(".units").val(),
         idcardimg = $('#idcardimg')[0].src,
         sexList = "";
-        console.log(111)
         if (sex = 1) {
             sexList = '男'
         } else {
@@ -176,7 +168,6 @@ $(function () {
                 var cusHtalthCard = $('#cusHtalthCard').val();
                 var cusHtalthCard2 = $('#cusHtalthCard2').html();
                 $('.healthnumber').attr("value", cusHtalthCard.toString() + cusHtalthCard2);
-                console.log(cusHtalthCard.toString() + cusHtalthCard2)
                 layer.msg('修改成功', {
                     icon: 1
                 });
@@ -224,7 +215,6 @@ $(function () {
             dataType: 'json',
             data: JSON.stringify(data),
             success: function (data) {
-                console.log(data)
                 if (data.status == "success") {
                     alert("保存成功跳转页面");
                 } else {
@@ -232,7 +222,6 @@ $(function () {
                 }
             },
             error: function (data) {
-                console.log(data)
                 alert("失败");
             }
         });
@@ -261,7 +250,6 @@ $(function () {
                 async: true,
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data)
                     $('.IDname').attr("value", data.pName);
                     $('#IDcard').attr("value", data.pCertNo);
                     $('.address').attr("value", data.pAddress);
@@ -281,20 +269,15 @@ $(function () {
                     var m1 = birth.substring(4, 6);
                     var m2 = date.getMonth() + 1;
                     if (m1 < m2) {
-                        console.log(year)
                         $('#age').attr("value", year);
                     } else {
-                        console.log(year--)
                         $('#age').attr("value", year--);
                     }
                     //    健康证号自增
                     var num = $("#IDnumber").val().substring(5);
-                    console.log(num)
                     num++;
                     num += 100000;
-                    console.log(num)
                     var newnum = $("#IDnumber").val().substring(0, 5) + num.toString().substring(1);
-                    console.log(newnum)
                     $("#IDnumber").val(newnum)
 
 
@@ -311,7 +294,6 @@ $(function () {
         dataType: 'json',
         success: function (res) {
             var userData = res.data
-            console.log(userData)
             dataTable(userData)
         }
     })
@@ -395,14 +377,12 @@ $(function () {
 
     // 获取图片传值
     $('.btn1').click(function () {
-        console.log(111);
         $.ajax({
             type: "post",
             url: baseUrl + "/changestatus/3",
             contentType: "application/json;charset=utf-8",
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 $("#idcardimg").attr("src", "data:image/png;base64," + data.photo);
             },
             error: function () {
@@ -417,8 +397,6 @@ window.onload = function () {
         url: baseUrl+"/tijian/getlastnum",
         type: "get",
         success: function (res) {
-            console.log(res);
-            console.log(res.data.hearthcardNum);
             $('.healthnumber').attr("value", res.data.hearthcardNum);
         },
         error: function () {

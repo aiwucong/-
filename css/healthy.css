@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: "微软雅黑"; */
+    /* box-sizing: border-box; */
+    /* /* font-size: 18px; */
+}
+em {
+    font-style: normal;
+    font-size: 18px;
+}
+
+input {
+    border-color: transparent;
+}
+
+#box {
+    margin: 0 auto;
+    width: 50%;
+    border: 1px solid #AAAAAA;
+    background: #fff;
+    padding: 30px 30px;
+    position: relative;
+    height: auto;
+    margin-top: 55px;
+    display: none;
+    box-sizing: border-box;
+}
+.main {
+    border-collapse:inherit !important;
+}
+.boxBox {
+    width: 100%;
+    height: 100%;
+}
+
+.head {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.hbl-con,
+.hbl-top,
+.hbl-btn {
+    overflow: hidden;
+}
+
+.hbl-top span {
+    float: left;
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    font-family: "SimSun";
+    font-size: 18px;
+}
+.hbl-con span:nth-child(1) {
+    width: 34%;
+}
+.hbl-con span {
+    float: left;
+    width: 22%;
+    height: 30px;
+    line-height: 30px;
+    font-family: "SimSun";
+    font-size: 18px;
+}
+
+.hbl-btn span {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    font-family: "SimSun";
+    font-size: 18px;
+}
+
+.hbl-btn span:nth-child(1) {
+    width: 60%;
+    font-family: "SimSun";
+}
+
+.hbl-btn span:nth-child(2) {
+    width: 40%;
+    font-family: "SimSun";
+}
+
+.headTop {
+    width: 100%;
+}
+
+.headBtn {
+    position: relative;
+}
+
+.headBtn-left {
+    float: left;
+    width: 84%;
+}
+
+.headBtn-right {
+    float: right;
+    width: 15%;
+    height: 120px;
+    border: 1px solid #e1e1e1;
+    margin-top: -35px;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: "SimSun";
+}
+
+.main {
+    width: 100%;
+    height: auto;
+    border: 1px solid #000;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+.main td {
+    border: 1px solid #000;
+    height: 40px;
+    text-align: center;
+    border-top: none;
+    border-left: none;
+    width: 90px;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: "SimSun";
+}
+
+.print {
+    position: absolute;
+    top: 4.5%;
+    right: 15%;
+    cursor: pointer;
+}
+
+.print span {
+    width: 80px;
+    height: 40px;
+    background: #ff9600;
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.tip {
+    margin-top: 10px;
+}
+
+.tip span {
+    font-size: 18px;
+    display: block;
+    font-family: "SimSun";
+}
+
+.tip span:nth-child(2) {
+    text-align: right;
+    font-family: "SimSun";
+}
+.checkSpan {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #000;
+    vertical-align: middle;
+}

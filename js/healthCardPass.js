@@ -2,20 +2,20 @@ layui.use('table', function () {
     var table = layui.table;
     table.render({
         elem: '#table2',
-        height: 'auto',
+        height: '550',
         title: '用户数据表',
         url: baseUrl + "/healthcard/dayin?token="+localStorage.getItem("token"),
         where: {
-            printStatus: 1
+            printStatus: 1,
+            hospitalNum: mainDatas.hospitalNum
         },
         toolbar: '#toolbarDemo',
         method: 'post',
         limit: 10,
         page: true,
         parseData: function (res) {
-            console.log(res)
             if(res.status == 250){
-                layer.msg(res.data)
+                layer.msg(res.data,{offset:'200px'})
                 if (window != window.top) {
                     setTimeout(function () {
                         window.top.location = "../index.html";
@@ -48,11 +48,6 @@ layui.use('table', function () {
                     type: "checkbox",
                 },
                 {
-                    field: 'healthId',
-                    title: 'ID',
-                    width: 100,
-                },
-                {
                     field: 'name',
                     title: '姓名',
                     width: 100,
@@ -71,7 +66,7 @@ layui.use('table', function () {
                     width: 150
                 },
                 {
-                    field: 'createTime',
+                    field: 'yuliu1',
                     title: '审核日期',
                     width: 177
                 },
@@ -88,19 +83,13 @@ layui.use('table', function () {
             ]
         ],
         done: function (res, curr, count) {
-            console.log(res)
-            //得到当前页码
-            // console.log(curr); 
-            //得到数据总量
-            // console.log(count);
         }
     });
     //监听行工具事件
     table.on('tool(table2)', function (obj) {
         let data = obj.data;
-        console.log(data)
         $('#name').attr('value', data.name);
-        $('#age').attr('value', data.age);
+        $('#age').attr('value', data.age + "岁");
         $('#sex').attr('value', data.gender);
         $('#tj').attr('value', data.medical);
         $('#dataTime').attr('value', data.endTime);
@@ -123,7 +112,6 @@ layui.use('table', function () {
         var str = "";
         str += "<!--stratprint-->"
         $.each(ids, function (i, n) {
-            // console.log(n)
             str += "<div class ='box'>";
             str += "<div class='box_center'>"
             str += " <h2 class='box_tit'>健康证明</h2>"
@@ -132,7 +120,7 @@ layui.use('table', function () {
             str += "<div class='boxInputs'>"
             str += "<div class='liners'>"
             str += "<div class='liners_item1'><span class='liners_tit'>姓名:</span><span class='liners_input name'>" + n.name + "</span></div>"
-            str += "<div class='liners_item2'><span class='liners_tit'>年龄:</span><span class='liners_input old'>" + n.age + "</span></div>"
+            str += "<div class='liners_item2'><span class='liners_tit'>年龄:</span><span class='liners_input old'>" + n.age +"岁"+ "</span></div>"
             str += "</div>"
             str += "<div class='liners'>"
             str += "<div class='liners_item1'><span class='liners_tit'>性别:</span><span class='liners_input sex'>" + n.gender + "</span></div>"
@@ -150,7 +138,6 @@ layui.use('table', function () {
         })
         str += "<!--endprint-->";
         $('#printBox').append(str)
-        // console.log(ids)
         if (data.length != 0) {
             layer.msg('正在请求打印，请稍后',  {
                 offset: '200px'
@@ -167,46 +154,4 @@ layui.use('table', function () {
         }
 
     })
-
-    //监听排序
-    table.on('sort(table2)', function (obj) {
-        // console.log(this)
-
-        //return;
-        layer.msg('服务端排序。order by ' + obj.field + ' ' + obj.type);
-        //服务端排序
-        table.reload('test', {
-            initSort: obj
-                //,page: {curr: 1} //重新从第一页开始
-                ,
-            where: { //重新请求服务端
-                key: obj.field //排序字段
-                    ,
-                order: obj.type //排序方式
-            }
-        });
-    });
-
-
-    //return;
-
-    var $ = layui.jquery,
-        active = {
-            parseTable: function () {
-                table.init('parse-table-demo', {
-                    limit: 3
-                });
-            },
-            add: function () {
-                table.addRow('test')
-            }
-        };
-    $('i').on('click', function () {
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-    });
-    $('.layui-btn').on('click', function () {
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-    });
 })

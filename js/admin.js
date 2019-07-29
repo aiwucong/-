@@ -1,13 +1,15 @@
 
 window.onload = function () {
     $.ajax({
-        url: baseUrl + '/tubiao/allCount?token=' + localStorage.getItem("token"),
-        type: "get",
+        url: baseUrl + '/countData/allCount?token=' + localStorage.getItem("token"),
+        type: "post",
+        data:{"hospitalNum":mainDatas.hospitalNum},
         success: function (res) {
+            console.log(res)
             if (res.status == "250") {
                 layui.use('layer',function(){
                     var layer = layui.layer;
-                    layer.msg('账号登录过期,请重新登录', {icon: 4},{offset:'100px'})
+                    layer.msg('账号登录过期,请重新登录',{offset:'100px'})
                 })
                 if (window != window.top) {
                     setTimeout(function () {
@@ -34,8 +36,10 @@ window.onload = function () {
     $.ajax({
         type: "post",
         async: true,
-        url: baseUrl + '/tubiao/tjAddfzWeekData?token='+localStorage.getItem("token"), //请求发送到TestServlet处
+        url: baseUrl + '/countData/tjAddfzWeekData?token='+localStorage.getItem("token"), 
+        data:{"hospitalNum":mainDatas.hospitalNum},
         success: function (result) {
+            console.log(result)
             if (result.status == "success") {
                 names = Object.keys(result.data.tj);
                 nums = Object.values(result.data.tj);

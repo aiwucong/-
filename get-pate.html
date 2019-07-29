@@ -3,10 +3,12 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>单位体检预约</title>
+	<title>单位体检预约-武汉健康证，从业人员健康体检管理云平台，结果查询，单位预约，体检机构管理，监督机关统计，电子健康证，玛迪卡云</title>
 	<link rel="stylesheet" href="css/get-pate.css" />
 	<link rel="stylesheet" href="./src/css/layui.css">
+	<link rel="icon" type="image/x-icon" href="./images/ico.png" />
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/public.js"></script>	
 	<script src="./src/layui.js"></script>
 	<script src="./js/get-pate.js"></script>
 	</script>
@@ -29,14 +31,14 @@
 		<!--单位预约-->
 		<div id="content">
 			<div id="title">
-				<span>单位预约</span>
+				<span>个人/单位预约</span>
 			</div>
 			<div id="box-one">
 				<div id="box-input">
-					<input type="text" id="dept" name="dept" value="" placeholder="请输入单位/公司" />
+					<input type="text" id="dept" name="dept" value="" placeholder="请输入个人/单位/公司" />
 				</div>
 				<div id="box-input">
-					<input type="text" id="dept-code" name="dept-code" value="" placeholder="请输入统一征信代码" />
+					<input type="text" id="dept-code" name="dept-code" maxlength="18" value="" placeholder="请输入单位统一征信代码/个人身份证" />
 				</div>
 				<div id="box-input">
 					<input type="text" id="telphone" name="telphone" value="" maxlength="11"
@@ -49,7 +51,7 @@
 						<input type="text" id="vcode" name="vcode" value="" maxlength="6" placeholder="请输入验证码" />
 					</div>
 					<div id="box-code2">
-						<input type="button" id="sedCode" value="验证码" onclick="settime(this)" />
+						<input type="button" id="sedCode" value="验证码" />
 					</div>
 				</div>
 
@@ -58,7 +60,7 @@
 					<div id="box-dibu">
 						<a>
 							<div id="box-button">
-								<input type="button" id="send1" value="上传资质" onclick="sendMsg()" />
+								<input type="button" id="send1" value="上传资质"/>
 							</div>
 						</a>
 						<!--<a>

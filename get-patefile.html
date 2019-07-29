@@ -1,133 +1,182 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" href="css/get-patefile.css" />
-		<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
-		<script type="text/javascript" src="js/public.js"></script>
-		<style>
-			#imgg4{
-				width: 300px;
-				height: 300px;
-			}
-		</style>
-	</head>
-	
-	<body>
-		<div id="box">
-			<!--背景图-->
-			<div style="position:fixed;z-index:-100; left:0px; top:0px; width:100%; height:100%">
-				<img src="images/index.jpg" width="100%" height="100%" />
-			</div>
 
-			<!--返回-->
-			<!-- <div id="return">
+<head>
+	<meta charset="UTF-8">
+	<title>预约资质上传-武汉健康证，从业人员健康体检管理云平台，结果查询，单位预约，体检机构管理，监督机关统计，电子健康证，玛迪卡云</title>
+	<link rel="icon" type="image/x-icon" href="./images/ico.png" />
+	<link rel="stylesheet" href="css/get-patefile.css" />
+	<link rel="stylesheet" href="./src/css/layui.css">
+	<link rel="stylesheet" href="./css/viewer.css">
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script src="./src/layui.js"></script>
+	<script type="text/javascript" src="js/public.js"></script>
+	<script src="./js/viewer.js"></script>
+	<style>
+		#imgg4 {
+			width: 300px;
+			height: 300px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+		<!--背景图-->
+		<div style="position:fixed;z-index:-100; left:0px; top:0px; width:100%; height:100%">
+			<img src="images/index.jpg" width="100%" height="100%" />
+		</div>
+
+		<!--返回-->
+		<!-- <div id="return">
 				<a href="index.html">
 					<img src="images/logo01.png" />
 				</a>
 			</div> -->
-			
-			<!--中部-->
-			<div id="box1">
-				<!--文件上传-->
-				<div class="bgSize">
-						
-						<div id="file">
-								<span style="color:#fff;float: left;font-size: 1.2rem;width: 120px;display: inline-block;">预约资质上传</span>
-								<div class="showimg">
-									<div id="boxx">
-										
-										<input type="file" id="upimg" accept="image/*" onchange="patefile.upLoad()">
-										<label for="upimg">
-											<img id="imgg1" src="images/upload.jpg" alt="">
-										</label>
-										<span>营业执照扫描件</span>
-									</div>
+
+		<!--中部-->
+		<div id="box1">
+			<!--文件上传-->
+			<div class="bgSize">
+
+				<div id="file">
+					<span style="color:#fff;font-size: 1.2rem;width: 120px; float: left;">预约资质上传</span>
+					<div class="showimg">
+						<div id="boxx">
+							<input type="file" id="upimg" accept="image/*" onchange="patefile.upLoad()">
+							<label for="upimg">
+								<img id="imgg1" src="images/upload.jpg" alt="">
+							</label>
+						</div>
+
+					</div>
+					<div class="shows">
+						<div class="showimgs clear-box">
+							<div id="showTemplate">
+								<h2 class="templateTexts">示例一</h2>
+								<div class="templateBox">
+									<img src="./images/jkz1.jpg" alt="">
+									<h4>营业执照<em class="templateTit">原件</em>上传方法</h4>
+									<p>提示：请将体检人身份证放置在营业执照<em class="red">(原件)</em>空白①处拍照从本地上传</p>
 								</div>
-								<div class="showimg">
-									<div id="boxx">
-										
-										<input type="file" id="id" accept="image/*" onchange="patefile.upLoadid()">
-										<label for="id">
-											<img id="imgg2" src="images/upload.jpg" alt="">
-										</label>
-										<span>经营许可证扫描件</span>
-									</div>
-								</div>
-								<div class="showimg">
-									<div id="boxx">
-										<input type="file" id="idCard" accept="image/*" onchange="patefile.upLoadidcard()">
-										<label for="idCard">
-											
-											<img id="imgg3" src="images/upload.jpg" alt="">
-										</label>
-										<span style="">其他扫描件</span>
-									</div>	
-								</div>
-								
 							</div>
-							<div id="head">
-									<span>
-										注意:请确保您上传的扫描件清晰,真实,并加盖公章,否则将影响审核结果;图片只能为jpg,png格式,大小不能超过5MB.
-									</span>
-							</div>
-							<div style="overflow:hidden;margin-bottom: 3%;">
-								
-								<div class="pateFile">
-									<span>预约登记表</span>
-									
-									<label for="pateUpload">
-										<input type="text" class="excel" placeholder="请上传预约登记表格" class="">
-									</label>
-									<span style="width:100px;height:40px;line-height:40px;text-align:center;display:inline-block;background: #fff;border-radius: 5px;color:#000;">选择文件</span>
-									<input type="file" id="pateUpload" placeholder="上传登记表" onchange="patefile.upLoadExect()"/>
+							<div id="showTemplate">
+								<h2 class="templateTexts">示例二</h2>
+								<div class="templateBox">
+									<img src="./images/jkz2.jpg" alt="">
+									<h4>营业执照<em class="templateTit">复印件</em>上传方法</h4>
+									<p>提示：请将体检人身份证号手写<em class="red">(签字笔)</em>在营业执照复印件<em
+											class="red">(需加盖红色公章)</em>空白处①处并拍照从本地上传,<em class="red">每张复印件仅限本人使用</em>
+									</p>
 								</div>
-								<div class="pateInput"><input type="text" id="pateInput" placeholder="输入预约总人数"/></div>
+
 							</div>
-							<div id="dibu-box">
-									<div id="box-one1">
-										<span style="display:inline-block;width:120px;margin-right: 5px;">预约审核机构</span>
-										<select id="city">
-											<option style="color: black;">武汉市</option>					
-										</select>
-										<select id="qu">	
-											<option value="0">--请选择区--</option>
-											<option value="1001">江夏区</option>
-											<option value="1002">武昌区</option>
-											<option value="1003">洪山区</option>
-											<option value="1004">东湖高新区</option>
-											<option value="1005">东湖风景区</option>
-											<option value="1006">江岸区</option>
-											<option value="1007">江汉区</option>
-											<option value="1008">硚口区</option>
-											<option value="1009">汉阳区</option>
-											<option value="1010">青山区</option>
-											<option value="1011">东西湖区</option>
-											<option value="1012">新洲区</option>
-											<option value="1013">黄陂区</option>
-											<option value="1014">蔡甸区</option>
-											<option value="1015">汉南区</option>				
-										</select>
-										<select id="hospial">	
-										</select>
-									</div>
-									<div id="box-one2">
-										<input type="button" id="ShowDiv" value="立即预约" onclick="patefile.ShowDiv()" />
-									</div>
-									
-								</div>
-						<!--底部-->
-					
+						</div>
+					</div>
+
+
 				</div>
+				<!-- <div id="head">
+					<span>
+						注意:请确保您上传的扫描件清晰,真实,并加盖公章,否则将影响审核结果;图片只能为jpg,png格式,大小不能超过5MB.
+					</span>
+				</div> -->
+				<div style="overflow:hidden;width: 90%; margin: 3% auto 3% auto;">
+
+					<div class="pateFile">
+						<span>预约登记表</span>
+
+						<label for="pateUpload">
+							<input type="text" class="excel" placeholder="请上传预约登记表格" class="">
+						</label>
+						<span
+							style="width:100px;height:40px;line-height:40px;text-align:center;display:inline-block;background: #fff;border-radius: 5px;color:#000;">选择文件</span>
+						<input id="pateUpload" type='text' placeholder="上传登记表" onchange="patefile.upLoadExect()" />
+					</div>
+
+				</div>
+				<div id="dibu-box">
+					<div id="box-one1">
+						<span style="display:inline-block;width:120px;margin-right: 5px;">预约审核机构</span>
+						<select id="city">
+							<option style="color: black;">武汉市</option>
+						</select>
+						<select id="qu">
+							<option value="0">--请选择区--</option>
+							<option value="1001">江夏区</option>
+							<option value="1002">武昌区</option>
+							<option value="1003">洪山区</option>
+							<option value="1004">东湖高新区</option>
+							<option value="1005">东湖风景区</option>
+							<option value="1006">江岸区</option>
+							<option value="1007">江汉区</option>
+							<option value="1008">硚口区</option>
+							<option value="1009">汉阳区</option>
+							<option value="1010">青山区</option>
+							<option value="1011">东西湖区</option>
+							<option value="1012">新洲区</option>
+							<option value="1013">黄陂区</option>
+							<option value="1014">蔡甸区</option>
+							<option value="1015">汉南区</option>
+						</select>
+						<select id="hospial">
+						</select>
+						<!-- <select id="timer">
+							<option value="0">--请选择时间--</option>
+							<option value="1001">8:30-11:30</option>
+							<option value="1002">14:30-17:00</option>
+						</select> -->
+					</div>
+					<div id="box-one2">
+						<div class="tjTime">
+							<span>请选择体检时间</span>
+							<input type="text" id="selectorTime">
+						</div>
+						<div class="residue clear-box">
+							<span class="residueTit">选择时间段</span>
+							<!-- <input type="text" id="residueNum" readonly="readonly"> -->
+							<div class="time_am times">
+								<span>08:30-11:00</span>
+								<h5>剩余<em class="am_text"></em>个</h5>
+							</div>
+							<div class="time_pm times">
+								<span>14:00-16:30</span>
+								<h5>剩余<em class="pm_text"></em>个</h5>
+							</div>
+						</div>
+						<div class="pateInput"><input type="text" id="pateInput" placeholder="输入预约总人数" /></div>
+						<input type="button" id="ShowDiv" value="立即预约" onclick="patefile.ShowDiv()" />
+					</div>
+					<div class="boxxTitle">
+							<span>材料提交注意事项:</span>
+							<p>1.预约资料只支持拍照从本地上传;</p>
+							<p>2.体检申请人须拍照上传入职企业的营业执照原件和体检人本人身份证原件正面(需把身份证摆放在营业执照的空白处一并拍摄),具体可查看页面示例图片;
+							</p>
+							<p>
+								3.体检申请人拍照上传入职企业的营业执照复印件(需加盖公章)和左上角手写本人的身份证号;
+							</p>
+							<p>4.体检人需携带本人身份证原件到预约机构进行体检;
+
+							</p>
+							<p>
+								5.营业执照复印件(需加盖公章)空白处需手写该申请人身份证号码;注:第2条、第3条可二者选其一。如需咨询,请拨打15927026140
+							</p>
+
+							</p>
+						</div>
+				</div>
+				<!--底部-->
+
 			</div>
-			
-			
 		</div>
-	</body>
-	
-	<!--图片上传-->
-	<script type="text/javascript" src="js/get-patefile.js">
-	
-	</script>
+
+
+	</div>
+</body>
+
+<!--图片上传-->
+<script type="text/javascript" src="js/get-patefile.js">
+
+</script>
+
 </html>

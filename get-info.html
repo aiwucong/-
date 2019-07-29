@@ -4,12 +4,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="Access-Control-Allow-Origin" content="*">
-		<title>健康证查询</title>
+		<title>结果查询登录-武汉健康证，从业人员健康体检管理云平台，结果查询，单位预约，体检机构管理，监督机关统计，电子健康证，玛迪卡云</title>
+		<link rel="icon" type="image/x-icon" href="./images/ico.png" />
 		<link rel="stylesheet" href="css/get-info.css" />
 		<link rel="stylesheet" href="./src/css/layui.css">
 		<script type="text/javascript" src="js/public.js"></script>
 		<script src="js/jquery.min.js" type="text/javascript"></script>
 		<script src="./src/layui.js"></script>
+		<script type="text/javascript" src="js/get_info.js"></script>
 	</head>
 
 	<body>
@@ -31,7 +33,7 @@
 				<div id="title">
 					<span>结果查询</span>
 				</div>
-				<div id="box-one">
+				<div id="box-one" class="layui-form">
 					<div id="box-input">
 						<input type="text" id="idCard" name="idCard" value="" maxlength="18" onkeyup="value=value.replace(/[\W]/g,'')" placeholder="请输入身份证号" />
 					</div>
@@ -43,12 +45,12 @@
 							<input type="text" id="vcode" name="vcode" value="" maxlength="4" placeholder="请输入验证码" />
 						</div>
 						<div id="box-code2">
-							<input type="button" id="sedCode" onclick="sendMsg()" value="验证码" />
+							<input type="button" id="sedCode" value="验证码" />
 						</div>
 					</div>
 					<!--按钮-->
 					<div id="box-input">
-						<input type="button" id="getCard" onclick="getCard()" value="查询" />
+						<input type="button" id="getCard" value="查询" />
 					</div>
 					<div class="layui-form PlatformHomer">
 							<div class="layui-form-item">
@@ -126,7 +128,5 @@
 
 		</div>
 	</body>
-	<script type="text/javascript" src="js/get_info.js">
-	</script>
 
 </html>

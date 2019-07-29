@@ -4,13 +4,14 @@ layui.use('table', function () {
             elem: '#table3',
             height: 550,
             title: '用户数据表',
-            url: baseUrl + '/tijian/getTJlist?token='+ localStorage.getItem("token"),
+            url: baseUrl + '/tijian/getStatusList?token='+ localStorage.getItem("token"),
             method:'get',
-            where: {status:2},
+            where: {status:2,
+                hospitalNum:mainDatas.hospitalNum
+            },
             autoSort: false,
             toolbar: '#toolbarDemo',
             parseData: function (res) {
-                console.log(res)
                 if(res.status == 250){
                     if(window != window.top){
                         layer.msg('请重新登录！',{offset:'200px'})
@@ -22,7 +23,7 @@ layui.use('table', function () {
                     $('#unalready-audited').text(res.data.count);
                     if (res.data.pageData != null){
                         $.each(res.data.pageData, function (i, n) {
-                            n.status = "审核不通过"
+                            n.status = "不合格"
                         })
                     } 
                 }
@@ -77,14 +78,13 @@ layui.use('table', function () {
             ],
             page: true,
             done: function (res, curr, count) {
-                console.log(res)
              }
         });
     
         //不合格表格监听行工具事件
         table.on('tool(table3)', function (obj) {
             var data = obj.data;
-            var idCardNum = obj.data.idcardNum;;
+            var idCard = obj.data.tjId;;
             if (obj.event === 'audit_modify') {
                 layer.confirm('确认修改为合格？', {
                         title: ['合格', 'font-size:18px; text-align: center;'],
@@ -92,11 +92,11 @@ layui.use('table', function () {
                         btn: ['确认', '取消'] //按钮
                     }, function () { //确认按钮函数
                         var newdata = {
-                            "idCardNum": idCardNum,
+                            "tjId": idCard,
                             "status": "1"
                         }
                         $.ajax({
-                            url: baseUrl + "/tijian/updateTJstatus",
+                            url: baseUrl + "/tijian/oneTJSH?token=" + localStorage.getItem("token"),
                             type: 'post',
                             contentType: "application/x-www-form-urlencoded",
                             xhrFields: {
@@ -106,11 +106,20 @@ layui.use('table', function () {
                             success: function (res) {
                                 console.log(res)
                                 if (res.status == '200') {
-                                    layer.msg('审核成功', {icon: 1},{offset: '200px'});
+                                    layer.msg('审核成功',{offset: '200px'});
                                     obj.del();
                                     location.reload();
                                 } else if (res.status == 'fail') {
-                                    layer.msg('审核失败', { icon: 2},{offset: '200px'});
+                                    if(res.data.errCode == 60001){
+                                        layer.msg('登录过期',{offset:'200px'})
+                                        setTimeout(function(){
+                                            if (window != window.top) {
+                                                window.top.location = "../login-dept.html"
+                                            }
+                                            },500)
+                                    }else{
+                                        layer.msg('审核失败',{offset: '200px'});
+                                    }
                                 }
                             }
                         })

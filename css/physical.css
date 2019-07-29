@@ -11,7 +11,7 @@
     border-color: #009ddd;
 }
 .layui-laypage .layui-laypage-curr .layui-laypage-em {
-    background:  #ff9600;
+    background:  #009ddd;
 }
 .layui-tab-title li {
     height: 40px;
@@ -81,7 +81,7 @@
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
-    padding: 20px 15px;
+    padding: 21px 15px;
     box-sizing: border-box;
 }
 
@@ -101,7 +101,7 @@
 .layui-form-item {
     /* border: 1px solid #000; */
     height: 25px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 
 .main_name {
@@ -110,12 +110,12 @@
     padding: 0;
     /* background: #000; */
     color: #fff;
-    line-height: 30px;
+    line-height: 26px;
     text-align: center;
 }
 .main_ff {
     width: 100%;
-    border: 1px solid #000;
+    /* border: 1px solid #000;*/
     display: flex;
     justify-content: space-between;
 }

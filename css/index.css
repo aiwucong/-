@@ -17,9 +17,11 @@ body,html{
 }
 #head span {
 	display: block;
-	width: 100%;
+	width: 1100px;
 	height: 100%;
-	background: url(../images/fontlogo1.png) no-repeat 242px 70px;
+	margin: 0 auto;
+	background: url(../images/fontlogo1.png) no-repeat 10%;
+	background-size: 100% 30%;
 }
 #content{
 	width: 80%;

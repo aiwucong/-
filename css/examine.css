@@ -15,7 +15,7 @@
     color: #fff;
 }
 .layui-table-page .layui-laypage .layui-laypage-curr .layui-laypage-em {
-    background: #ff9600;
+    background: #009ddd;
 }
 .queryAll {
     width: 100%;
@@ -161,7 +161,7 @@
 }
 
 .box_main #aa {
-    width: 30%;
+    width: 60%;
 }
 
 .box_main .yytimeText {
@@ -237,10 +237,24 @@
     height: 457px;
     margin-top: 10px;
 }
-/* .imger1 img:hover,
-.imger2 img:hover,
-.imger3 img:hover {
-    transform: scale(2.5) rotate(-90deg);
-    transition: all .5s;
-    z-index: 9999;
-} */
+.logOut {
+    width: 300px;
+    display: none;
+    /* border: 1px solid #000; */
+}
+.logOut h3 {
+    width: 200px;
+    height: 30px;
+    /* border: 1px solid red; */
+    margin: 20px auto;
+    font-size: 14px;
+    font-weight: 400;
+}
+.logOut h3 .icon-xunwen {
+    font-size: 36px !important;
+    color: red;
+    vertical-align: middle;
+}
+.viewer-button {
+	background: red !important;
+}

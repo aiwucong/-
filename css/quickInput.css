@@ -12,11 +12,19 @@ body {
     background: #009ddd;
     color: #fff;
 }
-.layui-table-page {
-    background: #fff;
+.layui-form-select dl dd.layui-this {
+    background: #009ddd;
+}
+.layui-table tbody tr:hover {
+    background: #009ddd;
+    color: #fff;
+}
+.layui-form-checked[lay-skin="primary"] i {
+    background: #009ddd;
+    border-color: #009ddd;
 }
 .layui-laypage .layui-laypage-curr .layui-laypage-em {
-    background: #ff9600;
+    background: #009ddd;
 }
 .container {
     width: 100%;
@@ -168,6 +176,14 @@ body {
     /* padding: 5px; */
     box-sizing: border-box;
 }
+.baseCheckboxs {
+    width: 14%;
+    /* border: 1px solid red; */
+    height: 165px;
+    /* padding: 5px; */
+    box-sizing: border-box;
+    margin-top: 57px;
+}
 
 .checkboxs .layui-form-item {
     width: 75%;
@@ -183,11 +199,23 @@ body {
     width: 20px;
     border: 1px solid #ff9600;
 }
+.tDates {
+    background: #fff;
+    width: 126px;
+    height: 34px;
+    font-size: 14px;
+    border: 2px solid #009ddd;
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 2px;
+}
 .checkboxs_btn1 {
     background: #009ddd;
     width: 130px;
     height: 38px;
     font-size: 14px;
+    line-height: 38px;
 }
 .checkboxs_btn2 {
     background: #ff9600;
@@ -262,9 +290,9 @@ body {
 .btn2 {
     display: block;
     width: 100%;
-    background: #d9d9d9;
+    background: #009ddd;
     margin: 10px auto !important;
-    color: #000;
+    color: #fff;
 }
 
 .homeImages ul li:nth-child(2) {

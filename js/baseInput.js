@@ -3,14 +3,20 @@ function jctable(){
         var table = layui.table;
         table.render({
             elem: '#baseInput',
-            height: 500,
+            height: 550,
             url: baseUrl + "/tijian/getWeekData?token="+localStorage.getItem("token"),
             where:{
                 status:0,
-                yuliu1:0
+                hospitalNum: mainDatas.hospitalNum
             },
             parseData: function (res) {
                 console.log(res)
+                if(res.status == 250){
+                    layer.msg('登录过期',{offset:'200px'})
+                    if (window != window.top) {
+                        window.top.location = "../login-dept.html"
+                    }
+                }
                 return {
                     "count": res.data.count,
                     "data": res.data.pageCount,
@@ -29,9 +35,9 @@ function jctable(){
                     {
                         width: 60,
                         type: "checkbox",
-                        fixed: 'left'
-                    },
-                        {
+                        // fixed: 'left'
+                      },
+                     {
                         field: 'name',
                         title: '姓名'
                     }, {
@@ -77,7 +83,6 @@ function jctable(){
                 ]
             ],
             done: function (res, curr, count) { // 隐藏列
-                console.log(res)
                 $(".layui-table-box").find("[data-field='idcardPhoto']").css("display", "none");
                 if (res.status == "100") {
                     $(".layui-table-main").html('<div class="layui-none">暂无数据</div>');
